@@ -14,6 +14,7 @@ body {
 #main {
   text-align: center;
   margin: 0 auto;
+  min-width: 360px;
   -webkit-animation: fadein ease-in .5s;
   -moz-animation: fadein ease-in .5s;
   -ms-animation: fadein ease-in .5s;
