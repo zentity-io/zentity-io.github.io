@@ -14,7 +14,6 @@ body {
 #main {
   text-align: center;
   margin: 0 auto;
-  min-width: 360px;
   -webkit-animation: fadein ease-in .5s;
   -moz-animation: fadein ease-in .5s;
   -ms-animation: fadein ease-in .5s;
@@ -46,12 +45,12 @@ h1,h2,h3,h4,h5,h6 {
 }
 h1 {
   font-family: 'woodfordbourne-regular', 'Open Sans', Helvetica, Arial, sans-serif;
-  font-size: 72px;
+  font-size: 48px;
   margin: 0;
-  padding: 72px 0 36px 0;
+  padding: 48px 0 48px 0;
 }
 h2 {
-  font-size: 36px;
+  font-size: 24px;
   margin: 0;
   padding: 0;
 }
