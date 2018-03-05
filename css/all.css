@@ -21,7 +21,7 @@ body {
   animation: fadein ease-in .5s;
 }
 #logo {
-  margin: 24px 0;
+  margin: 48px 0 18px 0;
 }
 #buttons {
   padding: 48px 0;
