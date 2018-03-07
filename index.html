@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>zentity - Entity Resolution for Elasticsearch</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <meta name="description" content="Entity Resolution for Elasticsearch">
     <meta property="og:title" content="zentity">
     <meta property="og:description" content="Entity Resolution for Elasticsearch">
@@ -14,36 +14,89 @@
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/css/all.css">
+    <script src="/js/all.js"></script>
   </head>
   <body>
-    <div id="main">
-      <img src="/img/zentity-logo-xl.png" height="50" width="50" alt="zentity" id="logo"/>
-      <h1 aria-label="zentity">
-        <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span></h1>
-      <h2 aria-label="Entity Resolution for Elasticsearch">
-        Entity Resolution for Elasticsearch
-      </h2>
-      <div id="buttons">
-        <button type="button" class="btn btn-sm btn-primary" aria-label="Get Started">
-          <a href="https://github.com/zentity-io/zentity/wiki" title="Get Started">
-            Get Started
+    <div id="app">
+      <div id="top">
+        <div id="nav" v-if="$route.path != '/'">
+          <div style="max-width:950px;margin:0 auto;">
+            <a href="/#/">
+              <h1 aria-label="zentity">
+                <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span>
+              </h1>
+            </a>
+            <div id="buttons">
+              <a href="/#/docs">
+                <button type="button" class="btn btn-sm btn-primary" aria-label="Docs">
+                  Documentation
+                </button>
+              </a>
+              <a href="/#/releases">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Releases">
+                  Releases
+                </button>
+              </a>
+              <a href="https://github.com/zentity-io/zentity" title="Github">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Github">
+                  Github
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="splash" v-if="$route.path == '/'">
+          <a href="/#/">
+            <img src="/img/zentity-logo-xl.png" height="50" width="50" alt="zentity" id="logo"/>
           </a>
-        </button>
-        <button type="button" class="btn btn-sm btn-light" aria-label="Releases">
-          <a href="https://github.com/zentity-io/zentity/releases" title="Releases">
-            Releases
-          </a>
-        </button>
-        <button type="button" class="btn btn-sm btn-light" aria-label="Github">
-          <a href="https://github.com/zentity-io/zentity" title="Github">
-            Github
-          </a>
-        </button>
+          <h1 aria-label="zentity">
+            <span>
+              <a href="/#/">
+                <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span>
+              </a>
+            </span>
+          </h1>
+          <h2 aria-label="Entity Resolution for Elasticsearch">
+            Entity Resolution for Elasticsearch
+          </h2>
+          <div id="buttons">
+            <a href="/#/docs">
+              <button type="button" class="btn btn-sm btn-primary" aria-label="Docs">
+                Documentation
+              </button>
+            </a>
+            <a href="/#/releases">
+              <button type="button" class="btn btn-sm btn-link" aria-label="Releases">
+                Releases
+              </button>
+            </a>
+            <a href="https://github.com/zentity-io/zentity" title="Github">
+              <button type="button" class="btn btn-sm btn-link" aria-label="Github">
+                Github
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div id="main" :class="{'content': $route.path != '/'}">
+        <transition name="fade">
+          <router-view></router-view>
+        </transition>
       </div>
       <div id="bottom">
-        <small>&copy; 2018 <a href="https://github.com/davemoore-" title="Dave Moore">Dave Moore</a></small>
+        <small>
+          <div>
+            &copy; 2018 <a href="https://github.com/davemoore-" title="Dave Moore">Dave Moore</a>.
+          </div>
+          <div>
+            Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+          </div>
+          <div>
+            Elasticsearch is a trademark of Elasticsearch BV.
+          </div>
+        </small>
       </div>
     </div>
-    <script src="/js/all.js"></script>
+    <script src="/app.js"></script>
   </body>
 </html>
