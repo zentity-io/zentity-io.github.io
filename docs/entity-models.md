@@ -12,8 +12,19 @@ Entity models serve three purposes:
 3. They define which combinations of [`"attributes"`](/#/docs/entity-models/specification) lead to resolution.
 
 
-## Further reading:
+## More info
 
 - [Usage](/#/docs/entity-models/usage)
 - [Specification](/#/docs/entity-models/specification)
 - [Tips](/#/docs/entity-models/tips)
+
+
+&nbsp;
+
+----
+
+#### Continue Reading
+
+|&#8249;|[Basic Usage](/#/docs/basic-usage)|[Usage](/#/docs/entity-models/usage)|&#8250;|
+|:---|:---|---:|---:|
+|    |    |    |    |

@@ -15,3 +15,14 @@
 - [REST APIs](/#/docs/rest-apis)
     - [Resolution API](/#/docs/rest-apis/resolution-api)
     - [Models API](/#/docs/rest-apis/models-api)
+
+
+&nbsp;
+
+----
+
+#### Continue Reading
+
+|||[Installation](/#/docs/installation)|&#8250;|
+|:---|:---|---:|---:|
+|    |    |    |    |

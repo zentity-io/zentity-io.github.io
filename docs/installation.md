@@ -33,3 +33,14 @@ Download: [https://www.elastic.co/downloads/elasticsearch](https://www.elastic.c
   }
 }
 ```
+
+
+&nbsp;
+
+----
+
+#### Continue Reading
+
+|&#8249;|[Contents](/#/docs)|[Basic Usage](/#/docs/basic-usage)|&#8250;|
+|:---|:---|---:|---:|
+|    |    |    |    |

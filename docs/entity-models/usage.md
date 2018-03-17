@@ -15,3 +15,14 @@ Each document in this index represents the entity model for a distinct entity ty
 [`_id`](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html) field of the document.
 There can be only one entity model for a given entity type. Once you have indexed an entity model, you can use it by
 setting the `entity_type` parameter in your requests.
+
+
+&nbsp;
+
+----
+
+#### Continue Reading
+
+|&#8249;|[Entity Models](/#/docs/entity-models)|[Specification](/#/docs/entity-models/specification)|&#8250;|
+|:---|:---|---:|---:|
+|    |    |    |    |

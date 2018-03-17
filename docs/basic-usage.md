@@ -139,3 +139,14 @@ POST _zentity/resolution?pretty
   }
 }
 ```
+
+
+&nbsp;
+
+----
+
+#### Continue Reading
+
+|&#8249;|[Installation](/#/docs/installation)|[Entity Models](/#/docs/entity-models)|&#8250;|
+|:---|:---|---:|---:|
+|    |    |    |    |

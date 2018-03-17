@@ -129,3 +129,14 @@ DELETE _zentity/models/{entity_type}
 |-----|----|-------|--------|-----------|
 |`entity_type`|String| |Yes|Entity type.|
 |`pretty`|Boolean|`false`|No|Indents the JSON response data.|
+
+
+&nbsp;
+
+----
+
+#### Continue Reading
+
+|&#8249;|[Resolution API](/#/docs/rest-apis/resolution-api)|||
+|:---|:---|---:|---:|
+|    |    |    |    |

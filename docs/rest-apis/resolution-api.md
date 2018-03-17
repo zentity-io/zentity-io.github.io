@@ -144,3 +144,14 @@ span many hops if they have highly varied attribute values.
 searching each index in the entity model at each hop.
 - Beware if your data is ***transactional*** or has ***many duplicates***. You might need to lower the values of
 `max_hops` and `max_docs_per_query` if your jobs are timing out.
+
+
+&nbsp;
+
+----
+
+#### Continue Reading
+
+|&#8249;|[REST APIs](/#/docs/rest-apis)|[Models API](/#/docs/rest-apis/models-api)|&#8250;|
+|:---|:---|---:|---:|
+|    |    |    |    |

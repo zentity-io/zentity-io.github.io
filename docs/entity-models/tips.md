@@ -127,3 +127,14 @@ to the same phonetic value. But that value has to exist in the index if we want 
 exist, you would need to update your index mapping to create a field that uses a [custom analyzer](https://www.elastic.co/guide/en/elasticsearch/guide/current/custom-analyzers.html)
 using a phonetic tokenizer, and then [reindex](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html)
 the data.
+
+
+&nbsp;
+
+----
+
+#### Continue Reading
+
+|&#8249;|[Specification](/#/docs/entity-models/specification)|[REST APIs](/#/docs/rest-apis)|&#8250;|
+|:---|:---|---:|---:|
+|    |    |    |    |

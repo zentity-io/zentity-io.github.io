@@ -97,3 +97,14 @@ represents the name of an `ATTRIBUTE`.
 
 - **`ATTRIBUTE`** - The distinct name of an attribute. Some examples could include `"name"`, `"dob"`, `"phone"`, etc.
 The name cannot include periods.
+
+
+&nbsp;
+
+----
+
+#### Continue Reading
+
+|&#8249;|[Usage](/#/docs/entity-models/usage)|[Tips](/#/docs/entity-models/tips)|&#8250;|
+|:---|:---|---:|---:|
+|    |    |    |    |
