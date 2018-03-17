@@ -28,13 +28,15 @@ POST _zentity/resolution/person?pretty
       "555-987-6543"
     ]
   },
-  "filter_indices": [
-    "users_index"
-  ],
-  "filter_resolvers": [
-    "name_dob",
-    "name_phone"
-  ]
+  "scope": {
+    "indices": [
+      "users_index"
+    ],
+    "resolvers": [
+      "name_dob",
+      "name_phone"
+    ]
+  }
 }
 ```
 
@@ -42,7 +44,7 @@ POST _zentity/resolution/person?pretty
 
 This example response took 64 milliseconds and returned 2 hits. The `_source` field contains the fields and values
 as they exist in the document indexed in Elasticsearch. The `_attributes` field contains any values from the
-`_source` field that can be mapped to the [`"attributes"`](Entity-Models#attributes) field of the entity model.
+`_source` field that can be mapped to the [`"attributes"`](/#/docs/entity-models/specification) field of the entity model.
 The `_hop` field shows the level of recursion at which the document was fetched. Entities with many documents can
 span many hops if they have highly varied attribute values.
 
@@ -126,8 +128,8 @@ span many hops if they have highly varied attribute values.
 |-----|----|-------|--------|-----------|
 |`attributes`|Object| |Yes|The initial attribute values to search.|
 |`entity_type`|String| |Depends|The entity type. Required if `model` is not specified.|
-|`filter_indices`|Array| |No|The names of indices to limit the job to.|
-|`filter_resolvers`|Array| |No|The names of resolvers to limit the job to.|
+|`scope.indices`|Array| |No|The names of indices to limit the job to.|
+|`scope.resolvers`|Array| |No|The names of resolvers to limit the job to.|
 |`model`|Object| |Depends|The entity model. Required if `entity_type` is not specified.|
 
 **Notes:**
@@ -138,7 +140,7 @@ span many hops if they have highly varied attribute values.
 
 **Tips:**
 
-- If you only need to search a few indices, name them in the `filter_indices` parameter to prevent the job from
+- If you only need to search a few indices, name them in the `scope.indices` parameter to prevent the job from
 searching each index in the entity model at each hop.
 - Beware if your data is ***transactional*** or has ***many duplicates***. You might need to lower the values of
 `max_hops` and `max_docs_per_query` if your jobs are timing out.
