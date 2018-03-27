@@ -9,6 +9,7 @@
 
 ## zentity-0.1.1-beta.1
 
+- [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.1.1-beta.1-elasticsearch-6.2.3.zip)
 - [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.1.1-beta.1-elasticsearch-6.2.2.zip)
 - [Elasticsearch 6.2.1](https://zentity.io/releases/zentity-0.1.1-beta.1-elasticsearch-6.2.1.zip)
 - [Elasticsearch 6.2.0](https://zentity.io/releases/zentity-0.1.1-beta.1-elasticsearch-6.2.0.zip)
