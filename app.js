@@ -117,6 +117,11 @@ const router = new VueRouter({
     return { x: 0, y: 0 };
   }
 });
+router.afterEach((to, from) => {
+  gtag('config', 'UA-27325874-2', {
+    'page_path': to.fullPath
+  });
+})
 
 const app = new Vue({
   router,
