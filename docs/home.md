@@ -1,4 +1,4 @@
-# Zenful entity resolution
+## Zenful entity resolution
 
 zentity is an **[Elasticsearch](https://www.elastic.co/products/elasticsearch)** plugin for real-time entity
 resolution. It aims to be:
