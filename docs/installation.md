@@ -28,8 +28,8 @@ Download: [https://www.elastic.co/downloads/elasticsearch](https://www.elastic.c
   "description": "Real-time entity resolution for Elasticsearch.",
   "website": "http://zentity.io",
   "version": {
-    "zentity": "0.1.1",
-    "elasticsearch": "6.2.1"
+    "zentity": "0.1.1-beta.2",
+    "elasticsearch": "6.2.3"
   }
 }
 ```
