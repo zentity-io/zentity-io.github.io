@@ -11,7 +11,29 @@ Download: [https://www.elastic.co/downloads/elasticsearch](https://www.elastic.c
 
 ## Step 2. Install zentity
 
-`elasticsearch-plugin install zentity`
+Once you have installed Elasticsearch, you can install zentity from a remote URL or a local file.
+
+
+### Install from remote URL
+
+1. Browse the **[releases](/#/releases)**.
+2. Find a release that matches your version of Elasticsearch. Copy the name of the .zip file.
+3. Install the plugin using the `elasticsearch-plugin` script that comes with Elasticsearch.
+
+Example:
+
+`elasticsearch-plugin install https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.3.zip`
+
+
+### Install from local file
+
+1. Browse the **[releases](/#/releases)**.
+2. Find a release that matches your version of Elasticsearch. Download the .zip file.
+4. Install the plugin using the `elasticsearch-plugin` script that comes with Elasticsearch.
+
+Example:
+
+`elasticsearch-plugin install file:///path/to/zentity-0.1.1-beta.2-elasticsearch-6.2.3.zip`
 
 
 ## Step 3. Verify installation
