@@ -50,9 +50,6 @@ h1,h2,h3,h4,h5,h6 {
 #top h1 a, #top a h1, #top img {
   transition: all ease-in-out .15s;
 }
-#top h1 a:hover, #top a:hover h1, #top img:hover {
-  filter: brightness(125%);
-}
 #nav {
   background: #fff;
   border-bottom: 1px solid #e9ecef;
@@ -72,11 +69,11 @@ h1,h2,h3,h4,h5,h6 {
   float: right;
   padding: 14px 1rem;
 }
-#splash {
-  padding-bottom: 48px;
-}
 #splash #logo {
   margin: 48px 0 0 0;
+}
+#splash #identity-changes {
+  padding: 24px 0;
 }
 #splash h1 {
   font-family: 'woodfordbourne-regular', 'Open Sans', Helvetica, Arial, sans-serif;
