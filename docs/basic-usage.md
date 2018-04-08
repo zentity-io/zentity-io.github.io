@@ -63,8 +63,7 @@ POST _zentity/resolution/person?pretty
 }
 ```
 
-Run an entity resolution job using an embeded entity model. This example uses three attributes (each with two
-matchers), two indices, and two resolvers.
+Run an entity resolution job using an embeded entity model. This example uses three attributes, two resolvers, and two indices.
 
 ```javascript
 POST _zentity/resolution?pretty
@@ -76,65 +75,89 @@ POST _zentity/resolution?pretty
   },
   "model": {
     "attributes": {
-        "name": {
-          "text": {
-            "match": {
-              "{{ field }}": {
-                "query": "{{ value }}",
-                "fuzziness": 2
-              }
-            }
-          },
-          "phonetic": {
-            "match": {
-              "{{ field }}": {
-                "query": "{{ value }}",
-                "fuzziness": 0
-              }
-            }
-          }
-        },
-        "dob": {
-          "text": {
-            "match": {
-              "{{ field }}": "{{ value }}"
-            }
-          },
-          "keyword": {
-            "term": {
-              "{{ field }}": "{{ value }}"
-            }
-          }
-        },
-        "phone": {
-          "text": {
-            "match": {
-              "{{ field }}": "{{ value }}"
-            }
-          },
-          "keyword": {
-            "term": {
-              "{{ field }}": "{{ value }}"
-            }
-          }
-        }
-    },
-    "indices": {
-      "foo_index": {
-        "name.text": "full_name",
-        "name.phonetic": "full_name.phonetic",
-        "dob.keyword": "date_of_birth.keyword",
-        "phone.keyword": "telephone.keyword"
+      "name": {
+        "type": "text"
       },
-      "bar_index": {
-        "name.text": "nm",
-        "dob.text": "db",
-        "phone.text": "ph"
+      "dob": {
+        "type": "text"
+      },
+      "phone": {
+        "type": "text"
       }
     },
     "resolvers": {
-      "name_dob": [ "name", "dob" ],
-      "name_phone": [ "name", "phone" ]
+      "name_dob": {
+        "attributes": [
+          "name", "dob"
+        ]
+      },
+      "name_phone": {
+        "attributes": [
+          "name", "phone"
+        ]
+      }
+    },
+    "matchers": {
+      "exact": {
+        "clause": {
+          "term": {
+            "{{ field }}": "{{ value }}"
+          }
+        }
+      },
+      "fuzzy": {
+        "clause": {
+          "match": {
+            "{{ field }}": {
+              "query": "{{ value }}",
+              "fuzziness": 2
+            }
+          }
+        }
+      },
+      "standard": {
+        "match": {
+          "{{ field }}": "{{ value }}"
+        }
+      }
+    },
+    "indices": {
+      "foo_index": {
+        "fields": {
+          "full_name": {
+            "attribute": "name",
+            "matcher": "fuzzy"
+          },
+          "full_name.phonetic": {
+            "attribute": "name",
+            "matcher": "standard"
+          },
+          "date_of_birth.keyword": {
+            "attribute": "dob",
+            "matcher": "exact"
+          },
+          "telephone.keyword": {
+            "attribute": "phone",
+            "matcher": "exact"
+          }
+        }
+      },
+      "bar_index": {
+        "fields": {
+          "nm": {
+            "attribute": "name",
+            "matcher": "fuzzy"
+          },
+          "db": {
+            "attribute": "dob",
+            "matcher": "standard"
+          },
+          "ph": {
+            "attribute": "phone",
+            "matcher": "standard"
+          }
+        }
+      }
     }
   }
 }
