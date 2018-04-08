@@ -30,36 +30,36 @@ pressure to get it right the first time.
 
 **3. Determine the matching logic for each attribute.**
 
-You need to write at least one [matcher](/#/docs/entity-models/specification) for each attribute. A matcher is simply a
-clause of a [`"bool"` query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html)
+You need to write at least one [matcher](/#/docs/entity-models/specification) for the resolution job to build queries.
+A matcher is simply a clause of a [`"bool"` query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html)
 in Elasticsearch. Some attributes might have exact matches. Some attributes such as a `name` will tolerate
 [fuzziness](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html) or target
 [phonetic tokens](https://www.elastic.co/guide/en/elasticsearch/guide/current/phonetic-matching.html), while other
 attributes such as an `email address` might not.
 
-Below is an example of an attribute called `name` with two matchers called `text` and `phonetic`. You might use the
-`name.text` matcher, which uses  the `"fuzziness"` field to allow for typos, on indexed name fields that used the
-[standard analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html).
-You might use the `name.phonetic` matcher on indexed name fields that used a
-[phonetic token filter](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html),
+Below is an example of two matchers called `text` and `phonetic`. You might use the `text` matcher, which uses the
+`"fuzziness"` field to allow for typos, on indexed name fields that used the [standard analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html).
+You might use the `phonetic` matcher on indexed name fields that used a [phonetic token filter](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html),
 which is already a loose match that wouldn't benefit from the `"fuzziness"` field and might even generate more false
 positives if you did use it.
 
-*Example*
+**Example**
 
 ```javascript
 {
-  "attributes": {
-    "name": {
-      "text": {
+  "matchers": {
+    "text": {
+      "clause": {
         "match": {
           "{{ field }}": {
             "query": "{{ value }}",
             "fuzziness": 2
           }
         }
-      },
-      "phonetic": {
+      }
+    },
+    "phonetic": {
+      "clause": {
         "match": {
           "{{ field }}": {
             "query": "{{ value }}",
@@ -84,29 +84,41 @@ Each combination represents a minimum amount of matching attributes that you wou
 confidence. Below is an example that shows how you might combine the attributes `name`, `dob`, `street`, `city`,
 `state`, `zip`, `email`, `phone` to resolve a `person` entity type.
 
-*Example*
+**Example**
 
 ```javascript
 {
   "resolvers": {
-    "name_dob_city_state": [
-      "name", "dob", "city", "state"
-    ],
-    "name_street_city_state": [
-      "name", "street", "city", "state"
-    ],
-    "name_street_zip": [
-      "name", "street", "zip"
-    ],
-    "name_email": [
-      "name", "email"
-    ],
-    "name_phone": [
-      "name", "phone"
-    ],
-    "email_phone": [
-      "email", "phone"
-    ]
+    "name_dob_city_state": {
+        "attributes": [
+          "name", "dob", "city", "state"
+        ]
+    },
+    "name_street_city_state": {
+        "attributes": [
+          "name", "street", "city", "state"
+        ]
+    },
+    "name_street_zip": {
+        "attributes": [
+          "name", "street", "zip"
+        ]
+    },
+    "name_email": {
+        "attributes": [
+          "name", "email"
+        ]
+    },
+    "name_phone": {
+        "attributes": [
+          "name", "phone"
+        ]
+    },
+    "email_phone": {
+        "attributes": [
+          "email", "phone"
+        ]
+    }
   }
 }
 ```
@@ -121,10 +133,11 @@ One of the goals of zentity is to prevent you from ever needing to reindex your 
 where you might want to do this. For example, you might have an indexed field called `name` that was indexed using
 the [standard analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html).
 You can write a matcher that performs a basic match on this field, perhaps allowing for some fuzziness. But you
-might want to have a [phonetic](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html) matcher, too. There are many ways to spell transliterated names, such as Muhammad: *Muhammed, Muhamad,
-Muhamed, Muhamet, Mahamed, Mohamad, Mohamed, Mohammad, Mohammed*, etc. All of these spelling variations can be reduced
-to the same phonetic value. But that value has to exist in the index if we want to use it for matching. If it doesn't
-exist, you would need to update your index mapping to create a field that uses a [custom analyzer](https://www.elastic.co/guide/en/elasticsearch/guide/current/custom-analyzers.html)
+might want to have a [phonetic](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html)
+matcher, too. There are many ways to spell transliterated names, such as Muhammad: *Muhammed, Muhamad, Muhamed, Muhamet, Mahamed,
+Mohamad, Mohamed, Mohammad, Mohammed*, etc. All of these spelling variations can be reduced to the same phonetic value. But that
+value has to exist in the index if we want to use it for matching. If it doesn't exist, you would need to update your index mapping
+to create a field that uses a [custom analyzer](https://www.elastic.co/guide/en/elasticsearch/guide/current/custom-analyzers.html)
 using a phonetic tokenizer, and then [reindex](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html)
 the data.
 
