@@ -16,7 +16,7 @@ resolution. It aims to be:
 ## Latest release
 
 
-### zentity 0.1.1-beta.2
+### zentity 0.2.0-beta.1
 
 Select the plugin version that aligns with your version of Elasticsearch:
 
