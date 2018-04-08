@@ -13,6 +13,13 @@ renderer.table = function(header, body) {
     + '</table>\n';
     + '</div>\n';
 };
+var http_config = {
+  'headers': {
+    'Cache-Control': "no-cache,no-store,must-revalidate,max-age=-1,private",
+    'Expires': '-1',
+    'Pragma': 'no-cache'
+  }
+};
 
 const Home = {
   template: '<div id="home" v-html="marked(markdown, { renderer: renderer })"></div>',
@@ -24,7 +31,8 @@ const Home = {
   methods: {
     get() {
       const component = this;
-      axios.get('/docs/home.md')
+      var uri = '/docs/home.md?_timestamp=' + new Date().getTime();
+      axios.get(uri, http_config)
         .then(function(response) {
           console.log(response);
           component.markdown = response.data;
@@ -56,8 +64,9 @@ const Docs = {
         page = 'index';
       else if (!!section)
         page = page + '/' + section;
+      var uri = '/docs/' + page + '.md?_timestamp=' + new Date().getTime();
       console.log(page);
-      axios.get('/docs/' + page + '.md')
+      axios.get(uri, http_config)
         .then(function(response) {
           console.log(response);
           component.markdown = response.data;
@@ -87,7 +96,8 @@ const Releases = {
   methods: {
     get() {
       const component = this;
-      axios.get('/docs/releases.md')
+      var uri = '/docs/releases.md?_timestamp=' + new Date().getTime();
+      axios.get(uri, http_config)
         .then(function(response) {
           console.log(response);
           component.markdown = response.data;

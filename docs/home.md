@@ -20,15 +20,15 @@ resolution. It aims to be:
 
 Select the plugin version that aligns with your version of Elasticsearch:
 
-- [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.3.zip)
-- [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.2.zip)
-- [Elasticsearch 6.2.1](https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.1.zip)
-- [Elasticsearch 6.2.0](https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.0.zip)
-- [Elasticsearch 6.1.3](https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.1.3.zip)
-- [Elasticsearch 6.1.2](https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.1.2.zip)
-- [Elasticsearch 6.1.1](https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.1.1.zip)
-- [Elasticsearch 6.0.1](https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.0.1.zip)
-- [Elasticsearch 6.0.0](https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.0.0.zip)
+- [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.2.3.zip)
+- [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.2.2.zip)
+- [Elasticsearch 6.2.1](https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.2.1.zip)
+- [Elasticsearch 6.2.0](https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.2.0.zip)
+- [Elasticsearch 6.1.3](https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.1.3.zip)
+- [Elasticsearch 6.1.2](https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.1.2.zip)
+- [Elasticsearch 6.1.1](https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.1.1.zip)
+- [Elasticsearch 6.0.1](https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.0.1.zip)
+- [Elasticsearch 6.0.0](https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.0.0.zip)
 
 
 ## Quick start
@@ -44,7 +44,7 @@ Once you have installed Elasticsearch, you can install zentity from a remote URL
 
 Example:
 
-`elasticsearch-plugin install https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.3.zip`
+`elasticsearch-plugin install https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.2.3.zip`
 
 
 ### Install from local file
@@ -55,10 +55,10 @@ Example:
 
 Example:
 
-`elasticsearch-plugin install file:///path/to/zentity-0.1.1-beta.2-elasticsearch-6.2.3.zip`
+`elasticsearch-plugin install file:///path/to/zentity-0.2.0-beta.1-elasticsearch-6.2.3.zip`
 
 
 ## Next steps
 
-Read the **[documentation](/#/docs)** to learn how to create and manage
-entity models and how to resolve entities.
+Read the **[documentation](/#/docs)** to learn about [entity models](/#/docs/entity-models)
+how to [manage entity models](/#/docs/rest-apis/models-api), and how to [resolve entities](/#/docs/rest-apis/resolution-api).

@@ -9,7 +9,6 @@
 - [Installation](/#/docs/installation)
 - [Basic Usage](/#/docs/basic-usage)
 - [Entity Models](/#/docs/entity-models)
-    - [Usage](/#/docs/entity-models/usage)
     - [Specification](/#/docs/entity-models/specification)
     - [Tips](/#/docs/entity-models/tips)
 - [REST APIs](/#/docs/rest-apis)
