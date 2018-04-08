@@ -60,5 +60,5 @@ Example:
 
 ## Next steps
 
-Read the **[documentation](/#/docs)** to learn about [entity models](/#/docs/entity-models)
+Read the **[documentation](/#/docs)** to learn about [entity models](/#/docs/entity-models),
 how to [manage entity models](/#/docs/rest-apis/models-api), and how to [resolve entities](/#/docs/rest-apis/resolution-api).

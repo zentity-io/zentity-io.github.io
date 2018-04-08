@@ -40,28 +40,44 @@ Returns the entity model for a given `entity_type` from the `.zentity-models` in
 Creates an entity model for a given `entity_type` and puts it in the `.zentity-models` index.
 Returns an error if an entity model already exists for that `entity_type`.
 
+For more details about the contents of the payload, read the
+[entity model specification](/#/docs/entity-models/specification).
+
 ```javascript
 POST _zentity/models/{entity_type}
 {
   "attributes": {
-    ATTRIBUTE: {
-      MATCHER: QUERY_TEMPLATE,
-      ...
-    },
-    ...
-  },
-  "indices": {
-    INDEX: {
-      ATTRIBUTE.MATCHER: FIELD,
-      ...
+    ATTRIBUTE_NAME: {
+      "type": ATTRIBUTE_TYPE
     },
     ...
   },
   "resolvers": {
-    RESOLVER: [
-      ATTRIBUTE,
-      ...
-    ],
+    RESOLVER_NAME: {
+      "attributes": [
+        ATTRIBUTE_NAME,
+        ...
+      ]
+    }
+    ...
+  },
+  "matchers": {
+    MATCHER_NAME: {
+      "clause": MATCHER_CLAUSE,
+      "type": MATCHER_TYPE
+    },
+    ...
+  },
+  "indices": {
+    INDEX_NAME: {
+      "fields": {
+        INDEX_FIELD_NAME: {
+          "attribute": ATTRIBUTE_NAME,
+          "matcher": MATCHER_NAME
+        },
+        ...
+      }
+    },
     ...
   }
 }
@@ -80,28 +96,44 @@ POST _zentity/models/{entity_type}
 Updates an entity model for a given `entity_type`.
 Creates the entity model if it does not already exist.
 
+For more details about the contents of the payload, read the
+[entity model specification](/#/docs/entity-models/specification).
+
 ```javascript
 PUT _zentity/models/{entity_type}
 {
   "attributes": {
-    ATTRIBUTE: {
-      MATCHER: QUERY_TEMPLATE,
-      ...
-    },
-    ...
-  },
-  "indices": {
-    INDEX: {
-      ATTRIBUTE.MATCHER: FIELD,
-      ...
+    ATTRIBUTE_NAME: {
+      "type": ATTRIBUTE_TYPE
     },
     ...
   },
   "resolvers": {
-    RESOLVER: [
-      ATTRIBUTE,
-      ...
-    ],
+    RESOLVER_NAME: {
+      "attributes": [
+        ATTRIBUTE_NAME,
+        ...
+      ]
+    }
+    ...
+  },
+  "matchers": {
+    MATCHER_NAME: {
+      "clause": MATCHER_CLAUSE,
+      "type": MATCHER_TYPE
+    },
+    ...
+  },
+  "indices": {
+    INDEX_NAME: {
+      "fields": {
+        INDEX_FIELD_NAME: {
+          "attribute": ATTRIBUTE_NAME,
+          "matcher": MATCHER_NAME
+        },
+        ...
+      }
+    },
     ...
   }
 }
