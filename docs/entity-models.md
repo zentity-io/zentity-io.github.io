@@ -4,7 +4,7 @@
 # Entity Models
 
 
-zentity relies on objects called ***[entity models](/#/entity-models/specification)*** to control the execution of entity resolution jobs.
+zentity relies on objects called ***[entity models](/#/docs/entity-models/specification)*** to control the execution of entity resolution jobs.
 
 Entity models serve multiple purposes:
 
@@ -12,7 +12,7 @@ Entity models serve multiple purposes:
 2. They define how to match an attribute for any index field it maps to.
 3. They define which combinations of matching attributes imply a resolution.
 
-Read the [entity model specification](/#/entity-models/specification) for specific details on the contents of entity models.
+Read the [entity model specification](/#/docs/entity-models/specification) for specific details on the contents of entity models.
 
 
 ## Usage
