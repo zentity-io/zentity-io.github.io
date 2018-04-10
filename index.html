@@ -21,6 +21,17 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'UA-27325874-2');
+      var to = function(uri) {
+        var event_category = 'outbound';
+        if (uri.startsWith('https://zentity.io/releases/') || uri.startsWith('/releases/') || uri.startsWith('/#/releases/'))
+          event_category = 'download';
+        gtag('event', 'click', {
+          'event_category': event_category,
+          'event_label': uri,
+          'transport_type': 'beacon',
+          'event_callback': function(){document.location = uri;}
+        });
+      };
     </script>
     <script src="/js/all.js"></script>
   </head>
@@ -45,7 +56,7 @@
                   Releases
                 </button>
               </a>
-              <a href="https://github.com/zentity-io/zentity" title="Github">
+              <a href="https://github.com/zentity-io/zentity" title="Github" onclick="to('https://github.com/zentity-io/zentity');">
                 <button type="button" class="btn btn-sm btn-link" aria-label="Github">
                   Github
                 </button>
@@ -78,7 +89,7 @@
                 Releases
               </button>
             </a>
-            <a href="https://github.com/zentity-io/zentity" title="Github">
+            <a href="https://github.com/zentity-io/zentity" title="Github" onclick="to('https://github.com/zentity-io/zentity');">
               <button type="button" class="btn btn-sm btn-link" aria-label="Github">
                 Github
               </button>
@@ -97,10 +108,10 @@
       <div id="bottom">
         <small>
           <div>
-            &copy; 2018 <a href="https://github.com/davemoore-" title="Dave Moore">Dave Moore</a>.
+            &copy; 2018 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
           </div>
           <div>
-            Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+            Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" onclick="to('http://www.apache.org/licenses/LICENSE-2.0');">Apache License, Version 2.0</a>.
           </div>
           <div>
             Elasticsearch is a trademark of Elasticsearch BV.

@@ -2,6 +2,30 @@ var renderer = new marked.Renderer();
 renderer.code = function(code, lang) {
   return '<pre><code class="hljs ' + lang + '">' + hljs.highlight(lang, code).value + '</code></pre>';
 };
+renderer.link = function(href, title, text) {
+  if (this.options.sanitize) {
+    try {
+      var prot = decodeURIComponent(unescape(href))
+        .replace(/[^\w:]/g, '')
+        .toLowerCase();
+    } catch (e) {
+      return text;
+    }
+    if (prot.indexOf('javascript:') === 0 || prot.indexOf('vbscript:') === 0 || prot.indexOf('data:') === 0) {
+      return text;
+    }
+  }
+  if (this.options.baseUrl && !originIndependentUrl.test(href)) {
+    href = resolveUrl(this.options.baseUrl, href);
+  }
+  var out = '<a href="' + href + '"';
+  if (title) {
+    out += ' title="' + title + '"';
+  }
+  out += ' onclick="to(\'' + href + '\');"';
+  out += '>' + text + '</a>';
+  return out;
+}
 renderer.table = function(header, body) {
   return '<table class="table">\n'
     + '  <thead>\n'
