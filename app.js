@@ -22,7 +22,8 @@ renderer.link = function(href, title, text) {
   if (title) {
     out += ' title="' + title + '"';
   }
-  out += ' onclick="to(\'' + href + '\');"';
+  if (!href.startsWith("/") && !href.startsWith("https://zentity.io") && !href.startsWith("http://zentity.io"))
+    out += ' onclick="to(\'' + href + '\');"';
   out += '>' + text + '</a>';
   return out;
 }
