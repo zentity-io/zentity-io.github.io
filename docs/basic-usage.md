@@ -76,13 +76,13 @@ POST _zentity/resolution?pretty
   "model": {
     "attributes": {
       "name": {
-        "type": "text"
+        "type": "string"
       },
       "dob": {
-        "type": "text"
+        "type": "string"
       },
       "phone": {
-        "type": "text"
+        "type": "string"
       }
     },
     "resolvers": {
