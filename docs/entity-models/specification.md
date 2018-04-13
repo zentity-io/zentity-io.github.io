@@ -214,10 +214,11 @@ that share matching values for `"name"` and `"dob"` or `"name"` and `"phone"`. Y
 combinations of attributes. Then any documents whose values share either a matching `"name"` and `"dob"` or  `"name"`
 and `"phone"` will resolve to the same entity.
 
-Remember that attributes can have more than one matcher. This means that if *any* matcher of an attribute yields a
-match for a given value, then the attribute will be considered a match regardless of the results of the other matchers.
-So if you have an attribute called `name` with matchers called `keyword` and `phonetic`, then any resolver that uses
-the `name` attribute is effectively saying that *either* `name.keyword` *or* `name.phonetic` are required to match.
+Remember that attributes can be associated with more than one matcher in the `"indices"` object. This means that if
+*any* matcher of an attribute yields a match for a given value, then the attribute will be considered a match
+regardless of the results of the other matchers. So if you have an attribute called `name` with matchers called
+`keyword` and `phonetic`, then any resolver that uses the `name` attribute is effectively saying that *either*
+`name.keyword` *or* `name.phonetic` are required to match.
 
 
 ### `"resolvers".RESOLVER_NAME`
@@ -341,9 +342,9 @@ Indicates that the matcher expects an index field name (`"{{ field }}"`) and a s
 ### `"matchers".MATCHER_NAME."clause"`
 
 An object that represents the clause of a [`"bool"` query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html)
-in Elasticsearch. Each clause will be stitched together in a single `"bool"` query, so it must follow the correct syntax
-for a `"bool"` query clause, except you don't need to include the top-level field `"bool"` or its subfields such as
-`"must"` or `"should"`.
+in Elasticsearch. Each clause will be stitched together to form a single `"bool"` query, so it must follow the correct
+syntax for a `"bool"` query clause, except you don't need to include the top-level field `"bool"` or its subfields such
+as `"must"` or `"should"`.
 
 Matcher clauses use Mustache syntax to pass two important variables: **`{{ field }}`** and **`{{ value }}`**.
 The `field` variable will be populated with the index field that maps to the attribute. The `value` field will be
@@ -490,7 +491,7 @@ in the `"attributes"` field of the documents matched in a resolution job if thos
 of other resolvers.
 
 Let's illustrate how index fields relate to matchers and attributes during a resolution job. Assume you are resolving
-an entity with an email address of `user@example.net` and one of the indices has an field name of `"email.keyword"`.
+an entity with an email address of `"user@example.net"` and one of the indices has an field name of `"email.keyword"`.
 And assume that the index field is mapped to the matcher clause below:
 
 ```javascript
