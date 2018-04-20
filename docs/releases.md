@@ -27,15 +27,15 @@ Select the plugin version that aligns with your version of Elasticsearch:
 
 - **Feature** - Resolution jobs now support exclusive and inclusive scoping
 (i.e. blacklisting and whitelisting) based on attributes, resolvers, and indices.
-Exclusive scoping takes precedence over inclusive scoping. New parameters include:
+Exclusive scoping takes precedence over inclusive scoping.
+([28fcea5](https://github.com/zentity-io/zentity/commit/28fcea56c2b85d9706b975f02d59c39be3d9164b))
+New parameters include:
     - `scope.exclude.attributes`
     - `scope.exclude.indices`
     - `scope.exclude.resolvers`
     - `scope.include.attributes`
     - `scope.include.indices`
     - `scope.include.resolvers`
-    
-([28fcea5](https://github.com/zentity-io/zentity/commit/28fcea56c2b85d9706b975f02d59c39be3d9164b))
 
 - **Breaking change** - The `scope.indices` and `scope.resolvers` parameters
 of the [Resolution API](/#/docs/rest-apis/resolution-api) have been replaced
