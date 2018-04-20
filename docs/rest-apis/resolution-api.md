@@ -145,10 +145,16 @@ span many hops if they have highly varied attribute values.
 
 **Tips:**
 
-- If you only need to search a few indices, name them in the `scope.indices` parameter to prevent the job from
-searching each index in the entity model at each hop.
-- Beware if your data is ***transactional*** or has ***many duplicates***. You might need to lower the values of
-`max_hops` and `max_docs_per_query` if your jobs are timing out.
+- If you only need to search a few indices, use `scope.exclude.indices` and
+`scope.include.indices` parameter to prevent the job from searching unnecessary
+indices in the entity model at each hop.
+- Beware if your data is ***transactional*** or has ***many duplicates***.
+You might need to lower the values of `max_hops` and `max_docs_per_query` if
+your jobs are timing out.
+- Use `scope.exclude.attributes` to prevent entities from being over-resolved
+(a.k.a. "snowballed") due to common meaningless values such as "unknown" or "n/a".
+- Use `scope.include.attributes` to limit the job within a particular context,
+such as by matching documents only within a given state or country.
 
 
 &nbsp;
