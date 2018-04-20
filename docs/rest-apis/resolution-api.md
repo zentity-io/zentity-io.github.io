@@ -29,13 +29,23 @@ POST _zentity/resolution/person?pretty
     ]
   },
   "scope": {
-    "indices": [
-      "users_index"
-    ],
-    "resolvers": [
-      "name_dob",
-      "name_phone"
-    ]
+    "exclude": {
+      "attributes": {
+        "name": [
+          "unknown",
+          "n/a"
+        ]
+      }
+    },
+    "include": {
+      "indices": [
+        "users_index"
+      ],
+      "resolvers": [
+        "name_dob",
+        "name_phone"
+      ]
+    }
   }
 }
 ```
