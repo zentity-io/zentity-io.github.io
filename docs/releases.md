@@ -3,11 +3,47 @@
 
 # Releases
 
-
 [View on Github](https://github.com/zentity-io/zentity/releases)
 
 
-## zentity-0.3.0-beta.1 (latest)
+## zentity-0.4.0-beta.1 (latest)
+
+### Download
+
+Select the plugin version that aligns with your version of Elasticsearch:
+
+- [Elasticsearch 6.2.4](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.2.4.zip)
+- [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.2.3.zip)
+- [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.2.2.zip)
+- [Elasticsearch 6.2.1](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.2.1.zip)
+- [Elasticsearch 6.2.0](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.2.0.zip)
+- [Elasticsearch 6.1.3](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.1.3.zip)
+- [Elasticsearch 6.1.2](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.1.2.zip)
+- [Elasticsearch 6.1.1](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.1.1.zip)
+- [Elasticsearch 6.0.1](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.0.1.zip)
+- [Elasticsearch 6.0.0](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.0.0.zip)
+
+### Release notes
+
+- **Feature** - Resolution jobs now support exclusive and inclusive scoping
+(i.e. blacklisting and whitelisting) based on attributes, resolvers, and indices.
+Exclusive scoping takes precedence over inclusive scoping. New parameters include:
+    - `scope.exclude.attributes`
+    - `scope.exclude.indices`
+    - `scope.exclude.resolvers`
+    - `scope.include.attributes`
+    - `scope.include.indices`
+    - `scope.include.resolvers`
+    
+([28fcea5](https://github.com/zentity-io/zentity/commit/28fcea56c2b85d9706b975f02d59c39be3d9164b))
+
+- **Breaking change** - The `scope.indices` and `scope.resolvers` parameters
+of the [Resolution API](/#/docs/rest-apis/resolution-api) have been replaced
+with `scope.exclude` and `scope.include`.
+([28fcea5](https://github.com/zentity-io/zentity/commit/28fcea56c2b85d9706b975f02d59c39be3d9164b))
+
+
+## zentity-0.3.0-beta.1
 
 ### Download
 

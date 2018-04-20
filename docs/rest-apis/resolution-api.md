@@ -128,8 +128,13 @@ span many hops if they have highly varied attribute values.
 |-----|----|-------|--------|-----------|
 |`attributes`|Object| |Yes|The initial attribute values to search.|
 |`entity_type`|String| |Depends|The entity type. Required if `model` is not specified.|
-|`scope.indices`|Array| |No|The names of indices to limit the job to.|
-|`scope.resolvers`|Array| |No|The names of resolvers to limit the job to.|
+|`scope.exclude`|Object| |No|The names of indices to limit the job to.|
+|`scope.exclude.attributes`|Object| |No|The names and values of attributes to exclude in each query.|
+|`scope.exclude.indices`|Object| |No|The names of indices to exclude in each query.|
+|`scope.exclude.resolvers`|Object| |No|The names of resolvers to exclude in each query.|
+|`scope.include.attributes`|Object| |No|The names and values of attributes to require in each query.|
+|`scope.include.indices`|Object| |No|The names of indices to require in each query.|
+|`scope.include.resolvers`|Object| |No|The names of resolvers to require in each query.|
 |`model`|Object| |Depends|The entity model. Required if `entity_type` is not specified.|
 
 **Notes:**
