@@ -34,7 +34,8 @@ POST _zentity/resolution/person?pretty
         "name": [
           "unknown",
           "n/a"
-        ]
+        ],
+        "phone": "555-555-5555"
       }
     },
     "include": {
