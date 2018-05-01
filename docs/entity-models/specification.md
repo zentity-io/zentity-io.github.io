@@ -166,7 +166,7 @@ A field with the name of a distinct param for the attribute. Some examples might
 
 A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
-"attributes".ATTRIBUTE_NAME."params" in the model and "matchers".MATCHER_NAME."params".
+`"attributes".ATTRIBUTE_NAME."params"` in the model and `"matchers".MATCHER_NAME."params"`.
 
 - Required: No
 - Type: Any
@@ -422,7 +422,7 @@ A field with the name of a distinct param for the matcher clause. Some examples 
 
 A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value is overridden by the same field specified in
-"attributes".ATTRIBUTE_NAME."params" in either the input or the model.
+`"attributes".ATTRIBUTE_NAME."params"` in either the input or the model.
 
 - Required: No
 - Type: Any
