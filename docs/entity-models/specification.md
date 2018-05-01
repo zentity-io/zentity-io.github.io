@@ -54,6 +54,8 @@ Entity models are [JSON](https://www.json.org/) documents. In the framework show
 and elipses (`...`) are optional repetitions of the preceding field or value.
 
 An entity model has four required objects: **`"attributes"`**, **`"resolvers"`**, **`"matchers"`**, **`"indices"`**.
+Not all elements within these objects are required. Optional elements are noted in the descriptions of each element
+listed on this page.
 
 
 ## `"attributes"`
