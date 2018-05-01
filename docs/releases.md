@@ -6,7 +6,55 @@
 [View on Github](https://github.com/zentity-io/zentity/releases)
 
 
-## zentity-0.4.0-beta.1 (latest)
+## zentity-0.5.0-beta.1 (latest)
+
+### Download
+
+Select the plugin version that aligns with your version of Elasticsearch:
+
+- [Elasticsearch 6.2.4](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.4.zip)
+- [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.3.zip)
+- [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.2.zip)
+- [Elasticsearch 6.2.1](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.1.zip)
+- [Elasticsearch 6.2.0](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.0.zip)
+- [Elasticsearch 6.1.3](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.1.3.zip)
+- [Elasticsearch 6.1.2](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.1.2.zip)
+- [Elasticsearch 6.1.1](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.1.1.zip)
+- [Elasticsearch 6.0.1](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.0.1.zip)
+- [Elasticsearch 6.0.0](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.0.0.zip)
+
+### Release notes
+
+- **Feature** - Arbitrary params can be passed to the matchers clauses as variables,
+using the syntax `{{ params.<param_value> }}` (example: `{{ params.fuzziness }}`).
+Default params can be specified in `"matchers".MATCHER_NAME."params"` and overridden
+in `"attributes".ATTRIBUTE_NAME."params"` in either the model or the input.
+([b2bdb09](https://github.com/zentity-io/zentity/commit/b2bdb091428df5fa736883758ce2c289d68730b8))
+
+- **Feature** - Added the `"date"` attribute type which requires a `"format"` param
+to be specified. Date values are queried and returned in the specified format.
+([325b98c](https://github.com/zentity-io/zentity/commit/325b98c5634ad63044af9160f679fb3acb9921f2))
+
+- **Breaking change** - Input attribute values must always be specified in arrays.
+For example, `{ "attributes": { "id": "123" }}` would need to be changed to
+`{ "attributes": { "id": [ "123" ] }}`.
+([b2bdb09](https://github.com/zentity-io/zentity/commit/b2bdb091428df5fa736883758ce2c289d68730b8))
+
+- **Breaking change** - Deprecated the `"matchers".MATCHER_NAME."type"` field.
+Matcher types will not be necessary given the ability to pass arbitrary params
+into the matcher clauses. Any existing models with this field will need to be
+updated to have this field removed.
+([b2bdb09](https://github.com/zentity-io/zentity/commit/b2bdb091428df5fa736883758ce2c289d68730b8))
+
+- **Breaking change** - Deprecated the `"entity_id"` field of the request payload for the
+[Resolution API](/#/docs/rest-apis/resolution-api). If an `entity_id` is to be specified,
+it must always be done in the path of the Resolution API endpoint (`_zentity/resolution/<entity_type>`).
+Any clients that are specifying the `entity_id` in the request payload will need to be changed
+to use this endpoint instead.
+([b2bdb09](https://github.com/zentity-io/zentity/commit/b2bdb091428df5fa736883758ce2c289d68730b8))
+
+
+## zentity-0.4.0-beta.1
 
 ### Download
 

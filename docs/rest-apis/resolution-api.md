@@ -15,18 +15,30 @@ POST _zentity/resolution/{entity_type}
 **Example request:**
 
 This example request resolves a `person` identified by a `name`, a `dob`, and two `phone` values, while limiting the
-search to one index called `users_index` ane two resolvers called `name_dob` and `name_phone`.
+search to one index called `users_index` ane two resolvers called `name_dob` and `name_phone`. The request passes
+a param called `fuzziness` to the `phone` attribute, which can be referenced in any matcher clause that uses
+the `fuzziness` param. Note that an attribute can accept either an array of values or an object with the values
+specified in a field called `"values"`. It's also valid to specify an attribute with no values but to override
+the default params, such as to format the results of any date attributes in the response.
+
 
 ```javascript
 POST _zentity/resolution/person?pretty
 {
   "attributes": {
-    "name": "Alice Jones",
-    "dob": "1984-01-01",
-    "phone": [
-      "555-123-4567",
-      "555-987-6543"
-    ]
+    "name": [ "Alice Jones" ],
+    "dob": {
+      "values": [ "1984-01-01" ]
+    },
+    "phone": {
+      "values": [
+        "555-123-4567",
+        "555-987-6543"
+      ],
+      "params": {
+        "fuzziness": 2
+      }
+    }
   },
   "scope": {
     "exclude": {
@@ -126,6 +138,7 @@ span many hops if they have highly varied attribute values.
 |-----|----|-------|--------|-----------|
 |`_attributes`|Boolean|`true`|No|Return the `_attributes` field in each doc.|
 |`_source`|Boolean|`true`|No|Return the `_source` field in each doc.|
+|`entity_type`|String| |Depends|The entity type. Required if `model` is not specified.|
 |`hits`|Boolean|`true`|No|Return the `hits` field in the response.|
 |`max_docs_per_query`|Integer|`1000`|No|Maximum number of docs per query result.|
 |`max_hops`|Integer|`100`|No|Maximum level of recursion.|
@@ -138,7 +151,6 @@ span many hops if they have highly varied attribute values.
 |Param|Type|Default|Required|Description|
 |-----|----|-------|--------|-----------|
 |`attributes`|Object| |Yes|The initial attribute values to search.|
-|`entity_type`|String| |Depends|The entity type. Required if `model` is not specified.|
 |`scope.exclude`|Object| |No|The names of indices to limit the job to.|
 |`scope.exclude.attributes`|Object| |No|The names and values of attributes to exclude in each query.|
 |`scope.exclude.indices`|Object| |No|The names of indices to exclude in each query.|

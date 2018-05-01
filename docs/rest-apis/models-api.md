@@ -48,7 +48,11 @@ POST _zentity/models/{entity_type}
 {
   "attributes": {
     ATTRIBUTE_NAME: {
-      "type": ATTRIBUTE_TYPE
+      "type": ATTRIBUTE_TYPE,
+      "params": {
+        PARAM_NAME: PARAM_VALUE,
+        ...
+      }
     },
     ...
   },
@@ -64,7 +68,10 @@ POST _zentity/models/{entity_type}
   "matchers": {
     MATCHER_NAME: {
       "clause": MATCHER_CLAUSE,
-      "type": MATCHER_TYPE
+      "params": {
+        PARAM_NAME: PARAM_VALUE,
+        ...
+      }
     },
     ...
   },
@@ -104,7 +111,11 @@ PUT _zentity/models/{entity_type}
 {
   "attributes": {
     ATTRIBUTE_NAME: {
-      "type": ATTRIBUTE_TYPE
+      "type": ATTRIBUTE_TYPE,
+      "params": {
+        PARAM_NAME: PARAM_VALUE,
+        ...
+      }
     },
     ...
   },
@@ -120,7 +131,10 @@ PUT _zentity/models/{entity_type}
   "matchers": {
     MATCHER_NAME: {
       "clause": MATCHER_CLAUSE,
-      "type": MATCHER_TYPE
+      "params": {
+        PARAM_NAME: PARAM_VALUE,
+        ...
+      }
     },
     ...
   },

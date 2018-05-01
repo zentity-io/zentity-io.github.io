@@ -7,7 +7,11 @@
 {
   "attributes": {
     ATTRIBUTE_NAME: {
-      "type": ATTRIBUTE_TYPE
+      "type": ATTRIBUTE_TYPE,
+      "params": {
+        PARAM_NAME: PARAM_VALUE,
+        ...
+      }
     },
     ...
   },
@@ -23,7 +27,10 @@
   "matchers": {
     MATCHER_NAME: {
       "clause": MATCHER_CLAUSE,
-      "type": MATCHER_TYPE
+      "params": {
+        PARAM_NAME: PARAM_VALUE,
+        ...
+      }
     },
     ...
   },
@@ -57,7 +64,11 @@ An entity model has four required objects: **`"attributes"`**, **`"resolvers"`**
 {
   "attributes": {
     ATTRIBUTE_NAME: {
-      "type": ATTRIBUTE_TYPE
+      "type": ATTRIBUTE_TYPE,
+      "params": {
+        PARAM_NAME: PARAM_VALUE,
+        ...
+      }
     },
     ...
   }
@@ -79,7 +90,10 @@ An entity model has four required objects: **`"attributes"`**, **`"resolvers"`**
       "type": "string"
     },
     "state": {
-      "type": "string"
+      "type": "string",
+      "params": {
+        "fuzziness": 0
+      }
     },
     "zip": {
       "type": "string"
@@ -88,7 +102,10 @@ An entity model has four required objects: **`"attributes"`**, **`"resolvers"`**
       "type": "string"
     },
     "phone": {
-      "type": "string"
+      "type": "string",
+      "params": {
+        "fuzziness": "auto"
+      }
     }
   }
 }
@@ -129,9 +146,35 @@ in the `"_source"` fields of those documents.
 - Default: `"string"`
 
 
+### `"attributes".ATTRIBUTE_NAME."params"`
+
+An optional object that passes arbitrary variables ("params") to the matcher clauses.
+
+- Required: No
+- Type: Object
+
+
+### `"attributes".ATTRIBUTE_NAME."params".PARAM_NAME`
+
+A field with the name of a distinct param for the attribute. Some examples might be `"fuzziness"` or `"format"`.
+
+- Required: No
+- Type: String
+
+
+### `"attributes".ATTRIBUTE_NAME."params".PARAM_NAME.PARAM_VALUE`
+
+A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
+will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
+"attributes".ATTRIBUTE_NAME."params" in the model and "matchers".MATCHER_NAME."params".
+
+- Required: No
+- Type: Any
+
+
 #### Valid attribute types
 
-Listed below are each of the currently valid attribute types. Among the planned future types are `"date"` and `"geo_point"`.
+Listed below are each of the currently valid attribute types.
 
 
 ##### `"string"`
@@ -150,6 +193,14 @@ integers, or longs.
 ##### `"boolean"`
 
 Indicates that the values of an attribute must be supplied as JSON compliant boolean values (`true` or `false`).
+
+
+##### `"date"`
+
+Indicates that the values of an attribute must be supplied as JSON compliant string values. Additionally, date attributes
+must include a param called `"format"` that contains an [Elasticsearch date format](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html).
+Date values are queried and returned in the specified format. This is both useful and necessary when querying date fields
+across indices that have disparate date formats.
 
 
 ## `"resolvers"`
@@ -261,7 +312,10 @@ then the resolver will not be used in any resolution jobs.
   "matchers": {
     MATCHER_NAME: {
       "clause": MATCHER_CLAUSE,
-      "type": MATCHER_TYPE
+      "params": {
+        PARAM_NAME: PARAM_VALUE,
+        ...
+      }
     },
     ...
   }
@@ -274,7 +328,6 @@ then the resolver will not be used in any resolution jobs.
 {
   "matchers": {
     "exact_matcher": {
-      "type": "value"
       "clause": {
         "term": {
           "{{ field }}": "{{ value }}"
@@ -282,22 +335,38 @@ then the resolver will not be used in any resolution jobs.
       },
     },
     "fuzzy_matcher": {
-      "type": "value"
       "clause":{
         "match": {
           "{{ field }}": {
             "query": "{{ value }}",
-            "fuzziness": "auto"
+            "fuzziness": "{{ params.fuzziness }}"
           }
         }
+      },
+      "params": {
+        "fuzziness": "auto"
       }
     },
     "standard_matcher": {
-      "type": "value",
       "clause": {
         "match": {
           "{{ field }}": "{{ value }}"
         }
+      }
+    },
+    "timestamp_matcher": {
+      "clause": {
+        "range": {
+          "{{ field }}": {
+            "gte": "{{ value }}||-{{ params.window }}",
+            "lte": "{{ value }}||+{{ params.window }}",
+            "format": "{{ params.format }}"
+          }
+        }
+      },
+      "params": {
+        "format": "yyyy-MM-dd'T'HH:mm:ss.SSS",
+        "window": "15m"
       }
     }
   }
@@ -317,28 +386,6 @@ that can be populated with the names of index fields and the values of attribute
 - Type: String
 
 
-### `"matchers".MATCHER_NAME."type"`
-
-The matcher type. The default value is `"value"` if unspecified in the model. Different types allow for different
-variables to be available to the matcher. For example, a range matcher would require multiple variables to define the input,
-whereas a value matcher only requires a variable for a single value.
-
-- Required: No
-- Type: String
-- Default: `"value"`
-
-
-#### Valid matcher types
-
-Listed below are each of the currently valid matcher types. Among the planned future types are `"date_range"` and `"geo_range"`
-which will use different variable names than `"{{ field }}"` and `"{{ value }}"`.
-
-
-##### `"value"`
-
-Indicates that the matcher expects an index field name (`"{{ field }}"`) and a single value (`"{{ value }}"`).
-
-
 ### `"matchers".MATCHER_NAME."clause"`
 
 An object that represents the clause of a [`"bool"` query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html)
@@ -353,6 +400,32 @@ Elasticsearch [search templates](https://www.elastic.co/guide/en/elasticsearch/r
 
 - Required: Yes
 - Type: Object
+
+
+### `"matchers".MATCHER_NAME."params"`
+
+An optional object that specifies the default values for any variables ("params") in the matcher clause.
+
+- Required: No
+- Type: Object
+
+
+### `"matchers".MATCHER_NAME."params".PARAM_NAME`
+
+A field with the name of a distinct param for the matcher clause. Some examples might be `"fuzziness"` or `"format"`.
+
+- Required: No
+- Type: String
+
+
+### `"matchers".MATCHER_NAME."params".PARAM_NAME.PARAM_VALUE`
+
+A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
+will be serialized as a string when passed to the matcher clause. The value is overridden by the same field specified in
+"attributes".ATTRIBUTE_NAME."params" in either the input or the model.
+
+- Required: No
+- Type: Any
 
 
 ## `"indices"`
