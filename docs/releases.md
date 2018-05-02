@@ -6,7 +6,31 @@
 [View on Github](https://github.com/zentity-io/zentity/releases)
 
 
-## zentity-0.5.0-beta.1 (latest)
+## zentity-0.5.0-beta.2 (latest)
+
+### Download
+
+Select the plugin version that aligns with your version of Elasticsearch:
+
+- [Elasticsearch 6.2.4](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.4.zip)
+- [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.3.zip)
+- [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.2.zip)
+- [Elasticsearch 6.2.1](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.1.zip)
+- [Elasticsearch 6.2.0](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.0.zip)
+- [Elasticsearch 6.1.3](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.1.3.zip)
+- [Elasticsearch 6.1.2](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.1.2.zip)
+- [Elasticsearch 6.1.1](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.1.1.zip)
+- [Elasticsearch 6.0.1](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.0.1.zip)
+- [Elasticsearch 6.0.0](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.0.0.zip)
+
+### Release notes
+
+- **Bug fix** - Removed a log statement that was printing the contents of each query and slowing
+down resolution jobs.
+([b421fc5](https://github.com/zentity-io/zentity/commit/b421fc5033cebae2979bee56fca6972ce72a3751))
+
+
+## zentity-0.5.0-beta.1
 
 ### Download
 

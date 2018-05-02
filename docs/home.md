@@ -16,20 +16,20 @@ resolution. It aims to be:
 ## Latest release
 
 
-### zentity 0.5.0-beta.1
+### zentity 0.5.0-beta.2
 
 Select the plugin version that aligns with your version of Elasticsearch:
 
-- [Elasticsearch 6.2.4](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.4.zip)
-- [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.3.zip)
-- [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.2.zip)
-- [Elasticsearch 6.2.1](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.1.zip)
-- [Elasticsearch 6.2.0](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.0.zip)
-- [Elasticsearch 6.1.3](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.1.3.zip)
-- [Elasticsearch 6.1.2](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.1.2.zip)
-- [Elasticsearch 6.1.1](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.1.1.zip)
-- [Elasticsearch 6.0.1](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.0.1.zip)
-- [Elasticsearch 6.0.0](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.0.0.zip)
+- [Elasticsearch 6.2.4](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.4.zip)
+- [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.3.zip)
+- [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.2.zip)
+- [Elasticsearch 6.2.1](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.1.zip)
+- [Elasticsearch 6.2.0](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.0.zip)
+- [Elasticsearch 6.1.3](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.1.3.zip)
+- [Elasticsearch 6.1.2](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.1.2.zip)
+- [Elasticsearch 6.1.1](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.1.1.zip)
+- [Elasticsearch 6.0.1](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.0.1.zip)
+- [Elasticsearch 6.0.0](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.0.0.zip)
 
 
 ## Quick start
