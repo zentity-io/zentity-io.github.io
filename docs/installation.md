@@ -56,6 +56,29 @@ Example:
 }
 ```
 
+## Installation on Elastic Cloud
+
+[Elastic Cloud](https://www.elastic.co/cloud) is a hosted Elasticsearch service offered by Elastic,
+the creators of Elasticsearch and the Elastic Stack. Elastic Cloud supports the usage of custom
+Elasticsearch plugins such as zentity.
+
+To install zentity on an Elastic Cloud cluster:
+
+1. Browse the **[releases](/#/releases)** and download one of the .zip files.
+2. Sign into Elastic Cloud and navigate to the [plugins tab](https://cloud.elastic.co/#plugins).
+3. Select "This is an installable plugin. (Compiled, not the plugin's source code)".
+4. Name the plugin "zentity".
+5. Specify the version of your Elasticsearch cluster.
+6. Upload the .zip file.
+7. Create or restart your cluster. If creating a cluster, select "zentity" under the list of custom plugins.
+
+If you will be creating indices and performing entity resolution with data that has names of people or
+companies or other fields that often have data quality challenges, consider also selecting
+[analysis-icu](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html)
+and [analysis-phonetic](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html)
+from the list of plugins, which can help you index cleaner representations of that data.
+
+
 
 &nbsp;
 
