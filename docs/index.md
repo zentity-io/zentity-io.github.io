@@ -14,6 +14,7 @@
 - [REST APIs](/#/docs/rest-apis)
     - [Resolution API](/#/docs/rest-apis/resolution-api)
     - [Models API](/#/docs/rest-apis/models-api)
+- [Security](/#/docs/security)
 
 
 &nbsp;
