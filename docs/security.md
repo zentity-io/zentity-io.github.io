@@ -149,6 +149,6 @@ perform any action with zentity in an open source cluster that has not been conf
 
 #### Continue Reading
 
-|&#8249;|[Models API](/#/docs/rest-apis/models-api)|[Security](/#/docs/security)|&#8250;|
+|&#8249;|[Models API](/#/docs/rest-apis/models-api)|||
 |:---|:---|---:|---:|
 |    |    |    |    |

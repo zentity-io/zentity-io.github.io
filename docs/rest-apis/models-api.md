@@ -183,6 +183,6 @@ DELETE _zentity/models/{entity_type}
 
 #### Continue Reading
 
-|&#8249;|[Resolution API](/#/docs/rest-apis/resolution-api)|||
+|&#8249;|[Resolution API](/#/docs/rest-apis/resolution-api)|[Security](/#/docs/security)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |
