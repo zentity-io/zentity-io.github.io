@@ -46,18 +46,19 @@ or through the [Role Management APIs](https://www.elastic.co/guide/en/elasticsea
 ### Models API Permissions
 
 These permission settings apply to the [Models API](/#/docs/rest-apis/models-api). A single role can
-be granted any or all of these permissions.
+be granted any or all of these permissions. When setting up 
 
-#### Create entity models
+#### Create and update entity models
 
 **Index Privileges**
 
 - Indices: `.zentity-models`
-- Permissions: `create`
+- Permissions: `create` or `write`
 
 **Actions Granted**
 
 - `POST _zentity/models/{entity_type}`
+- `PUT _zentity/models/{entity_type}`
 
 
 #### Read entity models
@@ -71,18 +72,6 @@ be granted any or all of these permissions.
 
 - `GET _zentity/models`
 - `GET _zentity/models/{entity_type}`
-
-
-#### Update entity models
-
-**Index Privileges**
-
-- Indices: `.zentity-models`
-- Permissions: `write`
-
-**Actions Granted**
-
-- `PUT _zentity/models/{entity_type}`
 
 
 #### Delete entity models
@@ -99,10 +88,13 @@ be granted any or all of these permissions.
 
 #### Notes
 
-When requesting any of the Models API endpoints listed above for the first time, zentity will attempt to create the
-`.zentity-models` index. This means that the user who submits the first request to any Models API endpoint must
-have `create` privilege for the `.zentity-models` index. Otherwise the user will always receive the following
-error message:
+Currently any user that interacts with the Models API must have the `manage` permission for the
+`.zentity-models` index due to a check that is performed by the plugin to ensure that the index exists.
+
+Additionally, when requesting any of the Models API endpoints listed above for the first time, zentity will attempt
+to create the `.zentity-models` index. This means that the user who submits the first request to any Models API
+endpoint must have `create` privilege for the `.zentity-models` index. Otherwise the user will always receive the
+following error message:
 
 ```javascript
 {
@@ -122,8 +114,8 @@ error message:
 
 An administrative user should perform the first request using `GET _zentity/models` to create the index.
 
-A dedicated API endpoint to create the `.zentity-models` index is on the development roadmap to simplify this
-experience.
+A dedicated API endpoint to create the `.zentity-models` index is on the development roadmap to simplify these
+experiences and allow the administrators to avoid granting the `manage` privilege for the `.zentity-models` index.
 
 
 ### Resolution API Permissions
