@@ -1,4 +1,4 @@
-[Home](/#/) / [Documentation](/#/docs) / [REST APIs](/#/docs/rest-apis) / Models API
+[Home](/) / [Documentation](/docs) / [REST APIs](/docs/rest-apis) / Models API
 
 
 # Models API
@@ -41,7 +41,7 @@ Creates an entity model for a given `entity_type` and puts it in the `.zentity-m
 Returns an error if an entity model already exists for that `entity_type`.
 
 For more details about the contents of the payload, read the
-[entity model specification](/#/docs/entity-models/specification).
+[entity model specification](/docs/entity-models/specification).
 
 ```javascript
 POST _zentity/models/{entity_type}
@@ -104,7 +104,7 @@ Updates an entity model for a given `entity_type`.
 Creates the entity model if it does not already exist.
 
 For more details about the contents of the payload, read the
-[entity model specification](/#/docs/entity-models/specification).
+[entity model specification](/docs/entity-models/specification).
 
 ```javascript
 PUT _zentity/models/{entity_type}
@@ -183,6 +183,6 @@ DELETE _zentity/models/{entity_type}
 
 #### Continue Reading
 
-|&#8249;|[Resolution API](/#/docs/rest-apis/resolution-api)|[Security](/#/docs/security)|&#8250;|
+|&#8249;|[Resolution API](/docs/rest-apis/resolution-api)|[Security](/docs/security)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

@@ -1,4 +1,4 @@
-[Home](/#/) / [Documentation](/#/docs) / Installation
+[Home](/) / [Documentation](/docs) / Installation
 
 
 # Installation
@@ -16,7 +16,7 @@ Once you have installed Elasticsearch, you can install zentity from a remote URL
 
 ### Install from remote URL
 
-1. Browse the **[releases](/#/releases)**.
+1. Browse the **[releases](/releases)**.
 2. Find a release that matches your version of Elasticsearch. Copy the name of the .zip file.
 3. Install the plugin using the `elasticsearch-plugin` script that comes with Elasticsearch.
 
@@ -27,7 +27,7 @@ Example:
 
 ### Install from local file
 
-1. Browse the **[releases](/#/releases)**.
+1. Browse the **[releases](/releases)**.
 2. Find a release that matches your version of Elasticsearch. Download the .zip file.
 4. Install the plugin using the `elasticsearch-plugin` script that comes with Elasticsearch.
 
@@ -64,7 +64,7 @@ Elasticsearch plugins such as zentity.
 
 To install zentity on an Elastic Cloud cluster:
 
-1. Browse the **[releases](/#/releases)** and download one of the .zip files.
+1. Browse the **[releases](/releases)** and download one of the .zip files.
 2. Sign into Elastic Cloud and navigate to the [plugins tab](https://cloud.elastic.co/#plugins).
 3. Select "This is an installable plugin. (Compiled, not the plugin's source code)".
 4. Name the plugin "zentity".
@@ -86,6 +86,6 @@ from the list of plugins, which can help you index cleaner representations of th
 
 #### Continue Reading
 
-|&#8249;|[Contents](/#/docs)|[Basic Usage](/#/docs/basic-usage)|&#8250;|
+|&#8249;|[Contents](/docs)|[Basic Usage](/docs/basic-usage)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

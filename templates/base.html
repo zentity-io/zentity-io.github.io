@@ -23,7 +23,7 @@
       gtag('config', 'UA-27325874-2');
       var to = function(uri) {
         var event_category = 'outbound';
-        if (uri.startsWith('https://zentity.io/releases/') || uri.startsWith('/releases/') || uri.startsWith('/#/releases/'))
+        if (uri.startsWith('https://zentity.io/releases/') || uri.startsWith('/releases/'))
           event_category = 'download';
         gtag('event', 'click', {
           'event_category': event_category,
@@ -40,18 +40,18 @@
       <div id="top">
         <div id="nav" v-if="$route.path != '/'">
           <div style="max-width:950px;margin:0 auto;">
-            <a href="/#/">
+            <a href="/">
               <h1 aria-label="zentity">
                 <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span>
               </h1>
             </a>
             <div id="buttons">
-              <a href="/#/docs">
+              <a href="/docs">
                 <button type="button" class="btn btn-sm btn-primary" aria-label="Docs">
                   Documentation
                 </button>
               </a>
-              <a href="/#/releases">
+              <a href="/releases">
                 <button type="button" class="btn btn-sm btn-link" aria-label="Releases">
                   Releases
                 </button>
@@ -65,12 +65,12 @@
           </div>
         </div>
         <div id="splash" v-if="$route.path == '/'">
-          <a href="/#/">
+          <a href="/">
             <img src="/img/zentity-logo-xl.png" height="50" width="50" alt="zentity" id="logo"/>
           </a>
           <h1 aria-label="zentity">
             <span>
-              <a href="/#/">
+              <a href="/">
                 <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span>
               </a>
             </span>
@@ -79,12 +79,12 @@
             Entity Resolution for Elasticsearch
           </h2>
           <div id="buttons">
-            <a href="/#/docs">
+            <a href="/docs">
               <button type="button" class="btn btn-sm btn-primary" aria-label="Docs">
                 Documentation
               </button>
             </a>
-            <a href="/#/releases">
+            <a href="/releases">
               <button type="button" class="btn btn-sm btn-link" aria-label="Releases">
                 Releases
               </button>
@@ -100,10 +100,10 @@
           </div>
         </div>
       </div>
-      <div id="main" :class="{'content': $route.path != '/'}">
-        <transition name="fade">
-          <router-view></router-view>
-        </transition>
+      <div id="main">
+        <div id="content">
+          {$ content $}
+        </div>
       </div>
       <div id="bottom">
         <small>

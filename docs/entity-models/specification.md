@@ -1,4 +1,4 @@
-[Home](/#/) / [Documentation](/#/docs) / [Entity Models](/#/docs/entity-models) / Specification
+[Home](/) / [Documentation](/docs) / [Entity Models](/docs/entity-models) / Specification
 
 
 # Entity Model Specification
@@ -137,7 +137,7 @@ field is an object that contains metadata about the attribute.
 ### `"attributes".ATTRIBUTE_NAME."type"`
 
 The data type of the attribute. The default value is `"string"` if unspecified in the model. Data types of attribute
-values are validated on input when submitting a request to the [Resolution API]("/#/docs/rest-apis/resolution-api") endpoint.
+values are validated on input when submitting a request to the [Resolution API]("/docs/rest-apis/resolution-api") endpoint.
 Attribute data types only affect the inputs to a resolution job and the queries submitted to Elasticsearch. The data types
 of the values returned in the `"_attributes"` field of the documents in the resolution job response are kept as they were
 in the `"_source"` fields of those documents.
@@ -603,6 +603,6 @@ from disparate indices under a field with a common name. These are sometimes cal
 
 #### Continue Reading
 
-|&#8249;|[Entity Models](/#/docs/entity-models)|[Tips](/#/docs/entity-models/tips)|&#8250;|
+|&#8249;|[Entity Models](/docs/entity-models)|[Tips](/docs/entity-models/tips)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

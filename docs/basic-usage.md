@@ -1,4 +1,4 @@
-[Home](/#/) / [Documentation](/#/docs) / Basic Usage
+[Home](/) / [Documentation](/docs) / Basic Usage
 
 
 # Basic Usage
@@ -16,14 +16,14 @@ documents using the [Index API](https://www.elastic.co/guide/en/elasticsearch/gu
 
 ## Step 2. Define an entity model.
 
-***[Entity models](/#/docs/entity-models)*** are the most important constructs you need to learn about. zentity uses entity
+***[Entity models](/docs/entity-models)*** are the most important constructs you need to learn about. zentity uses entity
 models to construct queries, match attributes across disparate indices, and resolve entities.
 
 An *entity model* defines the logic for resolving an *entity type* such as a person or organization. It defines the
-attributes of the entity ([`"attributes"`](/#/docs/entity-models/specification)), the logic to match each attribute
-([`"matchers"`](/#/docs/entity-models/specification)), the logic to resolve documents to an entity based on the
-matching attributes ([`"resolvers"`](/#/docs/entity-models/specification)), and the associations between attributes and matchers with
-index fields ([`"indices"`](/#/docs/entity-models/specification)). This is the step that demands the most thinking. You need to
+attributes of the entity ([`"attributes"`](/docs/entity-models/specification)), the logic to match each attribute
+([`"matchers"`](/docs/entity-models/specification)), the logic to resolve documents to an entity based on the
+matching attributes ([`"resolvers"`](/docs/entity-models/specification)), and the associations between attributes and matchers with
+index fields ([`"indices"`](/docs/entity-models/specification)). This is the step that demands the most thinking. You need to
 think about what attributes constitute an entity type, what logic goes into matching each attribute, which attributes and
 matchers map to which fields of which indices, and what combinations of matched attributes lead to resolution.
 
@@ -45,7 +45,7 @@ So there's no risk in updating or experimenting with an entity model.
 
 So you have some data and an entity model. Now you can resolve entities!
 
-Once you have an [entity model](/#/docs/entity-models), you can use the ***[Resolution API](/#/docs/rest-apis/resolution-api)*** to run an
+Once you have an [entity model](/docs/entity-models), you can use the ***[Resolution API](/docs/rest-apis/resolution-api)*** to run an
 entity resolution job using some input.
 
 **Example**
@@ -170,6 +170,6 @@ POST _zentity/resolution?pretty
 
 #### Continue Reading
 
-|&#8249;|[Installation](/#/docs/installation)|[Entity Models](/#/docs/entity-models)|&#8250;|
+|&#8249;|[Installation](/docs/installation)|[Entity Models](/docs/entity-models)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

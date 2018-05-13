@@ -1,4 +1,4 @@
-[Home](/#/) / [Documentation](/#/docs) / Security
+[Home](/) / [Documentation](/docs) / Security
 
 
 # Security
@@ -45,7 +45,7 @@ or through the [Role Management APIs](https://www.elastic.co/guide/en/elasticsea
 
 ### Models API Permissions
 
-These permission settings apply to the [Models API](/#/docs/rest-apis/models-api). A single role can
+These permission settings apply to the [Models API](/docs/rest-apis/models-api). A single role can
 be granted any or all of these permissions. When setting up 
 
 #### Create and update entity models
@@ -120,7 +120,7 @@ experiences and allow the administrators to avoid granting the `manage` privileg
 
 ### Resolution API Permissions
 
-There are no permissions to be configured for the [Resolution API](/docs/#/rest-apis/resolution-api) endpoints
+There are no permissions to be configured for the [Resolution API](/docs/rest-apis/resolution-api) endpoints
 `GET _zentity/resolution` or `GET _zentity/resolution/{entity_type}`. These endpoints construct and submit
 search queries using the Elasticsearch [Search APIs](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html).
 Therefore, permissions must be configured for each index that the user searches with zentity. Users can only perform
@@ -141,6 +141,6 @@ perform any action with zentity in an open source cluster that has not been conf
 
 #### Continue Reading
 
-|&#8249;|[Models API](/#/docs/rest-apis/models-api)|||
+|&#8249;|[Models API](/docs/rest-apis/models-api)|||
 |:---|:---|---:|---:|
 |    |    |    |    |
