@@ -118,10 +118,10 @@ def wipe_build_dir():
     print "Wiping build directory: {}".format(filepath)
     return shutil.rmtree(filepath)
 
-def copy_source_dir():
-    filepath_from = fullpath("/source")
+def copy_assets_dir():
+    filepath_from = fullpath("/assets")
     filepath_to = fullpath("/build")
-    print "Copying sources from: {}".format(filepath_from)
+    print "Copying assets from: {}".format(filepath_from)
     return copy_tree(filepath_from, filepath_to)
     
 def write_page(filename, content):
@@ -150,7 +150,7 @@ def build_pages(pages=PAGES):
         
 def build(pages=PAGES):
     wipe_build_dir()
-    copy_source_dir()
+    copy_assets_dir()
     build_pages(pages)
     
 if __name__ == "__main__":
