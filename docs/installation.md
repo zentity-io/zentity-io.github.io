@@ -50,7 +50,7 @@ Example:
   "description": "Real-time entity resolution for Elasticsearch.",
   "website": "http://zentity.io",
   "version": {
-    "zentity": "0.5.0-beta.2,
+    "zentity": "0.5.0-beta.2",
     "elasticsearch": "6.2.4"
   }
 }

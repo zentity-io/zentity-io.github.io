@@ -182,9 +182,6 @@ h1,h2,h3,h4,h5,h6 {
 #main h1 + h2, #main h2 + h3, #main h3 + h4, #main h4 + h5, #main h5 + h6 {
   margin-top: 2rem;
 }
-ul ul {
-  padding-bottom: 1rem;
-}
 
 @keyframes fadein {
   from { opacity: 0; }
