@@ -15,6 +15,8 @@ from pygments.lexers import get_lexer_by_name
 from pygments.formatters import html
 
 
+META_DESCRIPTION_GENERIC = "zentity is an Elasticsearch plugin for real-time entity resolution. Instantly profile an identity scattered across your cluster."
+
 env = jinja2.Environment(
     loader = jinja2.FileSystemLoader("templates"),
     variable_start_string = "{$",
@@ -62,7 +64,7 @@ PAGES = {
     "/": {
         "vars": {
             "title": "Entity Resolution for Elasticsearch",
-            "meta_description": "...",
+            "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/index.md"),
             "home": True
         }
@@ -70,77 +72,77 @@ PAGES = {
     "/docs": {
         "vars": {
             "title": "Documentation",
-            "meta_description": "...",
+            "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/index.md")
         }
     },
     "/docs/installation": {
         "vars": {
             "title": "Installation",
-            "meta_description": "...",
+            "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/installation.md")
         }
     },
     "/docs/basic-usage": {
         "vars": {
             "title": "Basic Usage",
-            "meta_description": "...",
+            "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/basic-usage.md")
         }
     },
     "/docs/entity-models": {
         "vars": {
             "title": "Entity Models",
-            "meta_description": "...",
+            "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/entity-models.md")
         }
     },
     "/docs/entity-models/specification": {
         "vars": {
-            "title": "Entity Models - Specification",
-            "meta_description": "...",
+            "title": "Entity Model Specification",
+            "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/entity-models/specification.md")
         }
     },
     "/docs/entity-models/tips": {
         "vars": {
-            "title": "Entity Models - Tips",
-            "meta_description": "...",
+            "title": "Entity Model Tips",
+            "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/entity-models/tips.md")
         }
     },
     "/docs/rest-apis": {
         "vars": {
             "title": "REST APIs",
-            "meta_description": "...",
+            "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/rest-apis.md")
         }
     },
     "/docs/rest-apis/resolution-api": {
         "vars": {
-            "title": "REST APIs - Resolution API",
-            "meta_description": "...",
+            "title": "Resolution API",
+            "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/rest-apis/resolution-api.md")
         }
     },
     "/docs/rest-apis/models-api": {
         "vars": {
-            "title": "REST APIs - Models API",
-            "meta_description": "...",
+            "title": "Models API",
+            "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/rest-apis/models-api.md")
         }
     },
     "/docs/security": {
         "vars": {
             "title": "Security",
-            "meta_description": "...",
+            "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/security.md")
         }
     },
     "/releases": {
         "vars": {
             "title": "Releases",
-            "meta_description": "...",
+            "meta_description": "Downloads and release notes for zentity.",
             "content": markdown("/releases.md")
         }
     }
