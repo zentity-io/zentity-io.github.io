@@ -114,19 +114,9 @@
         </div>
         {%- endif -%}
       </div>
-      {%- if home -%}
-      <div id="main">
-        <div id="content">
-          {$ content $}
-        </div>
+      <div id="main" {% if not home %} class="content" {% endif %}>
+        {$ content $}
       </div>
-      {%- else -%}
-      <div id="main" class="content">
-        <div id="content">
-          {$ content $}
-        </div>
-      </div>
-      {%- endif -%}
       <div id="bottom">
         <small>
           <div>
