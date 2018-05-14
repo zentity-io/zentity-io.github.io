@@ -30,12 +30,12 @@ pressure to get it right the first time.
 
 **3. Determine the matching logic for each attribute.**
 
-You need to write at least one [matcher](/docs/entity-models/specification) for the resolution job to build queries.
+You need to write at least one [matcher](/docs/entity-models/specification#matchers) for the resolution job to build queries.
 A matcher is simply a clause of a [`"bool"` query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html)
 in Elasticsearch. Some attributes might have exact matches. Some attributes such as a `name` will tolerate
 [fuzziness](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html) or target
 [phonetic tokens](https://www.elastic.co/guide/en/elasticsearch/guide/current/phonetic-matching.html), while other
-attributes such as an `email address` might not.
+attributes such as an `email_address` might not.
 
 Below is an example of two matchers called `text` and `phonetic`. You might use the `text` matcher, which uses the
 `"fuzziness"` field to allow for typos, on indexed name fields that used the [standard analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html).

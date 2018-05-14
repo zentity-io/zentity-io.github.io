@@ -20,10 +20,10 @@ documents using the [Index API](https://www.elastic.co/guide/en/elasticsearch/gu
 models to construct queries, match attributes across disparate indices, and resolve entities.
 
 An *entity model* defines the logic for resolving an *entity type* such as a person or organization. It defines the
-attributes of the entity ([`"attributes"`](/docs/entity-models/specification)), the logic to match each attribute
-([`"matchers"`](/docs/entity-models/specification)), the logic to resolve documents to an entity based on the
-matching attributes ([`"resolvers"`](/docs/entity-models/specification)), and the associations between attributes and matchers with
-index fields ([`"indices"`](/docs/entity-models/specification)). This is the step that demands the most thinking. You need to
+attributes of the entity ([`"attributes"`](/docs/entity-models/specification#attributes)), the logic to match each attribute
+([`"matchers"`](/docs/entity-models/specification#matchers)), the logic to resolve documents to an entity based on the
+matching attributes ([`"resolvers"`](/docs/entity-models/specification#resolvers)), and the associations between attributes and matchers with
+index fields ([`"indices"`](/docs/entity-models/specification#indices)). This is the step that demands the most thinking. You need to
 think about what attributes constitute an entity type, what logic goes into matching each attribute, which attributes and
 matchers map to which fields of which indices, and what combinations of matched attributes lead to resolution.
 

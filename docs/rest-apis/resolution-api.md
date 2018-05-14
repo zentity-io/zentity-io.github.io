@@ -67,7 +67,7 @@ POST _zentity/resolution/person?pretty
 
 This example response took 64 milliseconds and returned 2 hits. The `_source` field contains the fields and values
 as they exist in the document indexed in Elasticsearch. The `_attributes` field contains any values from the
-`_source` field that can be mapped to the [`"attributes"`](/docs/entity-models/specification) field of the entity model.
+`_source` field that can be mapped to the [`"attributes"`](/docs/entity-models/specification#attributes) field of the entity model.
 The `_hop` field shows the level of recursion at which the document was fetched. Entities with many documents can
 span many hops if they have highly varied attribute values.
 
