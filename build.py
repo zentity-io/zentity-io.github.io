@@ -111,6 +111,27 @@ PAGES = {
             "content": markdown("/docs/entity-models/tips.md")
         }
     },
+    "/docs/entity-resolution": {
+        "vars": {
+            "title": "Entity Resolution",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "content": markdown("/docs/entity-resolution.md")
+        }
+    },
+    "/docs/entity-resolution/input": {
+        "vars": {
+            "title": "Entity Resolution Input",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "content": markdown("/docs/entity-resolution/input.md")
+        }
+    },
+    "/docs/entity-resolution/output": {
+        "vars": {
+            "title": "Entity Resolution Output",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "content": markdown("/docs/entity-resolution/output.md")
+        }
+    },
     "/docs/rest-apis": {
         "vars": {
             "title": "REST APIs",
