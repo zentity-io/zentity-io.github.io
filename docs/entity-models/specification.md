@@ -53,8 +53,8 @@ Entity models are [JSON](https://www.json.org/) documents. In the framework show
 (e.g. `"attributes"`) are constant fields, uppercase literal values (e.g. `ATTRIBUTE_NAME`) are variable fields or values,
 and elipses (`...`) are optional repetitions of the preceding field or value.
 
-An entity model has four required objects: **<a href="#attributes">"attributes"</a>**, **<a href="#resolvers">"resolvers"</a>**,
-**<a href="#matchers">"matchers"</a>**, **<a href="#indices">"indices"</a>**. Not all elements within these objects are required.
+An entity model has four required objects: **[`"attributes"`](#attributes)**, **[`"resolvers"`](#resolvers)**,
+**[`"matchers"`](#matchers)**, **[`"indices"`](#indices)**. Not all elements within these objects are required.
 Optional elements are noted in the descriptions of each element listed on this page.
 
 
@@ -168,7 +168,8 @@ A field with the name of a distinct param for the attribute. Some examples might
 
 A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
-<a href="#attributes.ATTRIBUTE_NAME.params">"attributes".ATTRIBUTE_NAME."params"</a> in the model and <a href="#matchers.MATCHER_NAME.params">"matchers".MATCHER_NAME."params"</a>.
+**[`"attributes".ATTRIBUTE_NAME."params"`](#attributes.ATTRIBUTE_NAME.params)** in the model and
+**[`"matchers".MATCHER_NAME."params"`](#matchers.MATCHER_NAME.params)**.
 
 - Required: No
 - Type: Any
@@ -267,7 +268,7 @@ that share matching values for `"name"` and `"dob"` or `"name"` and `"phone"`. Y
 combinations of attributes. Then any documents whose values share either a matching `"name"` and `"dob"` or  `"name"`
 and `"phone"` will resolve to the same entity.
 
-Remember that attributes can be associated with more than one matcher in the <a href="#indices">"indices"</a> object. This means that if
+Remember that attributes can be associated with more than one matcher in the **[`"indices"`](#indices)** object. This means that if
 *any* matcher of an attribute yields a match for a given value, then the attribute will be considered a match
 regardless of the results of the other matchers. So if you have an attribute called `name` with matchers called
 `keyword` and `phonetic`, then any resolver that uses the `name` attribute is effectively saying that *either*
@@ -298,7 +299,7 @@ have no effect on resolution.
 
 ### <a name="resolvers.RESOLVER_NAME.attributes.ATTRIBUTE_NAME"></a>`"resolvers".RESOLVER_NAME."attributes".ATTRIBUTE_NAME`
 
-The name of an attribute from the <a href="#attributes">"attributes"</a> object of the entity model. If the attribute does not exist,
+The name of an attribute from the **[`"attributes"`](#attributes)** object of the entity model. If the attribute does not exist,
 then the resolver will not be used in any resolution jobs.
 
 - Required: Yes
@@ -424,7 +425,7 @@ A field with the name of a distinct param for the matcher clause. Some examples 
 
 A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value is overridden by the same field specified in
-<a href="#attributes.ATTRIBUTE_NAME.params">"attributes".ATTRIBUTE_NAME."params"</a> in either the input or the model.
+**[`"attributes".ATTRIBUTE_NAME."params"`](#attributes.ATTRIBUTE_NAME.params)** in either the input or the model.
 
 - Required: No
 - Type: Any
@@ -550,7 +551,7 @@ requires.
 
 ### <a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.attribute"></a>`"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."attribute"`
 
-The name of an attribute from the <a href="#attributes">"attributes"</a> object of the entity model. If the attribute does not exist,
+The name of an attribute from the **[`"attributes"`](#attributes)** object of the entity model. If the attribute does not exist,
 then the index field will not be queried in any resolution jobs and will not be returned in the `"_attributes"`
 field of the documents matched in a resolution job.
 
@@ -560,9 +561,9 @@ field of the documents matched in a resolution job.
 
 ### <a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.matcher"></a>`"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."matcher"`
 
-The name of a matcher from the <a href="#matchers">"matchers"</a> object of the entity model. If the matcher does not exist,
+The name of a matcher from the **[`"matchers"`](#matchers)** object of the entity model. If the matcher does not exist,
 then the index field will not be queried in any resolution jobs. However, the index field can still be returned
-in the `"attributes"` field of the documents matched in a resolution job if those documents matched the attributes
+in the **[`"attributes"`](#attributes)** field of the documents matched in a resolution job if those documents matched the attributes
 of other resolvers.
 
 Let's illustrate how index fields relate to matchers and attributes during a resolution job. Assume you are resolving
