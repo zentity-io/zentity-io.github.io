@@ -1,10 +1,10 @@
 [Home](/) / Documentation
 
 
-# Documentation
+# <a name="documentation">Documentation</a>
 
 
-## Contents
+## <a name="contents">Contents</a>
 
 - [Installation](/docs/installation)
 - [Basic Usage](/docs/basic-usage)

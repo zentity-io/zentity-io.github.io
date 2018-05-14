@@ -1,12 +1,13 @@
 [Home](/) / Releases
 
 
-# Releases
+# <a name="releases">Releases</a>
 
 [View on Github](https://github.com/zentity-io/zentity/releases)
 
 
-## zentity-0.5.0-beta.2 (latest)
+<a name="latest"></a>
+## <a name="zentity-0.5.0-beta.2">zentity-0.5.0-beta.2 (latest)</a>
 
 ### Download
 
@@ -30,7 +31,7 @@ down resolution jobs.
 ([b421fc5](https://github.com/zentity-io/zentity/commit/b421fc5033cebae2979bee56fca6972ce72a3751))
 
 
-## zentity-0.5.0-beta.1
+## <a name="zentity-0.5.0-beta.1">zentity-0.5.0-beta.1</a>
 
 ### Download
 
@@ -78,7 +79,7 @@ to use this endpoint instead.
 ([b2bdb09](https://github.com/zentity-io/zentity/commit/b2bdb091428df5fa736883758ce2c289d68730b8))
 
 
-## zentity-0.4.0-beta.1
+## <a name="zentity-0.4.0-beta.1">zentity-0.4.0-beta.1</a>
 
 ### Download
 
@@ -115,7 +116,7 @@ with `scope.exclude` and `scope.include`.
 ([28fcea5](https://github.com/zentity-io/zentity/commit/28fcea56c2b85d9706b975f02d59c39be3d9164b))
 
 
-## zentity-0.3.0-beta.1
+## <a name="zentity-0.3.0-beta.1">zentity-0.3.0-beta.1</a>
 
 ### Download
 
@@ -153,7 +154,7 @@ called `"search"`.
 ([f425f4f](https://github.com/zentity-io/zentity/commit/f425f4f4c77a4b734923cbbeb418cca42e928957))
 
 
-## zentity-0.2.1-beta.1
+## <a name="zentity-0.2.1-beta.1">zentity-0.2.1-beta.1</a>
 
 ### Download
 
@@ -180,7 +181,7 @@ attribute or matcher of an index field do not exist in the entity model.
 ([75d4fb8](https://github.com/zentity-io/zentity/commit/75d4fb878101c327c8f8424ae87d6180ba956fdc))
 
 
-## zentity-0.2.0-beta.1
+## <a name="zentity-0.2.0-beta.1">zentity-0.2.0-beta.1</a>
 
 ### Download
 
@@ -222,7 +223,7 @@ their data types.
 ([5b28a26](https://github.com/zentity-io/zentity/commit/5b28a26807785d12ab52e2b825d3efd05aa3437a))
 
 
-## zentity-0.1.1-beta.2
+## <a name="zentity-0.1.1-beta.2">zentity-0.1.1-beta.2</a>
 
 ### Download
 
@@ -249,7 +250,7 @@ must replace it with `max_docs_per_query`.
 ([6cde2ef](https://github.com/zentity-io/zentity/commit/6cde2ef4574e612a0be32b3d9287775f1c7f2458))
 
 
-## zentity-0.1.1-beta.1
+## <a name="zentity-0.1.1-beta.1">zentity-0.1.1-beta.1</a>
 
 ### Download
 

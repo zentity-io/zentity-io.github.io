@@ -1,20 +1,20 @@
 [Home](/) / [Documentation](/docs) / Installation
 
 
-# Installation
+# <a name="installation">Installation</a>
 
 
-## Step 1. Install Elasticsearch
+## <a name="install-elasticsearch">Step 1. Install Elasticsearch</a>
 
 Download: [https://www.elastic.co/downloads/elasticsearch](https://www.elastic.co/downloads/elasticsearch)
 
 
-## Step 2. Install zentity
+## <a name="install-zentity">Step 2. Install zentity</a>
 
 Once you have installed Elasticsearch, you can install zentity from a remote URL or a local file.
 
 
-### Install from remote URL
+### <a name="install-zentity-remote-url">Install from remote URL</a>
 
 1. Browse the **[releases](/releases)**.
 2. Find a release that matches your version of Elasticsearch. Copy the name of the .zip file.
@@ -25,7 +25,7 @@ Example:
 `elasticsearch-plugin install https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.4.zip`
 
 
-### Install from local file
+### <a name="install-zentity-local-file">Install from local file</a>
 
 1. Browse the **[releases](/releases)**.
 2. Find a release that matches your version of Elasticsearch. Download the .zip file.
@@ -36,7 +36,7 @@ Example:
 `elasticsearch-plugin install file:///path/to/zentity-0.5.0-beta.2-elasticsearch-6.2.4.zip`
 
 
-## Step 3. Verify installation
+## <a name="verify-installation">Step 3. Verify installation</a>
 
 **Example request:**
 
@@ -56,7 +56,7 @@ Example:
 }
 ```
 
-## Installation on Elastic Cloud
+## <a name="installation-elastic-cloud">Installation on Elastic Cloud</a>
 
 [Elastic Cloud](https://www.elastic.co/cloud) is a hosted Elasticsearch service offered by Elastic,
 the creators of Elasticsearch and the Elastic Stack. Elastic Cloud supports the usage of custom

@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / [Entity Models](/docs/entity-models) / Specification
 
 
-# Entity Model Specification
+# <a name="specification">Entity Model Specification</a>
 
 ```javascript
 {
@@ -58,7 +58,7 @@ Not all elements within these objects are required. Optional elements are noted 
 listed on this page.
 
 
-## `"attributes"`
+## <a name="attributes"></a>`"attributes"`
 
 **Model**
 
@@ -125,7 +125,7 @@ in Elasticsearch. This means that if *any* matcher of an attribute yields a matc
 will be considered a match regardless of the results of the other matchers.
 
 
-### `"attributes".ATTRIBUTE_NAME`
+### <a name="attributes.ATTRIBUTE_NAME"></a>`"attributes".ATTRIBUTE_NAME`
 
 A field with the name of a distinct attribute. Some examples might be `"name"`, `"dob"`, `"phone"`, etc. The value of the
 field is an object that contains metadata about the attribute.
@@ -134,7 +134,7 @@ field is an object that contains metadata about the attribute.
 - Type: String
 
 
-### `"attributes".ATTRIBUTE_NAME."type"`
+### <a name="attributes.ATTRIBUTE_NAME.type"></a>`"attributes".ATTRIBUTE_NAME."type"`
 
 The data type of the attribute. The default value is `"string"` if unspecified in the model. Data types of attribute
 values are validated on input when submitting a request to the [Resolution API]("/docs/rest-apis/resolution-api") endpoint.
@@ -148,7 +148,7 @@ in the `"_source"` fields of those documents.
 - Default: `"string"`
 
 
-### `"attributes".ATTRIBUTE_NAME."params"`
+### <a name="attributes.ATTRIBUTE_NAME.params"></a>`"attributes".ATTRIBUTE_NAME."params"`
 
 An optional object that passes arbitrary variables ("params") to the matcher clauses.
 
@@ -156,7 +156,7 @@ An optional object that passes arbitrary variables ("params") to the matcher cla
 - Type: Object
 
 
-### `"attributes".ATTRIBUTE_NAME."params".PARAM_NAME`
+### <a name="attributes.ATTRIBUTE_NAME.params.PARAM_NAME"></a>`"attributes".ATTRIBUTE_NAME."params".PARAM_NAME`
 
 A field with the name of a distinct param for the attribute. Some examples might be `"fuzziness"` or `"format"`.
 
@@ -164,7 +164,7 @@ A field with the name of a distinct param for the attribute. Some examples might
 - Type: String
 
 
-### `"attributes".ATTRIBUTE_NAME."params".PARAM_NAME.PARAM_VALUE`
+### <a name="attributes.ATTRIBUTE_NAME.params.PARAM_NAME.PARAM_VALUE"></a>`"attributes".ATTRIBUTE_NAME."params".PARAM_NAME.PARAM_VALUE`
 
 A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
@@ -174,30 +174,30 @@ will be serialized as a string when passed to the matcher clause. The value over
 - Type: Any
 
 
-#### Valid attribute types
+#### <a name="valid-attribute-types"></a>Valid attribute types
 
 Listed below are each of the currently valid attribute types.
 
 
-##### `"string"`
+##### <a name="attribute-type-string"></a>`"string"`
 
 Indicates that the values of an attribute must be supplied as JSON compliant string values. Elasticsearch can perform text
 analysis, fuzzy matching, and other operations solely on string values.
 
 
-##### `"number"`
+##### <a name="attribute-type-number"></a>`"number"`
 
 Indicates that the values of an attribute must be supplied as JSON compliant number value. This includes any positive or
 negative integer or fractional value. zentity handles the appropriate conversion of number values to floats, doubles,
 integers, or longs.
 
 
-##### `"boolean"`
+##### <a name="attribute-type-boolean"></a>`"boolean"`
 
 Indicates that the values of an attribute must be supplied as JSON compliant boolean values (`true` or `false`).
 
 
-##### `"date"`
+##### <a name="attribute-type-date"></a>`"date"`
 
 Indicates that the values of an attribute must be supplied as JSON compliant string values. Additionally, date attributes
 must include a param called `"format"` that contains an [Elasticsearch date format](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html).
@@ -205,7 +205,7 @@ Date values are queried and returned in the specified format. This is both usefu
 across indices that have disparate date formats.
 
 
-## `"resolvers"`
+## <a name="resolvers"></a>`"resolvers"`
 
 **Model**
 
@@ -274,7 +274,7 @@ regardless of the results of the other matchers. So if you have an attribute cal
 `name.keyword` *or* `name.phonetic` are required to match.
 
 
-### `"resolvers".RESOLVER_NAME`
+### <a name="resolvers.RESOLVER_NAME"></a>`"resolvers".RESOLVER_NAME`
 
 A field with the name of a distinct resolver. The value of the field is an object that contains metadata about the
 resolver.
@@ -287,7 +287,7 @@ of the resolution job or any subsequent hops -- will be considered a match to th
 - Type: String
 
 
-### `"resolvers".RESOLVER_NAME."attributes"`
+### <a name="resolvers.RESOLVER_NAME.attributes"></a>`"resolvers".RESOLVER_NAME."attributes"`
 
 A set of attribute names. The order of the values has no effect on resolution. Duplicate values are redundant and
 have no effect on resolution.
@@ -296,7 +296,7 @@ have no effect on resolution.
 - Type: Array
 
 
-### `"resolvers".RESOLVER_NAME."attributes".ATTRIBUTE_NAME`
+### <a name="resolvers.RESOLVER_NAME.attributes.ATTRIBUTE_NAME"></a>`"resolvers".RESOLVER_NAME."attributes".ATTRIBUTE_NAME`
 
 The name of an attribute from the `"attributes"` object of the entity model. If the attribute does not exist,
 then the resolver will not be used in any resolution jobs.
@@ -305,7 +305,7 @@ then the resolver will not be used in any resolution jobs.
 - Type: String
 
 
-## `"matchers"`
+## <a name="matchers"></a>`"matchers"`
 
 **Model**
 
@@ -376,7 +376,7 @@ then the resolver will not be used in any resolution jobs.
 ```
 
 
-### `"matchers".MATCHER_NAME`
+### <a name="matchers.MATCHER_NAME"></a>`"matchers".MATCHER_NAME`
 
 A field with the name of a distinct matcher. The value of the field is an object that contains metadata about the
 matcher.
@@ -388,7 +388,7 @@ that can be populated with the names of index fields and the values of attribute
 - Type: String
 
 
-### `"matchers".MATCHER_NAME."clause"`
+### <a name="matchers.MATCHER_NAME.clause"></a>`"matchers".MATCHER_NAME."clause"`
 
 An object that represents the clause of a [`"bool"` query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html)
 in Elasticsearch. Each clause will be stitched together to form a single `"bool"` query, so it must follow the correct
@@ -404,7 +404,7 @@ Elasticsearch [search templates](https://www.elastic.co/guide/en/elasticsearch/r
 - Type: Object
 
 
-### `"matchers".MATCHER_NAME."params"`
+### <a name="matchers.MATCHER_NAME.params"></a>`"matchers".MATCHER_NAME."params"`
 
 An optional object that specifies the default values for any variables ("params") in the matcher clause.
 
@@ -412,7 +412,7 @@ An optional object that specifies the default values for any variables ("params"
 - Type: Object
 
 
-### `"matchers".MATCHER_NAME."params".PARAM_NAME`
+### <a name="matchers.MATCHER_NAME.params.PARAM_NAME"></a>`"matchers".MATCHER_NAME."params".PARAM_NAME`
 
 A field with the name of a distinct param for the matcher clause. Some examples might be `"fuzziness"` or `"format"`.
 
@@ -420,7 +420,7 @@ A field with the name of a distinct param for the matcher clause. Some examples 
 - Type: String
 
 
-### `"matchers".MATCHER_NAME."params".PARAM_NAME.PARAM_VALUE`
+### <a name="matchers.MATCHER_NAME.params.PARAM_NAME.PARAM_VALUE"></a>`"matchers".MATCHER_NAME."params".PARAM_NAME.PARAM_VALUE`
 
 A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value is overridden by the same field specified in
@@ -430,7 +430,7 @@ will be serialized as a string when passed to the matcher clause. The value is o
 - Type: Any
 
 
-## `"indices"`
+## <a name="indices"></a>`"indices"`
 
 **Model**
 
@@ -518,7 +518,7 @@ values as distinct fields, such as `"name.keyword"` and `"name.phonetic"`. This 
 and matchers -- not just attributes -- to index fields.
 
 
-### `"indices".INDEX_NAME`
+### <a name="indices.INDEX_NAME"></a>`"indices".INDEX_NAME`
 
 A field with the name of a distinct Elasticsearch [index](https://www.elastic.co/guide/en/elasticsearch/reference/current/_basic_concepts.html#_index)
 or [index pattern](https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-index.html). The value of the
@@ -532,12 +532,12 @@ that do not exist.
 - Type: String
 
 
-### `"indices".INDEX_NAME."fields"`
+### <a name="indices.INDEX_NAME.fields"></a>`"indices".INDEX_NAME."fields"`
 
 An object that maps an index field name to an attribute and a matcher.
 
 
-### `"indices".INDEX_NAME."fields".INDEX_FIELD_NAME`
+### <a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME"></a>`"indices".INDEX_NAME."fields".INDEX_FIELD_NAME`
 
 A field with the name of a distinct [property](https://www.elastic.co/guide/en/elasticsearch/reference/current/properties.html)
 or [field](https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html) in an Elasticsearch index.
@@ -548,7 +548,7 @@ zentity does not verify the existence of field names within indices or the synta
 requires.
 
 
-### `"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."attribute"`
+### <a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.attribute"></a>`"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."attribute"`
 
 The name of an attribute from the `"attributes"` object of the entity model. If the attribute does not exist,
 then the index field will not be queried in any resolution jobs and will not be returned in the `"_attributes"`
@@ -558,7 +558,7 @@ field of the documents matched in a resolution job.
 - Type: String
 
 
-### `"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."matcher"`
+### <a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.matcher"></a>`"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."matcher"`
 
 The name of a matcher from the `"matchers"` object of the entity model. If the matcher does not exist,
 then the index field will not be queried in any resolution jobs. However, the index field can still be returned

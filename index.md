@@ -1,4 +1,4 @@
-## Zenful entity resolution
+## <a name="overview">Zenful entity resolution</a>
 
 zentity is an **[Elasticsearch](https://www.elastic.co/products/elasticsearch)** plugin for real-time entity
 resolution. It aims to be:
@@ -13,7 +13,7 @@ resolution. It aims to be:
 - **100% Elasticsearch** - Elasticsearch is a great foundation for entity resolution.
 
 
-## Latest release
+## <a name="latest-release">Latest release</a>
 
 
 ### zentity 0.5.0-beta.2
@@ -32,7 +32,7 @@ Select the plugin version that aligns with your version of Elasticsearch:
 - [Elasticsearch 6.0.0](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.0.0.zip)
 
 
-## Quick start
+## <a name="quick-start">Quick start</a>
 
 Once you have installed Elasticsearch, you can install zentity from a remote URL or a local file.
 
@@ -46,7 +46,7 @@ Example:
 
 Read the [installation](/docs/installation) docs for more details.
 
-## Next steps
+## <a name="next-steps">Next steps</a>
 
 Read the **[documentation](/docs)** to learn about [entity models](/docs/entity-models),
 how to [manage entity models](/docs/rest-apis/models-api), and how to [resolve entities](/docs/rest-apis/resolution-api).

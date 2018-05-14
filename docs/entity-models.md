@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / Entity Models
 
 
-# Entity Models
+# <a name="entity-models">Entity Models</a>
 
 
 zentity relies on objects called ***[entity models](/docs/entity-models/specification)*** to control the execution of entity resolution jobs.
@@ -15,7 +15,7 @@ Entity models serve multiple purposes:
 Read the [entity model specification](/docs/entity-models/specification) for specific details on the contents of entity models.
 
 
-## Usage
+## <a name="usage">Usage</a>
 
 You must provide an entity model when making a resolution request. You can provide it in two ways:
 
@@ -28,6 +28,7 @@ Each document in this index represents the entity model for a distinct entity ty
 [`_id`](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html) field of the document.
 There can be only one entity model for a given entity type. Once you have indexed an entity model, you can use it by
 setting the `entity_type` parameter in your requests.
+
 
 ## More info
 

@@ -1,12 +1,12 @@
 [Home](/) / [Documentation](/docs) / Security
 
 
-# Security
+# <a name="security">Security</a>
 
 As an API extension plugin for Elasticsearch, zentity inherits the security settings from the cluster on which it is installed.
 
 
-## X-Pack Security
+## <a name="x-pack-security">X-Pack Security</a>
 
 [X-Pack](https://www.elastic.co/products/x-pack) is a commercial plugin from Elastic, the creators of Elasticsearch and the
 Elastic Stack. [X-Pack Security](https://www.elastic.co/products/x-pack/security) is a subset of the plugin that secures an
@@ -36,14 +36,14 @@ to retrieve an entity model:
 All unauthorized interactions with zentity will produced an error response similar to the one above.
 
 
-## X-Pack Security Role Configuration
+## <a name="role-configuration">X-Pack Security Role Configuration</a>
 
 Below are the permission settings that can be configured for a "zentity" role with X-Pack Security.
 Roles can be managed in Kibana at `https://KIBANA_HOST:KIBANA_PORT/app/kibana#/management/security/roles`
 or through the [Role Management APIs](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-roles.html).
 
 
-### Models API Permissions
+### <a name="models-api-configuration">Models API Permissions</a>
 
 These permission settings apply to the [Models API](/docs/rest-apis/models-api). A single role can
 be granted any or all of these permissions. When setting up 
@@ -118,7 +118,7 @@ A dedicated API endpoint to create the `.zentity-models` index is on the develop
 experiences and allow the administrators to avoid granting the `manage` privilege for the `.zentity-models` index.
 
 
-### Resolution API Permissions
+### <a name="resolution-api-permissions">Resolution API Permissions</a>
 
 There are no permissions to be configured for the [Resolution API](/docs/rest-apis/resolution-api) endpoints
 `GET _zentity/resolution` or `GET _zentity/resolution/{entity_type}`. These endpoints construct and submit
@@ -127,12 +127,11 @@ Therefore, permissions must be configured for each index that the user searches 
 entity resolution if they have the `read` privilege for every index included in the scope of the request.
 
 
-## Open Source Elasticsearch
+## <a name="open-source-elasticsearch">Open Source Elasticsearch</a>
 
 Open source Elasticsearch clusters without an X-Pack Security license do not have any security mechanisms.
 Communications are unencrypted and any user can perform any action on the cluster. Likewise, any user can
 perform any action with zentity in an open source cluster that has not been configured with X-Pack Security.
-
 
 
 &nbsp;

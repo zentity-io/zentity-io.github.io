@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / [Entity Models](/docs/entity-models) / Tips
 
 
-# Tips
+# <a name="tips">Tips</a>
 
 
 **1. Become familiar with your data.**
