@@ -14,23 +14,21 @@
     <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=321897048"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=762590955"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
       var to = function(uri, event_category) {
-        if (event_category)
-          gtag('event', 'click', {
-            'event_category': event_category,
-            'event_label': uri,
-            'transport_type': 'beacon',
-            'event_callback': function(){document.location = uri;}
-          });
-        else
-          gtag('config', 'UA-27325874-2');
+        gtag('event', 'click', {
+          'event_category': event_category,
+          'event_label': uri,
+          'transport_type': 'beacon',
+          'event_callback': function(){document.location = uri;}
+        });
       };
-    </script><script src="/js/all.js?id=834839703"></script>
+    </script><script src="/js/all.js?id=771045078"></script>
   </head>
   <body>
     <div id="app" >
@@ -110,8 +108,8 @@
 <p>Entity models are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
 (e.g. <code>"attributes"</code>) are constant fields, uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable fields or values,
 and elipses (<code>...</code>) are optional repetitions of the preceding field or value.</p>
-<p>An entity model has four required objects: <strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes');"><code>"attributes"</code></a></strong>, <strong><a href="#resolvers" onclick="to(window.location.pathname + '#resolvers');"><code>"resolvers"</code></a></strong>,
-<strong><a href="#matchers" onclick="to(window.location.pathname + '#matchers');"><code>"matchers"</code></a></strong>, <strong><a href="#indices" onclick="to(window.location.pathname + '#indices');"><code>"indices"</code></a></strong>. Not all elements within these objects are required.
+<p>An entity model has four required objects: <strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a></strong>, <strong><a href="#resolvers" onclick="to(window.location.pathname + '#resolvers', 'internal');"><code>"resolvers"</code></a></strong>,
+<strong><a href="#matchers" onclick="to(window.location.pathname + '#matchers', 'internal');"><code>"matchers"</code></a></strong>, <strong><a href="#indices" onclick="to(window.location.pathname + '#indices', 'internal');"><code>"indices"</code></a></strong>. Not all elements within these objects are required.
 Optional elements are noted in the descriptions of each element listed on this page.</p>
 <h2><a name="attributes"></a><code>"attributes"</code></h2>
 <p><strong>Model</strong></p>
@@ -203,8 +201,8 @@ in the <code>"_source"</code> fields of those documents.</p>
 <h3><a name="attributes.ATTRIBUTE_NAME.params.PARAM_NAME.PARAM_VALUE"></a><code>"attributes".ATTRIBUTE_NAME."params".PARAM_NAME.PARAM_VALUE</code></h3>
 <p>A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
-<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in the model and
-<a href="#matchers.MATCHER_NAME.params" onclick="to(window.location.pathname + '#matchers.MATCHER_NAME.params');"><code>"matchers".MATCHER_NAME."params"</code></a>.</p>
+<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in the model and
+<a href="#matchers.MATCHER_NAME.params" onclick="to(window.location.pathname + '#matchers.MATCHER_NAME.params', 'internal');"><code>"matchers".MATCHER_NAME."params"</code></a>.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Any</li>
@@ -279,7 +277,7 @@ across indices that have disparate date formats.</p>
 that share matching values for <code>"name"</code> and <code>"dob"</code> or <code>"name"</code> and <code>"phone"</code>. You can create a resolver for both
 combinations of attributes. Then any documents whose values share either a matching <code>"name"</code> and <code>"dob"</code> or  <code>"name"</code>
 and <code>"phone"</code> will resolve to the same entity.</p>
-<p>Remember that attributes can be associated with more than one matcher in the <a href="#indices" onclick="to(window.location.pathname + '#indices');"><code>"indices"</code></a> object. This means that if
+<p>Remember that attributes can be associated with more than one matcher in the <a href="#indices" onclick="to(window.location.pathname + '#indices', 'internal');"><code>"indices"</code></a> object. This means that if
 <em>any</em> matcher of an attribute yields a match for a given value, then the attribute will be considered a match
 regardless of the results of the other matchers. So if you have an attribute called <code>name</code> with matchers called
 <code>keyword</code> and <code>phonetic</code>, then any resolver that uses the <code>name</code> attribute is effectively saying that <em>either</em>
@@ -302,7 +300,7 @@ have no effect on resolution.</p>
 <li>Type: Array</li>
 </ul>
 <h3><a name="resolvers.RESOLVER_NAME.attributes.ATTRIBUTE_NAME"></a><code>"resolvers".RESOLVER_NAME."attributes".ATTRIBUTE_NAME</code></h3>
-<p>The name of an attribute from the <a href="#attributes" onclick="to(window.location.pathname + '#attributes');"><code>"attributes"</code></a> object of the entity model. If the attribute does not exist,
+<p>The name of an attribute from the <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> object of the entity model. If the attribute does not exist,
 then the resolver will not be used in any resolution jobs.</p>
 <ul>
 <li>Required: Yes</li>
@@ -408,7 +406,7 @@ Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/c
 <h3><a name="matchers.MATCHER_NAME.params.PARAM_NAME.PARAM_VALUE"></a><code>"matchers".MATCHER_NAME."params".PARAM_NAME.PARAM_VALUE</code></h3>
 <p>A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value is overridden by the same field specified in
-<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in either the input or the model.</p>
+<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in either the input or the model.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Any</li>
@@ -512,7 +510,7 @@ that is mapped to it.</p>
 <p>zentity does not verify the existence of field names within indices or the syntax of field names that Elasticsearch
 requires.</p>
 <h3><a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.attribute"></a><code>"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."attribute"</code></h3>
-<p>The name of an attribute from the <a href="#attributes" onclick="to(window.location.pathname + '#attributes');"><code>"attributes"</code></a> object of the entity model. If the attribute does not exist,
+<p>The name of an attribute from the <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> object of the entity model. If the attribute does not exist,
 then the index field will not be queried in any resolution jobs and will not be returned in the <code>"_attributes"</code>
 field of the documents matched in a resolution job.</p>
 <ul>
@@ -520,9 +518,9 @@ field of the documents matched in a resolution job.</p>
 <li>Type: String</li>
 </ul>
 <h3><a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.matcher"></a><code>"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."matcher"</code></h3>
-<p>The name of a matcher from the <a href="#matchers" onclick="to(window.location.pathname + '#matchers');"><code>"matchers"</code></a> object of the entity model. If the matcher does not exist,
+<p>The name of a matcher from the <a href="#matchers" onclick="to(window.location.pathname + '#matchers', 'internal');"><code>"matchers"</code></a> object of the entity model. If the matcher does not exist,
 then the index field will not be queried in any resolution jobs. However, the index field can still be returned
-in the <a href="#attributes" onclick="to(window.location.pathname + '#attributes');"><code>"attributes"</code></a> field of the documents matched in a resolution job if those documents matched the attributes
+in the <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> field of the documents matched in a resolution job if those documents matched the attributes
 of other resolvers.</p>
 <p>Let's illustrate how index fields relate to matchers and attributes during a resolution job. Assume you are resolving
 an entity with an email address of <code>"user@example.net"</code> and one of the indices has an field name of <code>"email.keyword"</code>.

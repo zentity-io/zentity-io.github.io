@@ -14,23 +14,21 @@
     <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=162721741"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=162542136"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
       var to = function(uri, event_category) {
-        if (event_category)
-          gtag('event', 'click', {
-            'event_category': event_category,
-            'event_label': uri,
-            'transport_type': 'beacon',
-            'event_callback': function(){document.location = uri;}
-          });
-        else
-          gtag('config', 'UA-27325874-2');
+        gtag('event', 'click', {
+          'event_category': event_category,
+          'event_label': uri,
+          'transport_type': 'beacon',
+          'event_callback': function(){document.location = uri;}
+        });
       };
-    </script><script src="/js/all.js?id=142500888"></script>
+    </script><script src="/js/all.js?id=554599091"></script>
   </head>
   <body>
     <div id="app" >
@@ -119,9 +117,9 @@
 <p>Entity resolution inputs are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
 (e.g. <code>"attributes"</code>) are constant fields, uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable fields or values,
 and elipses (<code>...</code>) are optional repetitions of the preceding field or value.</p>
-<p>An entity resolution input has one required object (<strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes');"><code>"attributes"</code></a></strong>), one optional object
-(<strong><a href="#scope" onclick="to(window.location.pathname + '#scope');"><code>"scope"</code></a></strong>) and one object that is required only if <code>entity_type</code> is not specified in the endpoint of the request
-(<strong><a href="#model" onclick="to(window.location.pathname + '#model');"><code>"model"</code></a></strong>).  Not all elements within these objects are required. Optional elements are noted in the descriptions
+<p>An entity resolution input has one required object (<strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a></strong>), one optional object
+(<strong><a href="#scope" onclick="to(window.location.pathname + '#scope', 'internal');"><code>"scope"</code></a></strong>) and one object that is required only if <code>entity_type</code> is not specified in the endpoint of the request
+(<strong><a href="#model" onclick="to(window.location.pathname + '#model', 'internal');"><code>"model"</code></a></strong>).  Not all elements within these objects are required. Optional elements are noted in the descriptions
 of each element listed on this page. Some elements have alternate forms that are acceptable, and those are also noted in the
 descriptions of each element.</p>
 <h2><a name="attributes"></a><code>"attributes"</code></h2>
@@ -204,8 +202,8 @@ will be considered a match regardless of the results of the other matchers.</p>
 <p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>, <code>"dob"</code>, <code>"phone"</code>, etc.</p>
 <p>The value of the field can be one of two things:</p>
 <ul>
-<li>An object that contains the <a href="#attributes.ATTRIBUTE_NAME.values" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.values');"><code>"values"</code></a> and/or <a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params');"><code>"params</code>"</a> of the attribute.</li>
-<li>An array that contains the <a href="#attributes.ATTRIBUTE_NAME.values" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.values');"><code>"values</code>"</a> of the attribute.</li>
+<li>An object that contains the <a href="#attributes.ATTRIBUTE_NAME.values" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.values', 'internal');"><code>"values"</code></a> and/or <a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"params</code>"</a> of the attribute.</li>
+<li>An array that contains the <a href="#attributes.ATTRIBUTE_NAME.values" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.values', 'internal');"><code>"values</code>"</a> of the attribute.</li>
 </ul>
 <p>At least one attribute must be specified, otherwise there would be no input to supply to the entity resolution job.</p>
 <ul>
@@ -217,10 +215,10 @@ will be considered a match regardless of the results of the other matchers.</p>
 <p>Each value must conform to the respective <a href="/docs/entity-models/specification#attributes.ATTRIBUTE_NAME.type">attribute type</a>
 specified in the <a href="/docs/entity-models">entity model</a>. For example, <a href="/docs/entity-models/specification#attribute-type-string">string</a> values
 must be JSON compliant string values, <a href="/docs/entity-models/specification#attribute-type-number">number</a> values must be JSON compliant number values,
-and <a href="/docs/entity-models/specification#attribute-type-date">date</a> values must include a <code>"format"</code> field in the <a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params');"><code>"params"</code></a>
+and <a href="/docs/entity-models/specification#attribute-type-date">date</a> values must include a <code>"format"</code> field in the <a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"params"</code></a>
 object if it was not already specified in either the attribute or matcher of the entity model.</p>
 <p>This field is not necessarily required. It would be valid to specify and attribute with no values and to override the
-<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params');"><code>"params"</code></a> of the attribute or matcher of the entity model. One reason might be to override the
+<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"params"</code></a> of the attribute or matcher of the entity model. One reason might be to override the
 <code>"format"</code> param of a <a href="/docs/entity-models/specification#attribute-type-date"><code>"date"</code></a> attribute, which would affect the format of
 any date values for that attribute returned by the entity resolution job.</p>
 <p>At least one attribute must have the <code>"values"</code> field specified, otherwise there would be no input to supply to the entity resolution job.</p>
@@ -243,8 +241,8 @@ any date values for that attribute returned by the entity resolution job.</p>
 <h3><a name="attributes.ATTRIBUTE_NAME.params.PARAM_NAME.PARAM_VALUE"></a><code>"attributes".ATTRIBUTE_NAME."params".PARAM_NAME.PARAM_VALUE</code></h3>
 <p>A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
-<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in the model and
-<a href="#matchers.MATCHER_NAME.params" onclick="to(window.location.pathname + '#matchers.MATCHER_NAME.params');"><code>"matchers".MATCHER_NAME."params"</code></a>.</p>
+<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in the model and
+<a href="#matchers.MATCHER_NAME.params" onclick="to(window.location.pathname + '#matchers.MATCHER_NAME.params', 'internal');"><code>"matchers".MATCHER_NAME."params"</code></a>.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Any</li>
@@ -325,17 +323,17 @@ will be serialized as a string when passed to the matcher clause. The value over
 <span class="p">}</span>
 </pre></div>
 <p>An optional field that contains an object to limit the scope of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.
-Scope can be controlled by <a href="#scope.exclude" onclick="to(window.location.pathname + '#scope.exclude');">excluding</a> ("blacklisting") or <a href="#scope.include" onclick="to(window.location.pathname + '#scope.include');">including</a> ("whitelisting") attribute values,
+Scope can be controlled by <a href="#scope.exclude" onclick="to(window.location.pathname + '#scope.exclude', 'internal');">excluding</a> ("blacklisting") or <a href="#scope.include" onclick="to(window.location.pathname + '#scope.include', 'internal');">including</a> ("whitelisting") attribute values,
 indices, and resolvers.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="scope.exclude"></a><code>"scope"."exclude"</code></h3>
-<p>An optional field that excludes <a href="#scope.exclude.attributes" onclick="to(window.location.pathname + '#scope.exclude.attributes');"><code>"attributes"</code></a>, <a href="#scope.exclude.indices" onclick="to(window.location.pathname + '#scope.exclude.indices');"><code>"indices"</code></a>, or <a href="#scope.exclude.resolvers" onclick="to(window.location.pathname + '#scope.exclude.resolvers');"><code>"resolvers"</code></a>
+<p>An optional field that excludes <a href="#scope.exclude.attributes" onclick="to(window.location.pathname + '#scope.exclude.attributes', 'internal');"><code>"attributes"</code></a>, <a href="#scope.exclude.indices" onclick="to(window.location.pathname + '#scope.exclude.indices', 'internal');"><code>"indices"</code></a>, or <a href="#scope.exclude.resolvers" onclick="to(window.location.pathname + '#scope.exclude.resolvers', 'internal');"><code>"resolvers"</code></a>
 from the <a href="/docs/rest-apis/resolution-api">resolution job</a>. By setting any of these exclusions, no query will be allowed to include the given
 attribute values, indices, or resolvers.</p>
-<p>The values in <code>"scope"."exclude"</code> take precedence over any duplicate values specified <a href="#scope.include" onclick="to(window.location.pathname + '#scope.include');"><code>"scope"."include"</code></a>.</p>
+<p>The values in <code>"scope"."exclude"</code> take precedence over any duplicate values specified <a href="#scope.include" onclick="to(window.location.pathname + '#scope.include', 'internal');"><code>"scope"."include"</code></a>.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
@@ -381,10 +379,10 @@ By setting any of these resolvers, no query will be allowed to include those res
 <li>Type: String</li>
 </ul>
 <h3><a name="scope.include"></a><code>"scope"."include"</code></h3>
-<p>An optional field that includes <a href="#scope.include.attributes" onclick="to(window.location.pathname + '#scope.include.attributes');"><code>"attributes"</code></a>, <a href="#scope.include.indices" onclick="to(window.location.pathname + '#scope.include.indices');"><code>"indices"</code></a>, or <a href="#scope.include.resolvers" onclick="to(window.location.pathname + '#scope.include.resolvers');"><code>"resolvers"</code></a>
+<p>An optional field that includes <a href="#scope.include.attributes" onclick="to(window.location.pathname + '#scope.include.attributes', 'internal');"><code>"attributes"</code></a>, <a href="#scope.include.indices" onclick="to(window.location.pathname + '#scope.include.indices', 'internal');"><code>"indices"</code></a>, or <a href="#scope.include.resolvers" onclick="to(window.location.pathname + '#scope.include.resolvers', 'internal');"><code>"resolvers"</code></a>
 from the <a href="/docs/rest-apis/resolution-api">resolution job</a>. By setting any of these inclusions, no query will be allowed to exclude the given
 attribute values, indices, or resolvers.</p>
-<p>The values in <a href="#scope.exclude" onclick="to(window.location.pathname + '#scope.exclude');"><code>"scope"."exclude"</code></a> take precedence over any duplicate values specified <code>"scope"."include"</code>.</p>
+<p>The values in <a href="#scope.exclude" onclick="to(window.location.pathname + '#scope.exclude', 'internal');"><code>"scope"."exclude"</code></a> take precedence over any duplicate values specified <code>"scope"."include"</code>.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>

@@ -14,23 +14,21 @@
     <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=311914081"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=616064912"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
       var to = function(uri, event_category) {
-        if (event_category)
-          gtag('event', 'click', {
-            'event_category': event_category,
-            'event_label': uri,
-            'transport_type': 'beacon',
-            'event_callback': function(){document.location = uri;}
-          });
-        else
-          gtag('config', 'UA-27325874-2');
+        gtag('event', 'click', {
+          'event_category': event_category,
+          'event_label': uri,
+          'transport_type': 'beacon',
+          'event_callback': function(){document.location = uri;}
+        });
       };
-    </script><script src="/js/all.js?id=946256119"></script>
+    </script><script src="/js/all.js?id=770889216"></script>
   </head>
   <body>
     <div id="app" >
@@ -115,18 +113,18 @@
 and elipses (<code>...</code>) are optional repetitions of the preceding field or value.</p>
 <p>An entity resolution output is the response to a <a href="/docs/rest-apis/resolution-api">resolution request</a>. Its structure is
 similar to the response of an Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html', 'outbound');" class="external">Search API</a> query.
-It contains the documents (<a href="#hits.hits" onclick="to(window.location.pathname + '#hits.hits');"><code>"hits"</code></a>) associated with the entity as well as information about the job itself.
+It contains the documents (<a href="#hits.hits" onclick="to(window.location.pathname + '#hits.hits', 'internal');"><code>"hits"</code></a>) associated with the entity as well as information about the job itself.
 Documents can contain the original source values, the normalized attribute values, and information about the index and hop number
 from which the document was retrieved.</p>
-<p>The <a href="#queries" onclick="to(window.location.pathname + '#queries');"><code>"queries"</code></a>, <a href="#hits.hits._source" onclick="to(window.location.pathname + '#hits.hits._source');"><code>"_source"</code></a>, <a href="#hits.hits._attributes" onclick="to(window.location.pathname + '#hits.hits._attributes');"><code>"_attributes"</code></a>, and <a href="#hits" onclick="to(window.location.pathname + '#hits');"><code>"_hits"</code></a> fields each can be excluded
-from the output. By default, <a href="#queries" onclick="to(window.location.pathname + '#queries');"><code>"queries"</code></a> is excluded to reduce the amount of data transferred from the cluster to the client.</p>
+<p>The <a href="#queries" onclick="to(window.location.pathname + '#queries', 'internal');"><code>"queries"</code></a>, <a href="#hits.hits._source" onclick="to(window.location.pathname + '#hits.hits._source', 'internal');"><code>"_source"</code></a>, <a href="#hits.hits._attributes" onclick="to(window.location.pathname + '#hits.hits._attributes', 'internal');"><code>"_attributes"</code></a>, and <a href="#hits" onclick="to(window.location.pathname + '#hits', 'internal');"><code>"_hits"</code></a> fields each can be excluded
+from the output. By default, <a href="#queries" onclick="to(window.location.pathname + '#queries', 'internal');"><code>"queries"</code></a> is excluded to reduce the amount of data transferred from the cluster to the client.</p>
 <h3><a name="took"></a><code>"took"</code></h3>
 <p>The number of milliseconds elapsed between the start time and stop time of the entity resolution job. This <strong>excludes</strong> the time it takes to
 validate the request, request and parse the entity model, and serialize the response.</p>
 <h2><a name="hits"></a><code>"hits"</code></h2>
 <p>An object containing the documents that matched the input across all hops.</p>
 <p>This field can be excluded from the output by setting <code>hits=false</code> in the URI parameters of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.
-This can help to get a slightly more accurate measurement of <a href="#took" onclick="to(window.location.pathname + '#took');"><code>"took"</code></a> by excluding some processing of the responses from Elasticsearch.
+This can help to get a slightly more accurate measurement of <a href="#took" onclick="to(window.location.pathname + '#took', 'internal');"><code>"took"</code></a> by excluding some processing of the responses from Elasticsearch.
 This can also help to get slightly more accurate timing measurements when stress testing zentity by minimizing the amount of data transferred from
 the cluster to the client.</p>
 <h3><a name="hits.total"></a><code>"hits"."total"</code></h3>
@@ -142,7 +140,7 @@ the cluster to the client.</p>
 <h3><a name="hits.hits._hop"></a><code>"hits"."hits"."_hop"</code></h3>
 <p>The hop number at which the document was received. A "hop" is an iteration in which zentity submits a query to each index that can be queried.</p>
 <h3><a name="hits.hits._attributes"></a><code>"hits"."hits"."_attributes"</code></h3>
-<p>An object containing the normalized values for each attribute of the document. This object is constructed by taking each <a href="#hits.hits._source" onclick="to(window.location.pathname + '#hits.hits._source');"><code>"_source"</code></a>
+<p>An object containing the normalized values for each attribute of the document. This object is constructed by taking each <a href="#hits.hits._source" onclick="to(window.location.pathname + '#hits.hits._source', 'internal');"><code>"_source"</code></a>
 field that is associated with an attribute in the entity model and mapping it to the name of the attribute. Some values, such as <a href="/docs/entity-models/specification#attribute-type-date">dates</a>,
 are normalized into a format that will be common across documents from disparate indices.</p>
 <p>This field can be excluded from the output by setting <code>_attributes=false</code> in the URI parameters of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.</p>
