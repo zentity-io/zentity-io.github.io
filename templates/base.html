@@ -30,7 +30,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'UA-27325874-2');
       var to = function(uri, event_category) {
         if (event_category)
           gtag('event', 'click', {
@@ -40,11 +39,7 @@
             'event_callback': function(){document.location = uri;}
           });
         else
-          gtag('event', 'click', {
-            'event_label': uri,
-            'transport_type': 'beacon',
-            'event_callback': function(){document.location = uri;}
-          });
+          gtag('config', 'UA-27325874-2');
       };
     </script>
     {%- endif -%}
