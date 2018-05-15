@@ -44,7 +44,7 @@ class ZentityRenderer(mistune.Renderer):
         elif link.endswith(".zip"):
             out += " onclick=\"to('%s', 'download');\"" % link
         elif link.startswith("#"):
-            out += " onclick=\"to(window.location.pathname + '%s');\"" % link
+            out += " onclick=\"to(window.location.pathname + '%s', 'internal');\"" % link
         out += ">%s</a>" % text
         return out
         
