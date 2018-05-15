@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>zentity - Basic Usage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+    <meta name="description" content="zentity brings entity resolution to Elasticsearch. Connect the fragments of an identity hidden in your data. Fast, scalable, open source."/>
+    <meta property="og:title" content="zentity"/>
+    <meta property="og:description" content="Entity Resolution for Elasticsearch"/>
+    <meta property="og:image" content="/img/zentity-og-image.png"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://zentity.io/"/>
+    <meta name="twitter:title" content="zentity"/>
+    <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/all.css"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
+      var to = function(uri, event_category) {
+        if (event_category)
+          gtag('event', 'click', {
+            'event_category': event_category,
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
+        else
+          gtag('event', 'click', {
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
+      };
+    </script><script src="/js/all.js"></script>
+  </head>
+  <body>
+    <div id="app" >
+      <div id="top"><div id="nav">
+          <div style="max-width:950px;margin:0 auto;">
+            <a href="/">
+              <h1 aria-label="zentity">
+                <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span>
+              </h1>
+            </a>
+            <div id="buttons">
+              <a href="/docs">
+                <button type="button" class="btn btn-sm btn-primary" aria-label="Docs">
+                  Documentation
+                </button>
+              </a>
+              <a href="/releases">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Releases">
+                  Releases
+                </button>
+              </a>
+              <a href="https://github.com/zentity-io/zentity" title="Github" onclick="to('https://github.com/zentity-io/zentity');">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Github">
+                  Github
+                </button>
+              </a>
+            </div>
+          </div>
+        </div></div>
+      <div id="main" class="content">
+        <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / Basic Usage</p>
+<h1><a name="basic-usage">Basic Usage</a></h1>
+<h2><a name="index-data">Step 1. Index some data.</a></h2>
+<p>zentity operates on data that is indexed in <strong><a href="https://www.elastic.co/products/elasticsearch" onclick="to('https://www.elastic.co/products/elasticsearch', 'outbound');" class="external">Elasticsearch</a></strong>,
+an open source search engine for real-time search and analytics at scale. The most common tools for indexing
+documents in Elasticsearch are <a href="https://www.elastic.co/guide/en/logstash/6.1/introduction.html" onclick="to('https://www.elastic.co/guide/en/logstash/6.1/introduction.html', 'outbound');" class="external">Logstash</a> and
+<a href="https://www.elastic.co/guide/en/beats/libbeat/current/beats-reference.html" onclick="to('https://www.elastic.co/guide/en/beats/libbeat/current/beats-reference.html', 'outbound');" class="external">Beats</a>. You can also index single
+documents using the <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/index-doc.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/guide/current/index-doc.html', 'outbound');" class="external">Index API</a> or
+<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html', 'outbound');" class="external">Bulk API</a>.</p>
+<h2><a name="define-entity-model">Step 2. Define an entity model.</a></h2>
+<p><strong><a href="/docs/entity-models">Entity models</a></strong> are the most important constructs you need to learn about. zentity uses entity
+models to construct queries, match attributes across disparate indices, and resolve entities.</p>
+<p>An <em>entity model</em> defines the logic for resolving an <em>entity type</em> such as a person or organization. It defines the
+attributes of the entity (<a href="/docs/entity-models/specification#attributes"><code>"attributes"</code></a>), the logic to match each attribute
+(<a href="/docs/entity-models/specification#matchers"><code>"matchers"</code></a>), the logic to resolve documents to an entity based on the
+matching attributes (<a href="/docs/entity-models/specification#resolvers"><code>"resolvers"</code></a>), and the associations between attributes and matchers with
+index fields (<a href="/docs/entity-models/specification#indices"><code>"indices"</code></a>). This is the step that demands the most thinking. You need to
+think about what attributes constitute an entity type, what logic goes into matching each attribute, which attributes and
+matchers map to which fields of which indices, and what combinations of matched attributes lead to resolution.</p>
+<p>Luckily, all this thinking will pay off quickly, because entity models have two great features:</p>
+<p><strong>Reusability</strong></p>
+<p>Once you have an entity model you can use it everywhere. As you index new data sets with fields that map to familiar
+attributes, you can include them in your entity resolution jobs. If you index data with new attributes that aren't
+already in your model, you can simply update your model to support them.</p>
+<p><strong>Flexibility</strong></p>
+<p>You don't need to change your data to use an entity model. An entity model only controls the execution of queries.
+So there's no risk in updating or experimenting with an entity model.</p>
+<h2><a name="submit-resolution-request">Step 3. Submit a resolution request.</a></h2>
+<p>So you have some data and an entity model. Now you can resolve entities!</p>
+<p>Once you have an <a href="/docs/entity-models">entity model</a>, you can use the <strong><a href="/docs/rest-apis/resolution-api">Resolution API</a></strong> to run an
+entity resolution job using some input.</p>
+<p><strong>Example</strong></p>
+<p>Run an entity resolution job using an indexed entity model called <code>person</code>.</p>
+<div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
+<span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alice Jones&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dob&quot;</span><span class="o">:</span> <span class="s2">&quot;1984-01-01&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555-123-4567&quot;</span><span class="p">,</span> <span class="s2">&quot;555-987-6543&quot;</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>Run an entity resolution job using an embeded entity model. This example uses three attributes, two resolvers, and two indices.</p>
+<div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">?</span><span class="nx">pretty</span>
+<span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alice Jones&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dob&quot;</span><span class="o">:</span> <span class="s2">&quot;1984-01-01&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555-123-4567&quot;</span><span class="p">,</span> <span class="s2">&quot;555-987-6543&quot;</span> <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;model&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;dob&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;name_dob&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;dob&quot;</span>
+        <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;name_phone&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;exact&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;fuzzy&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;match&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;query&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="mi">2</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;standard&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;match&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;foo_index&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;full_name&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;full_name.phonetic&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;standard&quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;date_of_birth.keyword&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;dob&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;exact&quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;telephone.keyword&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;exact&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;bar_index&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;nm&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;db&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;dob&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;standard&quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;ph&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;standard&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>&nbsp;</p>
+<hr>
+<h4>Continue Reading</h4>
+<table class="table">
+<thead><tr>
+<th style="text-align:left">&#8249;</th>
+<th style="text-align:left"><a href="/docs/installation">Installation</a></th>
+<th style="text-align:right"><a href="/docs/entity-models">Entity Models</a></th>
+<th style="text-align:right">&#8250;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+      <div id="bottom">
+        <small>
+          <div>
+            &copy; 2018 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
+          </div>
+          <div>
+            Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" onclick="to('http://www.apache.org/licenses/LICENSE-2.0');">Apache License, Version 2.0</a>.
+          </div>
+          <div>
+            Elasticsearch is a trademark of Elasticsearch BV.
+          </div>
+          <div>
+            This website uses Google Analytics.</div>
+        </small>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>zentity - Entity Resolution Input Specification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+    <meta name="description" content="zentity brings entity resolution to Elasticsearch. Connect the fragments of an identity hidden in your data. Fast, scalable, open source."/>
+    <meta property="og:title" content="zentity"/>
+    <meta property="og:description" content="Entity Resolution for Elasticsearch"/>
+    <meta property="og:image" content="/img/zentity-og-image.png"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://zentity.io/"/>
+    <meta name="twitter:title" content="zentity"/>
+    <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/all.css"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
+      var to = function(uri, event_category) {
+        if (event_category)
+          gtag('event', 'click', {
+            'event_category': event_category,
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
+        else
+          gtag('event', 'click', {
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
+      };
+    </script><script src="/js/all.js"></script>
+  </head>
+  <body>
+    <div id="app" >
+      <div id="top"><div id="nav">
+          <div style="max-width:950px;margin:0 auto;">
+            <a href="/">
+              <h1 aria-label="zentity">
+                <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span>
+              </h1>
+            </a>
+            <div id="buttons">
+              <a href="/docs">
+                <button type="button" class="btn btn-sm btn-primary" aria-label="Docs">
+                  Documentation
+                </button>
+              </a>
+              <a href="/releases">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Releases">
+                  Releases
+                </button>
+              </a>
+              <a href="https://github.com/zentity-io/zentity" title="Github" onclick="to('https://github.com/zentity-io/zentity');">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Github">
+                  Github
+                </button>
+              </a>
+            </div>
+          </div>
+        </div></div>
+      <div id="main" class="content">
+        <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/entity-resolution">Entity Resolution</a> / Input Specification</p>
+<h1><a name="input">Entity Resolution Input Specification</a></h1>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">PARAM_NAME</span><span class="o">:</span> <span class="nx">PARAM_VALUE</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">...</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;exclude&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">[</span>
+          <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
+          <span class="p">...</span>
+        <span class="p">],</span>
+        <span class="p">...</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">INDEX_NAME</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">RESOLVER_NAME</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;include&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">[</span>
+          <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
+          <span class="p">...</span>
+        <span class="p">],</span>
+        <span class="p">...</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">INDEX_NAME</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">RESOLVER_NAME</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;model&quot;</span><span class="o">:</span> <span class="nx">ENTITY_MODEL</span>
+<span class="p">}</span>
+</pre></div>
+<p>Entity resolution inputs are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
+(e.g. <code>"attributes"</code>) are constant fields, uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable fields or values,
+and elipses (<code>...</code>) are optional repetitions of the preceding field or value.</p>
+<p>An entity resolution input has one required object (<strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes');"><code>"attributes"</code></a></strong>), one optional object
+(<strong><a href="#scope" onclick="to(window.location.pathname + '#scope');"><code>"scope"</code></a></strong>) and one object that is required only if <code>entity_type</code> is not specified in the endpoint of the request
+(<strong><a href="#model" onclick="to(window.location.pathname + '#model');"><code>"model"</code></a></strong>).  Not all elements within these objects are required. Optional elements are noted in the descriptions
+of each element listed on this page. Some elements have alternate forms that are acceptable, and those are also noted in the
+descriptions of each element.</p>
+<h2><a name="attributes"></a><code>"attributes"</code></h2>
+<p><strong>Model</strong></p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">PARAM_NAME</span><span class="o">:</span> <span class="nx">PARAM_VALUE</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p><strong>Example</strong></p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Allie Jones&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Allison Jones-Smith&quot;</span><span class="p">,</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;555-123-4567&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;dob&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;format&quot;</span><span class="o">:</span> <span class="s2">&quot;yyyy-MM-dd&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p><strong>Shorthand Model</strong></p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">[</span>
+      <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
+      <span class="p">...</span>
+    <span class="p">],</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p><strong>Shorthand Example</strong></p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="s2">&quot;Allie Jones&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Allison Jones-Smith&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="s2">&quot;555-123-4567&quot;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>Attributes are elements that can assist the identification and resolution of entities. For example, some common
+attributes of a person include name, date of birth, and phone number. Each attribute has its own particular data
+qualities and purposes in the real world. Therefore, zentity matches the values of each attribute using logic that
+is distinct to each attribute.</p>
+<p>Some attributes can be matched using different methods. For example, a name could be matched by its exact value or its
+phonetic value. Therefore the entity model allows each attribute to have one or more matchers. A matcher is simply a
+clause of a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html', 'outbound');" class="external"><code>"bool"</code> query</a>
+in Elasticsearch. This means that if <em>any</em> matcher of an attribute yields a match for a given value, then the attribute
+will be considered a match regardless of the results of the other matchers.</p>
+<h3><a name="attributes.ATTRIBUTE_NAME"></a><code>"attributes".ATTRIBUTE_NAME</code></h3>
+<p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>, <code>"dob"</code>, <code>"phone"</code>, etc.</p>
+<p>The value of the field can be one of two things:</p>
+<ul>
+<li>An object that contains the <a href="#attributes.ATTRIBUTE_NAME.values" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.values');"><code>"values"</code></a> and/or <a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params');"><code>"params</code>"</a> of the attribute.</li>
+<li>An array that contains the <a href="#attributes.ATTRIBUTE_NAME.values" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.values');"><code>"values</code>"</a> of the attribute.</li>
+</ul>
+<p>At least one attribute must be specified, otherwise there would be no input to supply to the entity resolution job.</p>
+<ul>
+<li>Required: Yes</li>
+<li>Type: String</li>
+</ul>
+<h3><a name="attributes.ATTRIBUTE_NAME.type"></a><code>"attributes".ATTRIBUTE_NAME."values"</code></h3>
+<p>An array of attribute values. These values will serve as the initial inputs to the entity resolution job.</p>
+<p>Each value must conform to the respective <a href="/docs/entity-models/specification#attributes.ATTRIBUTE_NAME.type">attribute type</a>
+specified in the <a href="/docs/entity-models">entity model</a>. For example, <a href="/docs/entity-models/specification#attribute-type-string">string</a> values
+must be JSON compliant string values, <a href="/docs/entity-models/specification#attribute-type-number">number</a> values must be JSON compliant number values,
+and <a href="/docs/entity-models/specification#attribute-type-date">date</a> values must include a <code>"format"</code> field in the <a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params');"><code>"params"</code></a>
+object if it was not already specified in either the attribute or matcher of the entity model.</p>
+<p>This field is not necessarily required. It would be valid to specify and attribute with no values and to override the
+<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params');"><code>"params"</code></a> of the attribute or matcher of the entity model. One reason might be to override the
+<code>"format"</code> param of a <a href="/docs/entity-models/specification#attribute-type-date"><code>"date"</code></a> attribute, which would affect the format of
+any date values for that attribute returned by the entity resolution job.</p>
+<p>At least one attribute must have the <code>"values"</code> field specified, otherwise there would be no input to supply to the entity resolution job.</p>
+<ul>
+<li>Required: At least for one attribute</li>
+<li>Type: Array</li>
+</ul>
+<h3><a name="attributes.ATTRIBUTE_NAME.params"></a><code>"attributes".ATTRIBUTE_NAME."params"</code></h3>
+<p>An optional object that passes arbitrary variables (<code>"params"</code>) to the matcher clauses.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Object</li>
+</ul>
+<h3><a name="attributes.ATTRIBUTE_NAME.params.PARAM_NAME"></a><code>"attributes".ATTRIBUTE_NAME."params".PARAM_NAME</code></h3>
+<p>A field with the name of a distinct param for the attribute. Some examples might be <code>"fuzziness"</code> or <code>"format"</code>.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: String</li>
+</ul>
+<h3><a name="attributes.ATTRIBUTE_NAME.params.PARAM_NAME.PARAM_VALUE"></a><code>"attributes".ATTRIBUTE_NAME."params".PARAM_NAME.PARAM_VALUE</code></h3>
+<p>A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
+will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
+<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in the model and
+<a href="#matchers.MATCHER_NAME.params" onclick="to(window.location.pathname + '#matchers.MATCHER_NAME.params');"><code>"matchers".MATCHER_NAME."params"</code></a>.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Any</li>
+</ul>
+<h2><a name="scope"></a><code>"scope"</code></h2>
+<p><strong>Model</strong></p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;exclude&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">[</span>
+          <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
+          <span class="p">...</span>
+        <span class="p">],</span>
+        <span class="p">...</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">INDEX_NAME</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">RESOLVER_NAME</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;include&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">[</span>
+          <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
+          <span class="p">...</span>
+        <span class="p">],</span>
+        <span class="p">...</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">INDEX_NAME</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">RESOLVER_NAME</span><span class="p">,</span>
+        <span class="p">...</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p><strong>Example</strong></p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;exclude&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;n/a&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s2">&quot;555-555-5555&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;dob&quot;</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s2">&quot;0000-00-00&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;1900-01-01&quot;</span>
+        <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;name_ssn&quot;</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;include&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;country&quot;</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s2">&quot;US&quot;</span>
+        <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;users&quot;</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>An optional field that contains an object to limit the scope of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.
+Scope can be controlled by <a href="#scope.exclude" onclick="to(window.location.pathname + '#scope.exclude');">excluding</a> ("blacklisting") or <a href="#scope.include" onclick="to(window.location.pathname + '#scope.include');">including</a> ("whitelisting") attribute values,
+indices, and resolvers.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Object</li>
+</ul>
+<h3><a name="scope.exclude"></a><code>"scope"."exclude"</code></h3>
+<p>An optional field that excludes <a href="#scope.exclude.attributes" onclick="to(window.location.pathname + '#scope.exclude.attributes');"><code>"attributes"</code></a>, <a href="#scope.exclude.indices" onclick="to(window.location.pathname + '#scope.exclude.indices');"><code>"indices"</code></a>, or <a href="#scope.exclude.resolvers" onclick="to(window.location.pathname + '#scope.exclude.resolvers');"><code>"resolvers"</code></a>
+from the <a href="/docs/rest-apis/resolution-api">resolution job</a>. By setting any of these exclusions, no query will be allowed to include the given
+attribute values, indices, or resolvers.</p>
+<p>The values in <code>"scope"."exclude"</code> take precedence over any duplicate values specified <a href="#scope.include" onclick="to(window.location.pathname + '#scope.include');"><code>"scope"."include"</code></a>.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Object</li>
+</ul>
+<h3><a name="scope.exclude.attributes"></a><code>"scope"."exclude"."attributes"</code></h3>
+<p>An optional field that excludes specific attribute values from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
+By setting any of these attributes, no query will be allowed to include the values specified within them.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Object</li>
+</ul>
+<h3><a name="scope.exclude.attributes.ATTRIBUTE_NAME"></a><code>"scope"."exclude"."attributes".ATTRIBUTE_NAME</code></h3>
+<p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>, <code>"dob"</code>, <code>"phone"</code>, etc.
+By setting an attribute, no query will be allowed to include the values specified within it.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Array</li>
+</ul>
+<h3><a name="scope.exclude.indices"></a><code>"scope"."exclude"."indices"</code></h3>
+<p>An optional field that excludes specific indices from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
+By setting any of these indices, no query will be allowed to include those indices.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Object</li>
+</ul>
+<h3><a name="scope.exclude.indices.INDEX_NAME"></a><code>"scope"."exclude"."indices".INDEX_NAME</code></h3>
+<p>The name of a distinct index. By setting an index, no query will be allowed to include it.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: String</li>
+</ul>
+<h3><a name="scope.exclude.resolvers"></a><code>"scope"."exclude"."resolvers"</code></h3>
+<p>An optional field that excludes specific resolvers from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
+By setting any of these resolvers, no query will be allowed to include those resolvers.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Object</li>
+</ul>
+<h3><a name="scope.exclude.resolvers.RESOLVER_NAME"></a><code>"scope"."exclude"."resolvers".RESOLVER_NAME</code></h3>
+<p>The name of a distinct resolver. By setting an resolver, no query will be allowed to include it.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: String</li>
+</ul>
+<h3><a name="scope.include"></a><code>"scope"."include"</code></h3>
+<p>An optional field that includes <a href="#scope.include.attributes" onclick="to(window.location.pathname + '#scope.include.attributes');"><code>"attributes"</code></a>, <a href="#scope.include.indices" onclick="to(window.location.pathname + '#scope.include.indices');"><code>"indices"</code></a>, or <a href="#scope.include.resolvers" onclick="to(window.location.pathname + '#scope.include.resolvers');"><code>"resolvers"</code></a>
+from the <a href="/docs/rest-apis/resolution-api">resolution job</a>. By setting any of these inclusions, no query will be allowed to exclude the given
+attribute values, indices, or resolvers.</p>
+<p>The values in <a href="#scope.exclude" onclick="to(window.location.pathname + '#scope.exclude');"><code>"scope"."exclude"</code></a> take precedence over any duplicate values specified <code>"scope"."include"</code>.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Object</li>
+</ul>
+<h3><a name="scope.include.attributes"></a><code>"scope"."include"."attributes"</code></h3>
+<p>An optional field that includes specific attribute values from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
+By setting any of these attributes, no query will be allowed to exclude the values specified within them.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Object</li>
+</ul>
+<h3><a name="scope.include.attributes.ATTRIBUTE_NAME"></a><code>"scope"."include"."attributes".ATTRIBUTE_NAME</code></h3>
+<p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>, <code>"dob"</code>, <code>"phone"</code>, etc.
+By setting an attribute, no query will be allowed to exclude the values specified within it.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Array</li>
+</ul>
+<h3><a name="scope.include.indices"></a><code>"scope"."include"."indices"</code></h3>
+<p>An optional field that includes specific indices from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
+By setting any of these indices, no query will be allowed to exclude those indices.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Object</li>
+</ul>
+<h3><a name="scope.include.indices.INDEX_NAME"></a><code>"scope"."include"."indices".INDEX_NAME</code></h3>
+<p>The name of a distinct index. By setting an index, no query will be allowed to exclude it.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: String</li>
+</ul>
+<h3><a name="scope.include.resolvers"></a><code>"scope"."include"."resolvers"</code></h3>
+<p>An optional field that includes specific resolvers from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
+By setting any of these resolvers, no query will be allowed to exclude those resolvers.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Object</li>
+</ul>
+<h3><a name="scope.include.resolvers.RESOLVER_NAME"></a><code>"scope"."include"."resolvers".RESOLVER_NAME</code></h3>
+<p>The name of a distinct resolver. By setting an resolver, no query will be allowed to exclude it.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: String</li>
+</ul>
+<h2><a name="model"></a><code>"model"</code></h2>
+<p>The <a href="/docs/entity-models">entity model</a> to use for the entity resolution job. This is only required if <code>entity_type</code> is not specified
+in the endpoint of the <a href="/docs/rest-apis/resolution-api">resolution request</a>. Otherwise this field <strong>must not</strong> be present.</p>
+<ul>
+<li>Required: Only if <code>entity_type</code> is not specified in the endpoint of the <a href="/docs/rest-apis/resolution-api">resolution request</a></li>
+<li>Type: Object</li>
+</ul>
+<p>&nbsp;</p>
+<hr>
+<h4>Continue Reading</h4>
+<table class="table">
+<thead><tr>
+<th style="text-align:left">&#8249;</th>
+<th style="text-align:left"><a href="/docs/entity-resolution">Entity Resolution</a></th>
+<th style="text-align:right"><a href="/docs/entity-resolution/output-specification">Entity Resolution Output Specification</a></th>
+<th style="text-align:right">&#8250;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+      <div id="bottom">
+        <small>
+          <div>
+            &copy; 2018 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
+          </div>
+          <div>
+            Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" onclick="to('http://www.apache.org/licenses/LICENSE-2.0');">Apache License, Version 2.0</a>.
+          </div>
+          <div>
+            Elasticsearch is a trademark of Elasticsearch BV.
+          </div>
+          <div>
+            This website uses Google Analytics.</div>
+        </small>
+      </div>
+    </div>
+  </body>
+</html>

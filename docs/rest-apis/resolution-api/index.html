@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>zentity - Resolution API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+    <meta name="description" content="zentity brings entity resolution to Elasticsearch. Connect the fragments of an identity hidden in your data. Fast, scalable, open source."/>
+    <meta property="og:title" content="zentity"/>
+    <meta property="og:description" content="Entity Resolution for Elasticsearch"/>
+    <meta property="og:image" content="/img/zentity-og-image.png"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://zentity.io/"/>
+    <meta name="twitter:title" content="zentity"/>
+    <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/all.css"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
+      var to = function(uri, event_category) {
+        if (event_category)
+          gtag('event', 'click', {
+            'event_category': event_category,
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
+        else
+          gtag('event', 'click', {
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
+      };
+    </script><script src="/js/all.js"></script>
+  </head>
+  <body>
+    <div id="app" >
+      <div id="top"><div id="nav">
+          <div style="max-width:950px;margin:0 auto;">
+            <a href="/">
+              <h1 aria-label="zentity">
+                <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span>
+              </h1>
+            </a>
+            <div id="buttons">
+              <a href="/docs">
+                <button type="button" class="btn btn-sm btn-primary" aria-label="Docs">
+                  Documentation
+                </button>
+              </a>
+              <a href="/releases">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Releases">
+                  Releases
+                </button>
+              </a>
+              <a href="https://github.com/zentity-io/zentity" title="Github" onclick="to('https://github.com/zentity-io/zentity');">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Github">
+                  Github
+                </button>
+              </a>
+            </div>
+          </div>
+        </div></div>
+      <div id="main" class="content">
+        <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/rest-apis">REST APIs</a> / Resolution API</p>
+<h1><a name="resolution-api">Resolution API</a></h1>
+<p>Runs an entity resolution job and returns the results.</p>
+<p>The request accepts two endpoints:</p>
+<div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span>
+<span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
+</pre></div>
+<p><strong>Example Request</strong></p>
+<p>This example request resolves a <code>person</code> identified by a <code>name</code>, a <code>dob</code>, and two <code>phone</code> values, while limiting the
+search to one index called <code>users_index</code> ane two resolvers called <code>name_dob</code> and <code>name_phone</code>. The request passes
+a param called <code>fuzziness</code> to the <code>phone</code> attribute, which can be referenced in any matcher clause that uses
+the <code>fuzziness</code> param. Note that an attribute can accept either an array of values or an object with the values
+specified in a field called <code>"values"</code>. It's also valid to specify an attribute with no values but to override
+the default params, such as to format the results of any date attributes in the response.</p>
+<p>Read the <strong><a href="/docs/entity-resolution/input-specification">input specification</a></strong> for complete details about the structure of a request.</p>
+<div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
+<span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice Jones&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;dob&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;1984-01-01&quot;</span> <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;555-123-4567&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;555-987-6543&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="mi">2</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;exclude&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;n/a&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;555-555-5555&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;include&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;users_index&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;name_dob&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;name_phone&quot;</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p><strong>Example Response</strong></p>
+<p>This example response took 64 milliseconds and returned 2 hits. The <code>_source</code> field contains the fields and values
+as they exist in the document indexed in Elasticsearch. The <code>_attributes</code> field contains any values from the
+<code>_source</code> field that can be mapped to the <a href="/docs/entity-models/specification#attributes"><code>"attributes"</code></a> field of the entity model.
+The <code>_hop</code> field shows the level of recursion at which the document was fetched. Entities with many documents can
+span many hops if they have highly varied attribute values.</p>
+<p>Read the <strong><a href="/docs/entity-resolution/output-specification">output specification</a></strong> for complete details about the structure of a response.</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="mi">64</span><span class="p">,</span>
+  <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;users_index&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;iaCn-mABDJZDR09hUNon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_hop&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;_attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Beverly Halls&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;555 123 4567&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;zip&quot;</span><span class="o">:</span> <span class="s2">&quot;90210-0000&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;_source&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;@version&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Beverly Halls&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;fname&quot;</span><span class="o">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;lname&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;555 987 6543&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;zip&quot;</span><span class="o">:</span> <span class="s2">&quot;90210-0000&quot;</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;users_index&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;iqCn-mABDJZDR09hUNoo&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_hop&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;_attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Beverly Hills&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;(555)-987-6543&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;123 W Main Street&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;zip&quot;</span><span class="o">:</span> <span class="s2">&quot;90210&quot;</span>
+        <span class="p">}</span>
+        <span class="s2">&quot;_source&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;@version&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Beverly Hills&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;fname&quot;</span><span class="o">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;lname&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;(555)-987-6543&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;123 W Main Street&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;zip&quot;</span><span class="o">:</span> <span class="s2">&quot;90210&quot;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p><strong>URL query string parameters</strong></p>
+<table class="table">
+<thead><tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_attributes</code></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>No</td>
+<td>Return the <code>_attributes</code> field in each doc.</td>
+</tr>
+<tr>
+<td><code>_source</code></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>No</td>
+<td>Return the <code>_source</code> field in each doc.</td>
+</tr>
+<tr>
+<td><code>entity_type</code></td>
+<td>String</td>
+<td></td>
+<td>Depends</td>
+<td>The entity type. Required if <code>model</code> is not specified.</td>
+</tr>
+<tr>
+<td><code>hits</code></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>No</td>
+<td>Return the <code>hits</code> field in the response.</td>
+</tr>
+<tr>
+<td><code>max_docs_per_query</code></td>
+<td>Integer</td>
+<td><code>1000</code></td>
+<td>No</td>
+<td>Maximum number of docs per query result.</td>
+</tr>
+<tr>
+<td><code>max_hops</code></td>
+<td>Integer</td>
+<td><code>100</code></td>
+<td>No</td>
+<td>Maximum level of recursion.</td>
+</tr>
+<tr>
+<td><code>pretty</code></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>No</td>
+<td>Indents the JSON response data.</td>
+</tr>
+<tr>
+<td><code>profile</code></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>No</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-profile.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/search-profile.html', 'outbound');" class="external">Profile</a> each query. Used for debugging.</td>
+</tr>
+<tr>
+<td><code>queries</code></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>No</td>
+<td>Return the <code>queries</code> field in the response. Used for debugging.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Request body parameters</strong></p>
+<table class="table">
+<thead><tr>
+<th>Param</th>
+<th>Type</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributes</code></td>
+<td>Object</td>
+<td></td>
+<td>Yes</td>
+<td>The initial attribute values to search.</td>
+</tr>
+<tr>
+<td><code>scope.exclude</code></td>
+<td>Object</td>
+<td></td>
+<td>No</td>
+<td>The names of indices to limit the job to.</td>
+</tr>
+<tr>
+<td><code>scope.exclude.attributes</code></td>
+<td>Object</td>
+<td></td>
+<td>No</td>
+<td>The names and values of attributes to exclude in each query.</td>
+</tr>
+<tr>
+<td><code>scope.exclude.indices</code></td>
+<td>Object</td>
+<td></td>
+<td>No</td>
+<td>The names of indices to exclude in each query.</td>
+</tr>
+<tr>
+<td><code>scope.exclude.resolvers</code></td>
+<td>Object</td>
+<td></td>
+<td>No</td>
+<td>The names of resolvers to exclude in each query.</td>
+</tr>
+<tr>
+<td><code>scope.include.attributes</code></td>
+<td>Object</td>
+<td></td>
+<td>No</td>
+<td>The names and values of attributes to require in each query.</td>
+</tr>
+<tr>
+<td><code>scope.include.indices</code></td>
+<td>Object</td>
+<td></td>
+<td>No</td>
+<td>The names of indices to require in each query.</td>
+</tr>
+<tr>
+<td><code>scope.include.resolvers</code></td>
+<td>Object</td>
+<td></td>
+<td>No</td>
+<td>The names of resolvers to require in each query.</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>Object</td>
+<td></td>
+<td>Depends</td>
+<td>The entity model. Required if <code>entity_type</code> is not specified.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong></p>
+<ul>
+<li>If you define an <code>entity_type</code>, zentity will use its model from the <code>.zentity-models</code> index.</li>
+<li>If you don't define an <code>entity_type</code>, then you must include a <code>model</code> object in the request body.</li>
+<li>You can define an <code>entity_type</code> in the request body or the URL, but not both.</li>
+</ul>
+<p><strong>Tips</strong></p>
+<ul>
+<li>If you only need to search a few indices, use <code>scope.exclude.indices</code> and
+<code>scope.include.indices</code> parameter to prevent the job from searching unnecessary
+indices in the entity model at each hop.</li>
+<li>Beware if your data is <strong><em>transactional</em></strong> or has <strong><em>many duplicates</em></strong>.
+You might need to lower the values of <code>max_hops</code> and <code>max_docs_per_query</code> if
+your jobs are timing out.</li>
+<li>Use <code>scope.exclude.attributes</code> to prevent entities from being over-resolved
+(a.k.a. "snowballed") due to common meaningless values such as "unknown" or "n/a".</li>
+<li>Use <code>scope.include.attributes</code> to limit the job within a particular context,
+such as by matching documents only within a given state or country.</li>
+</ul>
+<p>&nbsp;</p>
+<hr>
+<h4>Continue Reading</h4>
+<table class="table">
+<thead><tr>
+<th style="text-align:left">&#8249;</th>
+<th style="text-align:left"><a href="/docs/rest-apis">REST APIs</a></th>
+<th style="text-align:right"><a href="/docs/rest-apis/models-api">Models API</a></th>
+<th style="text-align:right">&#8250;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+      <div id="bottom">
+        <small>
+          <div>
+            &copy; 2018 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
+          </div>
+          <div>
+            Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" onclick="to('http://www.apache.org/licenses/LICENSE-2.0');">Apache License, Version 2.0</a>.
+          </div>
+          <div>
+            Elasticsearch is a trademark of Elasticsearch BV.
+          </div>
+          <div>
+            This website uses Google Analytics.</div>
+        </small>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>zentity - Security</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+    <meta name="description" content="zentity brings entity resolution to Elasticsearch. Connect the fragments of an identity hidden in your data. Fast, scalable, open source."/>
+    <meta property="og:title" content="zentity"/>
+    <meta property="og:description" content="Entity Resolution for Elasticsearch"/>
+    <meta property="og:image" content="/img/zentity-og-image.png"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://zentity.io/"/>
+    <meta name="twitter:title" content="zentity"/>
+    <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/all.css"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
+      var to = function(uri, event_category) {
+        if (event_category)
+          gtag('event', 'click', {
+            'event_category': event_category,
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
+        else
+          gtag('event', 'click', {
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
+      };
+    </script><script src="/js/all.js"></script>
+  </head>
+  <body>
+    <div id="app" >
+      <div id="top"><div id="nav">
+          <div style="max-width:950px;margin:0 auto;">
+            <a href="/">
+              <h1 aria-label="zentity">
+                <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span>
+              </h1>
+            </a>
+            <div id="buttons">
+              <a href="/docs">
+                <button type="button" class="btn btn-sm btn-primary" aria-label="Docs">
+                  Documentation
+                </button>
+              </a>
+              <a href="/releases">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Releases">
+                  Releases
+                </button>
+              </a>
+              <a href="https://github.com/zentity-io/zentity" title="Github" onclick="to('https://github.com/zentity-io/zentity');">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Github">
+                  Github
+                </button>
+              </a>
+            </div>
+          </div>
+        </div></div>
+      <div id="main" class="content">
+        <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / Security</p>
+<h1><a name="security">Security</a></h1>
+<p>As an API extension plugin for Elasticsearch, zentity inherits the security settings from the cluster on which it is installed.</p>
+<h2><a name="x-pack-security">X-Pack Security</a></h2>
+<p><a href="https://www.elastic.co/products/x-pack" onclick="to('https://www.elastic.co/products/x-pack', 'outbound');" class="external">X-Pack</a> is a commercial plugin from Elastic, the creators of Elasticsearch and the
+Elastic Stack. <a href="https://www.elastic.co/products/x-pack/security" onclick="to('https://www.elastic.co/products/x-pack/security', 'outbound');" class="external">X-Pack Security</a> is a subset of the plugin that secures an
+Elaticsearch cluster by encrypting communications with TLS and enforcing authentication and role-based access control for
+clients communicating with the cluster. Likewise, communications between the cluster and the node client used by zentity will
+be encrypted and any interactions with zentity must be authenticated and authorized.</p>
+<p>Here is an example of a response from the cluster when an unauthorized user requests <code>GET _zentity/models/{entity_model}</code>
+to retrieve an entity model:</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;root_cause&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;security_exception&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;reason&quot;</span><span class="o">:</span> <span class="s2">&quot;action [indices:data/read/get] is unauthorized for user [USERNAME]&quot;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;security_exception&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;reason&quot;</span><span class="o">:</span> <span class="s2">&quot;action [indices:data/read/get] is unauthorized for user [USERNAME]&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="mi">403</span>
+<span class="p">}</span>
+</pre></div>
+<p>All unauthorized interactions with zentity will produced an error response similar to the one above.</p>
+<h2><a name="role-configuration">X-Pack Security Role Configuration</a></h2>
+<p>Below are the permission settings that can be configured for a "zentity" role with X-Pack Security.
+Roles can be managed in Kibana at <code>https://KIBANA_HOST:KIBANA_PORT/app/kibana#/management/security/roles</code>
+or through the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-roles.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-roles.html', 'outbound');" class="external">Role Management APIs</a>.</p>
+<h3><a name="models-api-configuration">Models API Permissions</a></h3>
+<p>These permission settings apply to the <a href="/docs/rest-apis/models-api">Models API</a>. A single role can
+be granted any or all of these permissions. When setting up</p>
+<h4>Create and update entity models</h4>
+<p><strong>Index Privileges</strong></p>
+<ul>
+<li>Indices: <code>.zentity-models</code></li>
+<li>Permissions: <code>create</code> or <code>write</code></li>
+</ul>
+<p><strong>Actions Granted</strong></p>
+<ul>
+<li><code>POST _zentity/models/{entity_type}</code></li>
+<li><code>PUT _zentity/models/{entity_type}</code></li>
+</ul>
+<h4>Read entity models</h4>
+<p><strong>Index Privileges</strong></p>
+<ul>
+<li>Indices: <code>.zentity-models</code></li>
+<li>Permissions: <code>read</code></li>
+</ul>
+<p><strong>Actions Granted</strong></p>
+<ul>
+<li><code>GET _zentity/models</code></li>
+<li><code>GET _zentity/models/{entity_type}</code></li>
+</ul>
+<h4>Delete entity models</h4>
+<p><strong>Index Privileges</strong></p>
+<ul>
+<li>Indices: <code>.zentity-models</code></li>
+<li>Permissions: <code>delete</code></li>
+</ul>
+<p><strong>Actions Granted</strong></p>
+<ul>
+<li><code>DELETE _zentity/models/{entity_type}</code></li>
+</ul>
+<h4>Notes</h4>
+<p>Currently any user that interacts with the Models API must have the <code>manage</code> permission for the
+<code>.zentity-models</code> index due to a check that is performed by the plugin to ensure that the index exists.</p>
+<p>Additionally, when requesting any of the Models API endpoints listed above for the first time, zentity will attempt
+to create the <code>.zentity-models</code> index. This means that the user who submits the first request to any Models API
+endpoint must have <code>create</code> privilege for the <code>.zentity-models</code> index. Otherwise the user will always receive the
+following error message:</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;root_cause&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;security_exception&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;reason&quot;</span><span class="o">:</span> <span class="s2">&quot;action [indices:admin/create] is unauthorized for user [USERNAME]&quot;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;security_exception&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;reason&quot;</span><span class="o">:</span> <span class="s2">&quot;action [indices:admin/create] is unauthorized for user [USERNAME]&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="mi">403</span>
+<span class="p">}</span>
+</pre></div>
+<p>An administrative user should perform the first request using <code>GET _zentity/models</code> to create the index.</p>
+<p>A dedicated API endpoint to create the <code>.zentity-models</code> index is on the development roadmap to simplify these
+experiences and allow the administrators to avoid granting the <code>manage</code> privilege for the <code>.zentity-models</code> index.</p>
+<h3><a name="resolution-api-permissions">Resolution API Permissions</a></h3>
+<p>There are no permissions to be configured for the <a href="/docs/rest-apis/resolution-api">Resolution API</a> endpoints
+<code>GET _zentity/resolution</code> or <code>GET _zentity/resolution/{entity_type}</code>. These endpoints construct and submit
+search queries using the Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html', 'outbound');" class="external">Search APIs</a>.
+Therefore, permissions must be configured for each index that the user searches with zentity. Users can only perform
+entity resolution if they have the <code>read</code> privilege for every index included in the scope of the request.</p>
+<h2><a name="open-source-elasticsearch">Open Source Elasticsearch</a></h2>
+<p>Open source Elasticsearch clusters without an X-Pack Security license do not have any security mechanisms.
+Communications are unencrypted and any user can perform any action on the cluster. Likewise, any user can
+perform any action with zentity in an open source cluster that has not been configured with X-Pack Security.</p>
+<p>&nbsp;</p>
+<hr>
+<h4>Continue Reading</h4>
+<table class="table">
+<thead><tr>
+<th style="text-align:left">&#8249;</th>
+<th style="text-align:left"><a href="/docs/rest-apis/models-api">Models API</a></th>
+<th style="text-align:right"></th>
+<th style="text-align:right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+      <div id="bottom">
+        <small>
+          <div>
+            &copy; 2018 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
+          </div>
+          <div>
+            Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" onclick="to('http://www.apache.org/licenses/LICENSE-2.0');">Apache License, Version 2.0</a>.
+          </div>
+          <div>
+            Elasticsearch is a trademark of Elasticsearch BV.
+          </div>
+          <div>
+            This website uses Google Analytics.</div>
+        </small>
+      </div>
+    </div>
+  </body>
+</html>

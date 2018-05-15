@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>zentity - Entity Resolution Output Specification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+    <meta name="description" content="zentity brings entity resolution to Elasticsearch. Connect the fragments of an identity hidden in your data. Fast, scalable, open source."/>
+    <meta property="og:title" content="zentity"/>
+    <meta property="og:description" content="Entity Resolution for Elasticsearch"/>
+    <meta property="og:image" content="/img/zentity-og-image.png"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://zentity.io/"/>
+    <meta name="twitter:title" content="zentity"/>
+    <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/all.css"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
+      var to = function(uri, event_category) {
+        if (event_category)
+          gtag('event', 'click', {
+            'event_category': event_category,
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
+        else
+          gtag('event', 'click', {
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
+      };
+    </script><script src="/js/all.js"></script>
+  </head>
+  <body>
+    <div id="app" >
+      <div id="top"><div id="nav">
+          <div style="max-width:950px;margin:0 auto;">
+            <a href="/">
+              <h1 aria-label="zentity">
+                <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span>
+              </h1>
+            </a>
+            <div id="buttons">
+              <a href="/docs">
+                <button type="button" class="btn btn-sm btn-primary" aria-label="Docs">
+                  Documentation
+                </button>
+              </a>
+              <a href="/releases">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Releases">
+                  Releases
+                </button>
+              </a>
+              <a href="https://github.com/zentity-io/zentity" title="Github" onclick="to('https://github.com/zentity-io/zentity');">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Github">
+                  Github
+                </button>
+              </a>
+            </div>
+          </div>
+        </div></div>
+      <div id="main" class="content">
+        <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/entity-resolution">Entity Resolution</a> / Output Specification</p>
+<h1><a name="output">Entity Resolution Output Specification</a></h1>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="nx">TOOK_IN_MILLIS</span><span class="p">,</span>
+  <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="nx">HITS_TOTAL</span><span class="p">,</span>
+    <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="nx">INDEX_NAME</span><span class="p">,</span>
+        <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="nx">DOC_TYPE</span><span class="p">,</span>
+        <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="nx">DOC_ID</span><span class="p">,</span>
+        <span class="s2">&quot;_hop&quot;</span><span class="o">:</span> <span class="nx">HOP_NUMBER</span><span class="p">,</span>
+        <span class="s2">&quot;_attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
+          <span class="p">...</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;_source&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">FIELD_NAME</span><span class="o">:</span> <span class="nx">FIELD_VALUE</span><span class="p">,</span>
+          <span class="p">...</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="p">...</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;queries&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;_hop&quot;</span><span class="o">:</span> <span class="nx">HOP_NUMBER</span><span class="p">,</span>
+      <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="nx">INDEX_NAME</span><span class="p">,</span>
+      <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;list&quot;</span><span class="o">:</span> <span class="p">[</span>
+          <span class="nx">RESOLVER_NAME</span><span class="p">,</span>
+          <span class="p">...</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;tree&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
+            <span class="p">...</span>
+          <span class="p">},</span>
+          <span class="p">...</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;search&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;request&quot;</span><span class="o">:</span> <span class="nx">SEARCH_REQUEST</span><span class="p">,</span>
+        <span class="s2">&quot;response&quot;</span><span class="o">:</span> <span class="nx">SEARCH_RESPONSE</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">...</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+<p>Entity resolution outputs are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
+(e.g. <code>"attributes"</code>) are constant fields, uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable fields or values,
+and elipses (<code>...</code>) are optional repetitions of the preceding field or value.</p>
+<p>An entity resolution output is the response to a <a href="/docs/rest-apis/resolution-api">resolution request</a>. Its structure is
+similar to the response of an Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html', 'outbound');" class="external">Search API</a> query.
+It contains the documents (<a href="#hits.hits" onclick="to(window.location.pathname + '#hits.hits');"><code>"hits"</code></a>) associated with the entity as well as information about the job itself.
+Documents can contain the original source values, the normalized attribute values, and information about the index and hop number
+from which the document was retrieved.</p>
+<p>The <a href="#queries" onclick="to(window.location.pathname + '#queries');"><code>"queries"</code></a>, <a href="#hits.hits._source" onclick="to(window.location.pathname + '#hits.hits._source');"><code>"_source"</code></a>, <a href="#hits.hits._attributes" onclick="to(window.location.pathname + '#hits.hits._attributes');"><code>"_attributes"</code></a>, and <a href="#hits" onclick="to(window.location.pathname + '#hits');"><code>"_hits"</code></a> fields each can be excluded
+from the output. By default, <a href="#queries" onclick="to(window.location.pathname + '#queries');"><code>"queries"</code></a> is excluded to reduce the amount of data transferred from the cluster to the client.</p>
+<h3><a name="took"></a><code>"took"</code></h3>
+<p>The number of milliseconds elapsed between the start time and stop time of the entity resolution job. This <strong>excludes</strong> the time it takes to
+validate the request, request and parse the entity model, and serialize the response.</p>
+<h2><a name="hits"></a><code>"hits"</code></h2>
+<p>An object containing the documents that matched the input across all hops.</p>
+<p>This field can be excluded from the output by setting <code>hits=false</code> in the URI parameters of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.
+This can help to get a slightly more accurate measurement of <a href="#took" onclick="to(window.location.pathname + '#took');"><code>"took"</code></a> by excluding some processing of the responses from Elasticsearch.
+This can also help to get slightly more accurate timing measurements when stress testing zentity by minimizing the amount of data transferred from
+the cluster to the client.</p>
+<h3><a name="hits.total"></a><code>"hits"."total"</code></h3>
+<p>The total number of documents that matched the input across all hops.</p>
+<h3><a name="hits.hits"></a><code>"hits"."hits"</code></h3>
+<p>An array of objects, each of which is a document that matched the input.</p>
+<h3><a name="hits.hits._index"></a><code>"hits"."hits"."_index"</code></h3>
+<p>The name of the index from which the document was retrieved.</p>
+<h3><a name="hits.hits._type"></a><code>"hits"."hits"."_type"</code></h3>
+<p>The doc type of the document.</p>
+<h3><a name="hits.hits._id"></a><code>"hits"."hits"."_id"</code></h3>
+<p>The _id of the document.</p>
+<h3><a name="hits.hits._hop"></a><code>"hits"."hits"."_hop"</code></h3>
+<p>The hop number at which the document was received. A "hop" is an iteration in which zentity submits a query to each index that can be queried.</p>
+<h3><a name="hits.hits._attributes"></a><code>"hits"."hits"."_attributes"</code></h3>
+<p>An object containing the normalized values for each attribute of the document. This object is constructed by taking each <a href="#hits.hits._source" onclick="to(window.location.pathname + '#hits.hits._source');"><code>"_source"</code></a>
+field that is associated with an attribute in the entity model and mapping it to the name of the attribute. Some values, such as <a href="/docs/entity-models/specification#attribute-type-date">dates</a>,
+are normalized into a format that will be common across documents from disparate indices.</p>
+<p>This field can be excluded from the output by setting <code>_attributes=false</code> in the URI parameters of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.</p>
+<h3><a name="hits.hits._source"></a><code>"hits"."hits"."_source"</code></h3>
+<p>The original fields from the document.</p>
+<p>This field can be excluded from the output by setting <code>_source=false</code> in the URI parameters of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.</p>
+<h2><a name="queries"></a><code>"queries"</code></h2>
+<p>An object containing information about the queries that were submitted to to Elasticsearch during the resolution job.</p>
+<p>This field is excluded from the output by default. It can be included by setting <code>queries=true</code> in the URI parameters of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.</p>
+<h3><a name="queries._hop"></a><code>"queries"."_hop"</code></h3>
+<p>The hop number at which the query was submitted.</p>
+<h3><a name="queries._index"></a><code>"queries"."_index"</code></h3>
+<p>The index that was queried.</p>
+<h3><a name="queries.resolvers"></a><code>"queries"."resolvers"</code></h3>
+<p>An object containing information about the resolvers used to construct the query.</p>
+<h3><a name="queries.resolvers.list"></a><code>"queries"."resolvers"."list"</code></h3>
+<p>A flat list of names of the resolvers used to construct the query.</p>
+<h3><a name="queries.resolvers.tree"></a><code>"queries"."resolvers"."tree"</code></h3>
+<p>A recursive object containing the attributes of the resolvers as they were constructed in the query.</p>
+<p>Different resolvers can share many of the same attributes. Consider the following:</p>
+<div class="highlight"><pre><span></span><span class="p">[</span>
+  <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span> <span class="p">],</span>
+  <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;zip&quot;</span> <span class="p">],</span>
+  <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;dob&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span> <span class="p">],</span>
+  <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">],</span>
+  <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span> <span class="p">],</span>
+  <span class="p">[</span> <span class="s2">&quot;id&quot;</span> <span class="p">],</span>
+<span class="p">]</span>
+</pre></div>
+<p>Many of these attributes (<code>"name"</code>, <code>"street"</code>, <code>"state"</code>) are shared by multiple resolvers.
+It would be highly inefficient to populate the values of each attribute multiple times in a single query.
+zentity optimizes queries by determining how the attributes can be nested to minimize redundant clauses.</p>
+<p>Here's the effect of the optimization:</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;zip&quot;</span><span class="o">:</span> <span class="p">{}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;zip&quot;</span><span class="o">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;dob&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="p">{}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+<p>In this example, zentity eliminates four redundant copies of <code>"name"</code> values and one redundant copy of <code>"street"</code> values.
+The clauses of attributes at the same level of the hierarchy are combined with their siblings using <code>OR</code>, while the clauses
+of child attributes are combined with their parents using <code>AND</code>.</p>
+<h3><a name="queries.search"></a><code>"queries"."search"</code></h3>
+<p>An object containing information about the search request and response to and from Elasticsearch.</p>
+<h3><a name="queries.search.request"></a><code>"queries"."search"."request"</code></h3>
+<p>An object containing the search request payload to Elasticsearch.</p>
+<h3><a name="queries.search.response"></a><code>"queries"."search"."response"</code></h3>
+<p>An object containing the search response payload from Elasticsearch.</p>
+<p>If <code>profile=true</code> was set in the URI parameters of the <a href="/docs/rest-apis/resolution-api">resolution request</a>, then the
+query profile data will be included in this response field.</p>
+<p>&nbsp;</p>
+<hr>
+<h4>Continue Reading</h4>
+<table class="table">
+<thead><tr>
+<th style="text-align:left">&#8249;</th>
+<th style="text-align:left"><a href="/docs/entity-resolution/input-specification">Entity Resolution Input Specification</a></th>
+<th style="text-align:right"><a href="/docs/rest-apis">REST APIs</a></th>
+<th style="text-align:right">&#8250;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+      <div id="bottom">
+        <small>
+          <div>
+            &copy; 2018 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
+          </div>
+          <div>
+            Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" onclick="to('http://www.apache.org/licenses/LICENSE-2.0');">Apache License, Version 2.0</a>.
+          </div>
+          <div>
+            Elasticsearch is a trademark of Elasticsearch BV.
+          </div>
+          <div>
+            This website uses Google Analytics.</div>
+        </small>
+      </div>
+    </div>
+  </body>
+</html>
