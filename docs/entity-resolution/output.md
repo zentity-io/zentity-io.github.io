@@ -1,4 +1,4 @@
-[Home](/) / [Documentation](/docs) / [Entity Resolution](/docs/entity-resolution) / Output
+[Home](/) / [Documentation](/docs) / [Entity Resolution](/docs/entity-resolution) / Output Specification
 
 
 # <a name="output">Entity Resolution Output Specification</a>
@@ -56,14 +56,14 @@ Entity resolution outputs are [JSON](https://www.json.org/) documents. In the fr
 (e.g. `"attributes"`) are constant fields, uppercase literal values (e.g. `ATTRIBUTE_NAME`) are variable fields or values,
 and elipses (`...`) are optional repetitions of the preceding field or value.
 
-An entity resolution output is the response to a **[resolution request](/docs/rest-apis/resolution-api)**. Its structure is
+An entity resolution output is the response to a [resolution request](/docs/rest-apis/resolution-api). Its structure is
 similar to the response of an Elasticsearch [Search API](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html) query.
 It contains the documents ([`"hits"`](#hits.hits)) associated with the entity as well as information about the job itself.
 Documents can contain the original source values, the normalized attribute values, and information about the index and hop number
 from which the document was retrieved.
 
-The **[`"queries"`](#queries)**, **[`"_source"`](#hits.hits._source)**, **[`"_attributes"`](#hits.hits._attributes)**, and **[`"_hits"`](#hits)** fields each can be excluded
-from the output. By default, **[`"queries"`](#queries)** is excluded to reduce the amount of data transferred from the cluster to the client.
+The [`"queries"`](#queries), [`"_source"`](#hits.hits._source), [`"_attributes"`](#hits.hits._attributes), and [`"_hits"`](#hits) fields each can be excluded
+from the output. By default, [`"queries"`](#queries) is excluded to reduce the amount of data transferred from the cluster to the client.
 
 
 ### <a name="took"></a>`"took"`
@@ -167,7 +167,7 @@ Different resolvers can share many of the same attributes. Consider the followin
 ]
 ```
 
-Many of these attributes (`"name"`, `"street"`, `"state"`, `"phone"`, `"email"`) are shared by multiple resolvers.
+Many of these attributes (`"name"`, `"street"`, `"state"`) are shared by multiple resolvers.
 It would be highly inefficient to populate the values of each attribute multiple times in a single query.
 zentity optimizes queries by determining how the attributes can be nested to minimize redundant clauses.
 
@@ -223,6 +223,6 @@ query profile data will be included in this response field.
 
 #### Continue Reading
 
-|&#8249;|[Input](/docs/entity-resolution/input)|[REST APIs](/docs/rest-apis)|&#8250;|
+|&#8249;|[Entity Resolution Input Specification](/docs/entity-resolution/input-specification)|[REST APIs](/docs/rest-apis)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

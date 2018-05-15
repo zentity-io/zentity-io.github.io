@@ -13,11 +13,8 @@ You must provide an [entity models](/docs/entity-models) when making a resolutio
 
 ## More info
 
-- [Input](/docs/entity-resolution/input)
-- [Output](/docs/entity-resolution/output)
-- [Lifecycle](/docs/entity-resolution/lifecycle)
-- [Troubleshooting](/docs/entity-resolution/troubleshooting)
-- [Performance](/docs/entity-resolution/performance)
+- [Input](/docs/entity-resolution/input-specification)
+- [Output](/docs/entity-resolution/output-specification)
 
 
 &nbsp;
@@ -26,6 +23,6 @@ You must provide an [entity models](/docs/entity-models) when making a resolutio
 
 #### Continue Reading
 
-|&#8249;|[Tips](/docs/entity-models/tips)|[Input](/docs/entity-resolution/input)|&#8250;|
+|&#8249;|[Entity Modeling Tips](/docs/entity-models/tips)|[Entity Resolution Input Specification](/docs/entity-resolution/input-specification)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

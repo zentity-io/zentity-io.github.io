@@ -4,7 +4,7 @@
 # <a name="entity-models">Entity Models</a>
 
 
-zentity relies on objects called ***[entity models](/docs/entity-models/specification)*** to control the execution of entity resolution jobs.
+zentity relies on objects called **[entity models](/docs/entity-models/specification)** to control the execution of entity resolution jobs.
 
 Entity models serve multiple purposes:
 
@@ -32,8 +32,8 @@ setting the `entity_type` parameter in your requests.
 
 ## More info
 
-- [Specification](/docs/entity-models/specification)
-- [Tips](/docs/entity-models/tips)
+- [Entity Model Specification](/docs/entity-models/specification)
+- [Entity Modeling Tips](/docs/entity-models/tips)
 
 
 &nbsp;
@@ -42,6 +42,6 @@ setting the `entity_type` parameter in your requests.
 
 #### Continue Reading
 
-|&#8249;|[Basic Usage](/docs/basic-usage)|[Specification](/docs/entity-models/specification)|&#8250;|
+|&#8249;|[Basic Usage](/docs/basic-usage)|[Entity Model Specification](/docs/entity-models/specification)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

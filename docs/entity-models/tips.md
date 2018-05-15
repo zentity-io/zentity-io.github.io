@@ -1,7 +1,7 @@
-[Home](/) / [Documentation](/docs) / [Entity Models](/docs/entity-models) / Tips
+[Home](/) / [Documentation](/docs) / [Entity Models](/docs/entity-models) / Entity Modeling Tips
 
 
-# <a name="tips">Tips</a>
+# <a name="tips">Entity Modeling Tips</a>
 
 
 **1. Become familiar with your data.**
@@ -148,6 +148,6 @@ the data.
 
 #### Continue Reading
 
-|&#8249;|[Specification](/docs/entity-models/specification)|[Entity Resolution](/docs/entity-resolution)|&#8250;|
+|&#8249;|[Entity Model Specification](/docs/entity-models/specification)|[Entity Resolution](/docs/entity-resolution)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

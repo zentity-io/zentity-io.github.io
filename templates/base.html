@@ -17,11 +17,11 @@
     <link rel="stylesheet" href="/css/all.css">
     {%- if test -%}
     <script>
-      var to = function(uri) {
-        var event_category = 'outbound';
-        if (uri.match(/\/releases\/.+\.zip$/))
-          event_category = 'download';
-        console.log(event_category + " " + uri);
+      var to = function(uri, event_category) {
+        if (event_category)
+          console.log(event_category + " " + uri);
+        else
+          console.log(uri);
       };
     </script>
     {%- else -%}
@@ -31,23 +31,27 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'UA-27325874-2');
-      var to = function(uri) {
-        var event_category = 'outbound';
-        if (uri.match(/\/releases\/.+\.zip$/))
-          event_category = 'download';
-        gtag('event', 'click', {
-          'event_category': event_category,
-          'event_label': uri,
-          'transport_type': 'beacon',
-          'event_callback': function(){document.location = uri;}
-        });
+      var to = function(uri, event_category) {
+        if (event_category)
+          gtag('event', 'click', {
+            'event_category': event_category,
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
+        else
+          gtag('event', 'click', {
+            'event_label': uri,
+            'transport_type': 'beacon',
+            'event_callback': function(){document.location = uri;}
+          });
       };
     </script>
     {%- endif -%}
     <script src="/js/all.js"></script>
   </head>
   <body>
-    <div id="app">
+    <div id="app" {% if home %}class="fadein"{% endif %}>
       <div id="top">
         {%- if home -%}
         <div id="splash">
@@ -114,7 +118,7 @@
         </div>
         {%- endif -%}
       </div>
-      <div id="main" {% if not home %} class="content" {% endif %}>
+      <div id="main" {% if not home %}class="content"{% endif %}>
         {$ content $}
       </div>
       <div id="bottom">
@@ -132,7 +136,7 @@
             This website uses Google Analytics.
             {%- if home -%}
             <span>
-              Icons by <a href="https://icons8.com/" target="_blank" title="Icons8" style="color:#5a5a5a;">Icons8</a>
+              Icons by <a href="https://icons8.com/" rel="nofollow" target="_blank" title="Icons8" style="color:#5a5a5a;">Icons8</a>
             </span>
             {%- endif -%}
           </div>

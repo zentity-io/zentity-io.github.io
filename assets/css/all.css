@@ -7,8 +7,8 @@
 /*# sourceMappingURL=bootstrap.min.css.map */
 
 /* https://github.com/richleland/pygments-css */
-.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
+.highlight .hll { background-color: #f6f9fc; }
+.highlight  { background: #f6f9fc; margin-bottom: 1rem; padding: 0.5em; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
@@ -76,7 +76,7 @@
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
-
+.highlight pre { margin: 0; }
 
 body {
   color: #5a5a5a;
@@ -86,12 +86,14 @@ body {
 #app {
   text-align: center;
   margin: 0 auto;
+  max-width: 950px;
+}
+.fadein {
   -webkit-animation: fadein ease-in .5s;
   -moz-animation: fadein ease-in .5s;
   -ms-animation: fadein ease-in .5s;
   -o-animation: fadein ease-in .5s;
   animation: fadein ease-in .5s;
-  max-width: 950px;
 }
 #bottom {
   background: #f6f9fc;
@@ -109,6 +111,9 @@ a:hover {
 .btn a {
   color: inherit;
   text-decoration: none;
+}
+a.external:after {
+     content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);    
 }
 h1,h2,h3,h4,h5,h6 {
   color: rgb(0, 0, 0);

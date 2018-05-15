@@ -6,7 +6,7 @@
 
 ## <a name="install-elasticsearch">Step 1. Install Elasticsearch</a>
 
-Download: [https://www.elastic.co/downloads/elasticsearch](https://www.elastic.co/downloads/elasticsearch)
+Download and install: [https://www.elastic.co/downloads/elasticsearch](https://www.elastic.co/downloads/elasticsearch)
 
 
 ## <a name="install-zentity">Step 2. Install zentity</a>
@@ -16,7 +16,7 @@ Once you have installed Elasticsearch, you can install zentity from a remote URL
 
 ### <a name="install-zentity-remote-url">Install from remote URL</a>
 
-1. Browse the **[releases](/releases)**.
+1. Browse the [releases](/releases).
 2. Find a release that matches your version of Elasticsearch. Copy the name of the .zip file.
 3. Install the plugin using the `elasticsearch-plugin` script that comes with Elasticsearch.
 
@@ -27,7 +27,7 @@ Example:
 
 ### <a name="install-zentity-local-file">Install from local file</a>
 
-1. Browse the **[releases](/releases)**.
+1. Browse the [releases](/releases).
 2. Find a release that matches your version of Elasticsearch. Download the .zip file.
 4. Install the plugin using the `elasticsearch-plugin` script that comes with Elasticsearch.
 
@@ -38,11 +38,11 @@ Example:
 
 ## <a name="verify-installation">Step 3. Verify installation</a>
 
-**Example request:**
+**Example Request**
 
 `GET http://localhost:9200/_zentity`
 
-**Example response:**
+**Example Response**
 
 ```javascript
 {
@@ -64,7 +64,7 @@ Elasticsearch plugins such as zentity.
 
 To install zentity on an Elastic Cloud cluster:
 
-1. Browse the **[releases](/releases)** and download one of the .zip files.
+1. Browse the [releases](/releases) and download one of the .zip files.
 2. Sign into Elastic Cloud and navigate to the [plugins tab](https://cloud.elastic.co/#plugins).
 3. Select "This is an installable plugin. (Compiled, not the plugin's source code)".
 4. Name the plugin "zentity".

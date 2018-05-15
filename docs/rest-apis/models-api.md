@@ -12,7 +12,7 @@ GET _zentity/models
 
 Returns all entity models from the `.zentity-models` index.
 
-**URL Params:**
+**URL Params**
 
 |Param|Type|Default|Required|Description|
 |-----|----|-------|--------|-----------|
@@ -27,7 +27,7 @@ GET _zentity/models/{entity_type}
 
 Returns the entity model for a given `entity_type` from the `.zentity-models` index.
 
-**URL Params:**
+**URL Params**
 
 |Param|Type|Default|Required|Description|
 |-----|----|-------|--------|-----------|
@@ -90,7 +90,7 @@ POST _zentity/models/{entity_type}
 }
 ```
 
-**URL Params:**
+**URL Params**
 
 |Param|Type|Default|Required|Description|
 |-----|----|-------|--------|-----------|
@@ -153,7 +153,7 @@ PUT _zentity/models/{entity_type}
 }
 ```
 
-**URL Params:**
+**URL Params**
 
 |Param|Type|Default|Required|Description|
 |-----|----|-------|--------|-----------|
@@ -169,7 +169,7 @@ Deletes the entity model for a given `entity_type` from the `.zentity-models` in
 DELETE _zentity/models/{entity_type}
 ```
 
-**URL Params:**
+**URL Params**
 
 |Param|Type|Default|Required|Description|
 |-----|----|-------|--------|-----------|

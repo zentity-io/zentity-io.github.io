@@ -1,4 +1,4 @@
-[Home](/) / [Documentation](/docs) / [Entity Resolution](/docs/entity-resolution) / Input
+[Home](/) / [Documentation](/docs) / [Entity Resolution](/docs/entity-resolution) / Input Specification
 
 
 # <a name="input">Entity Resolution Input Specification</a>
@@ -167,8 +167,8 @@ A field with the name of a distinct attribute. Some examples might be `"name"`, 
 
 The value of the field can be one of two things:
 
-- An object that contains the **[`"values"`](#attributes.ATTRIBUTE_NAME.values)** and/or **[`"params`"](#attributes.ATTRIBUTE_NAME.params)** of the attribute.
-- An array that contains the **[`"values`"](#attributes.ATTRIBUTE_NAME.values)** of the attribute.
+- An object that contains the [`"values"`](#attributes.ATTRIBUTE_NAME.values) and/or [`"params`"](#attributes.ATTRIBUTE_NAME.params) of the attribute.
+- An array that contains the [`"values`"](#attributes.ATTRIBUTE_NAME.values) of the attribute.
 
 At least one attribute must be specified, otherwise there would be no input to supply to the entity resolution job.
 
@@ -183,7 +183,7 @@ An array of attribute values. These values will serve as the initial inputs to t
 Each value must conform to the respective [attribute type](/docs/entity-models/specification#attributes.ATTRIBUTE_NAME.type)
 specified in the [entity model](/docs/entity-models). For example, [string](/docs/entity-models/specification#attribute-type-string) values
 must be JSON compliant string values, [number](/docs/entity-models/specification#attribute-type-number) values must be JSON compliant number values,
-and [date](/docs/entity-models/specification#attribute-type-date) values must include a `"format"` field in the **[`"params"`](#attributes.ATTRIBUTE_NAME.params)**
+and [date](/docs/entity-models/specification#attribute-type-date) values must include a `"format"` field in the [`"params"`](#attributes.ATTRIBUTE_NAME.params)
 object if it was not already specified in either the attribute or matcher of the entity model.
 
 This field is not necessarily required. It would be valid to specify and attribute with no values and to override the
@@ -217,8 +217,8 @@ A field with the name of a distinct param for the attribute. Some examples might
 
 A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
-**[`"attributes".ATTRIBUTE_NAME."params"`](#attributes.ATTRIBUTE_NAME.params)** in the model and
-**[`"matchers".MATCHER_NAME."params"`](#matchers.MATCHER_NAME.params)**.
+[`"attributes".ATTRIBUTE_NAME."params"`](#attributes.ATTRIBUTE_NAME.params) in the model and
+[`"matchers".MATCHER_NAME."params"`](#matchers.MATCHER_NAME.params).
 
 - Required: No
 - Type: Any
@@ -307,7 +307,7 @@ will be serialized as a string when passed to the matcher clause. The value over
 ```
 
 An optional field that contains an object to limit the scope of the [resolution request](/docs/rest-apis/resolution-api).
-Scope can be controlled by **[excluding](#scope.exclude)** ("blacklisting") or **[including](#scope.include)** ("whitelisting") attribute values,
+Scope can be controlled by [excluding](#scope.exclude) ("blacklisting") or [including](#scope.include) ("whitelisting") attribute values,
 indices, and resolvers.
 
 - Required: No
@@ -316,7 +316,7 @@ indices, and resolvers.
 
 ### <a name="scope.exclude"></a>`"scope"."exclude"`
 
-An optional field that excludes **[`"attributes"`](#scope.exclude.attributes)**, **[`"indices"`](#scope.exclude.indices)**, or **[`"resolvers"`](#scope.exclude.resolvers)**
+An optional field that excludes [`"attributes"`](#scope.exclude.attributes), [`"indices"`](#scope.exclude.indices), or [`"resolvers"`](#scope.exclude.resolvers)
 from the [resolution job](/docs/rest-apis/resolution-api). By setting any of these exclusions, no query will be allowed to include the given
 attribute values, indices, or resolvers.
 
@@ -380,7 +380,7 @@ The name of a distinct resolver. By setting an resolver, no query will be allowe
 
 ### <a name="scope.include"></a>`"scope"."include"`
 
-An optional field that includes **[`"attributes"`](#scope.include.attributes)**, **[`"indices"`](#scope.include.indices)**, or **[`"resolvers"`](#scope.include.resolvers)**
+An optional field that includes [`"attributes"`](#scope.include.attributes), [`"indices"`](#scope.include.indices), or [`"resolvers"`](#scope.include.resolvers)
 from the [resolution job](/docs/rest-apis/resolution-api). By setting any of these inclusions, no query will be allowed to exclude the given
 attribute values, indices, or resolvers.
 
@@ -457,6 +457,6 @@ in the endpoint of the [resolution request](/docs/rest-apis/resolution-api). Oth
 
 #### Continue Reading
 
-|&#8249;|[Entity Resolution](/docs/entity-resolution)|[Output](/docs/entity-resolution/output)|&#8250;|
+|&#8249;|[Entity Resolution](/docs/entity-resolution)|[Entity Resolution Output Specification](/docs/entity-resolution/output-specification)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

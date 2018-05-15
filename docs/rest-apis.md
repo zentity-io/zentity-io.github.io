@@ -14,6 +14,6 @@
 
 #### Continue Reading
 
-|&#8249;|[Tips](/docs/entity-models/tips)|[Resolution API](/docs/rest-apis/resolution-api)|&#8250;|
+|&#8249;|[Entity Resolution Output Specification](/docs/entity-resolution/output-specification)|[Resolution API](/docs/rest-apis/resolution-api)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

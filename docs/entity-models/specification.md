@@ -137,7 +137,7 @@ field is an object that contains metadata about the attribute.
 ### <a name="attributes.ATTRIBUTE_NAME.type"></a>`"attributes".ATTRIBUTE_NAME."type"`
 
 The data type of the attribute. The default value is `"string"` if unspecified in the model. Data types of attribute
-values are validated on input when submitting a request to the [Resolution API]("/docs/rest-apis/resolution-api") endpoint.
+values are validated on input when submitting a request to the [Resolution API](/docs/rest-apis/resolution-api) endpoint.
 Attribute data types only affect the inputs to a resolution job and the queries submitted to Elasticsearch. The data types
 of the values returned in the `"_attributes"` field of the documents in the resolution job response are kept as they were
 in the `"_source"` fields of those documents.
@@ -168,8 +168,8 @@ A field with the name of a distinct param for the attribute. Some examples might
 
 A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
-**[`"attributes".ATTRIBUTE_NAME."params"`](#attributes.ATTRIBUTE_NAME.params)** in the model and
-**[`"matchers".MATCHER_NAME."params"`](#matchers.MATCHER_NAME.params)**.
+[`"attributes".ATTRIBUTE_NAME."params"`](#attributes.ATTRIBUTE_NAME.params) in the model and
+[`"matchers".MATCHER_NAME."params"`](#matchers.MATCHER_NAME.params).
 
 - Required: No
 - Type: Any
@@ -268,7 +268,7 @@ that share matching values for `"name"` and `"dob"` or `"name"` and `"phone"`. Y
 combinations of attributes. Then any documents whose values share either a matching `"name"` and `"dob"` or  `"name"`
 and `"phone"` will resolve to the same entity.
 
-Remember that attributes can be associated with more than one matcher in the **[`"indices"`](#indices)** object. This means that if
+Remember that attributes can be associated with more than one matcher in the [`"indices"`](#indices) object. This means that if
 *any* matcher of an attribute yields a match for a given value, then the attribute will be considered a match
 regardless of the results of the other matchers. So if you have an attribute called `name` with matchers called
 `keyword` and `phonetic`, then any resolver that uses the `name` attribute is effectively saying that *either*
@@ -299,7 +299,7 @@ have no effect on resolution.
 
 ### <a name="resolvers.RESOLVER_NAME.attributes.ATTRIBUTE_NAME"></a>`"resolvers".RESOLVER_NAME."attributes".ATTRIBUTE_NAME`
 
-The name of an attribute from the **[`"attributes"`](#attributes)** object of the entity model. If the attribute does not exist,
+The name of an attribute from the [`"attributes"`](#attributes) object of the entity model. If the attribute does not exist,
 then the resolver will not be used in any resolution jobs.
 
 - Required: Yes
@@ -425,7 +425,7 @@ A field with the name of a distinct param for the matcher clause. Some examples 
 
 A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
 will be serialized as a string when passed to the matcher clause. The value is overridden by the same field specified in
-**[`"attributes".ATTRIBUTE_NAME."params"`](#attributes.ATTRIBUTE_NAME.params)** in either the input or the model.
+[`"attributes".ATTRIBUTE_NAME."params"`](#attributes.ATTRIBUTE_NAME.params) in either the input or the model.
 
 - Required: No
 - Type: Any
@@ -551,7 +551,7 @@ requires.
 
 ### <a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.attribute"></a>`"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."attribute"`
 
-The name of an attribute from the **[`"attributes"`](#attributes)** object of the entity model. If the attribute does not exist,
+The name of an attribute from the [`"attributes"`](#attributes) object of the entity model. If the attribute does not exist,
 then the index field will not be queried in any resolution jobs and will not be returned in the `"_attributes"`
 field of the documents matched in a resolution job.
 
@@ -561,9 +561,9 @@ field of the documents matched in a resolution job.
 
 ### <a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.matcher"></a>`"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."matcher"`
 
-The name of a matcher from the **[`"matchers"`](#matchers)** object of the entity model. If the matcher does not exist,
+The name of a matcher from the [`"matchers"`](#matchers) object of the entity model. If the matcher does not exist,
 then the index field will not be queried in any resolution jobs. However, the index field can still be returned
-in the **[`"attributes"`](#attributes)** field of the documents matched in a resolution job if those documents matched the attributes
+in the [`"attributes"`](#attributes) field of the documents matched in a resolution job if those documents matched the attributes
 of other resolvers.
 
 Let's illustrate how index fields relate to matchers and attributes during a resolution job. Assume you are resolving
@@ -604,6 +604,6 @@ from disparate indices under a field with a common name. These are sometimes cal
 
 #### Continue Reading
 
-|&#8249;|[Entity Models](/docs/entity-models)|[Tips](/docs/entity-models/tips)|&#8250;|
+|&#8249;|[Entity Models](/docs/entity-models)|[Entity Modeling Tips](/docs/entity-models/tips)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

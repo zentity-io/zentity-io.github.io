@@ -36,7 +36,7 @@ Select the plugin version that aligns with your version of Elasticsearch:
 
 Once you have installed Elasticsearch, you can install zentity from a remote URL or a local file.
 
-1. Browse the **[releases](/releases)**.
+1. Browse the [releases](/releases).
 2. Find a release that matches your version of Elasticsearch. Copy the name of the .zip file.
 3. Install the plugin using the `elasticsearch-plugin` script that comes with Elasticsearch.
 
@@ -48,5 +48,5 @@ Read the [installation](/docs/installation) docs for more details.
 
 ## <a name="next-steps">Next steps</a>
 
-Read the **[documentation](/docs)** to learn about [entity models](/docs/entity-models),
+Read the [documentation](/docs) to learn about [entity models](/docs/entity-models),
 how to [manage entity models](/docs/rest-apis/models-api), and how to [resolve entities](/docs/rest-apis/resolution-api).

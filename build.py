@@ -5,6 +5,7 @@ import errno
 import json
 import os
 import shutil
+import sys
 from distutils.dir_util import copy_tree
 
 # Third-party packages
@@ -15,7 +16,7 @@ from pygments.lexers import get_lexer_by_name
 from pygments.formatters import html
 
 
-META_DESCRIPTION_GENERIC = "zentity is an Elasticsearch plugin for real-time entity resolution. Instantly profile an identity scattered across your cluster."
+META_DESCRIPTION_GENERIC = "zentity brings entity resolution to Elasticsearch. Connect the fragments of an identity hidden in your data. Fast, scalable, open source."
 
 env = jinja2.Environment(
     loader = jinja2.FileSystemLoader("templates"),
@@ -37,10 +38,13 @@ class ZentityRenderer(mistune.Renderer):
         out = "<a href=\"%s\"" % link
         if title:
             out += " title=\"%s\"" % escape(title, quote=True)
-        if not link.startswith("/") and not link.startswith("https://zentity.io") and not link.startswith("http://zentity.io"):
-            out += " onclick=\"to('%s');\"" % link
+        if not link.startswith("/") and not link.startswith("#") and not link.startswith("https://zentity.io") and not link.startswith("http://zentity.io"):
+            out += " onclick=\"to('%s', 'outbound');\"" % link
+            out += " class=\"external\""
         elif link.endswith(".zip"):
-            out += " onclick=\"to('%s');\"" % link
+            out += " onclick=\"to('%s', 'download');\"" % link
+        elif link.startswith("#"):
+            out += " onclick=\"to(window.location.pathname + '%s');\"" % link
         out += ">%s</a>" % text
         return out
         
@@ -106,7 +110,7 @@ PAGES = {
     },
     "/docs/entity-models/tips": {
         "vars": {
-            "title": "Entity Model Tips",
+            "title": "Entity Modeling Tips",
             "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/entity-models/tips.md")
         }
@@ -118,16 +122,16 @@ PAGES = {
             "content": markdown("/docs/entity-resolution.md")
         }
     },
-    "/docs/entity-resolution/input": {
+    "/docs/entity-resolution/input-specification": {
         "vars": {
-            "title": "Entity Resolution Input",
+            "title": "Entity Resolution Input Specification",
             "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/entity-resolution/input.md")
         }
     },
-    "/docs/entity-resolution/output": {
+    "/docs/entity-resolution/output-specification": {
         "vars": {
-            "title": "Entity Resolution Output",
+            "title": "Entity Resolution Output Specification",
             "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/entity-resolution/output.md")
         }
@@ -212,5 +216,11 @@ def build(pages=PAGES, args={}):
     build_pages(pages, args)
     
 if __name__ == "__main__":
-    build(args={"test": True})
+    args = {}
+    args["test"] = False
+    for arg in sys.argv[1:]:
+        if arg == "--test":
+            args["test"] = True
+    print args
+    build(args=args)
     

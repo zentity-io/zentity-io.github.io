@@ -12,7 +12,7 @@ POST _zentity/resolution
 POST _zentity/resolution/{entity_type}
 ```
 
-**Example request:**
+**Example Request**
 
 This example request resolves a `person` identified by a `name`, a `dob`, and two `phone` values, while limiting the
 search to one index called `users_index` ane two resolvers called `name_dob` and `name_phone`. The request passes
@@ -20,6 +20,8 @@ a param called `fuzziness` to the `phone` attribute, which can be referenced in 
 the `fuzziness` param. Note that an attribute can accept either an array of values or an object with the values
 specified in a field called `"values"`. It's also valid to specify an attribute with no values but to override
 the default params, such as to format the results of any date attributes in the response.
+
+Read the **[input specification](/docs/entity-resolution/input-specification)** for complete details about the structure of a request.
 
 
 ```javascript
@@ -63,13 +65,15 @@ POST _zentity/resolution/person?pretty
 }
 ```
 
-**Example response:**
+**Example Response**
 
 This example response took 64 milliseconds and returned 2 hits. The `_source` field contains the fields and values
 as they exist in the document indexed in Elasticsearch. The `_attributes` field contains any values from the
 `_source` field that can be mapped to the [`"attributes"`](/docs/entity-models/specification#attributes) field of the entity model.
 The `_hop` field shows the level of recursion at which the document was fetched. Entities with many documents can
 span many hops if they have highly varied attribute values.
+
+Read the **[output specification](/docs/entity-resolution/output-specification)** for complete details about the structure of a response.
 
 ```javascript
 {
@@ -132,7 +136,7 @@ span many hops if they have highly varied attribute values.
 }
 ```
 
-**URL query string parameters:**
+**URL query string parameters**
 
 |Param|Type|Default|Required|Description|
 |-----|----|-------|--------|-----------|
@@ -146,7 +150,7 @@ span many hops if they have highly varied attribute values.
 |`profile`|Boolean|`false`|No|[Profile](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-profile.html) each query. Used for debugging.|
 |`queries`|Boolean|`false`|No|Return the `queries` field in the response. Used for debugging.|
 
-**Request body parameters:**
+**Request body parameters**
 
 |Param|Type|Default|Required|Description|
 |-----|----|-------|--------|-----------|
@@ -160,13 +164,13 @@ span many hops if they have highly varied attribute values.
 |`scope.include.resolvers`|Object| |No|The names of resolvers to require in each query.|
 |`model`|Object| |Depends|The entity model. Required if `entity_type` is not specified.|
 
-**Notes:**
+**Notes**
 
 - If you define an `entity_type`, zentity will use its model from the `.zentity-models` index.
 - If you don't define an `entity_type`, then you must include a `model` object in the request body.
 - You can define an `entity_type` in the request body or the URL, but not both.
 
-**Tips:**
+**Tips**
 
 - If you only need to search a few indices, use `scope.exclude.indices` and
 `scope.include.indices` parameter to prevent the job from searching unnecessary
