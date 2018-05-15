@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css">
+    <link rel="stylesheet" href="/css/all.css?id={$ range(100000000, 999999999) | random $}">
     {%- if test -%}
     <script>
       var to = function(uri, event_category) {
@@ -48,7 +48,7 @@
       };
     </script>
     {%- endif -%}
-    <script src="/js/all.js"></script>
+    <script src="/js/all.js?id={$ range(100000000, 999999999) | random $}"></script>
   </head>
   <body>
     <div id="app" {% if home %}class="fadein"{% endif %}>
