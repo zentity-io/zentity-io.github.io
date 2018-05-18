@@ -16,7 +16,7 @@ from pygments.lexers import get_lexer_by_name
 from pygments.formatters import html
 
 
-META_DESCRIPTION_GENERIC = "zentity brings entity resolution to Elasticsearch. Connect the fragments of an identity hidden in your data. Fast, scalable, open source."
+META_DESCRIPTION_GENERIC = "zentity brings entity resolution to Elasticsearch. Connect the hidden fragments of an identity in your data. Fast, scalable, open source."
 
 env = jinja2.Environment(
     loader = jinja2.FileSystemLoader("templates"),
@@ -143,11 +143,11 @@ PAGES = {
             "content": markdown("/docs/rest-apis.md")
         }
     },
-    "/docs/rest-apis/resolution-api": {
+    "/docs/rest-apis/setup-api": {
         "vars": {
-            "title": "Resolution API",
+            "title": "Setup API",
             "meta_description": META_DESCRIPTION_GENERIC,
-            "content": markdown("/docs/rest-apis/resolution-api.md")
+            "content": markdown("/docs/rest-apis/setup-api.md")
         }
     },
     "/docs/rest-apis/models-api": {
@@ -155,6 +155,13 @@ PAGES = {
             "title": "Models API",
             "meta_description": META_DESCRIPTION_GENERIC,
             "content": markdown("/docs/rest-apis/models-api.md")
+        }
+    },
+    "/docs/rest-apis/resolution-api": {
+        "vars": {
+            "title": "Resolution API",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "content": markdown("/docs/rest-apis/resolution-api.md")
         }
     },
     "/docs/security": {

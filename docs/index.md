@@ -15,8 +15,9 @@
     - [Input Specification](/docs/entity-resolution/input-specification)
     - [Output Specification](/docs/entity-resolution/output-specification)
 - [REST APIs](/docs/rest-apis)
-    - [Resolution API](/docs/rest-apis/resolution-api)
+    - [Setup API](/docs/rest-apis/setup-api)
     - [Models API](/docs/rest-apis/models-api)
+    - [Resolution API](/docs/rest-apis/resolution-api)
 - [Security](/docs/security)
 
 

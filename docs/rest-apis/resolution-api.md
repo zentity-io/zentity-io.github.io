@@ -190,6 +190,6 @@ such as by matching documents only within a given state or country.
 
 #### Continue Reading
 
-|&#8249;|[REST APIs](/docs/rest-apis)|[Models API](/docs/rest-apis/models-api)|&#8250;|
+|&#8249;|[Models APIs](/docs/rest-apis/models-api)|[Security](/docs/security)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

@@ -7,11 +7,42 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-0.5.0-beta.2">zentity-0.5.0-beta.2 (latest)</a>
+## <a name="zentity-1.0.0">zentity-1.0.0 (latest)</a>
 
 ### Download
 
-Select the plugin version that aligns with your version of Elasticsearch:
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 6.2.4](https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.4.zip)
+- [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.3.zip)
+- [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.2.zip)
+- [Elasticsearch 6.2.1](https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.1.zip)
+- [Elasticsearch 6.2.0](https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.0.zip)
+- [Elasticsearch 6.1.3](https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.1.3.zip)
+- [Elasticsearch 6.1.2](https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.1.2.zip)
+- [Elasticsearch 6.1.1](https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.1.1.zip)
+- [Elasticsearch 6.0.1](https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.0.1.zip)
+- [Elasticsearch 6.0.0](https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.0.0.zip)
+
+### Release notes
+
+- **Feature** - Added the `"ids"` field in the request payload of the [Resolution API](/docs/rest-apis/resolution-api).
+This allows a job to be started by selecting document(s) by _id(s) known to be associated with an entity. Either or both
+of the `"ids"` and `"attributes"` fields must be present and valid to start a job.
+([b2f48bc](https://github.com/zentity-io/zentity/commit/b2f48bcd4db838bf5f7726b6756c9301b61c39d5))
+- **Feature** - Added the `POST _zentity/_setup` endpoint to create the `.zentity-models` index. This allows an
+administrator to set up the index in advance without having to give users permission to create or manage the index when
+using X-Pack Security. And it allows the number of shards and replicas to be defined as URI parameters.
+([79a00e3](https://github.com/zentity-io/zentity/commit/79a00e36ffe486e8d34af769edf8d2c70de4a3da))
+- **Bug fix** - Fixed a NullPointerException whenever an `entity_type` does not exist when submitting a resolution job.
+([b5b6d88](https://github.com/zentity-io/zentity/commit/b5b6d88007537323e12d6ec6a50654bdee85f0d9))
+
+
+## <a name="zentity-0.5.0-beta.2">zentity-0.5.0-beta.2</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
 
 - [Elasticsearch 6.2.4](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.4.zip)
 - [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.3.zip)
@@ -35,7 +66,7 @@ down resolution jobs.
 
 ### Download
 
-Select the plugin version that aligns with your version of Elasticsearch:
+Select the plugin version that matches your version of Elasticsearch:
 
 - [Elasticsearch 6.2.4](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.4.zip)
 - [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.3.zip)
@@ -83,7 +114,7 @@ to use this endpoint instead.
 
 ### Download
 
-Select the plugin version that aligns with your version of Elasticsearch:
+Select the plugin version that matches your version of Elasticsearch:
 
 - [Elasticsearch 6.2.4](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.2.4.zip)
 - [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.2.3.zip)
@@ -120,7 +151,7 @@ with `scope.exclude` and `scope.include`.
 
 ### Download
 
-Select the plugin version that aligns with your version of Elasticsearch:
+Select the plugin version that matches your version of Elasticsearch:
 
 - [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.3.0-beta.1-elasticsearch-6.2.3.zip)
 - [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.3.0-beta.1-elasticsearch-6.2.2.zip)
@@ -158,7 +189,7 @@ called `"search"`.
 
 ### Download
 
-Select the plugin version that aligns with your version of Elasticsearch:
+Select the plugin version that matches your version of Elasticsearch:
 
 - [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.2.1-beta.1-elasticsearch-6.2.3.zip)
 - [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.2.1-beta.1-elasticsearch-6.2.2.zip)
@@ -185,7 +216,7 @@ attribute or matcher of an index field do not exist in the entity model.
 
 ### Download
 
-Select the plugin version that aligns with your version of Elasticsearch:
+Select the plugin version that matches your version of Elasticsearch:
 
 - [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.2.3.zip)
 - [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.2.2.zip)
@@ -227,7 +258,7 @@ their data types.
 
 ### Download
 
-Select the plugin version that aligns with your version of Elasticsearch:
+Select the plugin version that matches your version of Elasticsearch:
 
 - [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.3.zip)
 - [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.2.zip)
@@ -254,7 +285,7 @@ must replace it with `max_docs_per_query`.
 
 ### Download
 
-Select the plugin version that aligns with your version of Elasticsearch:
+Select the plugin version that matches your version of Elasticsearch:
 
 - [Elasticsearch 6.2.3](https://zentity.io/releases/zentity-0.1.1-beta.1-elasticsearch-6.2.3.zip)
 - [Elasticsearch 6.2.2](https://zentity.io/releases/zentity-0.1.1-beta.1-elasticsearch-6.2.2.zip)

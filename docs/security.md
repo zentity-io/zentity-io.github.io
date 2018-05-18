@@ -43,10 +43,24 @@ Roles can be managed in Kibana at `https://KIBANA_HOST:KIBANA_PORT/app/kibana#/m
 or through the [Role Management APIs](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-roles.html).
 
 
-### <a name="models-api-configuration">Models API Permissions</a>
+### <a name="setup-api-permissions">Setup API Permissions</a>
+
+These permission settings apply to the [Setup API](/docs/rest-apis/setup-api).
+
+**Index Privileges**
+
+- Indices: `.zentity-models`
+- Permissions: `create_index`
+
+**Actions Granted**
+
+- `POST _zentity/_setup`
+
+
+### <a name="models-api-permissions">Models API Permissions</a>
 
 These permission settings apply to the [Models API](/docs/rest-apis/models-api). A single role can
-be granted any or all of these permissions. When setting up 
+be granted any or all of these permissions.
 
 #### Create and update entity models
 
@@ -88,13 +102,10 @@ be granted any or all of these permissions. When setting up
 
 #### Notes
 
-Currently any user that interacts with the Models API must have the `manage` permission for the
-`.zentity-models` index due to a check that is performed by the plugin to ensure that the index exists.
-
-Additionally, when requesting any of the Models API endpoints listed above for the first time, zentity will attempt
-to create the `.zentity-models` index. This means that the user who submits the first request to any Models API
-endpoint must have `create` privilege for the `.zentity-models` index. Otherwise the user will always receive the
-following error message:
+Without security enabled, any user that interacts with the Models API will create the `.zentity-models`
+index automatically if it does not already exist. With security enabled, the user must have the `create_index`
+permission for the `.zentity-models` index to be created automatically. Otherwise the user will receive
+the following error message:
 
 ```javascript
 {
@@ -112,16 +123,13 @@ following error message:
 }
 ```
 
-An administrative user should perform the first request using `GET _zentity/models` to create the index.
-
-A dedicated API endpoint to create the `.zentity-models` index is on the development roadmap to simplify these
-experiences and allow the administrators to avoid granting the `manage` privilege for the `.zentity-models` index.
+An administrative user should request `POST _zentity/_setup` to create the index.
 
 
 ### <a name="resolution-api-permissions">Resolution API Permissions</a>
 
-There are no permissions to be configured for the [Resolution API](/docs/rest-apis/resolution-api) endpoints
-`GET _zentity/resolution` or `GET _zentity/resolution/{entity_type}`. These endpoints construct and submit
+There are no permissions to be configured directly for the [Resolution API](/docs/rest-apis/resolution-api)
+endpoints `GET _zentity/resolution` or `GET _zentity/resolution/{entity_type}`. These endpoints construct and submit
 search queries using the Elasticsearch [Search APIs](https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html).
 Therefore, permissions must be configured for each index that the user searches with zentity. Users can only perform
 entity resolution if they have the `read` privilege for every index included in the scope of the request.
@@ -140,6 +148,6 @@ perform any action with zentity in an open source cluster that has not been conf
 
 #### Continue Reading
 
-|&#8249;|[Models API](/docs/rest-apis/models-api)|||
+|&#8249;|[Resolution API](/docs/rest-apis/resolution-api)|||
 |:---|:---|---:|---:|
 |    |    |    |    |

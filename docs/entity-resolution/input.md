@@ -18,6 +18,13 @@
     },
     ...
   },
+  "ids": {
+    INDEX_NAME: [
+      DOC_ID,
+      ...
+    ],
+    ...
+  },
   "scope": {
     "exclude": {
       "attributes": {
@@ -62,11 +69,11 @@ Entity resolution inputs are [JSON](https://www.json.org/) documents. In the fra
 (e.g. `"attributes"`) are constant fields, uppercase literal values (e.g. `ATTRIBUTE_NAME`) are variable fields or values,
 and elipses (`...`) are optional repetitions of the preceding field or value.
 
-An entity resolution input has one required object (**[`"attributes"`](#attributes)**), one optional object
-(**[`"scope"`](#scope)**) and one object that is required only if `entity_type` is not specified in the endpoint of the request
-(**[`"model"`](#model)**).  Not all elements within these objects are required. Optional elements are noted in the descriptions
-of each element listed on this page. Some elements have alternate forms that are acceptable, and those are also noted in the
-descriptions of each element.
+An entity resolution input has two objects where at least one must be present (**[`"attributes"`](#attributes)** and **[`"ids"`](#ids)**),
+one optional object (**[`"scope"`](#scope)**) and one object that is required only if `entity_type` is not specified in the endpoint
+of the request (**[`"model"`](#model)**).  Not all elements within these objects are required. Optional elements are noted in the
+descriptions of each element listed on this page. Some elements have alternate forms that are acceptable, and those are also noted
+in the descriptions of each element.
 
 
 ## <a name="attributes"></a>`"attributes"`
@@ -172,7 +179,7 @@ The value of the field can be one of two things:
 
 At least one attribute must be specified, otherwise there would be no input to supply to the entity resolution job.
 
-- Required: Yes
+- Required: Only if [`"ids"`](#ids) is not given
 - Type: String
 
 
@@ -222,6 +229,65 @@ will be serialized as a string when passed to the matcher clause. The value over
 
 - Required: No
 - Type: Any
+
+## <a name="ids"></a>`"ids"`
+
+**Model**
+
+```javascript
+{
+  "ids": {
+    INDEX_NAME: [
+      DOC_ID,
+      ...
+    ],
+    ...
+  }
+}
+```
+
+**Example**
+
+```javascript
+{
+  "ids": {
+    "users": [
+      "1234567890",
+      "0987654321"
+    ],
+    "customers": [
+      "customer_001"
+    ]
+  }
+}
+```
+
+The `"ids"` field allows the first iteration of an entity resolution to begin by selecting one or more documents
+by _id for one or more indices. Like `"attributes"`, any document that matches the `_id` values will be considered
+a match to the entity. Documents are queried by `_id` only within a given index to prevent collisions in which
+the same `_id` is present in two or more indices.
+
+The `"ids"` field is only used in the first query to each index in a [resolution job](/docs/rest-apis/resolution-api).
+After that, the attributes are obtained from the documents and the job continues with those attributes values.
+
+- Required: Only if [`"attributes"`](#attributes) is not given
+- Type: Object
+
+
+### <a name="ids.INDEX_NAME"></a>`"ids".INDEX_NAME`
+
+The name of a distinct index. Any `_id` values specified in this array will be queried within that index.
+
+- Required: Yes
+- Type: Array
+
+
+### <a name="ids.INDEX_NAME.DOC_ID"></a>`"ids".INDEX_NAME.DOC_ID`
+
+The value of a distinct `_id` within a given index.
+
+- Required: Yes
+- Type: String
 
 
 ## <a name="scope"></a>`"scope"`
