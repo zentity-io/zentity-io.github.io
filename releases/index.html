@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=596563229"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=126527704"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=244971970"></script>
+    </script><script src="/js/all.js?id=716703452"></script>
   </head>
   <body>
     <div id="app" >
@@ -63,9 +63,37 @@
 <h1><a name="releases">Releases</a></h1>
 <p><a href="https://github.com/zentity-io/zentity/releases" onclick="to('https://github.com/zentity-io/zentity/releases', 'outbound');" class="external">View on Github</a></p>
 <p><a name="latest"></a></p>
-<h2><a name="zentity-0.5.0-beta.2">zentity-0.5.0-beta.2 (latest)</a></h2>
+<h2><a name="zentity-1.0.0">zentity-1.0.0 (latest)</a></h2>
 <h3>Download</h3>
-<p>Select the plugin version that aligns with your version of Elasticsearch:</p>
+<p>Select the plugin version that matches your version of Elasticsearch:</p>
+<ul>
+<li><a href="https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.4.zip" onclick="to('https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.4.zip', 'download');">Elasticsearch 6.2.4</a></li>
+<li><a href="https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.3.zip" onclick="to('https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.3.zip', 'download');">Elasticsearch 6.2.3</a></li>
+<li><a href="https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.2.zip" onclick="to('https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.2.zip', 'download');">Elasticsearch 6.2.2</a></li>
+<li><a href="https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.1.zip" onclick="to('https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.1.zip', 'download');">Elasticsearch 6.2.1</a></li>
+<li><a href="https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.0.zip" onclick="to('https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.0.zip', 'download');">Elasticsearch 6.2.0</a></li>
+<li><a href="https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.1.3.zip" onclick="to('https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.1.3.zip', 'download');">Elasticsearch 6.1.3</a></li>
+<li><a href="https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.1.2.zip" onclick="to('https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.1.2.zip', 'download');">Elasticsearch 6.1.2</a></li>
+<li><a href="https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.1.1.zip" onclick="to('https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.1.1.zip', 'download');">Elasticsearch 6.1.1</a></li>
+<li><a href="https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.0.1.zip" onclick="to('https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.0.1.zip', 'download');">Elasticsearch 6.0.1</a></li>
+<li><a href="https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.0.0.zip" onclick="to('https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.0.0.zip', 'download');">Elasticsearch 6.0.0</a></li>
+</ul>
+<h3>Release notes</h3>
+<ul>
+<li><strong>Feature</strong> - Added the <code>"ids"</code> field in the request payload of the <a href="/docs/rest-apis/resolution-api">Resolution API</a>.
+This allows a job to be started by selecting document(s) by _id(s) known to be associated with an entity. Either or both
+of the <code>"ids"</code> and <code>"attributes"</code> fields must be present and valid to start a job.
+(<a href="https://github.com/zentity-io/zentity/commit/b2f48bcd4db838bf5f7726b6756c9301b61c39d5" onclick="to('https://github.com/zentity-io/zentity/commit/b2f48bcd4db838bf5f7726b6756c9301b61c39d5', 'outbound');" class="external">b2f48bc</a>)</li>
+<li><strong>Feature</strong> - Added the <code>POST _zentity/_setup</code> endpoint to create the <code>.zentity-models</code> index. This allows an
+administrator to set up the index in advance without having to give users permission to create or manage the index when
+using X-Pack Security. And it allows the number of shards and replicas to be defined as URI parameters.
+(<a href="https://github.com/zentity-io/zentity/commit/79a00e36ffe486e8d34af769edf8d2c70de4a3da" onclick="to('https://github.com/zentity-io/zentity/commit/79a00e36ffe486e8d34af769edf8d2c70de4a3da', 'outbound');" class="external">79a00e3</a>)</li>
+<li><strong>Bug fix</strong> - Fixed a NullPointerException whenever an <code>entity_type</code> does not exist when submitting a resolution job.
+(<a href="https://github.com/zentity-io/zentity/commit/b5b6d88007537323e12d6ec6a50654bdee85f0d9" onclick="to('https://github.com/zentity-io/zentity/commit/b5b6d88007537323e12d6ec6a50654bdee85f0d9', 'outbound');" class="external">b5b6d88</a>)</li>
+</ul>
+<h2><a name="zentity-0.5.0-beta.2">zentity-0.5.0-beta.2</a></h2>
+<h3>Download</h3>
+<p>Select the plugin version that matches your version of Elasticsearch:</p>
 <ul>
 <li><a href="https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.4.zip" onclick="to('https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.4.zip', 'download');">Elasticsearch 6.2.4</a></li>
 <li><a href="https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.3.zip" onclick="to('https://zentity.io/releases/zentity-0.5.0-beta.2-elasticsearch-6.2.3.zip', 'download');">Elasticsearch 6.2.3</a></li>
@@ -86,7 +114,7 @@ down resolution jobs.
 </ul>
 <h2><a name="zentity-0.5.0-beta.1">zentity-0.5.0-beta.1</a></h2>
 <h3>Download</h3>
-<p>Select the plugin version that aligns with your version of Elasticsearch:</p>
+<p>Select the plugin version that matches your version of Elasticsearch:</p>
 <ul>
 <li><a href="https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.4.zip" onclick="to('https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.4.zip', 'download');">Elasticsearch 6.2.4</a></li>
 <li><a href="https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.3.zip" onclick="to('https://zentity.io/releases/zentity-0.5.0-beta.1-elasticsearch-6.2.3.zip', 'download');">Elasticsearch 6.2.3</a></li>
@@ -132,7 +160,7 @@ to use this endpoint instead.
 </ul>
 <h2><a name="zentity-0.4.0-beta.1">zentity-0.4.0-beta.1</a></h2>
 <h3>Download</h3>
-<p>Select the plugin version that aligns with your version of Elasticsearch:</p>
+<p>Select the plugin version that matches your version of Elasticsearch:</p>
 <ul>
 <li><a href="https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.2.4.zip" onclick="to('https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.2.4.zip', 'download');">Elasticsearch 6.2.4</a></li>
 <li><a href="https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.2.3.zip" onclick="to('https://zentity.io/releases/zentity-0.4.0-beta.1-elasticsearch-6.2.3.zip', 'download');">Elasticsearch 6.2.3</a></li>
@@ -169,7 +197,7 @@ with <code>scope.exclude</code> and <code>scope.include</code>.
 </ul>
 <h2><a name="zentity-0.3.0-beta.1">zentity-0.3.0-beta.1</a></h2>
 <h3>Download</h3>
-<p>Select the plugin version that aligns with your version of Elasticsearch:</p>
+<p>Select the plugin version that matches your version of Elasticsearch:</p>
 <ul>
 <li><a href="https://zentity.io/releases/zentity-0.3.0-beta.1-elasticsearch-6.2.3.zip" onclick="to('https://zentity.io/releases/zentity-0.3.0-beta.1-elasticsearch-6.2.3.zip', 'download');">Elasticsearch 6.2.3</a></li>
 <li><a href="https://zentity.io/releases/zentity-0.3.0-beta.1-elasticsearch-6.2.2.zip" onclick="to('https://zentity.io/releases/zentity-0.3.0-beta.1-elasticsearch-6.2.2.zip', 'download');">Elasticsearch 6.2.2</a></li>
@@ -205,7 +233,7 @@ called <code>"search"</code>.
 </ul>
 <h2><a name="zentity-0.2.1-beta.1">zentity-0.2.1-beta.1</a></h2>
 <h3>Download</h3>
-<p>Select the plugin version that aligns with your version of Elasticsearch:</p>
+<p>Select the plugin version that matches your version of Elasticsearch:</p>
 <ul>
 <li><a href="https://zentity.io/releases/zentity-0.2.1-beta.1-elasticsearch-6.2.3.zip" onclick="to('https://zentity.io/releases/zentity-0.2.1-beta.1-elasticsearch-6.2.3.zip', 'download');">Elasticsearch 6.2.3</a></li>
 <li><a href="https://zentity.io/releases/zentity-0.2.1-beta.1-elasticsearch-6.2.2.zip" onclick="to('https://zentity.io/releases/zentity-0.2.1-beta.1-elasticsearch-6.2.2.zip', 'download');">Elasticsearch 6.2.2</a></li>
@@ -230,7 +258,7 @@ attribute or matcher of an index field do not exist in the entity model.
 </ul>
 <h2><a name="zentity-0.2.0-beta.1">zentity-0.2.0-beta.1</a></h2>
 <h3>Download</h3>
-<p>Select the plugin version that aligns with your version of Elasticsearch:</p>
+<p>Select the plugin version that matches your version of Elasticsearch:</p>
 <ul>
 <li><a href="https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.2.3.zip" onclick="to('https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.2.3.zip', 'download');">Elasticsearch 6.2.3</a></li>
 <li><a href="https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.2.2.zip" onclick="to('https://zentity.io/releases/zentity-0.2.0-beta.1-elasticsearch-6.2.2.zip', 'download');">Elasticsearch 6.2.2</a></li>
@@ -270,7 +298,7 @@ their data types.
 </ul>
 <h2><a name="zentity-0.1.1-beta.2">zentity-0.1.1-beta.2</a></h2>
 <h3>Download</h3>
-<p>Select the plugin version that aligns with your version of Elasticsearch:</p>
+<p>Select the plugin version that matches your version of Elasticsearch:</p>
 <ul>
 <li><a href="https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.3.zip" onclick="to('https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.3.zip', 'download');">Elasticsearch 6.2.3</a></li>
 <li><a href="https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.2.zip" onclick="to('https://zentity.io/releases/zentity-0.1.1-beta.2-elasticsearch-6.2.2.zip', 'download');">Elasticsearch 6.2.2</a></li>
@@ -295,7 +323,7 @@ must replace it with <code>max_docs_per_query</code>.
 </ul>
 <h2><a name="zentity-0.1.1-beta.1">zentity-0.1.1-beta.1</a></h2>
 <h3>Download</h3>
-<p>Select the plugin version that aligns with your version of Elasticsearch:</p>
+<p>Select the plugin version that matches your version of Elasticsearch:</p>
 <ul>
 <li><a href="https://zentity.io/releases/zentity-0.1.1-beta.1-elasticsearch-6.2.3.zip" onclick="to('https://zentity.io/releases/zentity-0.1.1-beta.1-elasticsearch-6.2.3.zip', 'download');">Elasticsearch 6.2.3</a></li>
 <li><a href="https://zentity.io/releases/zentity-0.1.1-beta.1-elasticsearch-6.2.2.zip" onclick="to('https://zentity.io/releases/zentity-0.1.1-beta.1-elasticsearch-6.2.2.zip', 'download');">Elasticsearch 6.2.2</a></li>

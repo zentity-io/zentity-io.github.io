@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>zentity - Entity Resolution Input Specification</title>
     <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
-    <meta name="description" content="zentity brings entity resolution to Elasticsearch. Connect the fragments of an identity hidden in your data. Fast, scalable, open source."/>
+    <meta name="description" content="zentity brings entity resolution to Elasticsearch. Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <meta property="og:title" content="zentity"/>
     <meta property="og:description" content="Entity Resolution for Elasticsearch"/>
     <meta property="og:image" content="/img/zentity-og-image.png"/>
@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=162542136"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=538658078"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=554599091"></script>
+    </script><script src="/js/all.js?id=602155092"></script>
   </head>
   <body>
     <div id="app" >
@@ -75,6 +75,13 @@
     <span class="p">},</span>
     <span class="p">...</span>
   <span class="p">},</span>
+  <span class="s2">&quot;ids&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">INDEX_NAME</span><span class="o">:</span> <span class="p">[</span>
+      <span class="nx">DOC_ID</span><span class="p">,</span>
+      <span class="p">...</span>
+    <span class="p">],</span>
+    <span class="p">...</span>
+  <span class="p">},</span>
   <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exclude&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -117,11 +124,11 @@
 <p>Entity resolution inputs are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
 (e.g. <code>"attributes"</code>) are constant fields, uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable fields or values,
 and elipses (<code>...</code>) are optional repetitions of the preceding field or value.</p>
-<p>An entity resolution input has one required object (<strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a></strong>), one optional object
-(<strong><a href="#scope" onclick="to(window.location.pathname + '#scope', 'internal');"><code>"scope"</code></a></strong>) and one object that is required only if <code>entity_type</code> is not specified in the endpoint of the request
-(<strong><a href="#model" onclick="to(window.location.pathname + '#model', 'internal');"><code>"model"</code></a></strong>).  Not all elements within these objects are required. Optional elements are noted in the descriptions
-of each element listed on this page. Some elements have alternate forms that are acceptable, and those are also noted in the
-descriptions of each element.</p>
+<p>An entity resolution input has two objects where at least one must be present (<strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a></strong> and <strong><a href="#ids" onclick="to(window.location.pathname + '#ids', 'internal');"><code>"ids"</code></a></strong>),
+one optional object (<strong><a href="#scope" onclick="to(window.location.pathname + '#scope', 'internal');"><code>"scope"</code></a></strong>) and one object that is required only if <code>entity_type</code> is not specified in the endpoint
+of the request (<strong><a href="#model" onclick="to(window.location.pathname + '#model', 'internal');"><code>"model"</code></a></strong>).  Not all elements within these objects are required. Optional elements are noted in the
+descriptions of each element listed on this page. Some elements have alternate forms that are acceptable, and those are also noted
+in the descriptions of each element.</p>
 <h2><a name="attributes"></a><code>"attributes"</code></h2>
 <p><strong>Model</strong></p>
 <div class="highlight"><pre><span></span><span class="p">{</span>
@@ -207,7 +214,7 @@ will be considered a match regardless of the results of the other matchers.</p>
 </ul>
 <p>At least one attribute must be specified, otherwise there would be no input to supply to the entity resolution job.</p>
 <ul>
-<li>Required: Yes</li>
+<li>Required: Only if <a href="#ids" onclick="to(window.location.pathname + '#ids', 'internal');"><code>"ids"</code></a> is not given</li>
 <li>Type: String</li>
 </ul>
 <h3><a name="attributes.ATTRIBUTE_NAME.type"></a><code>"attributes".ATTRIBUTE_NAME."values"</code></h3>
@@ -246,6 +253,53 @@ will be serialized as a string when passed to the matcher clause. The value over
 <ul>
 <li>Required: No</li>
 <li>Type: Any</li>
+</ul>
+<h2><a name="ids"></a><code>"ids"</code></h2>
+<p><strong>Model</strong></p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;ids&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">INDEX_NAME</span><span class="o">:</span> <span class="p">[</span>
+      <span class="nx">DOC_ID</span><span class="p">,</span>
+      <span class="p">...</span>
+    <span class="p">],</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p><strong>Example</strong></p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;ids&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;0987654321&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;customers&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="s2">&quot;customer_001&quot;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>The <code>"ids"</code> field allows the first iteration of an entity resolution to begin by selecting one or more documents
+by _id for one or more indices. Like <code>"attributes"</code>, any document that matches the <code>_id</code> values will be considered
+a match to the entity. Documents are queried by <code>_id</code> only within a given index to prevent collisions in which
+the same <code>_id</code> is present in two or more indices.</p>
+<p>The <code>"ids"</code> field is only used in the first query to each index in a <a href="/docs/rest-apis/resolution-api">resolution job</a>.
+After that, the attributes are obtained from the documents and the job continues with those attributes values.</p>
+<ul>
+<li>Required: Only if <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> is not given</li>
+<li>Type: Object</li>
+</ul>
+<h3><a name="ids.INDEX_NAME"></a><code>"ids".INDEX_NAME</code></h3>
+<p>The name of a distinct index. Any <code>_id</code> values specified in this array will be queried within that index.</p>
+<ul>
+<li>Required: Yes</li>
+<li>Type: Array</li>
+</ul>
+<h3><a name="ids.INDEX_NAME.DOC_ID"></a><code>"ids".INDEX_NAME.DOC_ID</code></h3>
+<p>The value of a distinct <code>_id</code> within a given index.</p>
+<ul>
+<li>Required: Yes</li>
+<li>Type: String</li>
 </ul>
 <h2><a name="scope"></a><code>"scope"</code></h2>
 <p><strong>Model</strong></p>

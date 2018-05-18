@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>zentity - Security</title>
     <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
-    <meta name="description" content="zentity brings entity resolution to Elasticsearch. Connect the fragments of an identity hidden in your data. Fast, scalable, open source."/>
+    <meta name="description" content="zentity brings entity resolution to Elasticsearch. Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <meta property="og:title" content="zentity"/>
     <meta property="og:description" content="Entity Resolution for Elasticsearch"/>
     <meta property="og:image" content="/img/zentity-og-image.png"/>
@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Entity Resolution for Elasticsearch"/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=808538666"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=287337382"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=723817740"></script>
+    </script><script src="/js/all.js?id=441695197"></script>
   </head>
   <body>
     <div id="app" >
@@ -89,9 +89,20 @@ to retrieve an entity model:</p>
 <p>Below are the permission settings that can be configured for a "zentity" role with X-Pack Security.
 Roles can be managed in Kibana at <code>https://KIBANA_HOST:KIBANA_PORT/app/kibana#/management/security/roles</code>
 or through the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-roles.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-roles.html', 'outbound');" class="external">Role Management APIs</a>.</p>
-<h3><a name="models-api-configuration">Models API Permissions</a></h3>
+<h3><a name="setup-api-permissions">Setup API Permissions</a></h3>
+<p>These permission settings apply to the <a href="/docs/rest-apis/setup-api">Setup API</a>.</p>
+<p><strong>Index Privileges</strong></p>
+<ul>
+<li>Indices: <code>.zentity-models</code></li>
+<li>Permissions: <code>create_index</code></li>
+</ul>
+<p><strong>Actions Granted</strong></p>
+<ul>
+<li><code>POST _zentity/_setup</code></li>
+</ul>
+<h3><a name="models-api-permissions">Models API Permissions</a></h3>
 <p>These permission settings apply to the <a href="/docs/rest-apis/models-api">Models API</a>. A single role can
-be granted any or all of these permissions. When setting up</p>
+be granted any or all of these permissions.</p>
 <h4>Create and update entity models</h4>
 <p><strong>Index Privileges</strong></p>
 <ul>
@@ -125,12 +136,10 @@ be granted any or all of these permissions. When setting up</p>
 <li><code>DELETE _zentity/models/{entity_type}</code></li>
 </ul>
 <h4>Notes</h4>
-<p>Currently any user that interacts with the Models API must have the <code>manage</code> permission for the
-<code>.zentity-models</code> index due to a check that is performed by the plugin to ensure that the index exists.</p>
-<p>Additionally, when requesting any of the Models API endpoints listed above for the first time, zentity will attempt
-to create the <code>.zentity-models</code> index. This means that the user who submits the first request to any Models API
-endpoint must have <code>create</code> privilege for the <code>.zentity-models</code> index. Otherwise the user will always receive the
-following error message:</p>
+<p>Without security enabled, any user that interacts with the Models API will create the <code>.zentity-models</code>
+index automatically if it does not already exist. With security enabled, the user must have the <code>create_index</code>
+permission for the <code>.zentity-models</code> index to be created automatically. Otherwise the user will receive
+the following error message:</p>
 <div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;root_cause&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -145,12 +154,10 @@ following error message:</p>
   <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="mi">403</span>
 <span class="p">}</span>
 </pre></div>
-<p>An administrative user should perform the first request using <code>GET _zentity/models</code> to create the index.</p>
-<p>A dedicated API endpoint to create the <code>.zentity-models</code> index is on the development roadmap to simplify these
-experiences and allow the administrators to avoid granting the <code>manage</code> privilege for the <code>.zentity-models</code> index.</p>
+<p>An administrative user should request <code>POST _zentity/_setup</code> to create the index.</p>
 <h3><a name="resolution-api-permissions">Resolution API Permissions</a></h3>
-<p>There are no permissions to be configured for the <a href="/docs/rest-apis/resolution-api">Resolution API</a> endpoints
-<code>GET _zentity/resolution</code> or <code>GET _zentity/resolution/{entity_type}</code>. These endpoints construct and submit
+<p>There are no permissions to be configured directly for the <a href="/docs/rest-apis/resolution-api">Resolution API</a>
+endpoints <code>GET _zentity/resolution</code> or <code>GET _zentity/resolution/{entity_type}</code>. These endpoints construct and submit
 search queries using the Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html', 'outbound');" class="external">Search APIs</a>.
 Therefore, permissions must be configured for each index that the user searches with zentity. Users can only perform
 entity resolution if they have the <code>read</code> privilege for every index included in the scope of the request.</p>
@@ -164,7 +171,7 @@ perform any action with zentity in an open source cluster that has not been conf
 <table class="table">
 <thead><tr>
 <th style="text-align:left">&#8249;</th>
-<th style="text-align:left"><a href="/docs/rest-apis/models-api">Models API</a></th>
+<th style="text-align:left"><a href="/docs/rest-apis/resolution-api">Resolution API</a></th>
 <th style="text-align:right"></th>
 <th style="text-align:right"></th>
 </tr>
