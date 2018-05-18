@@ -17,6 +17,7 @@ from pygments.formatters import html
 
 
 META_DESCRIPTION_GENERIC = "zentity brings entity resolution to Elasticsearch. Connect the hidden fragments of an identity in your data. Fast, scalable, open source."
+META_DESCRIPTION_GENERIC_SHORT = "Connect the hidden fragments of an identity in your data. Fast, scalable, open source."
 
 env = jinja2.Environment(
     loader = jinja2.FileSystemLoader("templates"),
@@ -69,6 +70,7 @@ PAGES = {
         "vars": {
             "title": "Entity Resolution for Elasticsearch",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/index.md"),
             "home": True
         }
@@ -77,6 +79,7 @@ PAGES = {
         "vars": {
             "title": "Documentation",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/index.md")
         }
     },
@@ -84,6 +87,7 @@ PAGES = {
         "vars": {
             "title": "Installation",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/installation.md")
         }
     },
@@ -91,6 +95,7 @@ PAGES = {
         "vars": {
             "title": "Basic Usage",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/basic-usage.md")
         }
     },
@@ -98,6 +103,7 @@ PAGES = {
         "vars": {
             "title": "Entity Models",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/entity-models.md")
         }
     },
@@ -105,6 +111,7 @@ PAGES = {
         "vars": {
             "title": "Entity Model Specification",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/entity-models/specification.md")
         }
     },
@@ -112,6 +119,7 @@ PAGES = {
         "vars": {
             "title": "Entity Modeling Tips",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/entity-models/tips.md")
         }
     },
@@ -119,6 +127,7 @@ PAGES = {
         "vars": {
             "title": "Entity Resolution",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/entity-resolution.md")
         }
     },
@@ -126,6 +135,7 @@ PAGES = {
         "vars": {
             "title": "Entity Resolution Input Specification",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/entity-resolution/input.md")
         }
     },
@@ -133,6 +143,7 @@ PAGES = {
         "vars": {
             "title": "Entity Resolution Output Specification",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/entity-resolution/output.md")
         }
     },
@@ -140,6 +151,7 @@ PAGES = {
         "vars": {
             "title": "REST APIs",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/rest-apis.md")
         }
     },
@@ -147,6 +159,7 @@ PAGES = {
         "vars": {
             "title": "Setup API",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/rest-apis/setup-api.md")
         }
     },
@@ -154,6 +167,7 @@ PAGES = {
         "vars": {
             "title": "Models API",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/rest-apis/models-api.md")
         }
     },
@@ -161,6 +175,7 @@ PAGES = {
         "vars": {
             "title": "Resolution API",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/rest-apis/resolution-api.md")
         }
     },
@@ -168,6 +183,7 @@ PAGES = {
         "vars": {
             "title": "Security",
             "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/security.md")
         }
     },
@@ -175,6 +191,7 @@ PAGES = {
         "vars": {
             "title": "Releases",
             "meta_description": "Downloads and release notes for zentity.",
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/releases.md")
         }
     }
