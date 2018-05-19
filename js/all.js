@@ -29,12 +29,12 @@ var renderSplashGraph = function () {
     edges: []
   }
   var groups = {
-    0: 96,
-    1: 32,
-    2: 256,
-    3: 256,
-    4: 96,
-    5: 32,
+    0: 72,
+    1: 24,
+    2: 216,
+    3: 216,
+    4: 72,
+    5: 24,
   }
   for (var i = 0; i < 6; i++) {
     var num_nodes = groups[i];
@@ -48,11 +48,10 @@ var renderSplashGraph = function () {
       for (var y = 0; y < num_nodes; y++) {
         if (x == y)
           continue
-        if (Math.round(Math.random()) == 1)
-          graph.edges.push({
-            source: i + ":" + x,
-            target: i + ":" + y
-          });
+        graph.edges.push({
+          source: i + ":" + x,
+          target: i + ":" + y
+        });
       }
     }
   }
@@ -68,9 +67,9 @@ var renderSplashGraph = function () {
   
   var simulation = d3.forceSimulation()
     .force("edge", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody().strength(-16))
-    .force("x", d3.forceX(width / 2).strength(.8))
-    .force("y", d3.forceY(height / 2).strength(.8));
+    .force("charge", d3.forceManyBody().strength(-21))
+    .force("x", d3.forceX(width / 2).strength(.9))
+    .force("y", d3.forceY(height / 2).strength(.9));
   
   console.log(graph);
   
@@ -112,4 +111,9 @@ var renderSplashGraph = function () {
     simulation.force("edge")
       .links(graph.edges);
     simulation.alphaTarget(0.12).alphaDecay(0.8).restart();
+    
 };
+
+d3.select(window).on('resize.updatesvg', function() {
+  renderSplashGraph();
+});
