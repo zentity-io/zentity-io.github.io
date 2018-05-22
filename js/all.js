@@ -22,21 +22,18 @@
 
 var renderSplashGraph = function () {
   var colors = [
-    "#0078a0","#df4998","#00bfb3","#fed10a","#00a9e5","#93c90e"
+    "#00a9e0","#0e77cd","#1f497d"
   ];
   var graph = {
     nodes: [],
     edges: []
   }
   var groups = {
-    0: 72,
-    1: 24,
-    2: 216,
-    3: 216,
-    4: 72,
-    5: 24,
+    0: 64,
+    1: 64,
+    2: 64
   }
-  for (var i = 0; i < 6; i++) {
+  for (var i = 0; i < 3; i++) {
     var num_nodes = groups[i];
     for (var x = 0; x < num_nodes; x++) {
       graph.nodes.push({
@@ -48,10 +45,10 @@ var renderSplashGraph = function () {
       for (var y = 0; y < num_nodes; y++) {
         if (x == y)
           continue
-        graph.edges.push({
-          source: i + ":" + x,
-          target: i + ":" + y
-        });
+          graph.edges.push({
+            source: i + ":" + x,
+            target: i + ":" + y
+          });
       }
     }
   }
@@ -67,9 +64,9 @@ var renderSplashGraph = function () {
   
   var simulation = d3.forceSimulation()
     .force("edge", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody().strength(-21))
-    .force("x", d3.forceX(width / 2).strength(.9))
-    .force("y", d3.forceY(height / 2).strength(.9));
+    .force("charge", d3.forceManyBody().strength(-32))
+    .force("x", d3.forceX(width / 2).strength(.8))
+    .force("y", d3.forceY(height / 2).strength(.8));
   
   console.log(graph);
   
