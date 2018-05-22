@@ -14,14 +14,21 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=939096469"><script>
+    <link rel="stylesheet" href="/css/all.css?id=388966027"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
       var to = function(uri, event_category) {
-        if (event_category)
-          console.log(event_category + " " + uri);
-        else
-          console.log(uri);
+        gtag('event', 'click', {
+          'event_category': event_category,
+          'event_label': uri,
+          'transport_type': 'beacon',
+          'event_callback': function(){document.location = uri;}
+        });
       };
-    </script><script src="/js/all.js?id=172440434"></script>
+    </script><script src="/js/all.js?id=596120850"></script>
   </head>
   <body>
     <div id="app" >
