@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / Entity Resolution
 
 
-# <a name="entity-resolution">Entity Resolution</a>
+# <a name="entity-resolution"></a>Entity Resolution
 
 zentity executes entity resolution jobs in response to **[Resolution API](/docs/rest-apis/resolution-api)** requests.
 

@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / [REST APIs](/docs/rest-apis) / Resolution API
 
 
-# <a name="resolution-api">Resolution API</a>
+# <a name="resolution-api"></a>Resolution API
 
 Runs an entity resolution job and returns the results.
 

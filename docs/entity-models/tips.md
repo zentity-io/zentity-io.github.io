@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / [Entity Models](/docs/entity-models) / Entity Modeling Tips
 
 
-# <a name="tips">Entity Modeling Tips</a>
+# <a name="tips"></a>Entity Modeling Tips
 
 
 **1. Become familiar with your data.**

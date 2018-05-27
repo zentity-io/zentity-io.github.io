@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / [Entity Resolution](/docs/entity-resolution) / Input Specification
 
 
-# <a name="input">Entity Resolution Input Specification</a>
+# <a name="input"></a>Entity Resolution Input Specification
 
 ```javascript
 {

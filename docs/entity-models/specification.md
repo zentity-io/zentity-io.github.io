@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / [Entity Models](/docs/entity-models) / Specification
 
 
-# <a name="specification">Entity Model Specification</a>
+# <a name="specification"></a>Entity Model Specification
 
 ```javascript
 {

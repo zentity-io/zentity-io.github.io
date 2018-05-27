@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / [REST APIs](/docs/rest-apis) / Setup API
 
 
-# <a name="setup-api">Setup API</a>
+# <a name="setup-api"></a>Setup API
 
 Creates the `.zentity-models` index.
 

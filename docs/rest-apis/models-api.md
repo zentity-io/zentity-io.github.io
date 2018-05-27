@@ -1,10 +1,10 @@
 [Home](/) / [Documentation](/docs) / [REST APIs](/docs/rest-apis) / Models API
 
 
-# <a name="models-api">Models API</a>
+# <a name="models-api"></a>Models API
 
 
-## <a name="get-entity-models">Get all entity models</a>
+## <a name="get-entity-models"></a>Get all entity models
 
 ```javascript
 GET _zentity/models
@@ -19,7 +19,7 @@ Returns all entity models from the `.zentity-models` index.
 |`pretty`|Boolean|`false`|No|Indents the JSON response data.|
 
 
-## <a name="get-entity-model">Get an entity model</a>
+## <a name="get-entity-model"></a>Get an entity model
 
 ```javascript
 GET _zentity/models/{entity_type}
@@ -35,7 +35,7 @@ Returns the entity model for a given `entity_type` from the `.zentity-models` in
 |`pretty`|Boolean|`false`|No|Indents the JSON response data.|
 
 
-## <a name="create-entity-model">Create an entity model</a>
+## <a name="create-entity-model"></a>Create an entity model
 
 Creates an entity model for a given `entity_type` and puts it in the `.zentity-models` index.
 Returns an error if an entity model already exists for that `entity_type`.
@@ -98,7 +98,7 @@ POST _zentity/models/{entity_type}
 |`pretty`|Boolean|`false`|No|Indents the JSON response data.|
 
 
-## <a name="update-entity-model">Update an entity model</a>
+## <a name="update-entity-model"></a>Update an entity model
 
 Updates an entity model for a given `entity_type`.
 Creates the entity model if it does not already exist.
@@ -161,7 +161,7 @@ PUT _zentity/models/{entity_type}
 |`pretty`|Boolean|`false`|No|Indents the JSON response data.|
 
 
-## <a name="delete-entity-model">Delete an entity model</a>
+## <a name="delete-entity-model"></a>Delete an entity model
 
 Deletes the entity model for a given `entity_type` from the `.zentity-models` index.
 

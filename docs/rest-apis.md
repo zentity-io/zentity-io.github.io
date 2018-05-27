@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / REST APIs
 
 
-# <a name="rest-apis">REST APIs</a>
+# <a name="rest-apis"></a>REST APIs
 
 
 - [Setup API](/docs/rest-apis/setup-api)

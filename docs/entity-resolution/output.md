@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / [Entity Resolution](/docs/entity-resolution) / Output Specification
 
 
-# <a name="output">Entity Resolution Output Specification</a>
+# <a name="output"></a>Entity Resolution Output Specification
 
 ```javascript
 {

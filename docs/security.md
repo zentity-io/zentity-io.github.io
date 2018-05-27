@@ -1,12 +1,12 @@
 [Home](/) / [Documentation](/docs) / Security
 
 
-# <a name="security">Security</a>
+# <a name="security"></a>Security
 
 As an API extension plugin for Elasticsearch, zentity inherits the security settings from the cluster on which it is installed.
 
 
-## <a name="x-pack-security">X-Pack Security</a>
+## <a name="x-pack-security"></a>X-Pack Security
 
 [X-Pack](https://www.elastic.co/products/x-pack) is a commercial plugin from Elastic, the creators of Elasticsearch and the
 Elastic Stack. [X-Pack Security](https://www.elastic.co/products/x-pack/security) is a subset of the plugin that secures an
@@ -36,14 +36,14 @@ to retrieve an entity model:
 All unauthorized interactions with zentity will produced an error response similar to the one above.
 
 
-## <a name="role-configuration">X-Pack Security Role Configuration</a>
+## <a name="role-configuration"></a>X-Pack Security Role Configuration
 
 Below are the permission settings that can be configured for a "zentity" role with X-Pack Security.
 Roles can be managed in Kibana at `https://KIBANA_HOST:KIBANA_PORT/app/kibana#/management/security/roles`
 or through the [Role Management APIs](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-roles.html).
 
 
-### <a name="setup-api-permissions">Setup API Permissions</a>
+### <a name="setup-api-permissions"></a>Setup API Permissions
 
 These permission settings apply to the [Setup API](/docs/rest-apis/setup-api).
 
@@ -57,7 +57,7 @@ These permission settings apply to the [Setup API](/docs/rest-apis/setup-api).
 - `POST _zentity/_setup`
 
 
-### <a name="models-api-permissions">Models API Permissions</a>
+### <a name="models-api-permissions"></a>Models API Permissions
 
 These permission settings apply to the [Models API](/docs/rest-apis/models-api). A single role can
 be granted any or all of these permissions.
@@ -126,7 +126,7 @@ the following error message:
 An administrative user should request `POST _zentity/_setup` to create the index.
 
 
-### <a name="resolution-api-permissions">Resolution API Permissions</a>
+### <a name="resolution-api-permissions"></a>Resolution API Permissions
 
 There are no permissions to be configured directly for the [Resolution API](/docs/rest-apis/resolution-api)
 endpoints `GET _zentity/resolution` or `GET _zentity/resolution/{entity_type}`. These endpoints construct and submit
@@ -135,7 +135,7 @@ Therefore, permissions must be configured for each index that the user searches 
 entity resolution if they have the `read` privilege for every index included in the scope of the request.
 
 
-## <a name="open-source-elasticsearch">Open Source Elasticsearch</a>
+## <a name="open-source-elasticsearch"></a>Open Source Elasticsearch
 
 Open source Elasticsearch clusters without an X-Pack Security license do not have any security mechanisms.
 Communications are unencrypted and any user can perform any action on the cluster. Likewise, any user can

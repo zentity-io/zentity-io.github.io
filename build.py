@@ -99,6 +99,14 @@ PAGES = {
             "content": markdown("/docs/basic-usage.md")
         }
     },
+    "/docs/basic-usage/exact-name-matching": {
+        "vars": {
+            "title": "Exact Name Matching",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+            "content": markdown("/docs/basic-usage/exact-name-matching.md")
+        }
+    },
     "/docs/entity-models": {
         "vars": {
             "title": "Entity Models",

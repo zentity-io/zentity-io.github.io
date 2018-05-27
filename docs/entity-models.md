@@ -1,7 +1,7 @@
 [Home](/) / [Documentation](/docs) / Entity Models
 
 
-# <a name="entity-models">Entity Models</a>
+# <a name="entity-models"></a>Entity Models
 
 
 zentity relies on objects called **[entity models](/docs/entity-models/specification)** to control the execution of entity resolution jobs.
@@ -15,7 +15,7 @@ Entity models serve multiple purposes:
 Read the [entity model specification](/docs/entity-models/specification) for specific details on the contents of entity models.
 
 
-## <a name="usage">Usage</a>
+## <a name="usage"></a>Usage
 
 You must provide an entity model when making a resolution request. You can provide it in two ways:
 

@@ -1,13 +1,31 @@
 [Home](/) / Documentation
 
 
-# <a name="documentation">Documentation</a>
+# <a name="documentation"></a>Documentation
 
 
-## <a name="contents">Contents</a>
+## <a name="getting-started"></a>Getting Started
 
+- Overview
 - [Installation](/docs/installation)
 - [Basic Usage](/docs/basic-usage)
+    - [Exact Name Matching](/docs/basic-usage/exact-name-matching)
+    - Robust Name Matching
+    - Multiple Attribute Resolution
+    - Multiple Resolver Resolution
+    - Cross Index Resolution
+    - Cross Cluster Resolution
+- Advanced Usage
+    - Matcher Parameters
+    - Date Attributes
+    - Payload Attributes
+    - Resolution Scope
+- Examples
+    - U.S. Health Care Providers
+    - HTTP Sessions
+
+## <a name="reference"></a>Reference
+
 - [Entity Models](/docs/entity-models)
     - [Entity Model Specification](/docs/entity-models/specification)
     - [Entity Modeling Tips](/docs/entity-models/tips)

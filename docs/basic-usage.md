@@ -1,10 +1,10 @@
 [Home](/) / [Documentation](/docs) / Basic Usage
 
 
-# <a name="basic-usage">Basic Usage</a>
+# <a name="basic-usage"></a>Basic Usage
 
 
-## <a name="index-data">Step 1. Index some data.</a>
+## <a name="index-data"></a>Step 1. Index some data.
 
 zentity operates on data that is indexed in **[Elasticsearch](https://www.elastic.co/products/elasticsearch)**,
 an open source search engine for real-time search and analytics at scale. The most common tools for indexing
@@ -14,7 +14,7 @@ documents using the [Index API](https://www.elastic.co/guide/en/elasticsearch/gu
 [Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html).
 
 
-## <a name="define-entity-model">Step 2. Define an entity model.</a>
+## <a name="define-entity-model"></a>Step 2. Define an entity model.
 
 **[Entity models](/docs/entity-models)** are the most important constructs you need to learn about. zentity uses entity
 models to construct queries, match attributes across disparate indices, and resolve entities.
@@ -41,7 +41,7 @@ You don't need to change your data to use an entity model. An entity model only 
 So there's no risk in updating or experimenting with an entity model.
 
 
-## <a name="submit-resolution-request">Step 3. Submit a resolution request.</a>
+## <a name="submit-resolution-request"></a>Step 3. Submit a resolution request.
 
 So you have some data and an entity model. Now you can resolve entities!
 
