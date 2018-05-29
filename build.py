@@ -32,7 +32,16 @@ class ZentityRenderer(mistune.Renderer):
             return "\n<pre><code>%s</code></pre>\n" % mistune.escape(code)
         lexer = get_lexer_by_name(lang, stripall=True)
         formatter = html.HtmlFormatter()
-        return highlight(code, lexer, formatter)
+        formatted = highlight(code, lexer, formatter)
+        formatted = """
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link" onclick="$(this).siblings('.highlight').select();document.execCommand('copy');">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          %s
+        </div>
+        """ % formatted
+        return formatted
         
     def link(self, link, title, text):
         link = mistune.escape_link(link)
@@ -105,6 +114,14 @@ PAGES = {
             "meta_description": META_DESCRIPTION_GENERIC,
             "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/basic-usage/exact-name-matching.md")
+        }
+    },
+    "/docs/basic-usage/robust-name-matching": {
+        "vars": {
+            "title": "Robust Name Matching",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+            "content": markdown("/docs/basic-usage/robust-name-matching.md")
         }
     },
     "/docs/entity-models": {

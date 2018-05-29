@@ -10,11 +10,11 @@
 - [Installation](/docs/installation)
 - [Basic Usage](/docs/basic-usage)
     - [Exact Name Matching](/docs/basic-usage/exact-name-matching)
-    - Robust Name Matching
-    - Multiple Attribute Resolution
-    - Multiple Resolver Resolution
-    - Cross Index Resolution
-    - Cross Cluster Resolution
+    - [Robust Name Matching](/docs/basic-usage/robust-name-matching)
+    - [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
+    - [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
+    - [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
+    - [Cross Cluster Resolution](/docs/basic-usage/cross-cluster-resolution)
 - Advanced Usage
     - Matcher Parameters
     - Date Attributes

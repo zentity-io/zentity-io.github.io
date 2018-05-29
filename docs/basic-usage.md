@@ -170,6 +170,6 @@ POST _zentity/resolution?pretty
 
 #### Continue Reading
 
-|&#8249;|[Installation](/docs/installation)|[Entity Models](/docs/entity-models)|&#8250;|
+|&#8249;|[Installation](/docs/installation)|[Exact Name Matching](/docs/basic-usage/exact-name-matching)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

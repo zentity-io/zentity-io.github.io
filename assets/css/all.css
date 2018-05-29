@@ -7,8 +7,8 @@
 /*# sourceMappingURL=bootstrap.min.css.map */
 
 /* https://github.com/richleland/pygments-css */
-.highlight .hll { background-color: #f6f9fc; }
-.highlight  { background: #f6f9fc; margin-bottom: 1rem; padding: 0.5em; }
+.highlight .hll { background-color: #f6f8fa; }
+.highlight  { background: #f6f8fa; margin-bottom: 1rem; max-height: 480px; overflow: auto; padding: 0.5em; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
@@ -96,7 +96,7 @@ body {
   animation: fadein ease-in .5s;
 }
 #bottom {
-  background: #f6f9fc;
+  background: #f6f8fa;
   margin: 2rem 1rem 1rem 1rem;
   padding: 1rem 0;
 }
@@ -236,6 +236,7 @@ blockquote {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
 /*!
  * Web Fonts from Fontspring.com
  *

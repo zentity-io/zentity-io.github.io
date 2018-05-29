@@ -1,11 +1,28 @@
 [Home](/) / [Documentation](/docs) / [Basic Usage](/docs/basic-usage) / Exact Name Matching
 
 
+#### <a name="contents"></a>Basic Usage Tutorials
+
+This tutorial is part of a series to help you learn and perform the basic functions of zentity. Each tutorial adds a little more
+sophistication to the prior tutorials, so you can start simple and learn the more advanced features over time.
+
+1. **Exact Name Matching** *&#8592; You are here.*
+2. [Robust Name Matching](/docs/basic-usage/robust-name-matching)
+3. [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
+4. [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
+5. [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
+6. [Cross Cluster Resolution](/docs/basic-usage/cross-cluster-resolution)
+
+---
+
+
 # <a name="exact-name-matching"></a>Exact Name Matching
 
-This tutorial will guide you through one the simplest forms of entity resolution &ndash; exact name matching.
+This tutorial will guide you through one the simplest forms of entity resolution &ndash; exact name matching. You will learn
+how to create an entity model and how to resolve an entity using a single attribute mapped to a single field of a single index.
+This is meant to introduce you to the most basic functions of entity resolution with zentity.
 
-The goal of this tutorial is to show you the simplest thing you can do with zentity. Each subsequent tutorial will add a little more complexity so you can learn how to write more robust entity models.
+Let's dive in.
 
 > **Important**
 > 
@@ -34,12 +51,15 @@ DELETE .zentity-tutorial-*
 
 Now create the index for this tutorial.
 
+<span class="code-overflow"></span>
 ```javascript
 PUT .zentity-tutorial-index
 {
   "settings": {
-    "number_of_shards": 1,
-    "number_of_replicas": 0
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    }
   },
   "mapping": {
     "doc": {
@@ -264,12 +284,26 @@ The results will look like this:
 ...
 ```
 
-As expected, we retrieved 
+As expected, we retrieved ...
 
 
 ## <a name="conclusion"></a>Conclusion
 
 Congratulations! You just did one of the simplest forms of entity resolution &ndash; exact name matching.
 
-Let's make things a little more interesting. The next tutorial will show [robust name matching](/docs/basic-usage/robust-name-matching)
-using multiple forms of a name to challenges such as typos or phonetic variance.
+Not too exciting yet, right? Let's make things a little more interesting.
+
+The next tutorial will show [robust name matching](/docs/basic-usage/robust-name-matching) using multiple forms
+of a name to challenges such as typos or phonetic variance. You will resolve an entity using a single attribute
+matched to multiple fields of a single index, rather than a single field of a single index.
+
+
+&nbsp;
+
+----
+
+#### Continue Reading
+
+|&#8249;|[Basic Usage](/docs/basic-usage)|[Robust Name Matching](/docs/basic-usage/robust-name-matching)|&#8250;|
+|:---|:---|---:|---:|
+|    |    |    |    |
