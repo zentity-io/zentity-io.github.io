@@ -124,6 +124,30 @@ PAGES = {
             "content": markdown("/docs/basic-usage/robust-name-matching.md")
         }
     },
+    "/docs/basic-usage/multiple-attribute-resolution": {
+        "vars": {
+            "title": "Multiple Attribute Resolution",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+            "content": markdown("/docs/basic-usage/multiple-attribute-resolution.md")
+        }
+    },
+    "/docs/basic-usage/multiple-resolver-resolution": {
+        "vars": {
+            "title": "Multiple Resolver Resolution",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+            "content": markdown("/docs/basic-usage/multiple-resolver-resolution.md")
+        }
+    },
+    "/docs/basic-usage/cross-index-resolution": {
+        "vars": {
+            "title": "Cross Index Resolution",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+            "content": markdown("/docs/basic-usage/cross-index-resolution.md")
+        }
+    },
     "/docs/entity-models": {
         "vars": {
             "title": "Entity Models",

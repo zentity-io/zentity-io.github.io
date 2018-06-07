@@ -14,7 +14,6 @@
     - [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
     - [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
     - [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
-    - [Cross Cluster Resolution](/docs/basic-usage/cross-cluster-resolution)
 - Advanced Usage
     - Matcher Parameters
     - Date Attributes

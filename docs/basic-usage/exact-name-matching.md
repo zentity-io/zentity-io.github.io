@@ -11,7 +11,6 @@ sophistication to the prior tutorials, so you can start simple and learn the mor
 3. [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
 4. [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
 5. [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
-6. [Cross Cluster Resolution](/docs/basic-usage/cross-cluster-resolution)
 
 ---
 
@@ -35,7 +34,8 @@ Let's dive in.
 
 ### <a name="open-kibana-console-ui"></a>1.1. Open the Kibana Console UI
 
-The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html) makes it easy to submit requests to Elasticsearch and read responses.
+The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html) makes it easy to
+submit requests to Elasticsearch and read responses.
 
 
 ### <a name="delete-old-tutorial-indices"></a>1.2. Delete any old tutorial indices
@@ -128,7 +128,8 @@ Here's what the tutorial data looks like.
 
 ## <a name="create-entity-model"></a>2. Create the entity model
 
-Let's use the [Models API](/docs/rest-apis/models-api) to create the entity model below. We'll review each part of the model in depth.
+Let's use the [Models API](/docs/rest-apis/models-api) to create the entity model below. We'll review
+each part of the model in depth.
 
 ```javascript
 PUT _zentity/models/zentity-tutorial-person
@@ -180,7 +181,8 @@ We defined a single attribute called `"name"` as shown in this section:
 }
 ```
 
-The default type of any attribute is `"string"`. You can exclude `"type"` to simplify the entity model like this:
+The default type of any attribute is `"string"`. You can exclude `"type"` to simplify the entity model
+like this:
 
 ```javascript
 {
@@ -205,11 +207,18 @@ We defined a single resolver called `"name_only"` as shown in this section:
 }
 ```
 
-This resolver requires only the `"name"` attribute to resolve an entity. So if you try to resolve a person named "Alice," then every document with the name "Alice" will be grouped with her. Obviously this would raise many false positives in the real world. We're doing this as a gentle introduction to the concept of entity resolution.
+This resolver requires only the `"name"` attribute to resolve an entity. So if you try to resolve a
+person named "Alice," then every document with the name "Alice" will be grouped with her. Obviously
+this would raise many false positives in the real world. We're doing this as a gentle introduction to
+the concept of entity resolution.
 
 > **Tip**
 > 
-> Most resolvers should use multiple attributes to resolve an entity to minimize false positives. Many people share the same name, but few people share the same name and address. Consider all the combinations of attributes that could resolve an entity with confidence, and then create a resolver for each combination. [Other tutorials](/docs/basic-usage) explore how to use resolvers with multiple attributes.
+> Most resolvers should use multiple attributes to resolve an entity to minimize false positives.
+Many people share the same name, but few people share the same name and address. Consider all the
+combinations of attributes that could resolve an entity with confidence, and then create a resolver
+for each combination. [Other tutorials](/docs/basic-usage) explore how to use resolvers with
+multiple attributes.
 
 
 ### <a name="review-matchers"></a>2.3. Review the matchers
@@ -240,7 +249,9 @@ This matcher uses a simple [`match` clause](https://www.elastic.co/guide/en/elas
 }
 ```
 
-The `"{{ field }}"` and `"{{ value }}"` strings are special variables. Every matcher should have these variables defined somewhere in the `"clause"` field. zentity will replace the `"{{ field }}"` variable with the name of an index field and the `"{{ value }}"` variable with the value of an attribute.
+The `"{{ field }}"` and `"{{ value }}"` strings are special variables. Every matcher should have these
+variables defined somewhere in the `"clause"` field. zentity will replace the `"{{ field }}"` variable
+with the name of an index field and the `"{{ value }}"` variable with the value of an attribute.
 
 
 ### <a name="review-indices"></a>2.4. Review the indices

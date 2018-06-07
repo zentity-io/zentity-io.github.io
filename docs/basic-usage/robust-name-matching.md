@@ -11,14 +11,13 @@ sophistication to the prior tutorials, so you can start simple and learn the mor
 3. [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
 4. [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
 5. [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
-6. [Cross Cluster Resolution](/docs/basic-usage/cross-cluster-resolution)
 
 ---
 
 
 # <a name="robust-name-matching"></a>Robust Name Matching
 
-This tutorial adds a little more sophistication to the last tutorial on [exact name matching](/docs/basic-usage/exact-name-matching).
+This tutorial adds a little more sophistication to the prior tutorial on [exact name matching](/docs/basic-usage/exact-name-matching).
 This time you will map a single attribute to *multiple fields* of a single index.
 
 Using a one-to-many relationship between attributes and index fields, you can compare the value of an attribute to multiple representations
@@ -94,24 +93,24 @@ PUT .zentity-tutorial-index
       "number_of_replicas": 0,
       "analysis": {
         "analyzer": {
-          "clean": {
+          "clean_analyzer": {
             "tokenizer": "standard",
             "filter": [
               "icu_normalizer",
               "icu_folding"
             ]
           },
-          "phonetic": {
+          "phonetic_analyzer": {
             "tokenizer": "standard",
             "filter": [
               "icu_normalizer",
               "icu_folding",
-              "phonetic"
+              "phonetic_filter"
             ]
           }
         },
         "filter": {
-          "phonetic": {
+          "phonetic_filter": {
             "type": "phonetic",
             "encoder": "nysiis"
           }
@@ -170,8 +169,101 @@ PUT .zentity-tutorial-index
 Notice that this index defines multiple fields under the `user` field. There are three fields we can query for the `user`:
 
 - `user` uses the standard analyzer.
-- `user.clean` uses a custom `clean` analyzer.
-- `user.phonetic` uses a custom `phonetic` analyzer.
+- `user.clean` uses a custom analyzer called `clean_analyzer`.
+- `user.phonetic` uses a custom analyzer called `phonetic_analyzer`.
+
+We defined `clean_analyzer` and `phonetic_analyzer` in the settings of the index. `clean_analyzer` uses the `icu_normalizer` and `icu_folding`
+filters to convert any accented Unicode characters to their ASCII equivalent and normalize the casing of the characters. `phonetic_analyzer`
+does the same thing, and then it transforms the tokens of the value into their phonetic representations using the `nysiis` phonetic encoding
+algorithm.
+
+> **Tip**
+> 
+> Analyzers are powerful tools to improve the accuracy of entity resolution. But they come with costs. The first cost is performance. Whenever
+> a query is submitting to Elasticsearch, the analyzers will process the input values. zentity can submit many queries in a single entity resolution job,
+> and the overall performance of a job can degrade significantly if you use regular expressions or other compute intensive filters in your analyzers.
+> The second cost is flexibility. You can't change the analyzers of fields without reindexing the data to an index with different analyzers. So you
+> should put careful thought into your analyzers and test them before using them in production.
+
+Let's see how these analyzers produce different tokens for the same value.
+
+#### Example of `clean_analyzer`
+
+**Request**
+
+```javascript
+POST .zentity-tutorial-index/_analyze
+{ "text": "Alice Jones-Smith", "analyzer": "clean" }
+```
+
+**Response**
+
+```javascript
+{
+  "tokens": [
+    {
+      "token": "alice",
+      "start_offset": 0,
+      "end_offset": 5,
+      "type": "<ALPHANUM>",
+      "position": 0
+    },
+    {
+      "token": "jones",
+      "start_offset": 6,
+      "end_offset": 11,
+      "type": "<ALPHANUM>",
+      "position": 1
+    },
+    {
+      "token": "smith",
+      "start_offset": 12,
+      "end_offset": 17,
+      "type": "<ALPHANUM>",
+      "position": 2
+    }
+  ]
+}
+```
+
+#### Example of `phonetic_analyzer`
+
+**Request**
+
+```javascript
+POST .zentity-tutorial-index/_analyze
+{ "text": "Alice Jones-Smith", "analyzer": "phonetic" }
+```
+
+**Response**
+
+```javascript
+{
+  "tokens": [
+    {
+      "token": "ALAC",
+      "start_offset": 0,
+      "end_offset": 5,
+      "type": "<ALPHANUM>",
+      "position": 0
+    },
+    {
+      "token": "JAN",
+      "start_offset": 6,
+      "end_offset": 11,
+      "type": "<ALPHANUM>",
+      "position": 1
+    },
+    {
+      "token": "SNAT",
+      "start_offset": 12,
+      "end_offset": 17,
+      "type": "<ALPHANUM>",
+      "position": 2
+    }
+  ]
+}
+```
 
 
 ### <a name="load-tutorial-data"></a>1.5. Load the tutorial data
@@ -288,7 +380,9 @@ This is identical to the `"resolvers"` field of the entity model in the [exact n
 
 > **Tip**
 > 
-> Most resolvers should use multiple attributes to resolve an entity to minimize false positives. Many people share the same name, but few people share the same name and address. Consider all the combinations of attributes that could resolve an entity with confidence, and then create a resolver for each combination. [Other tutorials](/docs/basic-usage) explore how to use resolvers with multiple attributes.
+> Most resolvers should use multiple attributes to resolve an entity to minimize false positives. Many people share the same name,
+but few people share the same name and address. Consider all the combinations of attributes that could resolve an entity with confidence,
+and then create a resolver for each combination. [Other tutorials](/docs/basic-usage) explore how to use resolvers with multiple attributes.
 
 
 ### <a name="review-matchers"></a>2.3. Review the matchers
@@ -305,7 +399,7 @@ We defined two matchers called `"simple"` and `"fuzzy"` as shown in this section
         }
       }
     },
-    "simple": {
+    "fuzzy": {
       "clause": {
         "match": {
           "{{ field }}": {
@@ -344,7 +438,9 @@ to perform this match.
 }
 ```
 
-The `"{{ field }}"` and `"{{ value }}"` strings are special variables. Every matcher should have these variables defined somewhere in the `"clause"` field. zentity will replace the `"{{ field }}"` variable with the name of an index field and the `"{{ value }}"` variable with the value of an attribute.
+The `"{{ field }}"` and `"{{ value }}"` strings are special variables. Every matcher should have these variables defined somewhere
+in the `"clause"` field. zentity will replace the `"{{ field }}"` variable with the name of an index field and the `"{{ value }}"`
+variable with the value of an attribute.
 
 
 ### <a name="review-indices"></a>2.4. Review the indices
