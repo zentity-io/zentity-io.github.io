@@ -3,28 +3,30 @@
 
 # <a name="documentation"></a>Documentation
 
-
-## <a name="getting-started"></a>Getting Started
-
-- Overview
-- [Installation](/docs/installation)
-- [Basic Usage](/docs/basic-usage)
-    - [Exact Name Matching](/docs/basic-usage/exact-name-matching)
-    - [Robust Name Matching](/docs/basic-usage/robust-name-matching)
-    - [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
-    - [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
-    - [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
-- Advanced Usage
-    - Matcher Parameters
-    - Date Attributes
-    - Payload Attributes
-    - Resolution Scope
-- Examples
-    - U.S. Health Care Providers
-    - HTTP Sessions
+[comment]: # ( )
+[comment]: # ( ## <a name="getting-started"></a>Getting Started)
+[comment]: # ( )
+[comment]: # ( - Overview)
+[comment]: # ( - [Installation](/docs/installation))
+[comment]: # ( - [Basic Usage](/docs/basic-usage))
+[comment]: # (     - [Exact Name Matching](/docs/basic-usage/exact-name-matching))
+[comment]: # (     - [Robust Name Matching](/docs/basic-usage/robust-name-matching))
+[comment]: # (     - [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution))
+[comment]: # (     - [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution))
+[comment]: # (     - [Cross Index Resolution](/docs/basic-usage/cross-index-resolution))
+[comment]: # ( - Advanced Usage)
+[comment]: # (     - Matcher Parameters)
+[comment]: # (     - Date Attributes)
+[comment]: # (     - Payload Attributes)
+[comment]: # (     - Resolution Scope)
+[comment]: # ( - Examples)
+[comment]: # (     - U.S. Health Care Providers)
+[comment]: # (     - HTTP Sessions)
 
 ## <a name="reference"></a>Reference
 
+[comment]: # (Remove "Basic Usage" below after the tutorials are implemented)
+- [Basic Usage](/docs/basic-usage)
 - [Entity Models](/docs/entity-models)
     - [Entity Model Specification](/docs/entity-models/specification)
     - [Entity Modeling Tips](/docs/entity-models/tips)

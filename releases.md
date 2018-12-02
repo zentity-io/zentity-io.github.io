@@ -7,7 +7,23 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.0.0">zentity-1.0.0 (latest)</a>
+## <a name="zentity-1.0.1">zentity-1.0.1 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.0.1-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.0.1-elasticsearch-6.5.0.zip)
+
+### Release notes
+
+- Plugin now supports Elasticsearch 6.5.x, and compatibility with older versions of Elasticsearch
+will no longer be maintained. Updated painless script for formatting dates.
+([56b94b7](https://github.com/zentity-io/zentity/commit/56b94b7dfa53e3465b9a875fb45d0c2ec4580327))
+
+
+## <a name="zentity-1.0.0">zentity-1.0.0</a>
 
 ### Download
 

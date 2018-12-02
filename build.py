@@ -1,4 +1,5 @@
 # Standard packages
+import binascii
 import codecs
 import copy
 import errno
@@ -31,16 +32,17 @@ class ZentityRenderer(mistune.Renderer):
         if not lang:
             return "\n<pre><code>%s</code></pre>\n" % mistune.escape(code)
         lexer = get_lexer_by_name(lang, stripall=True)
+        id = "a%s" % binascii.hexlify(os.urandom(8))
         formatter = html.HtmlFormatter()
         formatted = highlight(code, lexer, formatter)
         formatted = """
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link" onclick="$(this).siblings('.highlight').select();document.execCommand('copy');">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#%s">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          %s
+          <span id="%s">%s</span>
         </div>
-        """ % formatted
+        """ % ( id, id, formatted )
         return formatted
         
     def link(self, link, title, text):
