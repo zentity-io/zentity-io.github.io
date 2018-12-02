@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=444468777"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=125445967"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=466040883"></script>
+    </script><script src="/js/all.js?id=363164653"></script>
   </head>
   <body>
     <div id="app" >
@@ -60,8 +60,13 @@
         </div></div>
       <div id="main" class="content">
         <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/entity-models">Entity Models</a> / Specification</p>
-<h1><a name="specification">Entity Model Specification</a></h1>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<h1><a name="specification"></a>Entity Model Specification</h1>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac9e69c721b393cdc">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="ac9e69c721b393cdc"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_TYPE</span><span class="p">,</span>
@@ -105,7 +110,9 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>Entity models are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
+</span>
+        </div>
+        <p>Entity models are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
 (e.g. <code>"attributes"</code>) are constant fields, uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable fields or values,
 and elipses (<code>...</code>) are optional repetitions of the preceding field or value.</p>
 <p>An entity model has four required objects: <strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a></strong>, <strong><a href="#resolvers" onclick="to(window.location.pathname + '#resolvers', 'internal');"><code>"resolvers"</code></a></strong>,
@@ -113,7 +120,12 @@ and elipses (<code>...</code>) are optional repetitions of the preceding field o
 Optional elements are noted in the descriptions of each element listed on this page.</p>
 <h2><a name="attributes"></a><code>"attributes"</code></h2>
 <p><strong>Model</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3cdc2b841f746d01">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a3cdc2b841f746d01"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_TYPE</span><span class="p">,</span>
@@ -126,8 +138,15 @@ Optional elements are noted in the descriptions of each element listed on this p
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+</span>
+        </div>
+        <p><strong>Example</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad8802d2bb70f2e9a">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="ad8802d2bb70f2e9a"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
@@ -159,7 +178,9 @@ Optional elements are noted in the descriptions of each element listed on this p
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>Attributes are elements that can assist the identification and resolution of entities. For example, some common
+</span>
+        </div>
+        <p>Attributes are elements that can assist the identification and resolution of entities. For example, some common
 attributes of a person include name, date of birth, and phone number. Each attribute has its own particular data
 qualities and purposes in the real world. Therefore, zentity matches the values of each attribute using logic that
 is distinct to each attribute.</p>
@@ -225,7 +246,12 @@ Date values are queried and returned in the specified format. This is both usefu
 across indices that have disparate date formats.</p>
 <h2><a name="resolvers"></a><code>"resolvers"</code></h2>
 <p><strong>Model</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7622dca3a0e52435">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a7622dca3a0e52435"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">RESOLVER_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -237,8 +263,15 @@ across indices that have disparate date formats.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+</span>
+        </div>
+        <p><strong>Example</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1e52f0db5044b0d1">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a1e52f0db5044b0d1"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_street_city_state&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -273,7 +306,9 @@ across indices that have disparate date formats.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>Resolvers are combinations of attributes that imply a resolution. For example, you might decide to resolve entities
+</span>
+        </div>
+        <p>Resolvers are combinations of attributes that imply a resolution. For example, you might decide to resolve entities
 that share matching values for <code>"name"</code> and <code>"dob"</code> or <code>"name"</code> and <code>"phone"</code>. You can create a resolver for both
 combinations of attributes. Then any documents whose values share either a matching <code>"name"</code> and <code>"dob"</code> or  <code>"name"</code>
 and <code>"phone"</code> will resolve to the same entity.</p>
@@ -308,7 +343,12 @@ then the resolver will not be used in any resolution jobs.</p>
 </ul>
 <h2><a name="matchers"></a><code>"matchers"</code></h2>
 <p><strong>Model</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae466092276b22613">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="ae466092276b22613"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">MATCHER_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="nx">MATCHER_CLAUSE</span><span class="p">,</span>
@@ -321,8 +361,15 @@ then the resolver will not be used in any resolution jobs.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+</span>
+        </div>
+        <p><strong>Example</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8892df7561d033de">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a8892df7561d033de"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exact_matcher&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -369,7 +416,9 @@ then the resolver will not be used in any resolution jobs.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<h3><a name="matchers.MATCHER_NAME"></a><code>"matchers".MATCHER_NAME</code></h3>
+</span>
+        </div>
+        <h3><a name="matchers.MATCHER_NAME"></a><code>"matchers".MATCHER_NAME</code></h3>
 <p>A field with the name of a distinct matcher. The value of the field is an object that contains metadata about the
 matcher.</p>
 <p>A matcher is a templated clause of a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html', 'outbound');" class="external"><code>"bool"</code> query</a>
@@ -413,7 +462,12 @@ will be serialized as a string when passed to the matcher clause. The value is o
 </ul>
 <h2><a name="indices"></a><code>"indices"</code></h2>
 <p><strong>Model</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af5ee5c44af6c7c16">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="af5ee5c44af6c7c16"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">INDEX_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -428,8 +482,15 @@ will be serialized as a string when passed to the matcher clause. The value is o
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+</span>
+        </div>
+        <p><strong>Example</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0ca19117705f6170">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a0ca19117705f6170"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -482,7 +543,9 @@ will be serialized as a string when passed to the matcher clause. The value is o
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>Different indices in Elasticsearch might have data that can be matched as attributes, but each index might use slightly
+</span>
+        </div>
+        <p>Different indices in Elasticsearch might have data that can be matched as attributes, but each index might use slightly
 different field names or data types for the same data. Therefore, zentity uses a map to translate the different field
 names to the attributes of our entity model.</p>
 <p>The entity model maps attributes and matchers to index fields. Remember how each attribute can be matched in different ways,
@@ -525,20 +588,34 @@ of other resolvers.</p>
 <p>Let's illustrate how index fields relate to matchers and attributes during a resolution job. Assume you are resolving
 an entity with an email address of <code>"user@example.net"</code> and one of the indices has an field name of <code>"email.keyword"</code>.
 And assume that the index field is mapped to the matcher clause below:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a47fd392eefddacae">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a47fd392eefddacae"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>The final clause will look like this:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+</span>
+        </div>
+        <p>The final clause will look like this:</p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1d25174d9bd94312">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a1d25174d9bd94312"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;email.keyword&quot;</span><span class="o">:</span> <span class="s2">&quot;user@example.net&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>The <code>"matcher"</code> field is optional. The index field won't be queried if the <code>"matcher"</code> field is unspecified.
+</span>
+        </div>
+        <p>The <code>"matcher"</code> field is optional. The index field won't be queried if the <code>"matcher"</code> field is unspecified.
 There are valid reasons to map an index field only an attribute and not a matcher. It allows the value of index field
 to be returned as the <code>"attribute"</code> if the document is matched by other resolvers. For example, an attribute for
 <code>"salary"</code> might not be useful in identifying and resolving entities, but it could be useful to return salary data
@@ -586,4 +663,5 @@ from disparate indices under a field with a common name. These are sometimes cal
       </div>
     </div>
   </body>
+  <script>$(document).ready(function(){ new ClipboardJS('.copy'); });</script>
 </html>

@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=878799592"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=345724552"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=196302098"></script>
+    </script><script src="/js/all.js?id=757782176"></script>
   </head>
   <body>
     <div id="app" >
@@ -60,42 +60,49 @@
         </div></div>
       <div id="main" class="content">
         <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / Installation</p>
-<h1><a name="installation">Installation</a></h1>
-<h2><a name="install-elasticsearch">Step 1. Install Elasticsearch</a></h2>
+<h1><a name="installation"></a>Installation</h1>
+<h2><a name="install-elasticsearch"></a>Step 1. Install Elasticsearch</h2>
 <p>Download and install: <a href="https://www.elastic.co/downloads/elasticsearch" onclick="to('https://www.elastic.co/downloads/elasticsearch', 'outbound');" class="external">https://www.elastic.co/downloads/elasticsearch</a></p>
-<h2><a name="install-zentity">Step 2. Install zentity</a></h2>
+<h2><a name="install-zentity"></a>Step 2. Install zentity</h2>
 <p>Once you have installed Elasticsearch, you can install zentity from a remote URL or a local file.</p>
-<h3><a name="install-zentity-remote-url">Install from remote URL</a></h3>
+<h3><a name="install-zentity-remote-url"></a>Install from remote URL</h3>
 <ol>
 <li>Browse the <a href="/releases">releases</a>.</li>
 <li>Find a release that matches your version of Elasticsearch. Copy the name of the .zip file.</li>
 <li>Install the plugin using the <code>elasticsearch-plugin</code> script that comes with Elasticsearch.</li>
 </ol>
 <p>Example:</p>
-<p><code>elasticsearch-plugin install https://zentity.io/releases/zentity-1.0.0-elasticsearch-6.2.4.zip</code></p>
-<h3><a name="install-zentity-local-file">Install from local file</a></h3>
+<p><code>elasticsearch-plugin install https://zentity.io/releases/zentity-1.0.1-elasticsearch-6.5.1.zip</code></p>
+<h3><a name="install-zentity-local-file"></a>Install from local file</h3>
 <ol>
 <li>Browse the <a href="/releases">releases</a>.</li>
 <li>Find a release that matches your version of Elasticsearch. Download the .zip file.</li>
 <li>Install the plugin using the <code>elasticsearch-plugin</code> script that comes with Elasticsearch.</li>
 </ol>
 <p>Example:</p>
-<p><code>elasticsearch-plugin install file:///path/to/zentity-1.0.0-elasticsearch-6.2.4.zip</code></p>
-<h2><a name="verify-installation">Step 3. Verify installation</a></h2>
+<p><code>elasticsearch-plugin install file:///path/to/zentity-1.0.1-elasticsearch-6.5.1.zip</code></p>
+<h2><a name="verify-installation"></a>Step 3. Verify installation</h2>
 <p><strong>Example Request</strong></p>
 <p><code>GET http://localhost:9200/_zentity</code></p>
 <p><strong>Example Response</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#adbff4fd8da42bc61">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="adbff4fd8da42bc61"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity&quot;</span><span class="p">,</span>
   <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Real-time entity resolution for Elasticsearch.&quot;</span><span class="p">,</span>
   <span class="s2">&quot;website&quot;</span><span class="o">:</span> <span class="s2">&quot;http://zentity.io&quot;</span><span class="p">,</span>
   <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;zentity&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;elasticsearch&quot;</span><span class="o">:</span> <span class="s2">&quot;6.2.4&quot;</span>
+    <span class="s2">&quot;zentity&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;elasticsearch&quot;</span><span class="o">:</span> <span class="s2">&quot;6.5.1&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<h2><a name="installation-elastic-cloud">Installation on Elastic Cloud</a></h2>
+</span>
+        </div>
+        <h2><a name="installation-elastic-cloud"></a>Installation on Elastic Cloud</h2>
 <p><a href="https://www.elastic.co/cloud" onclick="to('https://www.elastic.co/cloud', 'outbound');" class="external">Elastic Cloud</a> is a hosted Elasticsearch service offered by Elastic,
 the creators of Elasticsearch and the Elastic Stack. Elastic Cloud supports the usage of custom
 Elasticsearch plugins such as zentity.</p>
@@ -153,4 +160,5 @@ from the list of plugins, which can help you index cleaner representations of th
       </div>
     </div>
   </body>
+  <script>$(document).ready(function(){ new ClipboardJS('.copy'); });</script>
 </html>

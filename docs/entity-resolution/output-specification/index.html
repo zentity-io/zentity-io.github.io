@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=341380873"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=354475559"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=336934919"></script>
+    </script><script src="/js/all.js?id=930570216"></script>
   </head>
   <body>
     <div id="app" >
@@ -60,8 +60,13 @@
         </div></div>
       <div id="main" class="content">
         <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/entity-resolution">Entity Resolution</a> / Output Specification</p>
-<h1><a name="output">Entity Resolution Output Specification</a></h1>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<h1><a name="output"></a>Entity Resolution Output Specification</h1>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a256c5102e9be9fdc">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a256c5102e9be9fdc"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="nx">TOOK_IN_MILLIS</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="nx">HITS_TOTAL</span><span class="p">,</span>
@@ -108,7 +113,9 @@
   <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
-<p>Entity resolution outputs are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
+</span>
+        </div>
+        <p>Entity resolution outputs are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
 (e.g. <code>"attributes"</code>) are constant fields, uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable fields or values,
 and elipses (<code>...</code>) are optional repetitions of the preceding field or value.</p>
 <p>An entity resolution output is the response to a <a href="/docs/rest-apis/resolution-api">resolution request</a>. Its structure is
@@ -161,7 +168,12 @@ are normalized into a format that will be common across documents from disparate
 <h3><a name="queries.resolvers.tree"></a><code>"queries"."resolvers"."tree"</code></h3>
 <p>A recursive object containing the attributes of the resolvers as they were constructed in the query.</p>
 <p>Different resolvers can share many of the same attributes. Consider the following:</p>
-<div class="highlight"><pre><span></span><span class="p">[</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a500df3142ee527f0">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a500df3142ee527f0"><div class="highlight"><pre><span></span><span class="p">[</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span> <span class="p">],</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;zip&quot;</span> <span class="p">],</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;dob&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span> <span class="p">],</span>
@@ -170,11 +182,18 @@ are normalized into a format that will be common across documents from disparate
   <span class="p">[</span> <span class="s2">&quot;id&quot;</span> <span class="p">],</span>
 <span class="p">]</span>
 </pre></div>
-<p>Many of these attributes (<code>"name"</code>, <code>"street"</code>, <code>"state"</code>) are shared by multiple resolvers.
+</span>
+        </div>
+        <p>Many of these attributes (<code>"name"</code>, <code>"street"</code>, <code>"state"</code>) are shared by multiple resolvers.
 It would be highly inefficient to populate the values of each attribute multiple times in a single query.
 zentity optimizes queries by determining how the attributes can be nested to minimize redundant clauses.</p>
 <p>Here's the effect of the optimization:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac7dd60b890e98388">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="ac7dd60b890e98388"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -193,7 +212,9 @@ zentity optimizes queries by determining how the attributes can be nested to min
   <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="p">{}</span>
 <span class="p">}</span>
 </pre></div>
-<p>In this example, zentity eliminates four redundant copies of <code>"name"</code> values and one redundant copy of <code>"street"</code> values.
+</span>
+        </div>
+        <p>In this example, zentity eliminates four redundant copies of <code>"name"</code> values and one redundant copy of <code>"street"</code> values.
 The clauses of attributes at the same level of the hierarchy are combined with their siblings using <code>OR</code>, while the clauses
 of child attributes are combined with their parents using <code>AND</code>.</p>
 <h3><a name="queries.search"></a><code>"queries"."search"</code></h3>
@@ -243,4 +264,5 @@ query profile data will be included in this response field.</p>
       </div>
     </div>
   </body>
+  <script>$(document).ready(function(){ new ClipboardJS('.copy'); });</script>
 </html>

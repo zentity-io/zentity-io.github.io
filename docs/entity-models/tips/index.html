@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=945689311"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=301052248"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=190682233"></script>
+    </script><script src="/js/all.js?id=508429794"></script>
   </head>
   <body>
     <div id="app" >
@@ -60,7 +60,7 @@
         </div></div>
       <div id="main" class="content">
         <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/entity-models">Entity Models</a> / Entity Modeling Tips</p>
-<h1><a name="tips">Entity Modeling Tips</a></h1>
+<h1><a name="tips"></a>Entity Modeling Tips</h1>
 <p><strong>1. Become familiar with your data.</strong></p>
 <p>The real world has countless entity types and ways of resolving them. Start with what's relevant to your data. Look at
 your data and understand the qualities of the fields and values within them. Are the values consistent? Are the values
@@ -92,7 +92,12 @@ You might use the <code>phonetic</code> matcher on indexed name fields that used
 which is already a loose match that wouldn't benefit from the <code>"fuzziness"</code> field and might even generate more false
 positives if you did use it.</p>
 <p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6777b5a2141cb60f">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a6777b5a2141cb60f"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -117,7 +122,9 @@ positives if you did use it.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p><strong>4. Determine which combinations attributes lead to resolution.</strong></p>
+</span>
+        </div>
+        <p><strong>4. Determine which combinations attributes lead to resolution.</strong></p>
 <p>Usually you don't want to rely on a single attribute to resolve an entity. Imagine how many false positives you would
 get if you tried to resolve a person by a name, like John Smith! Even attributes like Social Security Numbers (SSNs)
 can be fraught with errors such as typos or bogus numbers, and there are valid reasons why a person might change an
@@ -127,7 +134,12 @@ Each combination represents a minimum amount of matching attributes that you wou
 confidence. Below is an example that shows how you might combine the attributes <code>name</code>, <code>dob</code>, <code>street</code>, <code>city</code>,
 <code>state</code>, <code>zip</code>, <code>email</code>, <code>phone</code> to resolve a <code>person</code> entity type.</p>
 <p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6bc7facb7f58a0c8">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a6bc7facb7f58a0c8"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_dob_city_state&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -162,7 +174,9 @@ confidence. Below is an example that shows how you might combine the attributes 
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>What combinations of attributes are right for you? That depends entirely on your data and your tolerance to errors.
+</span>
+        </div>
+        <p>What combinations of attributes are right for you? That depends entirely on your data and your tolerance to errors.
 You will need to experiment do determine what combinations of attributes yield satisfactory error rates on your
 particular data sets.</p>
 <p><strong>5. Use custom analyzers to index data in clever ways to improve accuracy.</strong></p>
@@ -216,4 +230,5 @@ the data.</p>
       </div>
     </div>
   </body>
+  <script>$(document).ready(function(){ new ClipboardJS('.copy'); });</script>
 </html>

@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=403722269"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=775459809"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=900017851"></script>
+    </script><script src="/js/all.js?id=858103606"></script>
   </head>
   <body>
     <div id="app" >
@@ -60,9 +60,9 @@
         </div></div>
       <div id="main" class="content">
         <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / Security</p>
-<h1><a name="security">Security</a></h1>
+<h1><a name="security"></a>Security</h1>
 <p>As an API extension plugin for Elasticsearch, zentity inherits the security settings from the cluster on which it is installed.</p>
-<h2><a name="x-pack-security">X-Pack Security</a></h2>
+<h2><a name="x-pack-security"></a>X-Pack Security</h2>
 <p><a href="https://www.elastic.co/products/x-pack" onclick="to('https://www.elastic.co/products/x-pack', 'outbound');" class="external">X-Pack</a> is a commercial plugin from Elastic, the creators of Elasticsearch and the
 Elastic Stack. <a href="https://www.elastic.co/products/x-pack/security" onclick="to('https://www.elastic.co/products/x-pack/security', 'outbound');" class="external">X-Pack Security</a> is a subset of the plugin that secures an
 Elaticsearch cluster by encrypting communications with TLS and enforcing authentication and role-based access control for
@@ -70,7 +70,12 @@ clients communicating with the cluster. Likewise, communications between the clu
 be encrypted and any interactions with zentity must be authenticated and authorized.</p>
 <p>Here is an example of a response from the cluster when an unauthorized user requests <code>GET _zentity/models/{entity_model}</code>
 to retrieve an entity model:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aacf8103bedbc625d">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="aacf8103bedbc625d"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;root_cause&quot;</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
@@ -84,12 +89,14 @@ to retrieve an entity model:</p>
   <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="mi">403</span>
 <span class="p">}</span>
 </pre></div>
-<p>All unauthorized interactions with zentity will produced an error response similar to the one above.</p>
-<h2><a name="role-configuration">X-Pack Security Role Configuration</a></h2>
+</span>
+        </div>
+        <p>All unauthorized interactions with zentity will produced an error response similar to the one above.</p>
+<h2><a name="role-configuration"></a>X-Pack Security Role Configuration</h2>
 <p>Below are the permission settings that can be configured for a "zentity" role with X-Pack Security.
 Roles can be managed in Kibana at <code>https://KIBANA_HOST:KIBANA_PORT/app/kibana#/management/security/roles</code>
 or through the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-roles.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-roles.html', 'outbound');" class="external">Role Management APIs</a>.</p>
-<h3><a name="setup-api-permissions">Setup API Permissions</a></h3>
+<h3><a name="setup-api-permissions"></a>Setup API Permissions</h3>
 <p>These permission settings apply to the <a href="/docs/rest-apis/setup-api">Setup API</a>.</p>
 <p><strong>Index Privileges</strong></p>
 <ul>
@@ -100,7 +107,7 @@ or through the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/
 <ul>
 <li><code>POST _zentity/_setup</code></li>
 </ul>
-<h3><a name="models-api-permissions">Models API Permissions</a></h3>
+<h3><a name="models-api-permissions"></a>Models API Permissions</h3>
 <p>These permission settings apply to the <a href="/docs/rest-apis/models-api">Models API</a>. A single role can
 be granted any or all of these permissions.</p>
 <h4>Create and update entity models</h4>
@@ -140,7 +147,12 @@ be granted any or all of these permissions.</p>
 index automatically if it does not already exist. With security enabled, the user must have the <code>create_index</code>
 permission for the <code>.zentity-models</code> index to be created automatically. Otherwise the user will receive
 the following error message:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#adc106de7ce796954">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="adc106de7ce796954"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;root_cause&quot;</span><span class="o">:</span> <span class="p">[</span>
       <span class="p">{</span>
@@ -154,14 +166,16 @@ the following error message:</p>
   <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="mi">403</span>
 <span class="p">}</span>
 </pre></div>
-<p>An administrative user should request <code>POST _zentity/_setup</code> to create the index.</p>
-<h3><a name="resolution-api-permissions">Resolution API Permissions</a></h3>
+</span>
+        </div>
+        <p>An administrative user should request <code>POST _zentity/_setup</code> to create the index.</p>
+<h3><a name="resolution-api-permissions"></a>Resolution API Permissions</h3>
 <p>There are no permissions to be configured directly for the <a href="/docs/rest-apis/resolution-api">Resolution API</a>
 endpoints <code>GET _zentity/resolution</code> or <code>GET _zentity/resolution/{entity_type}</code>. These endpoints construct and submit
 search queries using the Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html', 'outbound');" class="external">Search APIs</a>.
 Therefore, permissions must be configured for each index that the user searches with zentity. Users can only perform
 entity resolution if they have the <code>read</code> privilege for every index included in the scope of the request.</p>
-<h2><a name="open-source-elasticsearch">Open Source Elasticsearch</a></h2>
+<h2><a name="open-source-elasticsearch"></a>Open Source Elasticsearch</h2>
 <p>Open source Elasticsearch clusters without an X-Pack Security license do not have any security mechanisms.
 Communications are unencrypted and any user can perform any action on the cluster. Likewise, any user can
 perform any action with zentity in an open source cluster that has not been configured with X-Pack Security.</p>
@@ -204,4 +218,5 @@ perform any action with zentity in an open source cluster that has not been conf
       </div>
     </div>
   </body>
+  <script>$(document).ready(function(){ new ClipboardJS('.copy'); });</script>
 </html>

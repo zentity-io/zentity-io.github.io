@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=332025542"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=970770045"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=559470999"></script>
+    </script><script src="/js/all.js?id=736982583"></script>
   </head>
   <body>
     <div id="app" >
@@ -60,8 +60,13 @@
         </div></div>
       <div id="main" class="content">
         <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/entity-resolution">Entity Resolution</a> / Input Specification</p>
-<h1><a name="input">Entity Resolution Input Specification</a></h1>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<h1><a name="input"></a>Entity Resolution Input Specification</h1>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a32d4376f4da764eb">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a32d4376f4da764eb"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -121,7 +126,9 @@
   <span class="s2">&quot;model&quot;</span><span class="o">:</span> <span class="nx">ENTITY_MODEL</span>
 <span class="p">}</span>
 </pre></div>
-<p>Entity resolution inputs are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
+</span>
+        </div>
+        <p>Entity resolution inputs are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
 (e.g. <code>"attributes"</code>) are constant fields, uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable fields or values,
 and elipses (<code>...</code>) are optional repetitions of the preceding field or value.</p>
 <p>An entity resolution input has two objects where at least one must be present (<strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a></strong> and <strong><a href="#ids" onclick="to(window.location.pathname + '#ids', 'internal');"><code>"ids"</code></a></strong>),
@@ -131,7 +138,12 @@ descriptions of each element listed on this page. Some elements have alternate f
 in the descriptions of each element.</p>
 <h2><a name="attributes"></a><code>"attributes"</code></h2>
 <p><strong>Model</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#afe4a332c5eb0d04b">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="afe4a332c5eb0d04b"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -147,8 +159,15 @@ in the descriptions of each element.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+</span>
+        </div>
+        <p><strong>Example</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8e57f59efeb2a9ef">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a8e57f59efeb2a9ef"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -172,8 +191,15 @@ in the descriptions of each element.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p><strong>Shorthand Model</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+</span>
+        </div>
+        <p><strong>Shorthand Model</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac82a0b3a490786bc">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="ac82a0b3a490786bc"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">[</span>
       <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
@@ -183,8 +209,15 @@ in the descriptions of each element.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p><strong>Shorthand Example</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+</span>
+        </div>
+        <p><strong>Shorthand Example</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0f03115f6c25c16e">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a0f03115f6c25c16e"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span>
       <span class="s2">&quot;Allie Jones&quot;</span><span class="p">,</span>
@@ -196,7 +229,9 @@ in the descriptions of each element.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>Attributes are elements that can assist the identification and resolution of entities. For example, some common
+</span>
+        </div>
+        <p>Attributes are elements that can assist the identification and resolution of entities. For example, some common
 attributes of a person include name, date of birth, and phone number. Each attribute has its own particular data
 qualities and purposes in the real world. Therefore, zentity matches the values of each attribute using logic that
 is distinct to each attribute.</p>
@@ -256,7 +291,12 @@ will be serialized as a string when passed to the matcher clause. The value over
 </ul>
 <h2><a name="ids"></a><code>"ids"</code></h2>
 <p><strong>Model</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa184eb4908d42a58">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="aa184eb4908d42a58"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;ids&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">INDEX_NAME</span><span class="o">:</span> <span class="p">[</span>
       <span class="nx">DOC_ID</span><span class="p">,</span>
@@ -266,8 +306,15 @@ will be serialized as a string when passed to the matcher clause. The value over
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+</span>
+        </div>
+        <p><strong>Example</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a39bbb88f5304e9b7">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a39bbb88f5304e9b7"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;ids&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">[</span>
       <span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
@@ -279,7 +326,9 @@ will be serialized as a string when passed to the matcher clause. The value over
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>The <code>"ids"</code> field allows the first iteration of an entity resolution to begin by selecting one or more documents
+</span>
+        </div>
+        <p>The <code>"ids"</code> field allows the first iteration of an entity resolution to begin by selecting one or more documents
 by _id for one or more indices. Like <code>"attributes"</code>, any document that matches the <code>_id</code> values will be considered
 a match to the entity. Documents are queried by <code>_id</code> only within a given index to prevent collisions in which
 the same <code>_id</code> is present in two or more indices.</p>
@@ -303,7 +352,12 @@ After that, the attributes are obtained from the documents and the job continues
 </ul>
 <h2><a name="scope"></a><code>"scope"</code></h2>
 <p><strong>Model</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6a7422d429512a23">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a6a7422d429512a23"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exclude&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -342,8 +396,15 @@ After that, the attributes are obtained from the documents and the job continues
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+</span>
+        </div>
+        <p><strong>Example</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3ce7b76a9b7d1843">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a3ce7b76a9b7d1843"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exclude&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -376,7 +437,9 @@ After that, the attributes are obtained from the documents and the job continues
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>An optional field that contains an object to limit the scope of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.
+</span>
+        </div>
+        <p>An optional field that contains an object to limit the scope of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.
 Scope can be controlled by <a href="#scope.exclude" onclick="to(window.location.pathname + '#scope.exclude', 'internal');">excluding</a> ("blacklisting") or <a href="#scope.include" onclick="to(window.location.pathname + '#scope.include', 'internal');">including</a> ("whitelisting") attribute values,
 indices, and resolvers.</p>
 <ul>
@@ -527,4 +590,5 @@ in the endpoint of the <a href="/docs/rest-apis/resolution-api">resolution reque
       </div>
     </div>
   </body>
+  <script>$(document).ready(function(){ new ClipboardJS('.copy'); });</script>
 </html>
