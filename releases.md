@@ -7,7 +7,23 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.0.1">zentity-1.0.1 (latest)</a>
+## <a name="zentity-1.0.2">zentity-1.0.2 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.2.zip)
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.0.zip)
+
+### Release notes
+
+- Updated Jackson dependency to resolve security vulnerability CVE-2018-7489.
+([214eee1](https://github.com/zentity-io/zentity/commit/214eee19a734047504a5bee3d6afa48632e06da4))
+
+
+## <a name="zentity-1.0.1">zentity-1.0.1</a>
 
 ### Download
 

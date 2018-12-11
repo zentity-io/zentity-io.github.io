@@ -16,13 +16,13 @@ resolution. It aims to be:
 ## <a name="latest-release">Latest release</a>
 
 
-### zentity-1.0.1
+### zentity-1.0.2
 
 Select the plugin version that matches your version of Elasticsearch:
 
-- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.0.1-elasticsearch-6.5.2.zip)
-- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.0.1-elasticsearch-6.5.1.zip)
-- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.0.1-elasticsearch-6.5.0.zip)
+- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.2.zip)
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.0.zip)
 
 
 ## <a name="quick-start">Quick start</a>
@@ -35,7 +35,7 @@ Once you have installed Elasticsearch, you can install zentity from a remote URL
 
 Example:
 
-`elasticsearch-plugin install https://zentity.io/releases/zentity-1.0.1-elasticsearch-6.5.2.zip`
+`elasticsearch-plugin install https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.2.zip`
 
 Read the [installation](/docs/installation) docs for more details.
 
