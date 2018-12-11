@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=872802667"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=881641214"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=592017410"></script>
+    </script><script src="/js/all.js?id=377774832"></script>
   </head>
   <body>
     <div id="app" >
@@ -88,10 +88,10 @@ submit requests to Elasticsearch and read responses.</p>
 <p>Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#abd9dde03b4e6c7bd">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a074136fb20de04bb">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="abd9dde03b4e6c7bd"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
+          <span id="a074136fb20de04bb"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
 </pre></div>
 </span>
         </div>
@@ -100,10 +100,10 @@ submit requests to Elasticsearch and read responses.</p>
 <p><span class="code-overflow"></span></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2743606c1b679cd2">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aadf93e3599110007">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a2743606c1b679cd2"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
+          <span id="aadf93e3599110007"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
 <span class="p">{</span>
   <span class="s2">&quot;settings&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -159,10 +159,10 @@ submit requests to Elasticsearch and read responses.</p>
 <p>Add the tutorial data to the index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad9dcda59694aa09c">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a14ef9707eb34b621">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ad9dcda59694aa09c"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span><span class="o">/</span><span class="nx">_bulk</span>
+          <span id="a14ef9707eb34b621"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span><span class="o">/</span><span class="nx">_bulk</span>
 <span class="p">{</span>
   <span class="p">...</span>
 <span class="p">}</span>
@@ -220,10 +220,10 @@ submit requests to Elasticsearch and read responses.</p>
 each part of the model in depth.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5003ee905a5bf132">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab13768355d97ba44">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a5003ee905a5bf132"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
+          <span id="ab13768355d97ba44"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -262,10 +262,10 @@ each part of the model in depth.</p>
 <p>We defined a single attribute called <code>"name"</code> as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a9cb520e9d6ffe6a1">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a70dc01cc6b353cd3">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a9cb520e9d6ffe6a1"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a70dc01cc6b353cd3"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
@@ -279,10 +279,10 @@ each part of the model in depth.</p>
 like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad676e18f06b0913f">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3619d5c5b35dd3dc">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ad676e18f06b0913f"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a3619d5c5b35dd3dc"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{}</span>
   <span class="p">}</span>
@@ -294,10 +294,10 @@ like this:</p>
 <p>We defined a single resolver called <code>"name_only"</code> as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac6bdeb068f4b364b">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aad9c95dce0d5cfad">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac6bdeb068f4b364b"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aad9c95dce0d5cfad"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_only&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;name&quot;</span> <span class="p">]</span>
@@ -322,10 +322,10 @@ multiple attributes.</p>
 <p>We defined a single matcher called <code>"simple"</code> as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a02cc6e942f898dcf">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7c13aa3f61396c14">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a02cc6e942f898dcf"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a7c13aa3f61396c14"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;simple&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -342,10 +342,10 @@ multiple attributes.</p>
         <p>This matcher uses a simple <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html', 'outbound');" class="external"><code>match</code> clause</a>:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af03252998ed938b9">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac2c638780f229826">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af03252998ed938b9"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ac2c638780f229826"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;match&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
   <span class="p">}</span>
@@ -360,10 +360,10 @@ with the name of an index field and the <code>"{{ value }}"</code> variable with
 <p>We defined a single index as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a23f0afeba3bf13b9">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac8b4f18b424d2985">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a23f0afeba3bf13b9"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ac8b4f18b424d2985"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -383,10 +383,10 @@ with the name of an index field and the <code>"{{ value }}"</code> variable with
 <p>Let's use the <a href="/docs/rest-apis/resolution-api">Resolution API</a> to resolve a person with the name "Alice":</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a25b77b81032ffff9">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aff3770431e308cab">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a25b77b81032ffff9"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
+          <span id="aff3770431e308cab"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice&quot;</span> <span class="p">]</span>
@@ -398,10 +398,10 @@ with the name of an index field and the <code>"{{ value }}"</code> variable with
         <p>The results will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3b5119693e8347b7">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a739b563522ec6eb0">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3b5119693e8347b7"><div class="highlight"><pre><span></span><span class="p">...</span>
+          <span id="a739b563522ec6eb0"><div class="highlight"><pre><span></span><span class="p">...</span>
 </pre></div>
 </span>
         </div>

@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=104945298"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=693219999"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=114694624"></script>
+    </script><script src="/js/all.js?id=722457652"></script>
   </head>
   <body>
     <div id="app" >
@@ -98,10 +98,10 @@ need to stop Elasticsearch, install these plugin, and start Elasticsearch. You c
 <p>For Linux (in the <code>$ES_HOME</code> directory of a .tar.gz installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4839a362ee18a6ce">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7d806e4bae396291">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a4839a362ee18a6ce"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
+          <span id="a7d806e4bae396291"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
 sudo bin/elasticsearch-plugin install analysis-icu
 </pre></div>
 </span>
@@ -109,10 +109,10 @@ sudo bin/elasticsearch-plugin install analysis-icu
         <p>For Windows (in the <code>$ES_HOME</code> directory of a .zip installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac2c391a46418823a">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8d72a621f2e896e8">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac2c391a46418823a"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
+          <span id="a8d72a621f2e896e8"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
 bin/elasticsearch-plugin.bat install analysis-icu
 </pre></div>
 </span>
@@ -123,10 +123,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aeb0a57be0b064046">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a26f2275f273de488">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aeb0a57be0b064046"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
+          <span id="a26f2275f273de488"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
 </pre></div>
 </span>
         </div>
@@ -135,10 +135,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p><span class="code-overflow"></span></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af1c188097c443308">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0167455e9e60405d">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af1c188097c443308"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
+          <span id="a0167455e9e60405d"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
 <span class="p">{</span>
   <span class="s2">&quot;settings&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -242,10 +242,10 @@ should put careful thought into your analyzers and test them before using them i
 <p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3692731a43a8da9a">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae251d6d689e2ea07">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3692731a43a8da9a"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span><span class="o">/</span><span class="nx">_analyze</span>
+          <span id="ae251d6d689e2ea07"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span><span class="o">/</span><span class="nx">_analyze</span>
 <span class="p">{</span> <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s2">&quot;Alice Jones-Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="s2">&quot;clean&quot;</span> <span class="p">}</span>
 </pre></div>
 </span>
@@ -253,10 +253,10 @@ should put careful thought into your analyzers and test them before using them i
         <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#abc86ccc893d75f64">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a92bd46c1d648f9c8">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="abc86ccc893d75f64"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a92bd46c1d648f9c8"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;tokens&quot;</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">&quot;token&quot;</span><span class="o">:</span> <span class="s2">&quot;alice&quot;</span><span class="p">,</span>
@@ -288,10 +288,10 @@ should put careful thought into your analyzers and test them before using them i
 <p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a133fc129626b78af">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a93252d4722a71941">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a133fc129626b78af"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span><span class="o">/</span><span class="nx">_analyze</span>
+          <span id="a93252d4722a71941"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span><span class="o">/</span><span class="nx">_analyze</span>
 <span class="p">{</span> <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s2">&quot;Alice Jones-Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="s2">&quot;phonetic&quot;</span> <span class="p">}</span>
 </pre></div>
 </span>
@@ -299,10 +299,10 @@ should put careful thought into your analyzers and test them before using them i
         <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8423a88aa42366ff">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2528d415f84d479c">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a8423a88aa42366ff"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a2528d415f84d479c"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;tokens&quot;</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">&quot;token&quot;</span><span class="o">:</span> <span class="s2">&quot;ALAC&quot;</span><span class="p">,</span>
@@ -334,10 +334,10 @@ should put careful thought into your analyzers and test them before using them i
 <p>Add the tutorial data to the index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aedae22ba278dc6e8">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8c1dcb52fb4e2df8">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aedae22ba278dc6e8"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span><span class="o">/</span><span class="nx">_bulk</span>
+          <span id="a8c1dcb52fb4e2df8"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span><span class="o">/</span><span class="nx">_bulk</span>
 <span class="p">{</span>
   <span class="p">...</span>
 <span class="p">}</span>
@@ -394,10 +394,10 @@ should put careful thought into your analyzers and test them before using them i
 <p>Let's use the <a href="/docs/rest-apis/models-api">Models API</a> to create the entity model below. We'll review each part of the model in depth.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2de0845ca2314b78">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a97e3b4ba8b14d258">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a2de0845ca2314b78"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
+          <span id="a97e3b4ba8b14d258"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -454,10 +454,10 @@ should put careful thought into your analyzers and test them before using them i
 <p>We defined a single attribute called <code>"name"</code> as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#acc581a43270b9475">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8161659365207403">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="acc581a43270b9475"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a8161659365207403"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
@@ -472,10 +472,10 @@ should put careful thought into your analyzers and test them before using them i
 <p>We defined a single resolver called <code>"name_only"</code> as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a49104b170eefdd9c">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#afa02d3876d1379ff">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a49104b170eefdd9c"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="afa02d3876d1379ff"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_only&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;name&quot;</span> <span class="p">]</span>
@@ -495,10 +495,10 @@ and then create a resolver for each combination. <a href="/docs/basic-usage">Oth
 <p>We defined two matchers called <code>"simple"</code> and <code>"fuzzy"</code> as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac2d5f8148fb412a2">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad0db76c148ab855c">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac2d5f8148fb412a2"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ad0db76c148ab855c"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;simple&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -525,10 +525,10 @@ and then create a resolver for each combination. <a href="/docs/basic-usage">Oth
         <p>The <code>"simple"</code> matcher uses a simple <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html', 'outbound');" class="external"><code>match</code> clause</a>:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a59e2b9f6cd6f33fb">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aafb0613acabc2364">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a59e2b9f6cd6f33fb"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aafb0613acabc2364"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;match&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
   <span class="p">}</span>
@@ -541,10 +541,10 @@ which matches values with minor dissimilarities such as typos. Elasticsearch use
 to perform this match.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af1bedc9969209f1e">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a560353a8a91fdda8">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af1bedc9969209f1e"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a560353a8a91fdda8"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;match&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;query&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
@@ -562,10 +562,10 @@ variable with the value of an attribute.</p>
 <p>We defined a single index as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5b5291a9767a5d6e">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5f78dc8abfc03091">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a5b5291a9767a5d6e"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a5f78dc8abfc03091"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -594,10 +594,10 @@ The <code>"user"</code> field will use the <code>"fuzzy"</code> matcher and the 
 <p>Let's use the <a href="/docs/rest-apis/resolution-api">Resolution API</a> to resolve a person with the name "Alice":</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aaa32dcc13f3e7e56">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a516118fcec62337d">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aaa32dcc13f3e7e56"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
+          <span id="a516118fcec62337d"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice&quot;</span> <span class="p">]</span>
@@ -609,10 +609,10 @@ The <code>"user"</code> field will use the <code>"fuzzy"</code> matcher and the 
         <p>The results will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af52542b37a84d42d">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#adbc96bdced468b90">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af52542b37a84d42d"><div class="highlight"><pre><span></span><span class="p">...</span>
+          <span id="adbc96bdced468b90"><div class="highlight"><pre><span></span><span class="p">...</span>
 </pre></div>
 </span>
         </div>

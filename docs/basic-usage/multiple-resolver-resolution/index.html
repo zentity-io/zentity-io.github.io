@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=161012885"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=668576345"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=986644004"></script>
+    </script><script src="/js/all.js?id=801081532"></script>
   </head>
   <body>
     <div id="app" >
@@ -96,10 +96,10 @@ need to stop Elasticsearch, install these plugin, and start Elasticsearch. You c
 <p>For Linux (in the <code>$ES_HOME</code> directory of a .tar.gz installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa4062e41cce0fcb9">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2401827ce95d16f0">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aa4062e41cce0fcb9"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
+          <span id="a2401827ce95d16f0"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
 sudo bin/elasticsearch-plugin install analysis-icu
 </pre></div>
 </span>
@@ -107,10 +107,10 @@ sudo bin/elasticsearch-plugin install analysis-icu
         <p>For Windows (in the <code>$ES_HOME</code> directory of a .zip installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2f449393da77dc6d">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a89eb21b1a35b6023">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a2f449393da77dc6d"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
+          <span id="a89eb21b1a35b6023"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
 bin/elasticsearch-plugin.bat install analysis-icu
 </pre></div>
 </span>
@@ -121,10 +121,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a65d36f6e9b4cf382">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a94b115310634ac45">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a65d36f6e9b4cf382"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
+          <span id="a94b115310634ac45"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
 </pre></div>
 </span>
         </div>
@@ -133,10 +133,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p><span class="code-overflow"></span></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7eec7f5700cb1d44">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#affb04fb305f29c05">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a7eec7f5700cb1d44"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
+          <span id="affb04fb305f29c05"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
 <span class="p">{</span>
   <span class="s2">&quot;settings&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -222,10 +222,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>Add the tutorial data to the index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a17624cfca8857fb8">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#afbf12b9851efa0d0">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a17624cfca8857fb8"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span><span class="o">/</span><span class="nx">_bulk</span>
+          <span id="afbf12b9851efa0d0"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span><span class="o">/</span><span class="nx">_bulk</span>
 <span class="p">{</span>
   <span class="p">...</span>
 <span class="p">}</span>
@@ -282,10 +282,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>Let's use the <a href="/docs/rest-apis/models-api">Models API</a> to create the entity model below. We'll review each part of the model in depth.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4312aa098b614682">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aaa197659a4649ce9">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a4312aa098b614682"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
+          <span id="aaa197659a4649ce9"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -383,10 +383,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>We defined five attributes as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a98679244bbe778f1">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0ab5bf462f48dbc5">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a98679244bbe778f1"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a0ab5bf462f48dbc5"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
@@ -412,10 +412,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>We defined three resolvers as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad96c63c12877ef59">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af85cf339a25918ea">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ad96c63c12877ef59"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="af85cf339a25918ea"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_phone&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
@@ -435,10 +435,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>We defined three matchers called <code>"simple"</code>, <code>"fuzzy"</code>, and <code>"exact"</code> as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#acedca331deb05457">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a149acd109c1883d9">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="acedca331deb05457"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a149acd109c1883d9"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;simple&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -473,10 +473,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>We defined a single index as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a876ff154cb7b83bd">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aece22be99c881197">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a876ff154cb7b83bd"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aece22be99c881197"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -519,10 +519,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>Let's use the <a href="/docs/rest-apis/resolution-api">Resolution API</a> to resolve a person with the name "Alice":</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af1728220a55af996">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3d579305976f5412">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af1728220a55af996"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
+          <span id="a3d579305976f5412"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice&quot;</span> <span class="p">]</span>
@@ -534,10 +534,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
         <p>The results will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6bb736d707bf866d">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0895622c693853c8">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a6bb736d707bf866d"><div class="highlight"><pre><span></span><span class="p">...</span>
+          <span id="a0895622c693853c8"><div class="highlight"><pre><span></span><span class="p">...</span>
 </pre></div>
 </span>
         </div>
