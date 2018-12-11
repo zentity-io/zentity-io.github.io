@@ -116,8 +116,10 @@ POST _zentity/resolution?pretty
         }
       },
       "standard": {
-        "match": {
-          "{{ field }}": "{{ value }}"
+        "clause": {
+          "match": {
+            "{{ field }}": "{{ value }}"
+          }
         }
       }
     },
