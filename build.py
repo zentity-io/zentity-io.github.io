@@ -150,6 +150,22 @@ PAGES = {
             "content": markdown("/docs/basic-usage/cross-index-resolution.md")
         }
     },
+    "/docs/advanced-usage": {
+        "vars": {
+            "title": "Advanced Usage",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+            "content": markdown("/docs/advanced-usage.md")
+        }
+    },
+    "/docs/advanced-usage/matcher-parameters": {
+        "vars": {
+            "title": "Matcher Parameters",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+            "content": markdown("/docs/advanced-usage/matcher-parameters.md")
+        }
+    },
     "/docs/entity-models": {
         "vars": {
             "title": "Entity Models",

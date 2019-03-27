@@ -36,7 +36,7 @@ Let's dive in.
 > **Important**
 > 
 > You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation) to complete this tutorial.
-> This tutorial was tested with [zentity-1.0.0-elasticsearch-6.2.4](/docs/releases).
+> This tutorial was tested with [zentity-1.0.2-elasticsearch-6.5.2](/docs/releases).
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
@@ -90,57 +90,129 @@ PUT .zentity-tutorial-index
     "index": {
       "number_of_shards": 1,
       "number_of_replicas": 0,
-      "analysis": {
-        "analyzer": {
-          "clean_analyzer": {
-            "tokenizer": "standard",
-            "filter": [
-              "icu_normalizer",
-              "icu_folding"
-            ]
+      "analysis" : {
+        "filter" : {
+          "street_suffix_map" : {
+            "pattern" : "(st)",
+            "type" : "pattern_replace",
+            "replacement" : "street"
           },
-          "phonetic_analyzer": {
-            "tokenizer": "standard",
-            "filter": [
-              "icu_normalizer",
-              "icu_folding",
-              "phonetic_filter"
-            ]
+          "phonetic" : {
+            "type" : "phonetic",
+            "encoder" : "nysiis"
+          },
+          "punct_white" : {
+            "pattern" : "\\p{Punct}",
+            "type" : "pattern_replace",
+            "replacement" : " "
+          },
+          "remove_non_digits" : {
+            "pattern" : "[^\\d]",
+            "type" : "pattern_replace",
+            "replacement" : ""
           }
         },
-        "filter": {
-          "phonetic_filter": {
-            "type": "phonetic",
-            "encoder": "nysiis"
+        "analyzer" : {
+          "name_clean" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white"
+            ],
+            "tokenizer" : "standard"
+          },
+          "name_phonetic" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white",
+              "phonetic"
+            ],
+            "tokenizer" : "standard"
+          },
+          "street_clean" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white",
+              "trim"
+            ],
+            "tokenizer" : "keyword"
+          },
+          "phone_clean" : {
+            "filter" : [
+              "remove_non_digits"
+            ],
+            "tokenizer" : "keyword"
           }
         }
       }
     }
   },
-  "mapping": {
-    "doc": {
+  "mappings": {
+    "_doc": {
       "properties": {
         "id": {
           "type": "keyword"
         },
-        "user": {
+        "first_name": {
           "type": "text",
           "fields": {
-            "phonetic": {
+            "clean": {
               "type": "text",
-              "analyzer": "clean"
+              "analyzer": "name_clean"
             },
             "phonetic": {
               "type": "text",
-              "analyzer": "phonetic"
+              "analyzer": "name_phonetic"
+            }
+          }
+        },
+        "last_name": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "name_clean"
+            },
+            "phonetic": {
+              "type": "text",
+              "analyzer": "name_phonetic"
+            }
+          }
+        },
+        "street": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "street_clean"
+            }
+          }
+        },
+        "city": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "name_clean"
+            }
+          }
+        },
+        "state": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword"
             }
           }
         },
         "phone": {
           "type": "text",
           "fields": {
-            "keyword": {
-              "type": "keyword"
+            "clean": {
+              "type": "text",
+              "analyzer": "phone_clean"
             }
           }
         },
@@ -151,13 +223,6 @@ PUT .zentity-tutorial-index
               "type": "keyword"
             }
           }
-        },
-        "dob": {
-          "type": "date",
-          "format": "yyyy-MM-dd"
-        },
-        "zip": {
-          "type": "integer"
         }
       }
     }
@@ -171,20 +236,55 @@ PUT .zentity-tutorial-index
 Add the tutorial data to the index.
 
 ```javascript
-POST .zentity-tutorial-index/_bulk
-{
-  ...
-}
+POST _bulk?refresh
+{"index": {"_id": "1", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "allie@example.net", "first_name": "Allie", "id": "1", "last_name": "Jones", "phone": "202-555-1234", "state": "DC", "street": "123 Main St"}
+{"index": {"_id": "2", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Alicia", "id": "2", "last_name": "Johnson", "phone": "202-123-4567", "state": "DC", "street": "300 Main St"}
+{"index": {"_id": "3", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Allie", "id": "3", "last_name": "Jones", "phone": "", "state": "DC", "street": "123 Main St"}
+{"index": {"_id": "4", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "", "email": "", "first_name": "Ally", "id": "4", "last_name": "Joans", "phone": "202-555-1234", "state": "", "street": ""}
+{"index": {"_id": "5", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Arlington", "email": "ej@example.net", "first_name": "Eli", "id": "5", "last_name": "Jonas", "phone": "", "state": "VA", "street": "500 23rd Street"}
+{"index": {"_id": "6", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "allie@example.net", "first_name": "Allison", "id": "6", "last_name": "Jones", "phone": "202-555-1234", "state": "DC", "street": "123 Main St"}
+{"index": {"_id": "7", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Allison", "id": "7", "last_name": "Smith", "phone": "+1 (202) 555 1234", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "8", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "alan.smith@example.net", "first_name": "Alan", "id": "8", "last_name": "Smith", "phone": "202-000-5555", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "9", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "alan.smith@example.net", "first_name": "Alan", "id": "9", "last_name": "Smith", "phone": "2020005555", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "10", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Alison", "id": "10", "last_name": "Smith", "phone": "202-555-9876", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "11", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "", "email": "allie@example.net", "first_name": "Alison", "id": "11", "last_name": "Jones-Smith", "phone": "2025559867", "state": "", "street": ""}
+{"index": {"_id": "12", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "allison.j.smith@corp.example.net", "first_name": "Allison", "id": "12", "last_name": "Jones-Smith", "phone": "", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "13", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Arlington", "email": "allison.j.smith@corp.example.net", "first_name": "Allison", "id": "13", "last_name": "Jones Smith", "phone": "703-555-5555", "state": "VA", "street": "1 Corporate Way"}
+{"index": {"_id": "14", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Arlington", "email": "elise.jonas@corp.example.net", "first_name": "Elise", "id": "14", "last_name": "Jonas", "phone": "703-555-5555", "state": "VA", "street": "1 Corporate Way"}
 ```
 
 Here's what the tutorial data looks like.
 
-|id|user|phone|email|dob|zip|
-|:---|:---|:---|:---|:---|:---|
-|1|Alice|555-123-4567|alice@example.net|1984-01-01|90210|
-|2|Alice|555-123-4567|alice@example.net|1984-01-01|90210|
-|3|Elise|555-987-6543|elise@example.com|1984-01-01|90210|
-|4|Bob|555-555-5555|bob@example.net|1989-05-15|90210|
+|id|first_name|last_name|street|city|state|phone|email|
+|:---|:---|:---|:---|:---|:---|:---|:---|
+|1|Allie|Jones|123 Main St|Washington|DC|202-555-1234|allie@example.net|
+|2|Alicia|Johnson|300 Main St|Washington|DC|202-123-4567||
+|3|Allie|Jones|123 Main St|Washington|DC|||
+|4|Ally|Joans||||202-555-1234||
+|5|Eli|Jonas|500 23rd Street|Arlington|VA||ej@example.net|
+|6|Allison|Jones|123 Main St|Washington|DC|202-555-1234|allie@example.net|
+|7|Allison|Smith|555 Broad St|Washington|DC|+1 (202) 555 1234||
+|8|Alan|Smith|555 Broad St|Washington|DC|202-000-5555|alan.smith@example.net|
+|9|Alan|Smith|555 Broad St|Washington|DC|2020005555|alan.smith@example.net|
+|10|Alison|Smith|555 Broad St|Washington|DC|202-555-9876||
+|11|Alison|Jones-Smith||||2025559867|allie@example.net|
+|12|Allison|Jones-Smith|555 Broad St|Washington|DC||allison.j.smith@corp.example.net|
+|13|Allison|Jones Smith|1 Corporate Way|Arlington|VA|703-555-5555|allison.j.smith@corp.example.net|
+|14|Elise|Jonas|1 Corporate Way|Arlington|VA|703-555-5555|elise.jonas@corp.example.net|
 
 
 ## <a name="create-entity-model"></a>2. Create the entity model
@@ -195,7 +295,19 @@ Let's use the [Models API](/docs/rest-apis/models-api) to create the entity mode
 PUT _zentity/models/zentity-tutorial-person
 {
   "attributes": {
-    "name": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
       "type": "string"
     },
     "phone": {
@@ -203,23 +315,20 @@ PUT _zentity/models/zentity-tutorial-person
     },
     "email": {
       "type": "string"
-    },
-    "dob": {
-      "type": "string"
-    },
-    "zip": {
-      "type": "string"
     }
   },
   "resolvers": {
+    "name_street_city_state": {
+      "attributes": [ "first_name", "last_name", "street", "city", "state" ]
+    },
     "name_phone": {
-      "attributes": [ "name", "phone" ]
+      "attributes": [ "first_name", "last_name", "phone" ]
     },
     "name_email": {
-      "attributes": [ "name", "email" ]
+      "attributes": [ "first_name", "last_name", "email" ]
     },
-    "name_dob_zip": {
-      "attributes": [ "name", "dob", "zip" ]
+    "email_phone": {
+      "attributes": [ "email", "phone" ]
     }
   },
   "matchers": {
@@ -235,7 +344,7 @@ PUT _zentity/models/zentity-tutorial-person
         "match": {
           "{{ field }}": {
             "query": "{{ value }}",
-            "fuzziness": "auto"
+            "fuzziness": "1"
           }
         }
       }
@@ -246,38 +355,46 @@ PUT _zentity/models/zentity-tutorial-person
           "{{ field }}": "{{ value }}"
         }
       }
-    },
+    }
   },
   "indices": {
     ".zentity-tutorial-index": {
       "fields": {
-        "user": {
-          "attribute": "name",
+        "first_name.clean": {
+          "attribute": "first_name",
           "matcher": "fuzzy"
         },
-        "user.clean": {
-          "attribute": "name",
+        "first_name.phonetic": {
+          "attribute": "first_name",
           "matcher": "simple"
         },
-        "user.phonetic": {
-          "attribute": "name",
+        "last_name.clean": {
+          "attribute": "last_name",
+          "matcher": "fuzzy"
+        },
+        "last_name.phonetic": {
+          "attribute": "last_name",
           "matcher": "simple"
         },
-        "phone.keyword": {
-          "attribute": "phone",
+        "street.clean": {
+          "attribute": "street",
+          "matcher": "fuzzy"
+        },
+        "city.clean": {
+          "attribute": "city",
+          "matcher": "fuzzy"
+        },
+        "state.keyword": {
+          "attribute": "state",
           "matcher": "exact"
+        },
+        "phone.clean": {
+          "attribute": "phone",
+          "matcher": "fuzzy"
         },
         "email.keyword": {
           "attribute": "email",
           "matcher": "exact"
-        },
-        "dob.keyword": {
-          "attribute": "dob",
-          "matcher": "exact"
-        },
-        "zip": {
-          "attribute": "zip",
-          "matcher": "fuzzy"
         }
       }
     }
@@ -285,27 +402,52 @@ PUT _zentity/models/zentity-tutorial-person
 }
 ```
 
+The response will look like this:
+
+```javascript
+{
+  "_index" : ".zentity-models",
+  "_type" : "doc",
+  "_id" : "zentity-tutorial-person",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 1,
+  "_primary_term" : 3
+}
+```
+
 
 ### <a name="review-attributes"></a>2.1. Review the attributes
 
-We defined five attributes as shown in this section:
+We defined seven attributes as shown in this section:
 
 ```javascript
 {
   "attributes": {
-    "name": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
       "type": "string"
     },
     "phone": {
       "type": "string"
     },
     "email": {
-      "type": "string"
-    },
-    "dob": {
-      "type": "string"
-    },
-    "zip": {
       "type": "string"
     }
   }
@@ -320,14 +462,17 @@ We defined three resolvers as shown in this section:
 ```javascript
 {
   "resolvers": {
+    "name_street_city_state": {
+      "attributes": [ "first_name", "last_name", "street", "city", "state" ]
+    },
     "name_phone": {
-      "attributes": [ "name", "phone" ]
+      "attributes": [ "first_name", "last_name", "phone" ]
     },
     "name_email": {
-      "attributes": [ "name", "email" ]
+      "attributes": [ "first_name", "last_name", "email" ]
     },
-    "name_dob_zip": {
-      "attributes": [ "name", "dob", "zip" ]
+    "email_phone": {
+      "attributes": [ "email", "phone" ]
     }
   }
 }
@@ -353,7 +498,7 @@ We defined three matchers called `"simple"`, `"fuzzy"`, and `"exact"` as shown i
         "match": {
           "{{ field }}": {
             "query": "{{ value }}",
-            "fuzziness": "auto"
+            "fuzziness": "1"
           }
         }
       }
@@ -379,33 +524,41 @@ We defined a single index as shown in this section:
   "indices": {
     ".zentity-tutorial-index": {
       "fields": {
-        "user": {
-          "attribute": "name",
+        "first_name.clean": {
+          "attribute": "first_name",
           "matcher": "fuzzy"
         },
-        "user.clean": {
-          "attribute": "name",
+        "first_name.phonetic": {
+          "attribute": "first_name",
           "matcher": "simple"
         },
-        "user.phonetic": {
-          "attribute": "name",
+        "last_name.clean": {
+          "attribute": "last_name",
+          "matcher": "fuzzy"
+        },
+        "last_name.phonetic": {
+          "attribute": "last_name",
           "matcher": "simple"
         },
-        "phone.keyword": {
-          "attribute": "phone",
+        "street.clean": {
+          "attribute": "street",
+          "matcher": "fuzzy"
+        },
+        "city.clean": {
+          "attribute": "city",
+          "matcher": "fuzzy"
+        },
+        "state.keyword": {
+          "attribute": "state",
           "matcher": "exact"
+        },
+        "phone.clean": {
+          "attribute": "phone",
+          "matcher": "fuzzy"
         },
         "email.keyword": {
           "attribute": "email",
           "matcher": "exact"
-        },
-        "dob.keyword": {
-          "attribute": "dob",
-          "matcher": "exact"
-        },
-        "zip.keyword": {
-          "attribute": "zip",
-          "matcher": "fuzzy"
         }
       }
     }
@@ -416,13 +569,15 @@ We defined a single index as shown in this section:
 
 ## <a name="resolve-entity"></a>3. Resolve an entity
 
-Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a person with the name "Alice":
+Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a person with a known name and phone number:
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person
+POST _zentity/resolution/zentity-tutorial-person?_source=false
 {
   "attributes": {
-    "name": [ "Alice" ]
+    "first_name": [ "Allie" ],
+    "last_name": [ "Jones" ],
+    "phone": [ "202-555-1234" ]
   }
 }
 ```
@@ -430,7 +585,139 @@ POST _zentity/resolution/zentity-tutorial-person
 The results will look like this:
 
 ```javascript
-...
+{
+  "took" : 30,
+  "hits" : {
+    "total" : 9,
+    "hits" : [ {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "1",
+      "_hop" : 0,
+      "_attributes" : {
+        "city" : "Washington",
+        "email" : "allie@example.net",
+        "first_name" : "Allie",
+        "last_name" : "Jones",
+        "phone" : "202-555-1234",
+        "state" : "DC",
+        "street" : "123 Main St"
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "3",
+      "_hop" : 0,
+      "_attributes" : {
+        "city" : "Washington",
+        "email" : "",
+        "first_name" : "Allie",
+        "last_name" : "Jones",
+        "phone" : "",
+        "state" : "DC",
+        "street" : "123 Main St"
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "4",
+      "_hop" : 1,
+      "_attributes" : {
+        "city" : "",
+        "email" : "",
+        "first_name" : "Ally",
+        "last_name" : "Joans",
+        "phone" : "202-555-1234",
+        "state" : "",
+        "street" : ""
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "6",
+      "_hop" : 1,
+      "_attributes" : {
+        "city" : "Washington",
+        "email" : "allie@example.net",
+        "first_name" : "Allison",
+        "last_name" : "Jones",
+        "phone" : "202-555-1234",
+        "state" : "DC",
+        "street" : "123 Main St"
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "11",
+      "_hop" : 2,
+      "_attributes" : {
+        "city" : "",
+        "email" : "allie@example.net",
+        "first_name" : "Alison",
+        "last_name" : "Jones-Smith",
+        "phone" : "2025559867",
+        "state" : "",
+        "street" : ""
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "7",
+      "_hop" : 3,
+      "_attributes" : {
+        "city" : "Washington",
+        "email" : "",
+        "first_name" : "Allison",
+        "last_name" : "Smith",
+        "phone" : "+1 (202) 555 1234",
+        "state" : "DC",
+        "street" : "555 Broad St"
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "10",
+      "_hop" : 3,
+      "_attributes" : {
+        "city" : "Washington",
+        "email" : "",
+        "first_name" : "Alison",
+        "last_name" : "Smith",
+        "phone" : "202-555-9876",
+        "state" : "DC",
+        "street" : "555 Broad St"
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "12",
+      "_hop" : 4,
+      "_attributes" : {
+        "city" : "Washington",
+        "email" : "allison.j.smith@corp.example.net",
+        "first_name" : "Allison",
+        "last_name" : "Jones-Smith",
+        "phone" : "",
+        "state" : "DC",
+        "street" : "555 Broad St"
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "13",
+      "_hop" : 5,
+      "_attributes" : {
+        "city" : "Arlington",
+        "email" : "allison.j.smith@corp.example.net",
+        "first_name" : "Allison",
+        "last_name" : "Jones Smith",
+        "phone" : "703-555-5555",
+        "state" : "VA",
+        "street" : "1 Corporate Way"
+      }
+    } ]
+  }
+}
 ```
 
 As expected, we retrieved ...

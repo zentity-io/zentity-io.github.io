@@ -17,6 +17,8 @@ sophistication to the prior tutorials, so you can start simple and learn the mor
 
 # <a name="exact-name-matching"></a>Exact Name Matching
 
+Welcome to the "Hello world!" of entity resolution.
+
 This tutorial will guide you through one the simplest forms of entity resolution &ndash; exact name matching. You will learn
 how to create an entity model and how to resolve an entity using a single attribute mapped to a single field of a single index.
 This is meant to introduce you to the most basic functions of entity resolution with zentity.
@@ -61,42 +63,32 @@ PUT .zentity-tutorial-index
       "number_of_replicas": 0
     }
   },
-  "mapping": {
-    "doc": {
+  "mappings": {
+    "_doc": {
       "properties": {
         "id": {
           "type": "keyword"
         },
-        "user": {
-          "type": "text",
-          "fields": {
-            "keyword": {
-              "type": "keyword"
-            }
-          }
+        "first_name": {
+          "type": "text"
+        },
+        "last_name": {
+          "type": "text"
+        },
+        "street": {
+          "type": "text"
+        },
+        "city": {
+          "type": "text"
+        },
+        "state": {
+          "type": "text"
         },
         "phone": {
-          "type": "text",
-          "fields": {
-            "keyword": {
-              "type": "keyword"
-            }
-          }
+          "type": "text"
         },
         "email": {
-          "type": "text",
-          "fields": {
-            "keyword": {
-              "type": "keyword"
-            }
-          }
-        },
-        "dob": {
-          "type": "date",
-          "format": "yyyy-MM-dd"
-        },
-        "zip": {
-          "type": "integer"
+          "type": "text"
         }
       }
     }
@@ -110,20 +102,55 @@ PUT .zentity-tutorial-index
 Add the tutorial data to the index.
 
 ```javascript
-POST .zentity-tutorial-index/_bulk
-{
-  ...
-}
+POST _bulk?refresh
+{"index": {"_id": "1", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "allie@example.net", "first_name": "Allie", "id": "1", "last_name": "Jones", "phone": "202-555-1234", "state": "DC", "street": "123 Main St"}
+{"index": {"_id": "2", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Alicia", "id": "2", "last_name": "Johnson", "phone": "202-123-4567", "state": "DC", "street": "300 Main St"}
+{"index": {"_id": "3", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Allie", "id": "3", "last_name": "Jones", "phone": "", "state": "DC", "street": "123 Main St"}
+{"index": {"_id": "4", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "", "email": "", "first_name": "Ally", "id": "4", "last_name": "Joans", "phone": "202-555-1234", "state": "", "street": ""}
+{"index": {"_id": "5", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Arlington", "email": "ej@example.net", "first_name": "Eli", "id": "5", "last_name": "Jonas", "phone": "", "state": "VA", "street": "500 23rd Street"}
+{"index": {"_id": "6", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "allie@example.net", "first_name": "Allison", "id": "6", "last_name": "Jones", "phone": "202-555-1234", "state": "DC", "street": "123 Main St"}
+{"index": {"_id": "7", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Allison", "id": "7", "last_name": "Smith", "phone": "+1 (202) 555 1234", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "8", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "alan.smith@example.net", "first_name": "Alan", "id": "8", "last_name": "Smith", "phone": "202-000-5555", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "9", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "alan.smith@example.net", "first_name": "Alan", "id": "9", "last_name": "Smith", "phone": "2020005555", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "10", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Alison", "id": "10", "last_name": "Smith", "phone": "202-555-9876", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "11", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "", "email": "allie@example.net", "first_name": "Alison", "id": "11", "last_name": "Jones-Smith", "phone": "2025559867", "state": "", "street": ""}
+{"index": {"_id": "12", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "allison.j.smith@corp.example.net", "first_name": "Allison", "id": "12", "last_name": "Jones-Smith", "phone": "", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "13", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Arlington", "email": "allison.j.smith@corp.example.net", "first_name": "Allison", "id": "13", "last_name": "Jones Smith", "phone": "703-555-5555", "state": "VA", "street": "1 Corporate Way"}
+{"index": {"_id": "14", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Arlington", "email": "elise.jonas@corp.example.net", "first_name": "Elise", "id": "14", "last_name": "Jonas", "phone": "703-555-5555", "state": "VA", "street": "1 Corporate Way"}
 ```
 
 Here's what the tutorial data looks like.
 
-|id|user|phone|email|dob|zip|
-|:---|:---|:---|:---|:---|:---|
-|1|Alice|555-123-4567|alice@example.net|1984-01-01|90210|
-|2|Alice|555-123-4567|alice@example.net|1984-01-01|90210|
-|3|Elise|555-987-6543|elise@example.com|1984-01-01|90210|
-|4|Bob|555-555-5555|bob@example.net|1989-05-15|90210|
+|id|first_name|last_name|street|city|state|phone|email|
+|:---|:---|:---|:---|:---|:---|:---|:---|
+|1|Allie|Jones|123 Main St|Washington|DC|202-555-1234|allie@example.net|
+|2|Alicia|Johnson|300 Main St|Washington|DC|202-123-4567||
+|3|Allie|Jones|123 Main St|Washington|DC|||
+|4|Ally|Joans||||202-555-1234||
+|5|Eli|Jonas|500 23rd Street|Arlington|VA||ej@example.net|
+|6|Allison|Jones|123 Main St|Washington|DC|202-555-1234|allie@example.net|
+|7|Allison|Smith|555 Broad St|Washington|DC|+1 (202) 555 1234||
+|8|Alan|Smith|555 Broad St|Washington|DC|202-000-5555|alan.smith@example.net|
+|9|Alan|Smith|555 Broad St|Washington|DC|2020005555|alan.smith@example.net|
+|10|Alison|Smith|555 Broad St|Washington|DC|202-555-9876||
+|11|Alison|Jones-Smith||||2025559867|allie@example.net|
+|12|Allison|Jones-Smith|555 Broad St|Washington|DC||allison.j.smith@corp.example.net|
+|13|Allison|Jones Smith|1 Corporate Way|Arlington|VA|703-555-5555|allison.j.smith@corp.example.net|
+|14|Elise|Jonas|1 Corporate Way|Arlington|VA|703-555-5555|elise.jonas@corp.example.net|
 
 
 ## <a name="create-entity-model"></a>2. Create the entity model
@@ -135,13 +162,16 @@ each part of the model in depth.
 PUT _zentity/models/zentity-tutorial-person
 {
   "attributes": {
-    "name": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
       "type": "string"
     }
   },
   "resolvers": {
     "name_only": {
-      "attributes": [ "name" ]
+      "attributes": [ "first_name", "last_name" ]
     }
   },
   "matchers": {
@@ -156,8 +186,12 @@ PUT _zentity/models/zentity-tutorial-person
   "indices": {
     ".zentity-tutorial-index": {
       "fields": {
-        "user": {
-          "attribute": "name",
+        "first_name": {
+          "attribute": "first_name",
+          "matcher": "simple"
+        },
+        "last_name": {
+          "attribute": "last_name",
           "matcher": "simple"
         }
       }
@@ -169,12 +203,15 @@ PUT _zentity/models/zentity-tutorial-person
 
 ### <a name="review-attributes"></a>2.1. Review the attributes
 
-We defined a single attribute called `"name"` as shown in this section:
+We defined two attributes called `"first_name"` and `"last_name"` as shown in this section:
 
 ```javascript
 {
   "attributes": {
-    "name": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
       "type": "string"
     }
   }
@@ -187,7 +224,8 @@ like this:
 ```javascript
 {
   "attributes": {
-    "name": {}
+    "first_name": {},
+    "last_name": {}
   }
 }
 ```
@@ -201,13 +239,13 @@ We defined a single resolver called `"name_only"` as shown in this section:
 {
   "resolvers": {
     "name_only": {
-      "attributes": [ "name" ]
+      "attributes": [ "first_name", "last_name" ]
     }
   }
 }
 ```
 
-This resolver requires only the `"name"` attribute to resolve an entity. So if you try to resolve a
+This resolver requires only the `"first_name"` and `"last_name"` attributes to resolve an entity. So if you try to resolve a
 person named "Alice," then every document with the name "Alice" will be grouped with her. Obviously
 this would raise many false positives in the real world. We're doing this as a gentle introduction to
 the concept of entity resolution.
@@ -263,8 +301,12 @@ We defined a single index as shown in this section:
   "indices": {
     ".zentity-tutorial-index": {
       "fields": {
-        "user": {
-          "attribute": "name",
+        "first_name": {
+          "attribute": "first_name",
+          "matcher": "simple"
+        },
+        "last_name": {
+          "attribute": "last_name",
           "matcher": "simple"
         }
       }
@@ -272,8 +314,6 @@ We defined a single index as shown in this section:
   }
 }
 ```
-
-We mapped the `"name"` attribute and the `"simple"` matcher to the `"user"` field of `.zentity-tutorial-index`.
 
 
 ## <a name="resolve-entity"></a>3. Resolve an entity
@@ -284,7 +324,8 @@ Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a pers
 POST _zentity/resolution/zentity-tutorial-person
 {
   "attributes": {
-    "name": [ "Alice" ]
+    "first_name": [ "Allie" ],
+    "last_name": [ "Jones" ]
   }
 }
 ```
@@ -292,7 +333,51 @@ POST _zentity/resolution/zentity-tutorial-person
 The results will look like this:
 
 ```javascript
-...
+{
+  "took" : 2,
+  "hits" : {
+    "total" : 2,
+    "hits" : [ {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "1",
+      "_hop" : 0,
+      "_attributes" : {
+        "first_name" : "Allie",
+        "last_name" : "Jones"
+      },
+      "_source" : {
+        "city" : "Washington",
+        "email" : "allie@example.net",
+        "first_name" : "Allie",
+        "id" : "1",
+        "last_name" : "Jones",
+        "phone" : "202-555-1234",
+        "state" : "DC",
+        "street" : "123 Main St"
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "3",
+      "_hop" : 0,
+      "_attributes" : {
+        "first_name" : "Allie",
+        "last_name" : "Jones"
+      },
+      "_source" : {
+        "city" : "Washington",
+        "email" : "",
+        "first_name" : "Allie",
+        "id" : "3",
+        "last_name" : "Jones",
+        "phone" : "",
+        "state" : "DC",
+        "street" : "123 Main St"
+      }
+    } ]
+  }
+}
 ```
 
 As expected, we retrieved ...

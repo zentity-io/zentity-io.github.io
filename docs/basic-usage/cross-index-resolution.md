@@ -68,63 +68,128 @@ DELETE .zentity-tutorial-*
 
 ### <a name="create-tutorial-index"></a>1.4. Create the tutorial index
 
-Now create the index for this tutorial.
+Now create the indices for this tutorial.
+
+**Index A**
 
 <span class="code-overflow"></span>
 ```javascript
-PUT .zentity-tutorial-index
+PUT .zentity-tutorial-index-a
 {
   "settings": {
     "index": {
       "number_of_shards": 1,
       "number_of_replicas": 0,
-      "analysis": {
-        "analyzer": {
-          "clean_analyzer": {
-            "tokenizer": "standard",
-            "filter": [
-              "icu_normalizer",
-              "icu_folding"
-            ]
+      "analysis" : {
+        "filter" : {
+          "street_suffix_map" : {
+            "pattern" : "(st)",
+            "type" : "pattern_replace",
+            "replacement" : "street"
           },
-          "phonetic_analyzer": {
-            "tokenizer": "standard",
-            "filter": [
-              "icu_normalizer",
-              "icu_folding",
-              "phonetic_filter"
-            ]
+          "phonetic" : {
+            "type" : "phonetic",
+            "encoder" : "nysiis"
+          },
+          "punct_white" : {
+            "pattern" : "\\p{Punct}",
+            "type" : "pattern_replace",
+            "replacement" : " "
+          },
+          "remove_non_digits" : {
+            "pattern" : "[^\\d]",
+            "type" : "pattern_replace",
+            "replacement" : ""
           }
         },
-        "filter": {
-          "phonetic_filter": {
-            "type": "phonetic",
-            "encoder": "nysiis"
+        "analyzer" : {
+          "name_clean" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white"
+            ],
+            "tokenizer" : "standard"
+          },
+          "name_phonetic" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white",
+              "phonetic"
+            ],
+            "tokenizer" : "standard"
+          },
+          "street_clean" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white",
+              "trim"
+            ],
+            "tokenizer" : "keyword"
+          },
+          "phone_clean" : {
+            "filter" : [
+              "remove_non_digits"
+            ],
+            "tokenizer" : "keyword"
           }
         }
       }
     }
   },
-  "mapping": {
-    "doc": {
+  "mappings": {
+    "_doc": {
       "properties": {
-        "id": {
+        "id_a": {
           "type": "keyword"
         },
-        "user": {
+        "first_name_a": {
           "type": "text",
           "fields": {
-            "phonetic": {
+            "clean": {
               "type": "text",
-              "analyzer": "clean"
+              "analyzer": "name_clean"
             },
             "phonetic": {
               "type": "text",
-              "analyzer": "phonetic"
+              "analyzer": "name_phonetic"
             }
           }
         },
-        "phone": {
+        "last_name_a": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "name_clean"
+            },
+            "phonetic": {
+              "type": "text",
+              "analyzer": "name_phonetic"
+            }
+          }
+        },
+        "street_a": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "street_clean"
+            }
+          }
+        },
+        "city_a": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "name_clean"
+            }
+          }
+        },
+        "state_a": {
           "type": "text",
           "fields": {
             "keyword": {
@@ -132,7 +197,149 @@ PUT .zentity-tutorial-index
             }
           }
         },
-        "email": {
+        "phone_a": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "phone_clean"
+            }
+          }
+        },
+        "email_a": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+**Index B**
+
+<span class="code-overflow"></span>
+```javascript
+PUT .zentity-tutorial-index-b
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "analysis" : {
+        "filter" : {
+          "street_suffix_map" : {
+            "pattern" : "(st)",
+            "type" : "pattern_replace",
+            "replacement" : "street"
+          },
+          "phonetic" : {
+            "type" : "phonetic",
+            "encoder" : "nysiis"
+          },
+          "punct_white" : {
+            "pattern" : "\\p{Punct}",
+            "type" : "pattern_replace",
+            "replacement" : " "
+          },
+          "remove_non_digits" : {
+            "pattern" : "[^\\d]",
+            "type" : "pattern_replace",
+            "replacement" : ""
+          }
+        },
+        "analyzer" : {
+          "name_clean" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white"
+            ],
+            "tokenizer" : "standard"
+          },
+          "name_phonetic" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white",
+              "phonetic"
+            ],
+            "tokenizer" : "standard"
+          },
+          "street_clean" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white",
+              "trim"
+            ],
+            "tokenizer" : "keyword"
+          },
+          "phone_clean" : {
+            "filter" : [
+              "remove_non_digits"
+            ],
+            "tokenizer" : "keyword"
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "id_b": {
+          "type": "keyword"
+        },
+        "first_name_b": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "name_clean"
+            },
+            "phonetic": {
+              "type": "text",
+              "analyzer": "name_phonetic"
+            }
+          }
+        },
+        "last_name_b": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "name_clean"
+            },
+            "phonetic": {
+              "type": "text",
+              "analyzer": "name_phonetic"
+            }
+          }
+        },
+        "street_b": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "street_clean"
+            }
+          }
+        },
+        "city_b": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "name_clean"
+            }
+          }
+        },
+        "state_b": {
           "type": "text",
           "fields": {
             "keyword": {
@@ -140,12 +347,22 @@ PUT .zentity-tutorial-index
             }
           }
         },
-        "dob": {
-          "type": "date",
-          "format": "yyyy-MM-dd"
+        "phone_b": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "phone_clean"
+            }
+          }
         },
-        "zip": {
-          "type": "integer"
+        "email_b": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword"
+            }
+          }
         }
       }
     }
@@ -159,20 +376,62 @@ PUT .zentity-tutorial-index
 Add the tutorial data to the index.
 
 ```javascript
-POST .zentity-tutorial-index/_bulk
-{
-  ...
-}
+POST _bulk?refresh
+{"index": {"_id": "1", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"city_a": "Washington", "email_a": "allie@example.net", "first_name_a": "Allie", "id_a": "1", "last_name_a": "Jones", "phone_a": "202-555-1234", "state_a": "DC", "street_a": "123 Main St"}
+{"index": {"_id": "2", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"city_b": "Washington", "email_b": "", "first_name_b": "Alicia", "id_b": "2", "last_name_b": "Johnson", "phone_b": "202-123-4567", "state_b": "DC", "street_b": "300 Main St"}
+{"index": {"_id": "3", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"city_a": "Washington", "email_a": "", "first_name_a": "Allie", "id_a": "3", "last_name_a": "Jones", "phone_a": "", "state_a": "DC", "street_a": "123 Main St"}
+{"index": {"_id": "4", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"city_b": "", "email_b": "", "first_name_b": "Ally", "id_b": "4", "last_name_b": "Joans", "phone_b": "202-555-1234", "state_b": "", "street_b": ""}
+{"index": {"_id": "5", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"city_a": "Arlington", "email_a": "ej@example.net", "first_name_a": "Eli", "id_a": "5", "last_name_a": "Jonas", "phone_a": "", "state_a": "VA", "street_a": "500 23rd Street"}
+{"index": {"_id": "6", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"city_b": "Washington", "email_b": "allie@example.net", "first_name_b": "Allison", "id_b": "6", "last_name_b": "Jones", "phone_b": "202-555-1234", "state_b": "DC", "street_b": "123 Main St"}
+{"index": {"_id": "7", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"city_a": "Washington", "email_a": "", "first_name_a": "Allison", "id_a": "7", "last_name_a": "Smith", "phone_a": "+1 (202) 555 1234", "state_a": "DC", "street_a": "555 Broad St"}
+{"index": {"_id": "8", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"city_b": "Washington", "email_b": "alan.smith@example.net", "first_name_b": "Alan", "id_b": "8", "last_name_b": "Smith", "phone_b": "202-000-5555", "state_b": "DC", "street_b": "555 Broad St"}
+{"index": {"_id": "9", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"city_a": "Washington", "email_a": "alan.smith@example.net", "first_name_a": "Alan", "id_a": "9", "last_name_a": "Smith", "phone_a": "2020005555", "state_a": "DC", "street_a": "555 Broad St"}
+{"index": {"_id": "10", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"city_b": "Washington", "email_b": "", "first_name_b": "Alison", "id_b": "10", "last_name_b": "Smith", "phone_b": "202-555-9876", "state_b": "DC", "street_b": "555 Broad St"}
+{"index": {"_id": "11", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"city_a": "", "email_a": "allie@example.net", "first_name_a": "Alison", "id_a": "11", "last_name_a": "Jones-Smith", "phone_a": "2025559867", "state_a": "", "street_a": ""}
+{"index": {"_id": "12", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"city_b": "Washington", "email_b": "allison.j.smith@corp.example.net", "first_name_b": "Allison", "id_b": "12", "last_name_b": "Jones-Smith", "phone_b": "", "state_b": "DC", "street_b": "555 Broad St"}
+{"index": {"_id": "13", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"city_a": "Arlington", "email_a": "allison.j.smith@corp.example.net", "first_name_a": "Allison", "id_a": "13", "last_name_a": "Jones Smith", "phone_a": "703-555-5555", "state_a": "VA", "street_a": "1 Corporate Way"}
+{"index": {"_id": "14", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"city_b": "Arlington", "email_b": "elise.jonas@corp.example.net", "first_name_b": "Elise", "id_b": "14", "last_name_b": "Jonas", "phone_b": "703-555-5555", "state_b": "VA", "street_b": "1 Corporate Way"}
 ```
 
 Here's what the tutorial data looks like.
 
-|id|user|phone|email|dob|zip|
-|:---|:---|:---|:---|:---|:---|
-|1|Alice|555-123-4567|alice@example.net|1984-01-01|90210|
-|2|Alice|555-123-4567|alice@example.net|1984-01-01|90210|
-|3|Elise|555-987-6543|elise@example.com|1984-01-01|90210|
-|4|Bob|555-555-5555|bob@example.net|1989-05-15|90210|
+**Index A**
+
+|id_a|first_name_a|last_name_a|street_a|city_a|state_a|phone_a|email_a|
+|:---|:---|:---|:---|:---|:---|:---|:---|
+|1|Allie|Jones|123 Main St|Washington|DC|202-555-1234|allie@example.net|
+|3|Allie|Jones|123 Main St|Washington|DC|||
+|5|Eli|Jonas|500 23rd Street|Arlington|VA||ej@example.net|
+|7|Allison|Smith|555 Broad St|Washington|DC|+1 (202) 555 1234||
+|9|Alan|Smith|555 Broad St|Washington|DC|2020005555|alan.smith@example.net|
+|11|Alison|Jones-Smith||||2025559867|allie@example.net|
+|13|Allison|Jones Smith|1 Corporate Way|Arlington|VA|703-555-5555|allison.j.smith@corp.example.net|
+
+**Index B**
+
+|id_b|first_name_b|last_name_b|street_b|city_b|state_b|phone_b|email_b|
+|:---|:---|:---|:---|:---|:---|:---|:---|
+|2|Alicia|Johnson|300 Main St|Washington|DC|202-123-4567||
+|4|Ally|Joans||||202-555-1234||
+|6|Allison|Jones|123 Main St|Washington|DC|202-555-1234|allie@example.net|
+|8|Alan|Smith|555 Broad St|Washington|DC|202-000-5555|alan.smith@example.net|
+|10|Alison|Smith|555 Broad St|Washington|DC|202-555-9876||
+|12|Allison|Jones-Smith|555 Broad St|Washington|DC||allison.j.smith@corp.example.net|
+|14|Elise|Jonas|1 Corporate Way|Arlington|VA|703-555-5555|elise.jonas@corp.example.net|
 
 
 ## <a name="create-entity-model"></a>2. Create the entity model

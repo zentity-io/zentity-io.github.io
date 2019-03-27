@@ -3,9 +3,8 @@
 
 # <a name="documentation"></a>Documentation
 
-[comment]: # ( )
-[comment]: # ( ## <a name="getting-started"></a>Getting Started)
-[comment]: # ( )
+## <a name="getting-started"></a>Getting Started
+
 [comment]: # ( - Overview)
 [comment]: # ( - [Installation](/docs/installation))
 [comment]: # ( - [Basic Usage](/docs/basic-usage))
@@ -23,10 +22,21 @@
 [comment]: # (     - U.S. Health Care Providers)
 [comment]: # (     - HTTP Sessions)
 
+- [Installation](/docs/installation)
+- [Basic Usage](/docs/basic-usage)
+    - [Exact Name Matching](/docs/basic-usage/exact-name-matching)
+    - [Robust Name Matching](/docs/basic-usage/robust-name-matching)
+    - [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
+    - [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
+    - [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
+- [Advanced Usage](/docs/advanced-usage)
+    - [Matcher Parameters](/docs/advanced-usage/matcher-parameters)
+    - Date Attributes
+    - Payload Attributes
+    - Resolution Scope
+
 ## <a name="reference"></a>Reference
 
-[comment]: # (Remove "Basic Usage" below after the tutorials are implemented)
-- [Basic Usage](/docs/basic-usage)
 - [Entity Models](/docs/entity-models)
     - [Entity Model Specification](/docs/entity-models/specification)
     - [Entity Modeling Tips](/docs/entity-models/tips)

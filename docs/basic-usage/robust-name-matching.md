@@ -91,57 +91,129 @@ PUT .zentity-tutorial-index
     "index": {
       "number_of_shards": 1,
       "number_of_replicas": 0,
-      "analysis": {
-        "analyzer": {
-          "clean_analyzer": {
-            "tokenizer": "standard",
-            "filter": [
-              "icu_normalizer",
-              "icu_folding"
-            ]
+      "analysis" : {
+        "filter" : {
+          "street_suffix_map" : {
+            "pattern" : "(st)",
+            "type" : "pattern_replace",
+            "replacement" : "street"
           },
-          "phonetic_analyzer": {
-            "tokenizer": "standard",
-            "filter": [
-              "icu_normalizer",
-              "icu_folding",
-              "phonetic_filter"
-            ]
+          "phonetic" : {
+            "type" : "phonetic",
+            "encoder" : "nysiis"
+          },
+          "punct_white" : {
+            "pattern" : "\\p{Punct}",
+            "type" : "pattern_replace",
+            "replacement" : " "
+          },
+          "remove_non_digits" : {
+            "pattern" : "[^\\d]",
+            "type" : "pattern_replace",
+            "replacement" : ""
           }
         },
-        "filter": {
-          "phonetic_filter": {
-            "type": "phonetic",
-            "encoder": "nysiis"
+        "analyzer" : {
+          "name_clean" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white"
+            ],
+            "tokenizer" : "standard"
+          },
+          "name_phonetic" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white",
+              "phonetic"
+            ],
+            "tokenizer" : "standard"
+          },
+          "street_clean" : {
+            "filter" : [
+              "icu_normalizer",
+              "icu_folding",
+              "punct_white",
+              "trim"
+            ],
+            "tokenizer" : "keyword"
+          },
+          "phone_clean" : {
+            "filter" : [
+              "remove_non_digits"
+            ],
+            "tokenizer" : "keyword"
           }
         }
       }
     }
   },
-  "mapping": {
-    "doc": {
+  "mappings": {
+    "_doc": {
       "properties": {
         "id": {
           "type": "keyword"
         },
-        "user": {
+        "first_name": {
           "type": "text",
           "fields": {
-            "phonetic": {
+            "clean": {
               "type": "text",
-              "analyzer": "clean"
+              "analyzer": "name_clean"
             },
             "phonetic": {
               "type": "text",
-              "analyzer": "phonetic"
+              "analyzer": "name_phonetic"
+            }
+          }
+        },
+        "last_name": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "name_clean"
+            },
+            "phonetic": {
+              "type": "text",
+              "analyzer": "name_phonetic"
+            }
+          }
+        },
+        "street": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "street_clean"
+            }
+          }
+        },
+        "city": {
+          "type": "text",
+          "fields": {
+            "clean": {
+              "type": "text",
+              "analyzer": "name_clean"
+            }
+          }
+        },
+        "state": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword"
             }
           }
         },
         "phone": {
           "type": "text",
           "fields": {
-            "keyword": {
-              "type": "keyword"
+            "clean": {
+              "type": "text",
+              "analyzer": "phone_clean"
             }
           }
         },
@@ -152,13 +224,6 @@ PUT .zentity-tutorial-index
               "type": "keyword"
             }
           }
-        },
-        "dob": {
-          "type": "date",
-          "format": "yyyy-MM-dd"
-        },
-        "zip": {
-          "type": "integer"
         }
       }
     }
@@ -166,11 +231,11 @@ PUT .zentity-tutorial-index
 }
 ```
 
-Notice that this index defines multiple fields under the `user` field. There are three fields we can query for the `user`:
+Notice that this index defines multiple fields under the `first_name` and `last_name` fields. There are three fields we can query for `first_name` and `last_name`:
 
-- `user` uses the standard analyzer.
-- `user.clean` uses a custom analyzer called `clean_analyzer`.
-- `user.phonetic` uses a custom analyzer called `phonetic_analyzer`.
+- `first_name` and `last_name` use the standard analyzer.
+- `first_name.clean` and `last_name.clean` use a custom analyzer called `clean_analyzer`.
+- `first_name.phonetic` and `last_name.phonetic` use a custom analyzer called `phonetic_analyzer`.
 
 We defined `clean_analyzer` and `phonetic_analyzer` in the settings of the index. `clean_analyzer` uses the `icu_normalizer` and `icu_folding`
 filters to convert any accented Unicode characters to their ASCII equivalent and normalize the casing of the characters. `phonetic_analyzer`
@@ -271,20 +336,55 @@ POST .zentity-tutorial-index/_analyze
 Add the tutorial data to the index.
 
 ```javascript
-POST .zentity-tutorial-index/_bulk
-{
-  ...
-}
+POST _bulk?refresh
+{"index": {"_id": "1", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "allie@example.net", "first_name": "Allie", "id": "1", "last_name": "Jones", "phone": "202-555-1234", "state": "DC", "street": "123 Main St"}
+{"index": {"_id": "2", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Alicia", "id": "2", "last_name": "Johnson", "phone": "202-123-4567", "state": "DC", "street": "300 Main St"}
+{"index": {"_id": "3", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Allie", "id": "3", "last_name": "Jones", "phone": "", "state": "DC", "street": "123 Main St"}
+{"index": {"_id": "4", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "", "email": "", "first_name": "Ally", "id": "4", "last_name": "Joans", "phone": "202-555-1234", "state": "", "street": ""}
+{"index": {"_id": "5", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Arlington", "email": "ej@example.net", "first_name": "Eli", "id": "5", "last_name": "Jonas", "phone": "", "state": "VA", "street": "500 23rd Street"}
+{"index": {"_id": "6", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "allie@example.net", "first_name": "Allison", "id": "6", "last_name": "Jones", "phone": "202-555-1234", "state": "DC", "street": "123 Main St"}
+{"index": {"_id": "7", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Allison", "id": "7", "last_name": "Smith", "phone": "+1 (202) 555 1234", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "8", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "alan.smith@example.net", "first_name": "Alan", "id": "8", "last_name": "Smith", "phone": "202-000-5555", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "9", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "alan.smith@example.net", "first_name": "Alan", "id": "9", "last_name": "Smith", "phone": "2020005555", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "10", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "", "first_name": "Alison", "id": "10", "last_name": "Smith", "phone": "202-555-9876", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "11", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "", "email": "allie@example.net", "first_name": "Alison", "id": "11", "last_name": "Jones-Smith", "phone": "2025559867", "state": "", "street": ""}
+{"index": {"_id": "12", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Washington", "email": "allison.j.smith@corp.example.net", "first_name": "Allison", "id": "12", "last_name": "Jones-Smith", "phone": "", "state": "DC", "street": "555 Broad St"}
+{"index": {"_id": "13", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Arlington", "email": "allison.j.smith@corp.example.net", "first_name": "Allison", "id": "13", "last_name": "Jones Smith", "phone": "703-555-5555", "state": "VA", "street": "1 Corporate Way"}
+{"index": {"_id": "14", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"city": "Arlington", "email": "elise.jonas@corp.example.net", "first_name": "Elise", "id": "14", "last_name": "Jonas", "phone": "703-555-5555", "state": "VA", "street": "1 Corporate Way"}
 ```
 
 Here's what the tutorial data looks like.
 
-|id|user|phone|email|dob|zip|
-|:---|:---|:---|:---|:---|:---|
-|1|Alice|555-123-4567|alice@example.net|1984-01-01|90210|
-|2|Alice|555-123-4567|alice@example.net|1984-01-01|90210|
-|3|Elise|555-987-6543|elise@example.com|1984-01-01|90210|
-|4|Bob|555-555-5555|bob@example.net|1989-05-15|90210|
+|id|first_name|last_name|street|city|state|phone|email|
+|:---|:---|:---|:---|:---|:---|:---|:---|
+|1|Allie|Jones|123 Main St|Washington|DC|202-555-1234|allie@example.net|
+|2|Alicia|Johnson|300 Main St|Washington|DC|202-123-4567||
+|3|Allie|Jones|123 Main St|Washington|DC|||
+|4|Ally|Joans||||202-555-1234||
+|5|Eli|Jonas|500 23rd Street|Arlington|VA||ej@example.net|
+|6|Allison|Jones|123 Main St|Washington|DC|202-555-1234|allie@example.net|
+|7|Allison|Smith|555 Broad St|Washington|DC|+1 (202) 555 1234||
+|8|Alan|Smith|555 Broad St|Washington|DC|202-000-5555|alan.smith@example.net|
+|9|Alan|Smith|555 Broad St|Washington|DC|2020005555|alan.smith@example.net|
+|10|Alison|Smith|555 Broad St|Washington|DC|202-555-9876||
+|11|Alison|Jones-Smith||||2025559867|allie@example.net|
+|12|Allison|Jones-Smith|555 Broad St|Washington|DC||allison.j.smith@corp.example.net|
+|13|Allison|Jones Smith|1 Corporate Way|Arlington|VA|703-555-5555|allison.j.smith@corp.example.net|
+|14|Elise|Jonas|1 Corporate Way|Arlington|VA|703-555-5555|elise.jonas@corp.example.net|
 
 
 ## <a name="create-entity-model"></a>2. Create the entity model
@@ -295,13 +395,16 @@ Let's use the [Models API](/docs/rest-apis/models-api) to create the entity mode
 PUT _zentity/models/zentity-tutorial-person
 {
   "attributes": {
-    "name": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
       "type": "string"
     }
   },
   "resolvers": {
     "name_only": {
-      "attributes": [ "name" ]
+      "attributes": [ "first_name", "last_name" ]
     }
   },
   "matchers": {
@@ -317,7 +420,7 @@ PUT _zentity/models/zentity-tutorial-person
         "match": {
           "{{ field }}": {
             "query": "{{ value }}",
-            "fuzziness": "auto"
+            "fuzziness": "1"
           }
         }
       }
@@ -326,16 +429,20 @@ PUT _zentity/models/zentity-tutorial-person
   "indices": {
     ".zentity-tutorial-index": {
       "fields": {
-        "user": {
-          "attribute": "name",
+        "first_name.clean": {
+          "attribute": "first_name",
           "matcher": "fuzzy"
         },
-        "user.clean": {
-          "attribute": "name",
+        "first_name.phonetic": {
+          "attribute": "first_name",
           "matcher": "simple"
         },
-        "user.phonetic": {
-          "attribute": "name",
+        "last_name.clean": {
+          "attribute": "last_name",
+          "matcher": "fuzzy"
+        },
+        "last_name.phonetic": {
+          "attribute": "last_name",
           "matcher": "simple"
         }
       }
@@ -344,15 +451,37 @@ PUT _zentity/models/zentity-tutorial-person
 }
 ```
 
+The response will look like this:
+
+```javascript
+{
+  "_index" : ".zentity-models",
+  "_type" : "doc",
+  "_id" : "zentity-tutorial-person",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 1,
+  "_primary_term" : 3
+}
+```
+
 
 ### <a name="review-attributes"></a>2.1. Review the attributes
 
-We defined a single attribute called `"name"` as shown in this section:
+We defined two attributes called `"first_name"` and `"last_name"` as shown in this section:
 
 ```javascript
 {
   "attributes": {
-    "name": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
       "type": "string"
     }
   }
@@ -370,7 +499,7 @@ We defined a single resolver called `"name_only"` as shown in this section:
 {
   "resolvers": {
     "name_only": {
-      "attributes": [ "name" ]
+      "attributes": [ "first_name", "last_name" ]
     }
   }
 }
@@ -404,7 +533,7 @@ We defined two matchers called `"simple"` and `"fuzzy"` as shown in this section
         "match": {
           "{{ field }}": {
             "query": "{{ value }}",
-            "fuzziness": "auto"
+            "fuzziness": "1"
           }
         }
       }
@@ -432,7 +561,7 @@ to perform this match.
   "match": {
     "{{ field }}": {
       "query": "{{ value }}"
-      "fuzziness": "auto"
+      "fuzziness": "1"
     }
   }
 }
@@ -452,16 +581,20 @@ We defined a single index as shown in this section:
   "indices": {
     ".zentity-tutorial-index": {
       "fields": {
-        "user": {
-          "attribute": "name",
+        "first_name.clean": {
+          "attribute": "first_name",
           "matcher": "fuzzy"
         },
-        "user.clean": {
-          "attribute": "name",
+        "first_name.phonetic": {
+          "attribute": "first_name",
           "matcher": "simple"
         },
-        "user.phonetic": {
-          "attribute": "name",
+        "last_name.clean": {
+          "attribute": "last_name",
+          "matcher": "fuzzy"
+        },
+        "last_name.phonetic": {
+          "attribute": "last_name",
           "matcher": "simple"
         }
       }
@@ -469,9 +602,6 @@ We defined a single index as shown in this section:
   }
 }
 ```
-
-We mapped the `"name"` attribute to the `"user"`, `"user.clean"`, and `"user.phonetic"` fields in `.zentity-tutorial-index`.
-The `"user"` field will use the `"fuzzy"` matcher and the other two fields will use the `"simple"` matcher.
 
 
 ## <a name="resolve-entity"></a>3. Resolve an entity
@@ -482,7 +612,8 @@ Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a pers
 POST _zentity/resolution/zentity-tutorial-person
 {
   "attributes": {
-    "name": [ "Alice" ]
+    "first_name": [ "Allie" ],
+    "last_name": [ "Jones" ]
   }
 }
 ```
@@ -490,7 +621,70 @@ POST _zentity/resolution/zentity-tutorial-person
 The results will look like this:
 
 ```javascript
-...
+{
+  "took" : 12,
+  "hits" : {
+    "total" : 3,
+    "hits" : [ {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "1",
+      "_hop" : 0,
+      "_attributes" : {
+        "first_name" : "Allie",
+        "last_name" : "Jones"
+      },
+      "_source" : {
+        "city" : "Washington",
+        "email" : "allie@example.net",
+        "first_name" : "Allie",
+        "id" : "1",
+        "last_name" : "Jones",
+        "phone" : "202-555-1234",
+        "state" : "DC",
+        "street" : "123 Main St"
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "3",
+      "_hop" : 0,
+      "_attributes" : {
+        "first_name" : "Allie",
+        "last_name" : "Jones"
+      },
+      "_source" : {
+        "city" : "Washington",
+        "email" : "",
+        "first_name" : "Allie",
+        "id" : "3",
+        "last_name" : "Jones",
+        "phone" : "",
+        "state" : "DC",
+        "street" : "123 Main St"
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index",
+      "_type" : "_doc",
+      "_id" : "4",
+      "_hop" : 0,
+      "_attributes" : {
+        "first_name" : "Ally",
+        "last_name" : "Joans"
+      },
+      "_source" : {
+        "city" : "",
+        "email" : "",
+        "first_name" : "Ally",
+        "id" : "4",
+        "last_name" : "Joans",
+        "phone" : "202-555-1234",
+        "state" : "",
+        "street" : ""
+      }
+    } ]
+  }
+}
 ```
 
 As expected, we retrieved ...
