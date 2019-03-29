@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>zentity - Documentation</title>
+    <title>zentity - Payload Attributes</title>
     <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
     <meta name="description" content="zentity brings entity resolution to Elasticsearch. Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <meta property="og:title" content="zentity - Entity Resolution for Elasticsearch"/>
@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=477594135"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=611932605"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=745688018"></script>
+    </script><script src="/js/all.js?id=114773725"></script>
   </head>
   <body>
     <div id="app" >
@@ -59,58 +59,29 @@
           </div>
         </div></div>
       <div id="main" class="content">
-        <p><a href="/">Home</a> / Documentation</p>
-<h1><a name="documentation"></a>Documentation</h1>
-<h2><a name="getting-started"></a>Getting Started</h2>
-<ul>
-<li><a href="/docs/installation">Installation</a></li>
-</ul>
-<h2><a name="tutorials"></a>Tutorials</h2>
-<ul>
-<li><a href="/docs/basic-usage">Basic Usage</a><ul>
-<li><a href="/docs/basic-usage/exact-name-matching">Exact Name Matching</a></li>
-<li><a href="/docs/basic-usage/robust-name-matching">Robust Name Matching</a></li>
-<li><a href="/docs/basic-usage/multiple-attribute-resolution">Multiple Attribute Resolution</a></li>
-<li><a href="/docs/basic-usage/multiple-resolver-resolution">Multiple Resolver Resolution</a></li>
-<li><a href="/docs/basic-usage/cross-index-resolution">Cross Index Resolution</a></li>
-<li><a href="/docs/basic-usage/scoping-resolution">Scoping Resolution</a></li>
-</ul>
-</li>
-<li><a href="/docs/advanced-usage">Advanced Usage</a><ul>
+        <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/advanced-usage">Advanced Usage</a> / Payload Attributes</p>
+<h4><a name="contents"></a>Advanced Usage Tutorials 📖</h4>
+<p>This tutorial is part of a series to help you learn and perform the advanced
+functions of zentity. You should complete the <a href="/docs/basic-usage">basic usage</a>
+tutorials before completing these advanced usage tutorials.</p>
+<ol>
 <li><a href="/docs/advanced-usage/matcher-parameters">Matcher Parameters</a></li>
 <li><a href="/docs/advanced-usage/date-attributes">Date Attributes</a></li>
-<li><a href="/docs/advanced-usage/payload-attributes">Payload Attributes</a></li>
-</ul>
-</li>
-</ul>
-<h2><a name="reference"></a>Reference</h2>
-<ul>
-<li><a href="/docs/entity-models">Entity Models</a><ul>
-<li><a href="/docs/entity-models/specification">Entity Model Specification</a></li>
-<li><a href="/docs/entity-models/tips">Entity Modeling Tips</a></li>
-</ul>
-</li>
-<li><a href="/docs/entity-resolution">Entity Resolution</a><ul>
-<li><a href="/docs/entity-resolution/input-specification">Input Specification</a></li>
-<li><a href="/docs/entity-resolution/output-specification">Output Specification</a></li>
-</ul>
-</li>
-<li><a href="/docs/rest-apis">REST APIs</a><ul>
-<li><a href="/docs/rest-apis/setup-api">Setup API</a></li>
-<li><a href="/docs/rest-apis/models-api">Models API</a></li>
-<li><a href="/docs/rest-apis/resolution-api">Resolution API</a></li>
-</ul>
-</li>
-<li><a href="/docs/security">Security</a></li>
-</ul>
+<li><strong>Payload Attributes</strong> <em>&#8592; You are here.</em></li>
+</ol>
+<hr>
+<h1><a name="payload-attributes"></a>Payload Attributes</h1>
+<p>Payload attributes are data elements that don't represent the entity that you resolve, but are worth retrieving when you resolve the entity. They are not used in matching, but they relate to the entity nonetheless. Think of payload attributes as data that you join to the entity, so that you can analyze information that relates to the entity.</p>
+<p>For example, let's say you have two indices with purchase order receipts, where each document has details about the customer, the product, and the amount paid. You might want to resolve a customer or a product from the two indices. You might also want to retrieve information about the amount paid so that you can calculate its sum. "Amount paid" is not an attribute of the customer or the product. But you can return the amount paid simply by defining it as an attribute.</p>
+<p>There is no distinct concept of a payload attribute in zentity. Attributes will automatically function as payloads if you don't define a <a href="/docs/entity-models/specification#indices.INDEX_NAME.fields.INDEX_FIELD_NAME.matcher"><code>"matcher"</code></a> for the field associated with that attribute in the <a href="/docs/entity-models/specification#indices"><code>"indices"</code></a> object of the entity model. Without a matcher, the attribute will not be used for matching. But if two records are matched with other attributes in the index, then the attributes without matchers will be returned with the result as payload attributes.</p>
 <p>&nbsp;</p>
 <hr>
 <h4>Continue Reading</h4>
 <table class="table">
 <thead><tr>
-<th style="text-align:left"></th>
-<th style="text-align:left"></th>
-<th style="text-align:right"><a href="/docs/installation">Installation</a></th>
+<th style="text-align:left">&#8249;</th>
+<th style="text-align:left"><a href="/docs/advanced-usage/date-attributes">Date Attributes</a></th>
+<th style="text-align:right"><a href="/docs/entity-models">Entity Models</a></th>
 <th style="text-align:right">&#8250;</th>
 </tr>
 </thead>

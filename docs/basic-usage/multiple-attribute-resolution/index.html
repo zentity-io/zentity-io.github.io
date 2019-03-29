@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=392216901"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=908218890"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=663333764"></script>
+    </script><script src="/js/all.js?id=911378199"></script>
   </head>
   <body>
     <div id="app" >
@@ -60,36 +60,39 @@
         </div></div>
       <div id="main" class="content">
         <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/basic-usage">Basic Usage</a> / Multiple Attribute Resolution</p>
-<h4><a name="contents"></a>Basic Usage Tutorials</h4>
-<p>This tutorial is part of a series to help you learn and perform the basic functions of zentity. Each tutorial adds a little more
-sophistication to the prior tutorials, so you can start simple and learn the more advanced features over time.</p>
+<h4><a name="contents"></a>Basic Usage Tutorials 📖</h4>
+<p>This tutorial is part of a series to help you learn and perform the basic
+functions of zentity. Each tutorial adds a little more sophistication to the
+prior tutorials, so you can start simple and learn the more advanced features
+over time.</p>
 <ol>
 <li><a href="/docs/basic-usage/exact-name-matching">Exact Name Matching</a></li>
 <li><a href="/docs/basic-usage/robust-name-matching">Robust Name Matching</a></li>
 <li><strong>Multiple Attribute Resolution</strong> <em>&#8592; You are here.</em></li>
 <li><a href="/docs/basic-usage/multiple-resolver-resolution">Multiple Resolver Resolution</a></li>
 <li><a href="/docs/basic-usage/cross-index-resolution">Cross Index Resolution</a></li>
+<li><a href="/docs/basic-usage/scoping-resolution">Scoping Resolution</a></li>
 </ol>
 <hr>
 <h1><a name="multiple-attribute-resolution"></a>Multiple Attribute Resolution</h1>
-<p>This tutorial adds more sophistication to the prior tutorials on <a href="/docs/basic-usage/exact-name-matching">exact name matching</a> and
-<a href="/docs/basic-usage/robust-name-matching">robust name matching</a>. This time you will map <em>multiple attributes</em> to multiple fields
-of a single index.</p>
 <p>Never trust a single attribute in isolation, as a general rule.</p>
 <p>Using a single attribute for entity resolution is a bad practice &ndash; an anti-pattern. It's an easy way to "snowball" many different entities
 together and drive up your false positive rate. The problem with using a single attribute is that any attribute is prone to error. Many people can
-share the same name or or date of birth. One address can be shared by family members or past residents. A Social Security Number can be forged,
-reissued, shared, or mistyped. A bogus value such as "N/A" can link many entities together.</p>
+share the same name or date of birth. A home address can be shared by family members or past residents. A Social Security Number can be forged,
+reissued, shared, or mistyped. A bogus value such as "N/A" or "unknown" can link many entities together.</p>
 <p>Instead, trust multiple attributes to corroborate a match.</p>
 <p>Consider this an exercise in probability theory. Suppose you have an index of millions of people. What's the probability that two people share
 the same name? It's probably high. What's the probability that people share the same name <em>and</em> the same phone number? It's probably much lower.</p>
+<p>This tutorial adds more sophistication to the prior tutorials on <a href="/docs/basic-usage/exact-name-matching">exact name matching</a> and
+<a href="/docs/basic-usage/robust-name-matching">robust name matching</a>. This time you will map <strong>multiple attributes</strong> to <strong>multiple fields</strong>
+of a <strong>single index</strong>.</p>
 <p>Let's dive in.</p>
 <blockquote><p><strong>Important</strong></p>
 <p>You must install <a href="https://www.elastic.co/downloads/elasticsearch" onclick="to('https://www.elastic.co/downloads/elasticsearch', 'outbound');" class="external">Elasticsearch</a>, <a href="https://www.elastic.co/downloads/kibana" onclick="to('https://www.elastic.co/downloads/kibana', 'outbound');" class="external">Kibana</a>, and <a href="/docs/installation">zentity</a> to complete this tutorial.
-This tutorial was tested with <a href="/docs/releases">zentity-1.0.0-elasticsearch-6.2.4</a>.</p>
+This tutorial was tested with <a href="/docs/releases">zentity-1.0.2-elasticsearch-6.7.0</a>.</p>
 </blockquote>
 <h2><a name="prepare"></a>1. Prepare for the tutorial</h2>
-<h3><a name="install-phonetic-analysis-plugin"></a>1.1. Install the required plugins</h3>
+<h3><a name="install-required-plugins"></a>1.1 Install the required plugins</h3>
 <p>This tutorial uses the <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html', 'outbound');" class="external">phonetic analysis plugin</a>
 and <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html', 'outbound');" class="external">ICU analysis plugin</a> for Elasticsearch. You will
 need to stop Elasticsearch, install these plugin, and start Elasticsearch. You can learn more about Elasticsearch plugin management
@@ -97,10 +100,10 @@ need to stop Elasticsearch, install these plugin, and start Elasticsearch. You c
 <p>For Linux (in the <code>$ES_HOME</code> directory of a .tar.gz installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1ebf462859cbfb22">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af8b9910645d6af7c">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a1ebf462859cbfb22"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
+          <span id="af8b9910645d6af7c"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
 sudo bin/elasticsearch-plugin install analysis-icu
 </pre></div>
 </span>
@@ -108,92 +111,163 @@ sudo bin/elasticsearch-plugin install analysis-icu
         <p>For Windows (in the <code>$ES_HOME</code> directory of a .zip installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af4a5f959c03cf4a4">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab46333f468d29d97">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af4a5f959c03cf4a4"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
+          <span id="ab46333f468d29d97"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
 bin/elasticsearch-plugin.bat install analysis-icu
 </pre></div>
 </span>
         </div>
-        <h3><a name="open-kibana-console-ui"></a>1.2. Open the Kibana Console UI</h3>
+        <h3><a name="open-kibana-console-ui"></a>1.2 Open the Kibana Console UI</h3>
 <p>The <a href="https://www.elastic.co/guide/en/kibana/current/console-kibana.html" onclick="to('https://www.elastic.co/guide/en/kibana/current/console-kibana.html', 'outbound');" class="external">Kibana Console UI</a> makes it easy to submit requests to Elasticsearch and read responses.</p>
-<h3><a name="delete-old-tutorial-indices"></a>1.3. Delete any old tutorial indices</h3>
+<h3><a name="delete-old-tutorial-indices"></a>1.3 Delete any old tutorial indices</h3>
 <p>Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac5e31b7ffcb0447f">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3e8fb6d1d53ce9e0">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac5e31b7ffcb0447f"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
+          <span id="a3e8fb6d1d53ce9e0"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
 </pre></div>
 </span>
         </div>
-        <h3><a name="create-tutorial-index"></a>1.4. Create the tutorial index</h3>
+        <h3><a name="create-tutorial-index"></a>1.4 Create the tutorial index</h3>
 <p>Now create the index for this tutorial.</p>
-<p><span class="code-overflow"></span></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a35c109a1c4781325">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3cd07c29f3027bdb">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a35c109a1c4781325"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
+          <span id="a3cd07c29f3027bdb"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
 <span class="p">{</span>
   <span class="s2">&quot;settings&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;number_of_shards&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
       <span class="s2">&quot;number_of_replicas&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s2">&quot;analysis&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;clean_analyzer&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;tokenizer&quot;</span><span class="o">:</span> <span class="s2">&quot;standard&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;filter&quot;</span><span class="o">:</span> <span class="p">[</span>
-              <span class="s2">&quot;icu_normalizer&quot;</span><span class="p">,</span>
-              <span class="s2">&quot;icu_folding&quot;</span>
-            <span class="p">]</span>
+      <span class="s2">&quot;analysis&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;filter&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;street_suffix_map&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;pattern&quot;</span> <span class="o">:</span> <span class="s2">&quot;(st)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;pattern_replace&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;replacement&quot;</span> <span class="o">:</span> <span class="s2">&quot;street&quot;</span>
           <span class="p">},</span>
-          <span class="s2">&quot;phonetic_analyzer&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;tokenizer&quot;</span><span class="o">:</span> <span class="s2">&quot;standard&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;filter&quot;</span><span class="o">:</span> <span class="p">[</span>
-              <span class="s2">&quot;icu_normalizer&quot;</span><span class="p">,</span>
-              <span class="s2">&quot;icu_folding&quot;</span><span class="p">,</span>
-              <span class="s2">&quot;phonetic_filter&quot;</span>
-            <span class="p">]</span>
+          <span class="s2">&quot;phonetic&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;phonetic&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;encoder&quot;</span> <span class="o">:</span> <span class="s2">&quot;nysiis&quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;punct_white&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;pattern&quot;</span> <span class="o">:</span> <span class="s2">&quot;\\p{Punct}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;pattern_replace&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;replacement&quot;</span> <span class="o">:</span> <span class="s2">&quot; &quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;remove_non_digits&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;pattern&quot;</span> <span class="o">:</span> <span class="s2">&quot;[^\\d]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span> <span class="o">:</span> <span class="s2">&quot;pattern_replace&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;replacement&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
           <span class="p">}</span>
         <span class="p">},</span>
-        <span class="s2">&quot;filter&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;phonetic_filter&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;phonetic&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;encoder&quot;</span><span class="o">:</span> <span class="s2">&quot;nysiis&quot;</span>
+        <span class="s2">&quot;analyzer&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name_clean&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;filter&quot;</span> <span class="o">:</span> <span class="p">[</span>
+              <span class="s2">&quot;icu_normalizer&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;icu_folding&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;punct_white&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;tokenizer&quot;</span> <span class="o">:</span> <span class="s2">&quot;standard&quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;name_phonetic&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;filter&quot;</span> <span class="o">:</span> <span class="p">[</span>
+              <span class="s2">&quot;icu_normalizer&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;icu_folding&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;punct_white&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;phonetic&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;tokenizer&quot;</span> <span class="o">:</span> <span class="s2">&quot;standard&quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;street_clean&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;filter&quot;</span> <span class="o">:</span> <span class="p">[</span>
+              <span class="s2">&quot;icu_normalizer&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;icu_folding&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;punct_white&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;trim&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;tokenizer&quot;</span> <span class="o">:</span> <span class="s2">&quot;keyword&quot;</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;phone_clean&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;filter&quot;</span> <span class="o">:</span> <span class="p">[</span>
+              <span class="s2">&quot;remove_non_digits&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;tokenizer&quot;</span> <span class="o">:</span> <span class="s2">&quot;keyword&quot;</span>
           <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">},</span>
-  <span class="s2">&quot;mapping&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="s2">&quot;mappings&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;_doc&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;properties&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;keyword&quot;</span>
         <span class="p">},</span>
-        <span class="s2">&quot;user&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
           <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;phonetic&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;clean&quot;</span><span class="o">:</span> <span class="p">{</span>
               <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
-              <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="s2">&quot;clean&quot;</span>
+              <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="s2">&quot;name_clean&quot;</span>
             <span class="p">},</span>
             <span class="s2">&quot;phonetic&quot;</span><span class="o">:</span> <span class="p">{</span>
               <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
-              <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="s2">&quot;phonetic&quot;</span>
+              <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="s2">&quot;name_phonetic&quot;</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;clean&quot;</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="s2">&quot;name_clean&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;phonetic&quot;</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="s2">&quot;name_phonetic&quot;</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;clean&quot;</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="s2">&quot;street_clean&quot;</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;clean&quot;</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="s2">&quot;name_clean&quot;</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;keyword&quot;</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;keyword&quot;</span>
             <span class="p">}</span>
           <span class="p">}</span>
         <span class="p">},</span>
         <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
           <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;keyword&quot;</span><span class="o">:</span> <span class="p">{</span>
-              <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;keyword&quot;</span>
+            <span class="s2">&quot;clean&quot;</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;analyzer&quot;</span><span class="o">:</span> <span class="s2">&quot;phone_clean&quot;</span>
             <span class="p">}</span>
           <span class="p">}</span>
         <span class="p">},</span>
@@ -204,13 +278,6 @@ bin/elasticsearch-plugin.bat install analysis-icu
               <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;keyword&quot;</span>
             <span class="p">}</span>
           <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;dob&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;format&quot;</span><span class="o">:</span> <span class="s2">&quot;yyyy-MM-dd&quot;</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;zip&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;integer&quot;</span>
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">}</span>
@@ -219,17 +286,42 @@ bin/elasticsearch-plugin.bat install analysis-icu
 </pre></div>
 </span>
         </div>
-        <h3><a name="load-tutorial-data"></a>1.5. Load the tutorial data</h3>
+        <h3><a name="load-tutorial-data"></a>1.5 Load the tutorial data</h3>
 <p>Add the tutorial data to the index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab3fb448ddbe263cf">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#adf4a0914e18d6ee7">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab3fb448ddbe263cf"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span><span class="o">/</span><span class="nx">_bulk</span>
-<span class="p">{</span>
-  <span class="p">...</span>
-<span class="p">}</span>
+          <span id="adf4a0914e18d6ee7"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alicia&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Johnson&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;202-123-4567&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;300 Main St&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Ally&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Joans&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Arlington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;ej@example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Eli&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jonas&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;VA&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;500 23rd Street&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;+1 (202) 555 1234&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;alan.smith@example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alan&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;202-000-5555&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;alan.smith@example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alan&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;2020005555&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;2025559867&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;13&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Arlington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;13&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;703-555-5555&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;VA&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;1 Corporate Way&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;14&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Arlington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;elise.jonas@corp.example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Elise&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;14&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jonas&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;703-555-5555&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;VA&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;1 Corporate Way&quot;</span><span class="p">}</span>
 </pre></div>
 </span>
         </div>
@@ -237,45 +329,155 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <table class="table">
 <thead><tr>
 <th style="text-align:left">id</th>
-<th style="text-align:left">user</th>
+<th style="text-align:left">first_name</th>
+<th style="text-align:left">last_name</th>
+<th style="text-align:left">street</th>
+<th style="text-align:left">city</th>
+<th style="text-align:left">state</th>
 <th style="text-align:left">phone</th>
 <th style="text-align:left">email</th>
-<th style="text-align:left">dob</th>
-<th style="text-align:left">zip</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left">1</td>
-<td style="text-align:left">Alice</td>
-<td style="text-align:left">555-123-4567</td>
-<td style="text-align:left">alice@example.net</td>
-<td style="text-align:left">1984-01-01</td>
-<td style="text-align:left">90210</td>
+<td style="text-align:left">Allie</td>
+<td style="text-align:left">Jones</td>
+<td style="text-align:left">123 Main St</td>
+<td style="text-align:left">Washington</td>
+<td style="text-align:left">DC</td>
+<td style="text-align:left">202-555-1234</td>
+<td style="text-align:left">allie@example.net</td>
 </tr>
 <tr>
 <td style="text-align:left">2</td>
-<td style="text-align:left">Alice</td>
-<td style="text-align:left">555-123-4567</td>
-<td style="text-align:left">alice@example.net</td>
-<td style="text-align:left">1984-01-01</td>
-<td style="text-align:left">90210</td>
+<td style="text-align:left">Alicia</td>
+<td style="text-align:left">Johnson</td>
+<td style="text-align:left">300 Main St</td>
+<td style="text-align:left">Washington</td>
+<td style="text-align:left">DC</td>
+<td style="text-align:left">202-123-4567</td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
 <td style="text-align:left">3</td>
-<td style="text-align:left">Elise</td>
-<td style="text-align:left">555-987-6543</td>
-<td style="text-align:left">elise@example.com</td>
-<td style="text-align:left">1984-01-01</td>
-<td style="text-align:left">90210</td>
+<td style="text-align:left">Allie</td>
+<td style="text-align:left">Jones</td>
+<td style="text-align:left">123 Main St</td>
+<td style="text-align:left">Washington</td>
+<td style="text-align:left">DC</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
 <td style="text-align:left">4</td>
-<td style="text-align:left">Bob</td>
-<td style="text-align:left">555-555-5555</td>
-<td style="text-align:left">bob@example.net</td>
-<td style="text-align:left">1989-05-15</td>
-<td style="text-align:left">90210</td>
+<td style="text-align:left">Ally</td>
+<td style="text-align:left">Joans</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">202-555-1234</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">Eli</td>
+<td style="text-align:left">Jonas</td>
+<td style="text-align:left">500 23rd Street</td>
+<td style="text-align:left">Arlington</td>
+<td style="text-align:left">VA</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ej@example.net</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left">Allison</td>
+<td style="text-align:left">Jones</td>
+<td style="text-align:left">123 Main St</td>
+<td style="text-align:left">Washington</td>
+<td style="text-align:left">DC</td>
+<td style="text-align:left">202-555-1234</td>
+<td style="text-align:left">allie@example.net</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left">Allison</td>
+<td style="text-align:left">Smith</td>
+<td style="text-align:left">555 Broad St</td>
+<td style="text-align:left">Washington</td>
+<td style="text-align:left">DC</td>
+<td style="text-align:left">+1 (202) 555 1234</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">8</td>
+<td style="text-align:left">Alan</td>
+<td style="text-align:left">Smith</td>
+<td style="text-align:left">555 Broad St</td>
+<td style="text-align:left">Washington</td>
+<td style="text-align:left">DC</td>
+<td style="text-align:left">202-000-5555</td>
+<td style="text-align:left">alan.smith@example.net</td>
+</tr>
+<tr>
+<td style="text-align:left">9</td>
+<td style="text-align:left">Alan</td>
+<td style="text-align:left">Smith</td>
+<td style="text-align:left">555 Broad St</td>
+<td style="text-align:left">Washington</td>
+<td style="text-align:left">DC</td>
+<td style="text-align:left">2020005555</td>
+<td style="text-align:left">alan.smith@example.net</td>
+</tr>
+<tr>
+<td style="text-align:left">10</td>
+<td style="text-align:left">Alison</td>
+<td style="text-align:left">Smith</td>
+<td style="text-align:left">555 Broad St</td>
+<td style="text-align:left">Washington</td>
+<td style="text-align:left">DC</td>
+<td style="text-align:left">202-555-9876</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">11</td>
+<td style="text-align:left">Alison</td>
+<td style="text-align:left">Jones-Smith</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2025559867</td>
+<td style="text-align:left">allie@example.net</td>
+</tr>
+<tr>
+<td style="text-align:left">12</td>
+<td style="text-align:left">Allison</td>
+<td style="text-align:left">Jones-Smith</td>
+<td style="text-align:left">555 Broad St</td>
+<td style="text-align:left">Washington</td>
+<td style="text-align:left">DC</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">allison.j.smith@corp.example.net</td>
+</tr>
+<tr>
+<td style="text-align:left">13</td>
+<td style="text-align:left">Allison</td>
+<td style="text-align:left">Jones Smith</td>
+<td style="text-align:left">1 Corporate Way</td>
+<td style="text-align:left">Arlington</td>
+<td style="text-align:left">VA</td>
+<td style="text-align:left">703-555-5555</td>
+<td style="text-align:left">allison.j.smith@corp.example.net</td>
+</tr>
+<tr>
+<td style="text-align:left">14</td>
+<td style="text-align:left">Elise</td>
+<td style="text-align:left">Jonas</td>
+<td style="text-align:left">1 Corporate Way</td>
+<td style="text-align:left">Arlington</td>
+<td style="text-align:left">VA</td>
+<td style="text-align:left">703-555-5555</td>
+<td style="text-align:left">elise.jonas@corp.example.net</td>
 </tr>
 </tbody>
 </table>
@@ -283,13 +485,16 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>Let's use the <a href="/docs/rest-apis/models-api">Models API</a> to create the entity model below. We'll review each part of the model in depth.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a18e451bad8413805">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0257f5e434eb21c7">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a18e451bad8413805"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
+          <span id="a0257f5e434eb21c7"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
     <span class="p">},</span>
     <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -298,7 +503,7 @@ bin/elasticsearch-plugin.bat install analysis-icu
   <span class="p">},</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_phone&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
     <span class="p">}</span>
   <span class="p">},</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -314,7 +519,7 @@ bin/elasticsearch-plugin.bat install analysis-icu
         <span class="s2">&quot;match&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="p">{</span>
             <span class="s2">&quot;query&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
+            <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span>
           <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">}</span>
@@ -325,26 +530,30 @@ bin/elasticsearch-plugin.bat install analysis-icu
           <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
         <span class="p">}</span>
       <span class="p">}</span>
-    <span class="p">},</span>
+    <span class="p">}</span>
   <span class="p">},</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;user&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name.clean&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
           <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span>
         <span class="p">},</span>
-        <span class="s2">&quot;user.clean&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name.phonetic&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
           <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;simple&quot;</span>
         <span class="p">},</span>
-        <span class="s2">&quot;user.phonetic&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name.clean&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;last_name.phonetic&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
           <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;simple&quot;</span>
         <span class="p">},</span>
-        <span class="s2">&quot;phone.keyword&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;phone.clean&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;exact&quot;</span>
+          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span>
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">}</span>
@@ -353,16 +562,42 @@ bin/elasticsearch-plugin.bat install analysis-icu
 </pre></div>
 </span>
         </div>
-        <h3><a name="review-attributes"></a>2.1. Review the attributes</h3>
-<p>We defined two attribute called <code>"name"</code> and <code>"phone"</code> as shown in this section:</p>
+        <p>The response will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4ad5d35a2b34f250">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a94926f05613f94ec">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a4ad5d35a2b34f250"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a94926f05613f94ec"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity-tutorial-person&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;_version&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;result&quot;</span> <span class="o">:</span> <span class="s2">&quot;created&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;_shards&quot;</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;successful&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;failed&quot;</span> <span class="o">:</span> <span class="mi">0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;_seq_no&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;_primary_term&quot;</span> <span class="o">:</span> <span class="mi">3</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <h3><a name="review-attributes"></a>2.1 Review the attributes</h3>
+<p>We defined three attribute called <code>"first_name"</code>, <code>"last_name"</code>, and <code>"phone"</code> as shown in this section:</p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aaf65b56a46b8c4ad">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="aaf65b56a46b8c4ad"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
     <span class="p">},</span>
     <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -373,31 +608,31 @@ bin/elasticsearch-plugin.bat install analysis-icu
 </pre></div>
 </span>
         </div>
-        <h3><a name="review-resolvers"></a>2.2. Review the resolvers</h3>
+        <h3><a name="review-resolvers"></a>2.2 Review the resolvers</h3>
 <p>We defined a single resolver called <code>"name_phone"</code> as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a416f9ced01728aed">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a658368de66ccb2b3">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a416f9ced01728aed"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a658368de66ccb2b3"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_phone&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </span>
         </div>
-        <h3><a name="review-matchers"></a>2.3. Review the matchers</h3>
+        <h3><a name="review-matchers"></a>2.3 Review the matchers</h3>
 <p>We defined three matchers called <code>"simple"</code>, <code>"fuzzy"</code>, and <code>"exact"</code> as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4b981b2bdb53cc62">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#acad0a8ac0d4d62fe">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a4b981b2bdb53cc62"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="acad0a8ac0d4d62fe"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;simple&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -411,7 +646,7 @@ bin/elasticsearch-plugin.bat install analysis-icu
         <span class="s2">&quot;match&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="p">{</span>
             <span class="s2">&quot;query&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
+            <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span>
           <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">}</span>
@@ -434,10 +669,10 @@ while <code>match</code> queries apply fuzzy matching for <a href="https://www.e
 We can use our <code>"exact"</code> matcher on index fields that have a <code>keyword</code> data type.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af14261aa49e073ab">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a53f884bc100d6eee">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af14261aa49e073ab"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a53f884bc100d6eee"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
   <span class="p">}</span>
@@ -445,32 +680,36 @@ We can use our <code>"exact"</code> matcher on index fields that have a <code>ke
 </pre></div>
 </span>
         </div>
-        <h3><a name="review-indices"></a>2.4. Review the indices</h3>
+        <h3><a name="review-indices"></a>2.4 Review the indices</h3>
 <p>We defined a single index as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a00d9c6aa464a72f0">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5e64eecf822b34a6">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a00d9c6aa464a72f0"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a5e64eecf822b34a6"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;user&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name.clean&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
           <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span>
         <span class="p">},</span>
-        <span class="s2">&quot;user.clean&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name.phonetic&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
           <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;simple&quot;</span>
         <span class="p">},</span>
-        <span class="s2">&quot;user.phonetic&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name.clean&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;last_name.phonetic&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
           <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;simple&quot;</span>
         <span class="p">},</span>
-        <span class="s2">&quot;phone.keyword&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;phone.clean&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;exact&quot;</span>
+          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span>
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">}</span>
@@ -479,9 +718,7 @@ We can use our <code>"exact"</code> matcher on index fields that have a <code>ke
 </pre></div>
 </span>
         </div>
-        <p>We mapped the <code>"name"</code> attribute to the <code>"user"</code>, <code>"user.clean"</code>, and <code>"user.phonetic"</code> fields and the <code>"phone"</code> attribute
-to the <code>"phone.keyword"</code> field in <code>.zentity-tutorial-index</code>.</p>
-<blockquote><p><strong>Tip</strong></p>
+        <blockquote><p><strong>Tip</strong></p>
 <p>Notice that the <code>"phone.keyword"</code> field is mapped to our <code>"exact"</code> matcher which uses a <code>term</code> query.
 Elasticsearch expects <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html', 'outbound');" class="external"><code>term</code></a> queries
 to be executed on the exact value of <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html', 'outbound');" class="external"><code>keyword</code></a> fields,
@@ -490,16 +727,19 @@ whereas <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current
 You might not get the results you'd expect if you run either a <code>term</code> query on a <code>text</code> field or a <code>match</code> query on a <code>keyword</code> field.</p>
 </blockquote>
 <h2><a name="resolve-entity"></a>3. Resolve an entity</h2>
-<p>Let's use the <a href="/docs/rest-apis/resolution-api">Resolution API</a> to resolve a person with the name "Alice":</p>
+<p>Let's use the <a href="/docs/rest-apis/resolution-api">Resolution API</a> to resolve a
+person with a known first name, last name, and phone number:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#add40fa5c8f8d0bf6">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5206d694cb9f79c1">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="add40fa5c8f8d0bf6"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
+          <span id="a5206d694cb9f79c1"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice&quot;</span> <span class="p">]</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-9876&quot;</span> <span class="p">]</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -508,18 +748,65 @@ You might not get the results you'd expect if you run either a <code>term</code>
         <p>The results will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0c02d22d3c320a48">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac5de9dbe9ee468e0">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a0c02d22d3c320a48"><div class="highlight"><pre><span></span><span class="p">...</span>
+          <span id="ac5de9dbe9ee468e0"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;2025559867&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;2025559867&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </span>
         </div>
-        <p>As expected, we retrieved ...</p>
+        <p>As expected, we retrieved two documents each with a matching first name, last name, and phone number.
+All other documents were excluded from the results because they did not meet those criteria.</p>
 <h2><a name="conclusion"></a>Conclusion</h2>
 <p>Congratulations! You learned how to map multiple attributes to multiple fields in a single index.</p>
-<p>The next tutorial will introduce <a href="/docs/basic-usage/multiple-resolver-resolution">multiple attribute resolution</a>. You will
-resolve an entity using multiple combinations of attributes mapped to multiple fields of a single index.</p>
+<p>The next tutorial will introduce <a href="/docs/basic-usage/multiple-resolver-resolution">multiple resolver resolution</a>. You will
+resolve an entity using <strong>multiple combinations of attributes</strong> (i.e. "resolvers") mapped to <strong>multiple fields</strong> of a <strong>single index</strong>.</p>
 <p>&nbsp;</p>
 <hr>
 <h4>Continue Reading</h4>

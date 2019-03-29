@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=705672840"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=988705537"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=954434895"></script>
+    </script><script src="/js/all.js?id=984557848"></script>
   </head>
   <body>
     <div id="app" >
@@ -87,10 +87,10 @@
 <p><strong>Example Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad78464b28cca0d42">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a50948259e8e7c6a8">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ad78464b28cca0d42"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a50948259e8e7c6a8"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity&quot;</span><span class="p">,</span>
   <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Real-time entity resolution for Elasticsearch.&quot;</span><span class="p">,</span>
   <span class="s2">&quot;website&quot;</span><span class="o">:</span> <span class="s2">&quot;http://zentity.io&quot;</span><span class="p">,</span>
@@ -109,11 +109,13 @@ Elasticsearch plugins such as zentity.</p>
 <p>To install zentity on an Elastic Cloud cluster:</p>
 <ol>
 <li>Browse the <a href="/releases">releases</a> and download one of the .zip files.</li>
-<li>Sign into Elastic Cloud and navigate to the <a href="https://cloud.elastic.co/#plugins" onclick="to('https://cloud.elastic.co/#plugins', 'outbound');" class="external">plugins tab</a>.</li>
-<li>Select "This is an installable plugin. (Compiled, not the plugin's source code)".</li>
+<li>Sign into Elastic Cloud and navigate to the <a href="https://cloud.elastic.co/plugins" onclick="to('https://cloud.elastic.co/plugins', 'outbound');" class="external">Custom Plugins</a> tab.</li>
+<li>Click the "Add plugin" button.</li>
 <li>Name the plugin "zentity".</li>
 <li>Specify the version of your Elasticsearch cluster.</li>
-<li>Upload the .zip file.</li>
+<li>Under plugin type, select "An installable plugin (Compiled, no source code)".</li>
+<li>Click the "Create plugin" button.</li>
+<li>Upload the .zip file under the "Plugin file" section.</li>
 <li>Create or restart your cluster. If creating a cluster, select "zentity" under the list of custom plugins.</li>
 </ol>
 <p>If you will be creating indices and performing entity resolution with data that has names of people or
