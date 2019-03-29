@@ -5,35 +5,26 @@
 
 ## <a name="getting-started"></a>Getting Started
 
-[comment]: # ( - Overview)
-[comment]: # ( - [Installation](/docs/installation))
-[comment]: # ( - [Basic Usage](/docs/basic-usage))
-[comment]: # (     - [Exact Name Matching](/docs/basic-usage/exact-name-matching))
-[comment]: # (     - [Robust Name Matching](/docs/basic-usage/robust-name-matching))
-[comment]: # (     - [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution))
-[comment]: # (     - [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution))
-[comment]: # (     - [Cross Index Resolution](/docs/basic-usage/cross-index-resolution))
-[comment]: # ( - Advanced Usage)
-[comment]: # (     - Matcher Parameters)
-[comment]: # (     - Date Attributes)
-[comment]: # (     - Payload Attributes)
-[comment]: # (     - Resolution Scope)
-[comment]: # ( - Examples)
-[comment]: # (     - U.S. Health Care Providers)
-[comment]: # (     - HTTP Sessions)
-
 - [Installation](/docs/installation)
+[comment]: # (- [Basic Usage](/docs/basic-usage))
+
+
+## <a name="tutorials"></a>Tutorials
+
 - [Basic Usage](/docs/basic-usage)
     - [Exact Name Matching](/docs/basic-usage/exact-name-matching)
     - [Robust Name Matching](/docs/basic-usage/robust-name-matching)
     - [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
     - [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
     - [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
+    - [Scoping Resolution](/docs/basic-usage/scoping-resolution)
 - [Advanced Usage](/docs/advanced-usage)
     - [Matcher Parameters](/docs/advanced-usage/matcher-parameters)
-    - Date Attributes
-    - Payload Attributes
-    - Resolution Scope
+    - [Date Attributes](/docs/advanced-usage/date-attributes)
+    - [Payload Attributes](/docs/advanced-usage/payload-attributes)
+[comment]: # ( - Examples)
+[comment]: # (     - U.S. Health Care Providers)
+[comment]: # (     - HTTP Sessions)
 
 ## <a name="reference"></a>Reference
 

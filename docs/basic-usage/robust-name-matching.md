@@ -1,16 +1,19 @@
 [Home](/) / [Documentation](/docs) / [Basic Usage](/docs/basic-usage) / Robust Name Matching
 
 
-#### <a name="contents"></a>Basic Usage Tutorials
+#### <a name="contents"></a>Basic Usage Tutorials 📖
 
-This tutorial is part of a series to help you learn and perform the basic functions of zentity. Each tutorial adds a little more
-sophistication to the prior tutorials, so you can start simple and learn the more advanced features over time.
+This tutorial is part of a series to help you learn and perform the basic
+functions of zentity. Each tutorial adds a little more sophistication to the
+prior tutorials, so you can start simple and learn the more advanced features
+over time.
 
 1. [Exact Name Matching](/docs/basic-usage/exact-name-matching)
 2. **Robust Name Matching** *&#8592; You are here.*
 3. [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
 4. [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
 5. [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
+6. [Scoping Resolution](/docs/basic-usage/scoping-resolution)
 
 ---
 
@@ -18,13 +21,13 @@ sophistication to the prior tutorials, so you can start simple and learn the mor
 # <a name="robust-name-matching"></a>Robust Name Matching
 
 This tutorial adds a little more sophistication to the prior tutorial on [exact name matching](/docs/basic-usage/exact-name-matching).
-This time you will map a single attribute to *multiple fields* of a single index.
+This time you will map a **single attribute** to **multiple fields** of a **single index**.
 
 Using a one-to-many relationship between attributes and index fields, you can compare the value of an attribute to multiple representations
 in the index. Elasticsearch allows you to create [subfields](https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html)
-where you can index the same value in different ways. For example, you might want to index a name by its exact value (the
-[`keyword`](https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html) data type), its full text value (the
-[`text`](https://www.elastic.co/guide/en/elasticsearch/reference/current/text.html) data type), or its phonetic encoding using the
+where you can index the same value in different ways. For example, you might want to index a name by its exact value using the
+[`keyword`](https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html) data type, its full text value using the
+[`text`](https://www.elastic.co/guide/en/elasticsearch/reference/current/text.html) data type, or its phonetic encoding using the
 [phonetic analysis plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html). Elasticsearch
 allows you to query any of these representations of the name and return the original value of the name.
 
@@ -37,13 +40,13 @@ Let's dive in.
 > **Important**
 > 
 > You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation) to complete this tutorial.
-> This tutorial was tested with [zentity-1.0.0-elasticsearch-6.2.4](/docs/releases).
+> This tutorial was tested with [zentity-1.0.2-elasticsearch-6.7.0](/docs/releases).
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
 
 
-### <a name="install-phonetic-analysis-plugin"></a>1.1. Install the required plugins
+### <a name="install-required-plugins"></a>1.1 Install the required plugins
 
 This tutorial uses the [phonetic analysis plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html)
 and [ICU analysis plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html) for Elasticsearch. You will
@@ -65,12 +68,12 @@ bin/elasticsearch-plugin.bat install analysis-icu
 ```
 
 
-### <a name="open-kibana-console-ui"></a>1.2. Open the Kibana Console UI
+### <a name="open-kibana-console-ui"></a>1.2 Open the Kibana Console UI
 
 The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html) makes it easy to submit requests to Elasticsearch and read responses.
 
 
-### <a name="delete-old-tutorial-indices"></a>1.3. Delete any old tutorial indices
+### <a name="delete-old-tutorial-indices"></a>1.3 Delete any old tutorial indices
 
 Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.
 
@@ -79,11 +82,10 @@ DELETE .zentity-tutorial-*
 ```
 
 
-### <a name="create-tutorial-index"></a>1.4. Create the tutorial index
+### <a name="create-tutorial-index"></a>1.4 Create the tutorial index
 
 Now create the index for this tutorial.
 
-<span class="code-overflow"></span>
 ```javascript
 PUT .zentity-tutorial-index
 {
@@ -234,11 +236,11 @@ PUT .zentity-tutorial-index
 Notice that this index defines multiple fields under the `first_name` and `last_name` fields. There are three fields we can query for `first_name` and `last_name`:
 
 - `first_name` and `last_name` use the standard analyzer.
-- `first_name.clean` and `last_name.clean` use a custom analyzer called `clean_analyzer`.
-- `first_name.phonetic` and `last_name.phonetic` use a custom analyzer called `phonetic_analyzer`.
+- `first_name.clean` and `last_name.clean` use a custom analyzer called `name_clean`.
+- `first_name.phonetic` and `last_name.phonetic` use a custom analyzer called `name_phonetic`.
 
-We defined `clean_analyzer` and `phonetic_analyzer` in the settings of the index. `clean_analyzer` uses the `icu_normalizer` and `icu_folding`
-filters to convert any accented Unicode characters to their ASCII equivalent and normalize the casing of the characters. `phonetic_analyzer`
+We defined `name_clean` and `name_phonetic` in the settings of the index. `name_clean` uses the `icu_normalizer` and `icu_folding`
+filters to convert any accented Unicode characters to their ASCII equivalent and normalize the casing of the characters. `name_phonetic`
 does the same thing, and then it transforms the tokens of the value into their phonetic representations using the `nysiis` phonetic encoding
 algorithm.
 
@@ -252,13 +254,15 @@ algorithm.
 
 Let's see how these analyzers produce different tokens for the same value.
 
-#### Example of `clean_analyzer`
+#### Example of `name_clean`
+
+Our `name_clean` analyzer uses the standard tokenizer, converts accented characters to their ASCII equivalent, and normalizes the case of the characters.
 
 **Request**
 
 ```javascript
 POST .zentity-tutorial-index/_analyze
-{ "text": "Alice Jones-Smith", "analyzer": "clean" }
+{ "text": "Alice Jones-Smith", "analyzer": "name_clean" }
 ```
 
 **Response**
@@ -291,13 +295,16 @@ POST .zentity-tutorial-index/_analyze
 }
 ```
 
-#### Example of `phonetic_analyzer`
+#### Example of `name_phonetic`
+
+Our `name_phonetic` analyzer performs the same steps as our `name_clean` analyzer, and then it encodes each token using the [NYSIIS algorithm](https://en.wikipedia.org/wiki/New_York_State_Identification_and_Intelligence_System).
+Notice how the token "Alice" becomes encoded as "ALAC," which is the same encoding of phonetically similar names such as "Alicia" or typos such as "Allice."
 
 **Request**
 
 ```javascript
 POST .zentity-tutorial-index/_analyze
-{ "text": "Alice Jones-Smith", "analyzer": "phonetic" }
+{ "text": "Alice Jones-Smith", "analyzer": "name_phonetic" }
 ```
 
 **Response**
@@ -331,7 +338,7 @@ POST .zentity-tutorial-index/_analyze
 ```
 
 
-### <a name="load-tutorial-data"></a>1.5. Load the tutorial data
+### <a name="load-tutorial-data"></a>1.5 Load the tutorial data
 
 Add the tutorial data to the index.
 
@@ -471,7 +478,7 @@ The response will look like this:
 ```
 
 
-### <a name="review-attributes"></a>2.1. Review the attributes
+### <a name="review-attributes"></a>2.1 Review the attributes
 
 We defined two attributes called `"first_name"` and `"last_name"` as shown in this section:
 
@@ -491,7 +498,7 @@ We defined two attributes called `"first_name"` and `"last_name"` as shown in th
 This is identical to the `"attributes"` field of the entity model in the [exact name matching](/docs/basic-usage/exact-name-matching#create-entity-model) tutorial.
 
 
-### <a name="review-resolvers"></a>2.2. Review the resolvers
+### <a name="review-resolvers"></a>2.2 Review the resolvers
 
 We defined a single resolver called `"name_only"` as shown in this section:
 
@@ -514,7 +521,7 @@ but few people share the same name and address. Consider all the combinations of
 and then create a resolver for each combination. [Other tutorials](/docs/basic-usage) explore how to use resolvers with multiple attributes.
 
 
-### <a name="review-matchers"></a>2.3. Review the matchers
+### <a name="review-matchers"></a>2.3 Review the matchers
 
 We defined two matchers called `"simple"` and `"fuzzy"` as shown in this section:
 
@@ -572,7 +579,7 @@ in the `"clause"` field. zentity will replace the `"{{ field }}"` variable with 
 variable with the value of an attribute.
 
 
-### <a name="review-indices"></a>2.4. Review the indices
+### <a name="review-indices"></a>2.4 Review the indices
 
 We defined a single index as shown in this section:
 
@@ -606,10 +613,11 @@ We defined a single index as shown in this section:
 
 ## <a name="resolve-entity"></a>3. Resolve an entity
 
-Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a person with the name "Alice":
+Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
+person with a known first name and last name:
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person
+POST _zentity/resolution/zentity-tutorial-person?pretty
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -687,7 +695,9 @@ The results will look like this:
 }
 ```
 
-As expected, we retrieved ...
+As expected, we retrieved three documents that match the first name "Allie" and the last name "Jones,"
+whether those matches were exact matches, phonetic matches, or transposed matches. The results include
+a document with the first name "Ally" and the last name "Joans," which meet this criteria.
 
 
 ## <a name="conclusion"></a>Conclusion
@@ -698,7 +708,7 @@ perform more robust name matching by using fuzziness, phonetic analyzers, and IC
 But we can do better than name matching, right? Lots of people share the same name. How can we improve accuracy?
 
 The next tutorial will introduce [multiple attribute resolution](/docs/basic-usage/multiple-attribute-resolution). You will
-resolve an entity using multiple attributes mapped to multiple fields of a single index.
+resolve an entity using **multiple attributes** mapped to **multiple fields** of a **single index**.
 
 
 &nbsp;

@@ -1,50 +1,53 @@
 [Home](/) / [Documentation](/docs) / [Basic Usage](/docs/basic-usage) / Multiple Attribute Resolution
 
 
-#### <a name="contents"></a>Basic Usage Tutorials
+#### <a name="contents"></a>Basic Usage Tutorials 📖
 
-This tutorial is part of a series to help you learn and perform the basic functions of zentity. Each tutorial adds a little more
-sophistication to the prior tutorials, so you can start simple and learn the more advanced features over time.
+This tutorial is part of a series to help you learn and perform the basic
+functions of zentity. Each tutorial adds a little more sophistication to the
+prior tutorials, so you can start simple and learn the more advanced features
+over time.
 
 1. [Exact Name Matching](/docs/basic-usage/exact-name-matching)
 2. [Robust Name Matching](/docs/basic-usage/robust-name-matching)
 3. **Multiple Attribute Resolution** *&#8592; You are here.*
 4. [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
 5. [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
+6. [Scoping Resolution](/docs/basic-usage/scoping-resolution)
 
 ---
 
 
 # <a name="multiple-attribute-resolution"></a>Multiple Attribute Resolution
 
-This tutorial adds more sophistication to the prior tutorials on [exact name matching](/docs/basic-usage/exact-name-matching) and
-[robust name matching](/docs/basic-usage/robust-name-matching). This time you will map *multiple attributes* to multiple fields
-of a single index.
-
 Never trust a single attribute in isolation, as a general rule.
 
 Using a single attribute for entity resolution is a bad practice &ndash; an anti-pattern. It's an easy way to "snowball" many different entities
 together and drive up your false positive rate. The problem with using a single attribute is that any attribute is prone to error. Many people can
-share the same name or or date of birth. One address can be shared by family members or past residents. A Social Security Number can be forged,
-reissued, shared, or mistyped. A bogus value such as "N/A" can link many entities together.
+share the same name or date of birth. A home address can be shared by family members or past residents. A Social Security Number can be forged,
+reissued, shared, or mistyped. A bogus value such as "N/A" or "unknown" can link many entities together.
 
 Instead, trust multiple attributes to corroborate a match.
 
 Consider this an exercise in probability theory. Suppose you have an index of millions of people. What's the probability that two people share
 the same name? It's probably high. What's the probability that people share the same name *and* the same phone number? It's probably much lower.
 
+This tutorial adds more sophistication to the prior tutorials on [exact name matching](/docs/basic-usage/exact-name-matching) and
+[robust name matching](/docs/basic-usage/robust-name-matching). This time you will map **multiple attributes** to **multiple fields**
+of a **single index**.
+
 Let's dive in.
 
 > **Important**
 > 
 > You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation) to complete this tutorial.
-> This tutorial was tested with [zentity-1.0.0-elasticsearch-6.2.4](/docs/releases).
+> This tutorial was tested with [zentity-1.0.2-elasticsearch-6.7.0](/docs/releases).
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
 
 
-### <a name="install-phonetic-analysis-plugin"></a>1.1. Install the required plugins
+### <a name="install-required-plugins"></a>1.1 Install the required plugins
 
 This tutorial uses the [phonetic analysis plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html)
 and [ICU analysis plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html) for Elasticsearch. You will
@@ -66,12 +69,12 @@ bin/elasticsearch-plugin.bat install analysis-icu
 ```
 
 
-### <a name="open-kibana-console-ui"></a>1.2. Open the Kibana Console UI
+### <a name="open-kibana-console-ui"></a>1.2 Open the Kibana Console UI
 
 The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html) makes it easy to submit requests to Elasticsearch and read responses.
 
 
-### <a name="delete-old-tutorial-indices"></a>1.3. Delete any old tutorial indices
+### <a name="delete-old-tutorial-indices"></a>1.3 Delete any old tutorial indices
 
 Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.
 
@@ -80,11 +83,10 @@ DELETE .zentity-tutorial-*
 ```
 
 
-### <a name="create-tutorial-index"></a>1.4. Create the tutorial index
+### <a name="create-tutorial-index"></a>1.4 Create the tutorial index
 
 Now create the index for this tutorial.
 
-<span class="code-overflow"></span>
 ```javascript
 PUT .zentity-tutorial-index
 {
@@ -233,7 +235,7 @@ PUT .zentity-tutorial-index
 ```
 
 
-### <a name="load-tutorial-data"></a>1.5. Load the tutorial data
+### <a name="load-tutorial-data"></a>1.5 Load the tutorial data
 
 Add the tutorial data to the index.
 
@@ -387,7 +389,7 @@ The response will look like this:
 ```
 
 
-### <a name="review-attributes"></a>2.1. Review the attributes
+### <a name="review-attributes"></a>2.1 Review the attributes
 
 We defined three attribute called `"first_name"`, `"last_name"`, and `"phone"` as shown in this section:
 
@@ -408,7 +410,7 @@ We defined three attribute called `"first_name"`, `"last_name"`, and `"phone"` a
 ```
 
 
-### <a name="review-resolvers"></a>2.2. Review the resolvers
+### <a name="review-resolvers"></a>2.2 Review the resolvers
 
 We defined a single resolver called `"name_phone"` as shown in this section:
 
@@ -423,7 +425,7 @@ We defined a single resolver called `"name_phone"` as shown in this section:
 ```
 
 
-### <a name="review-matchers"></a>2.3. Review the matchers
+### <a name="review-matchers"></a>2.3 Review the matchers
 
 We defined three matchers called `"simple"`, `"fuzzy"`, and `"exact"` as shown in this section:
 
@@ -472,7 +474,7 @@ We can use our `"exact"` matcher on index fields that have a `keyword` data type
 ```
 
 
-### <a name="review-indices"></a>2.4. Review the indices
+### <a name="review-indices"></a>2.4 Review the indices
 
 We defined a single index as shown in this section:
 
@@ -519,10 +521,11 @@ We defined a single index as shown in this section:
 
 ## <a name="resolve-entity"></a>3. Resolve an entity
 
-Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a person with the name "Alice":
+Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
+person with a known first name, last name, and phone number:
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person
+POST _zentity/resolution/zentity-tutorial-person?pretty
 {
   "attributes": {
     "first_name": [ "Allison" ],
@@ -584,15 +587,16 @@ The results will look like this:
 }
 ```
 
-As expected, we retrieved ...
+As expected, we retrieved two documents each with a matching first name, last name, and phone number.
+All other documents were excluded from the results because they did not meet those criteria.
 
 
 ## <a name="conclusion"></a>Conclusion
 
 Congratulations! You learned how to map multiple attributes to multiple fields in a single index.
 
-The next tutorial will introduce [multiple attribute resolution](/docs/basic-usage/multiple-resolver-resolution). You will
-resolve an entity using multiple combinations of attributes mapped to multiple fields of a single index.
+The next tutorial will introduce [multiple resolver resolution](/docs/basic-usage/multiple-resolver-resolution). You will
+resolve an entity using **multiple combinations of attributes** (i.e. "resolvers") mapped to **multiple fields** of a **single index**.
 
 
 &nbsp;

@@ -1,4 +1,4 @@
-[Home](/) / [Documentation](/docs) / [Basic Usage](/docs/basic-usage) / Cross Index Resolution
+[Home](/) / [Documentation](/docs) / [Basic Usage](/docs/basic-usage) / Scoping Resolution
 
 
 #### <a name="contents"></a>Basic Usage Tutorials 📖
@@ -12,21 +12,19 @@ over time.
 2. [Robust Name Matching](/docs/basic-usage/robust-name-matching)
 3. [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
 4. [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
-5. **Cross Index Resolution** *&#8592; You are here.*
-6. [Scoping Resolution](/docs/basic-usage/scoping-resolution)
+5. [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
+6. **Scoping Resolution** *&#8592; You are here.*
 
 ---
 
 
-# <a name="cross-index-resolution"></a>Cross Index Resolution
+# <a name="scoping-resolution"></a>Scoping Resolution
 
-Many applications of entity resolution require matching records that are scattered across multiple data sets. One application
-might be to profile everything known about a customer, patient, or employee across different business systems. Another might be
-to see if a person or organization is present in one or more blacklists.
+A resolution job will attempt to run every resolver for every index in the entity model, unless otherwise instructed. If you use the same entity model for multiple applications,
+then you might need only some of the resolvers or indices for each application. You can limit the scope of a resolution job to the resolvers and indices
+that apply to a given use case. This will prevent unnecessary searches, omit unnecessary results, optimize the performance of your resolution jobs, and minimize the load on your cluster.
 
-This tutorial adds more sophistication to the prior tutorial on [multiple resolver resolution](/docs/basic-usage/multiple-resolver-resolution).
-This time you will map **multiple combinations of attributes** (i.e. "resolvers") to **multiple fields** of **multiple indices**.
-
+This tutorial shows how you can scope a resolution job to prevent unnecessary searches.
 
 Let's dive in.
 
@@ -77,7 +75,7 @@ DELETE .zentity-tutorial-*
 
 ### <a name="create-tutorial-index"></a>1.4 Create the tutorial index
 
-Now create the indices for this tutorial.
+Now create the indices for this tutorial. These is the same data used in the prior tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution).
 
 **Index A**
 
@@ -381,7 +379,7 @@ PUT .zentity-tutorial-index-b
 
 ### <a name="load-tutorial-data"></a>1.5 Load the tutorial data
 
-Add the tutorial data to the index.
+Add the tutorial data to the index. This is the same data used in the prior tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution).
 
 ```javascript
 POST _bulk?refresh
@@ -444,7 +442,9 @@ Here's what the tutorial data looks like.
 
 ## <a name="create-entity-model"></a>2. Create the entity model
 
-Let's use the [Models API](/docs/rest-apis/models-api) to create the entity model below. We'll review each part of the model in depth.
+Let's use the [Models API](/docs/rest-apis/models-api) to create the entity model below.
+This is the same model used in the prior tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution).
+This tutorial will show how to omit some of the resolvers and indices during a resolution job.
 
 ```javascript
 PUT _zentity/models/zentity-tutorial-person
@@ -598,195 +598,16 @@ PUT _zentity/models/zentity-tutorial-person
 ```
 
 
-### <a name="review-attributes"></a>2.1 Review the attributes
-
-We defined five attributes as shown in this section:
-
-```javascript
-{
-  "attributes": {
-    "first_name": {
-      "type": "string"
-    },
-    "last_name": {
-      "type": "string"
-    },
-    "street": {
-      "type": "string"
-    },
-    "city": {
-      "type": "string"
-    },
-    "state": {
-      "type": "string"
-    },
-    "phone": {
-      "type": "string"
-    },
-    "email": {
-      "type": "string"
-    }
-  }
-}
-```
-
-
-### <a name="review-resolvers"></a>2.2 Review the resolvers
-
-We defined four resolvers as shown in this section:
-
-```javascript
-{
-  "resolvers": {
-    "name_street_city_state": {
-      "attributes": [ "first_name", "last_name", "street", "city", "state" ]
-    },
-    "name_phone": {
-      "attributes": [ "first_name", "last_name", "phone" ]
-    },
-    "name_email": {
-      "attributes": [ "first_name", "last_name", "email" ]
-    },
-    "email_phone": {
-      "attributes": [ "email", "phone" ]
-    }
-  }
-}
-```
-
-
-### <a name="review-matchers"></a>2.3 Review the matchers
-
-We defined three matchers called `"simple"`, `"fuzzy"`, and `"exact"` as shown in this section:
-
-```javascript
-{
-  "matchers": {
-    "simple": {
-      "clause": {
-        "match": {
-          "{{ field }}": "{{ value }}"
-        }
-      }
-    },
-    "fuzzy": {
-      "clause": {
-        "match": {
-          "{{ field }}": {
-            "query": "{{ value }}",
-            "fuzziness": "1"
-          }
-        }
-      }
-    },
-    "exact": {
-      "clause": {
-        "term": {
-          "{{ field }}": "{{ value }}"
-        }
-      }
-    }
-  }
-}
-```
-
-
-### <a name="review-indices"></a>2.4 Review the indices
-
-We defined a two indices as shown in this section:
-
-```javascript
-{
-  "indices": {
-    ".zentity-tutorial-index-a": {
-      "fields": {
-        "first_name_a.clean": {
-          "attribute": "first_name",
-          "matcher": "fuzzy"
-        },
-        "first_name_a.phonetic": {
-          "attribute": "first_name",
-          "matcher": "simple"
-        },
-        "last_name_a.clean": {
-          "attribute": "last_name",
-          "matcher": "fuzzy"
-        },
-        "last_name_a.phonetic": {
-          "attribute": "last_name",
-          "matcher": "simple"
-        },
-        "street_a.clean": {
-          "attribute": "street",
-          "matcher": "fuzzy"
-        },
-        "city_a.clean": {
-          "attribute": "city",
-          "matcher": "fuzzy"
-        },
-        "state_a.keyword": {
-          "attribute": "state",
-          "matcher": "exact"
-        },
-        "phone_a.clean": {
-          "attribute": "phone",
-          "matcher": "fuzzy"
-        },
-        "email_a.keyword": {
-          "attribute": "email",
-          "matcher": "exact"
-        }
-      }
-    },
-    ".zentity-tutorial-index-b": {
-      "fields": {
-        "first_name_b.clean": {
-          "attribute": "first_name",
-          "matcher": "fuzzy"
-        },
-        "first_name_b.phonetic": {
-          "attribute": "first_name",
-          "matcher": "simple"
-        },
-        "last_name_b.clean": {
-          "attribute": "last_name",
-          "matcher": "fuzzy"
-        },
-        "last_name_b.phonetic": {
-          "attribute": "last_name",
-          "matcher": "simple"
-        },
-        "street_b.clean": {
-          "attribute": "street",
-          "matcher": "fuzzy"
-        },
-        "city_b.clean": {
-          "attribute": "city",
-          "matcher": "fuzzy"
-        },
-        "state_b.keyword": {
-          "attribute": "state",
-          "matcher": "exact"
-        },
-        "phone_b.clean": {
-          "attribute": "phone",
-          "matcher": "fuzzy"
-        },
-        "email_b.keyword": {
-          "attribute": "email",
-          "matcher": "exact"
-        }
-      }
-    }
-  }
-}
-```
-
-
 ## <a name="resolve-entity"></a>3. Resolve an entity
 
+## <a name="resolve-entity-scope-indices"></a>3.1 Control the scope of indices
+
 Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
-person with a known first name, last name, and phone number:
+person with a known first name, last name, and phone number. These are the same
+attributes used in the prior tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution),
+which returned nine results. This time, we are going to control the scope of the
+indices searched during the resolution job. Let's limit the job to the `".zentity-tutorial-index-a"`
+index.
 
 ```javascript
 POST _zentity/resolution/zentity-tutorial-person?pretty
@@ -795,6 +616,13 @@ POST _zentity/resolution/zentity-tutorial-person?pretty
     "first_name": [ "Allie" ],
     "last_name": [ "Jones" ],
     "phone": [ "202-555-1234" ]
+  },
+  "scope": {
+    "include": {
+      "indices": [
+        ".zentity-tutorial-index-a"
+      ]
+    }
   }
 }
 ```
@@ -803,9 +631,108 @@ The results will look like this:
 
 ```javascript
 {
-  "took" : 63,
+  "took" : 7,
   "hits" : {
-    "total" : 9,
+    "total" : 2,
+    "hits" : [ {
+      "_index" : ".zentity-tutorial-index-a",
+      "_type" : "_doc",
+      "_id" : "1",
+      "_hop" : 0,
+      "_attributes" : {
+        "city" : "Washington",
+        "email" : "allie@example.net",
+        "first_name" : "Allie",
+        "last_name" : "Jones",
+        "phone" : "202-555-1234",
+        "state" : "DC",
+        "street" : "123 Main St"
+      },
+      "_source" : {
+        "city_a" : "Washington",
+        "email_a" : "allie@example.net",
+        "first_name_a" : "Allie",
+        "id_a" : "1",
+        "last_name_a" : "Jones",
+        "phone_a" : "202-555-1234",
+        "state_a" : "DC",
+        "street_a" : "123 Main St"
+      }
+    }, {
+      "_index" : ".zentity-tutorial-index-a",
+      "_type" : "_doc",
+      "_id" : "3",
+      "_hop" : 1,
+      "_attributes" : {
+        "city" : "Washington",
+        "email" : "",
+        "first_name" : "Allie",
+        "last_name" : "Jones",
+        "phone" : "",
+        "state" : "DC",
+        "street" : "123 Main St"
+      },
+      "_source" : {
+        "city_a" : "Washington",
+        "email_a" : "",
+        "first_name_a" : "Allie",
+        "id_a" : "3",
+        "last_name_a" : "Jones",
+        "phone_a" : "",
+        "state_a" : "DC",
+        "street_a" : "123 Main St"
+      }
+    } ]
+  }
+}
+```
+
+As expected, we retrieved results only from `".zentity-tutorial-index-a"`.
+There are only two results, which is less than the nine results of the prior
+tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution)
+because some of those matches required searching both indices.
+
+
+## <a name="resolve-entity-scope-resolvers"></a>3.2 Control the scope of resolvers
+
+Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
+person with a known first name, last name, and phone number. These are the same
+attributes used in the prior tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution),
+which returned nine results. This time, we are going to control the scope of the
+resolvers searched during the resolution job. Let's exclude only the
+`"name_street_city_state"` resolver. Let's also search across both indices.
+
+```javascript
+POST _zentity/resolution/zentity-tutorial-person?pretty
+{
+  "attributes": {
+    "first_name": [ "Allie" ],
+    "last_name": [ "Jones" ],
+    "phone": [ "202-555-1234" ]
+  },
+  "scope": {
+    "include": {
+      "indices": [
+        ".zentity-tutorial-index-a",
+        ".zentity-tutorial-index-b"
+      ]
+    },
+    "exclude": {
+      "resolvers": [
+        "name_street_city_state"
+      ]
+    }
+  }
+}
+```
+
+The results will look like this:
+
+```javascript
+{
+  "took" : 42,
+  "hits" : {
+    "total" : 6,
     "hits" : [ {
       "_index" : ".zentity-tutorial-index-a",
       "_type" : "_doc",
@@ -853,30 +780,6 @@ The results will look like this:
         "phone_b" : "202-555-1234",
         "state_b" : "",
         "street_b" : ""
-      }
-    }, {
-      "_index" : ".zentity-tutorial-index-a",
-      "_type" : "_doc",
-      "_id" : "3",
-      "_hop" : 1,
-      "_attributes" : {
-        "city" : "Washington",
-        "email" : "",
-        "first_name" : "Allie",
-        "last_name" : "Jones",
-        "phone" : "",
-        "state" : "DC",
-        "street" : "123 Main St"
-      },
-      "_source" : {
-        "city_a" : "Washington",
-        "email_a" : "",
-        "first_name_a" : "Allie",
-        "id_a" : "3",
-        "last_name_a" : "Jones",
-        "phone_a" : "",
-        "state_a" : "DC",
-        "street_a" : "123 Main St"
       }
     }, {
       "_index" : ".zentity-tutorial-index-b",
@@ -974,73 +877,33 @@ The results will look like this:
         "state_b" : "DC",
         "street_b" : "555 Broad St"
       }
-    }, {
-      "_index" : ".zentity-tutorial-index-b",
-      "_type" : "_doc",
-      "_id" : "12",
-      "_hop" : 4,
-      "_attributes" : {
-        "city" : "Washington",
-        "email" : "allison.j.smith@corp.example.net",
-        "first_name" : "Allison",
-        "last_name" : "Jones-Smith",
-        "phone" : "",
-        "state" : "DC",
-        "street" : "555 Broad St"
-      },
-      "_source" : {
-        "city_b" : "Washington",
-        "email_b" : "allison.j.smith@corp.example.net",
-        "first_name_b" : "Allison",
-        "id_b" : "12",
-        "last_name_b" : "Jones-Smith",
-        "phone_b" : "",
-        "state_b" : "DC",
-        "street_b" : "555 Broad St"
-      }
-    }, {
-      "_index" : ".zentity-tutorial-index-a",
-      "_type" : "_doc",
-      "_id" : "13",
-      "_hop" : 5,
-      "_attributes" : {
-        "city" : "Arlington",
-        "email" : "allison.j.smith@corp.example.net",
-        "first_name" : "Allison",
-        "last_name" : "Jones Smith",
-        "phone" : "703-555-5555",
-        "state" : "VA",
-        "street" : "1 Corporate Way"
-      },
-      "_source" : {
-        "city_a" : "Arlington",
-        "email_a" : "allison.j.smith@corp.example.net",
-        "first_name_a" : "Allison",
-        "id_a" : "13",
-        "last_name_a" : "Jones Smith",
-        "phone_a" : "703-555-5555",
-        "state_a" : "VA",
-        "street_a" : "1 Corporate Way"
-      }
     } ]
   }
 }
 ```
 
-As expected, we retrieved the same results as the prior tutorial on [multiple resolver resolution](/docs/basic-usage/multiple-resolver-resolution)
-even though the documents were separated into two indices. Also notice how the `"_attributes"` of each result have the same field names
-regardless of which index the documents came from. The `"_source"` fields show the original names of the fields as they exist in the indices.
-This mapping of the source field names to the canonical attribute names allows you to access their under as a common schema. This makes it
-much easier to analyze the values of the entity.
+This time we retrieved six results total from two indices, which is less than
+the nine results of the prior tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution)
+because some of those matches required using the `"name_street_city_state"`
+resolver that we excluded in this job.
+
+> **Tip**
+> 
+> If you want to include all indices in your resolution job, then you can omit
+> `"scope.include.indices"` altogether as we did in prior tutorials. But when
+> you begin to use the same entity model for different applications, then you
+> might not need to search every index in every application. As a best pratice,
+> use `"scope.include.indices"` to prevent unnecessary searches and results.
+> Conversely, as a best pratice, use `"scope.exclude.resolvers"` and
+> `"scope.exclude.attributes"` to exclude unnecessary details about the entity.
+> You can be more liberal with your use of resolvers and attributes, because
+> they will only be used for the indices that support them.
 
 
 ## <a name="conclusion"></a>Conclusion
 
-Congratulations! You learned how to resolve an entity using multiple combinations of attributes mapped to multiple fields
-across multiple indices.
-
-The next tutorial will introduce [scoping resolution](/docs/basic-usage/scoping-resolution). You will **limit the scope** of
-an entity resolution job to specific resolvers and indices to prevent unnecessary searches under particular circumstances.
+Congratulations! You learned how to resolve an entity using a controlled scope of indices and resolvers.
+This is an important concept to understand and implement when you use zentity in production.
 
 
 &nbsp;
@@ -1049,6 +912,6 @@ an entity resolution job to specific resolvers and indices to prevent unnecessar
 
 #### Continue Reading
 
-|&#8249;|[Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)|[Scoping Resolution](/docs/basic-usage/scoping-resolution)|&#8250;|
+|&#8249;|[Cross Index Resolution](/docs/basic-usage/cross-index-resolution)|[Advanced Usage](/docs/advanced-usage)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

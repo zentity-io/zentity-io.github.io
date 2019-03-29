@@ -1,16 +1,19 @@
 [Home](/) / [Documentation](/docs) / [Basic Usage](/docs/basic-usage) / Exact Name Matching
 
 
-#### <a name="contents"></a>Basic Usage Tutorials
+#### <a name="contents"></a>Basic Usage Tutorials 📖
 
-This tutorial is part of a series to help you learn and perform the basic functions of zentity. Each tutorial adds a little more
-sophistication to the prior tutorials, so you can start simple and learn the more advanced features over time.
+This tutorial is part of a series to help you learn and perform the basic
+functions of zentity. Each tutorial adds a little more sophistication to the
+prior tutorials, so you can start simple and learn the more advanced features
+over time.
 
 1. **Exact Name Matching** *&#8592; You are here.*
 2. [Robust Name Matching](/docs/basic-usage/robust-name-matching)
 3. [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
 4. [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
 5. [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
+6. [Scoping Resolution](/docs/basic-usage/scoping-resolution)
 
 ---
 
@@ -20,7 +23,7 @@ sophistication to the prior tutorials, so you can start simple and learn the mor
 Welcome to the "Hello world!" of entity resolution.
 
 This tutorial will guide you through one the simplest forms of entity resolution &ndash; exact name matching. You will learn
-how to create an entity model and how to resolve an entity using a single attribute mapped to a single field of a single index.
+how to create an entity model and how to resolve an entity using a **single attribute** mapped to a **single field** of a **single index**.
 This is meant to introduce you to the most basic functions of entity resolution with zentity.
 
 Let's dive in.
@@ -28,19 +31,19 @@ Let's dive in.
 > **Important**
 > 
 > You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation) to complete this tutorial.
-> This tutorial was tested with [zentity-1.0.0-elasticsearch-6.2.4](/docs/releases).
+> This tutorial was tested with [zentity-1.0.2-elasticsearch-6.7.0](/docs/releases).
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
 
 
-### <a name="open-kibana-console-ui"></a>1.1. Open the Kibana Console UI
+### <a name="open-kibana-console-ui"></a>1.1 Open the Kibana Console UI
 
 The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html) makes it easy to
 submit requests to Elasticsearch and read responses.
 
 
-### <a name="delete-old-tutorial-indices"></a>1.2. Delete any old tutorial indices
+### <a name="delete-old-tutorial-indices"></a>1.2 Delete any old tutorial indices
 
 Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.
 
@@ -49,11 +52,10 @@ DELETE .zentity-tutorial-*
 ```
 
 
-### <a name="create-tutorial-index"></a>1.3. Create the tutorial index
+### <a name="create-tutorial-index"></a>1.3 Create the tutorial index
 
 Now create the index for this tutorial.
 
-<span class="code-overflow"></span>
 ```javascript
 PUT .zentity-tutorial-index
 {
@@ -97,7 +99,7 @@ PUT .zentity-tutorial-index
 ```
 
 
-### <a name="load-tutorial-data"></a>1.4. Load the tutorial data
+### <a name="load-tutorial-data"></a>1.4 Load the tutorial data
 
 Add the tutorial data to the index.
 
@@ -201,7 +203,7 @@ PUT _zentity/models/zentity-tutorial-person
 ```
 
 
-### <a name="review-attributes"></a>2.1. Review the attributes
+### <a name="review-attributes"></a>2.1 Review the attributes
 
 We defined two attributes called `"first_name"` and `"last_name"` as shown in this section:
 
@@ -231,7 +233,7 @@ like this:
 ```
 
 
-### <a name="review-resolvers"></a>2.2. Review the resolvers
+### <a name="review-resolvers"></a>2.2 Review the resolvers
 
 We defined a single resolver called `"name_only"` as shown in this section:
 
@@ -259,7 +261,7 @@ for each combination. [Other tutorials](/docs/basic-usage) explore how to use re
 multiple attributes.
 
 
-### <a name="review-matchers"></a>2.3. Review the matchers
+### <a name="review-matchers"></a>2.3 Review the matchers
 
 We defined a single matcher called `"simple"` as shown in this section:
 
@@ -292,7 +294,7 @@ variables defined somewhere in the `"clause"` field. zentity will replace the `"
 with the name of an index field and the `"{{ value }}"` variable with the value of an attribute.
 
 
-### <a name="review-indices"></a>2.4. Review the indices
+### <a name="review-indices"></a>2.4 Review the indices
 
 We defined a single index as shown in this section:
 
@@ -318,10 +320,11 @@ We defined a single index as shown in this section:
 
 ## <a name="resolve-entity"></a>3. Resolve an entity
 
-Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a person with the name "Alice":
+Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
+person with a known first name and last name:
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person
+POST _zentity/resolution/zentity-tutorial-person?pretty
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -380,7 +383,9 @@ The results will look like this:
 }
 ```
 
-As expected, we retrieved ...
+As expected, we retrieved two documents each with a first name that exactly matches "Allie" and a last name
+that exactly matches "Jones." All other documents, including those that were similar to these, were excluded from
+the results because we required exact matches on those two fields.
 
 
 ## <a name="conclusion"></a>Conclusion
@@ -389,9 +394,9 @@ Congratulations! You just did one of the simplest forms of entity resolution &nd
 
 Not too exciting yet, right? Let's make things a little more interesting.
 
-The next tutorial will show [robust name matching](/docs/basic-usage/robust-name-matching) using multiple forms
-of a name to challenges such as typos or phonetic variance. You will resolve an entity using a single attribute
-matched to multiple fields of a single index, rather than a single field of a single index.
+The next tutorial will show how you can accomplish [robust name matching](/docs/basic-usage/robust-name-matching)
+using multiple forms of a name to handle challenges such as typos or phonetic variance. You will resolve an entity
+using a **single attribute** matched to **multiple fields** of a **single index**, rather than a single field of a single index.
 
 
 &nbsp;

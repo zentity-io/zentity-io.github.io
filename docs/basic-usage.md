@@ -1,20 +1,73 @@
-[Home](/) / [Documentation](/docs) / Basic Usage
+[Home](/) / [Documentation](/docs) / Advanced Usage
 
 
-# <a name="basic-usage"></a>Basic Usage
+#### <a name="contents"></a>Basic Usage Tutorials 📖
+
+This tutorial series will help you learn and perform the basic functions of
+zentity. Each tutorial adds a little more sophistication to the prior tutorials,
+so you can start simple and learn the more advanced features over time.
+
+1. [Exact Name Matching](/docs/basic-usage/exact-name-matching)
+2. [Robust Name Matching](/docs/basic-usage/robust-name-matching)
+3. [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
+4. [Multiple Resolver Resolution](/docs/basic-usage/multiple-resolver-resolution)
+5. [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
+6. [Scoping Resolution](/docs/basic-usage/scoping-resolution)
 
 
-## <a name="index-data"></a>Step 1. Index some data.
+## <a name="prerequisites"></a>Prerequisites
+
+You must know how to use the Elasticsearch APIs before you can learn how to use
+zentity.
+
+Specifically you should know:
+
+- [How to create indices](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html)
+- [How to create index mappings](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html)
+- [How to create text analyzers](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html)
+- [How to index data](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html)
+- [How to search data using the Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)
+
+If you truly wish to master the most important aspects of Elasticsearch for
+zentity, then I would recommend you take these training courses offered by
+Elastic, the creators of Elasticsearch.
+
+- [Elasticsearch Engineer I](https://www.elastic.co/training/elasticsearch-engineer-1)
+- [Elasticsearch Engineer II](https://www.elastic.co/training/elasticsearch-engineer-2)
+- [Improving Search with Text Analysis](https://www.elastic.co/training/specializations/elasticsearch-advanced-search/improving-search-with-text-analysis)
+- [Improving Search with Synonyms](https://www.elastic.co/training/specializations/elasticsearch-advanced-search/improving-search-with-synonyms)
+
+If you have some basic experience with Elasticsearch, then you are ready to
+learn how to use zentity.
+
+
+## <a name="how-to-use-zentity"></a>How to use zentity
+
+Before we dive in, let's look at the typical usage of zentity at a high level.
+
+You can think of zentity as three step process:
+
+- Step 1. Index some data
+- Step 2. Define an entity model
+- Step 3. Resolve an entity
+
+Let's break it down a bit more.
+
+
+### <a name="index-data"></a>Step 1. Index some data
 
 zentity operates on data that is indexed in **[Elasticsearch](https://www.elastic.co/products/elasticsearch)**,
 an open source search engine for real-time search and analytics at scale. The most common tools for indexing
 documents in Elasticsearch are [Logstash](https://www.elastic.co/guide/en/logstash/6.1/introduction.html) and
 [Beats](https://www.elastic.co/guide/en/beats/libbeat/current/beats-reference.html). You can also index single
 documents using the [Index API](https://www.elastic.co/guide/en/elasticsearch/guide/current/index-doc.html) or
-[Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html).
+[Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html). You need to have
+data in Elasticsearch before you can use zentity. You need to know how to use Elasticsearch, too.
+
+Each tutorial in this series will give you sample data that you can use for practice.
 
 
-## <a name="define-entity-model"></a>Step 2. Define an entity model.
+### <a name="define-entity-model"></a>Step 2. Define an entity model
 
 **[Entity models](/docs/entity-models)** are the most important constructs you need to learn about. zentity uses entity
 models to construct queries, match attributes across disparate indices, and resolve entities.
@@ -41,7 +94,7 @@ You don't need to change your data to use an entity model. An entity model only 
 So there's no risk in updating or experimenting with an entity model.
 
 
-## <a name="submit-resolution-request"></a>Step 3. Submit a resolution request.
+### <a name="submit-resolution-request"></a>Step 3. Resolve an entity
 
 So you have some data and an entity model. Now you can resolve entities!
 
@@ -56,8 +109,8 @@ Run an entity resolution job using an indexed entity model called `person`.
 POST _zentity/resolution/person?pretty
 {
   "attributes": {
-    "name": "Alice Jones",
-    "dob": "1984-01-01",
+    "name": [ "Alice Jones" ],
+    "dob": [ "1984-01-01" ],
     "phone": [ "555-123-4567", "555-987-6543" ]
   }
 }
@@ -69,8 +122,8 @@ Run an entity resolution job using an embeded entity model. This example uses th
 POST _zentity/resolution?pretty
 {
   "attributes": {
-    "name": "Alice Jones",
-    "dob": "1984-01-01",
+    "name": [ "Alice Jones" ],
+    "dob": [ "1984-01-01" ],
     "phone": [ "555-123-4567", "555-987-6543" ]
   },
   "model": {
@@ -110,9 +163,12 @@ POST _zentity/resolution?pretty
           "match": {
             "{{ field }}": {
               "query": "{{ value }}",
-              "fuzziness": 2
+              "fuzziness": "{{ params.fuzziness }}"
             }
           }
+        },
+        "params": {
+          "fuzziness": "auto"
         }
       },
       "standard": {
@@ -165,6 +221,9 @@ POST _zentity/resolution?pretty
 }
 ```
 
+Now that you have a sense of what to expect, let's walk through some guided
+tutorials to help you master the basic functions of zentity.
+
 
 &nbsp;
 
@@ -172,7 +231,6 @@ POST _zentity/resolution?pretty
 
 #### Continue Reading
 
-[comment]: # (|&#8249;|[Installation](/docs/installation)|[Exact Name Matching](/docs/basic-usage/exact-name-matching)|&#8250;|)
-|&#8249;|[Installation](/docs/installation)|[Entity Models](/docs/entity-models)|&#8250;|
+|&#8249;|[Installation](/docs/installation)|[Exact Name Matching](/docs/basic-usage/exact-name-matching)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

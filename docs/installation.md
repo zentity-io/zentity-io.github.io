@@ -65,12 +65,14 @@ Elasticsearch plugins such as zentity.
 To install zentity on an Elastic Cloud cluster:
 
 1. Browse the [releases](/releases) and download one of the .zip files.
-2. Sign into Elastic Cloud and navigate to the [plugins tab](https://cloud.elastic.co/#plugins).
-3. Select "This is an installable plugin. (Compiled, not the plugin's source code)".
+2. Sign into Elastic Cloud and navigate to the [Custom Plugins](https://cloud.elastic.co/plugins) tab.
+3. Click the "Add plugin" button.
 4. Name the plugin "zentity".
 5. Specify the version of your Elasticsearch cluster.
-6. Upload the .zip file.
-7. Create or restart your cluster. If creating a cluster, select "zentity" under the list of custom plugins.
+6. Under plugin type, select "An installable plugin (Compiled, no source code)".
+7. Click the "Create plugin" button.
+8. Upload the .zip file under the "Plugin file" section.
+9. Create or restart your cluster. If creating a cluster, select "zentity" under the list of custom plugins.
 
 If you will be creating indices and performing entity resolution with data that has names of people or
 companies or other fields that often have data quality challenges, consider also selecting

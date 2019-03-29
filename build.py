@@ -150,6 +150,14 @@ PAGES = {
             "content": markdown("/docs/basic-usage/cross-index-resolution.md")
         }
     },
+    "/docs/basic-usage/scoping-resolution": {
+        "vars": {
+            "title": "Scoping Resolution",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+            "content": markdown("/docs/basic-usage/scoping-resolution.md")
+        }
+    },
     "/docs/advanced-usage": {
         "vars": {
             "title": "Advanced Usage",
@@ -164,6 +172,22 @@ PAGES = {
             "meta_description": META_DESCRIPTION_GENERIC,
             "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/docs/advanced-usage/matcher-parameters.md")
+        }
+    },
+    "/docs/advanced-usage/date-attributes": {
+        "vars": {
+            "title": "Date Attributes",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+            "content": markdown("/docs/advanced-usage/date-attributes.md")
+        }
+    },
+    "/docs/advanced-usage/payload-attributes": {
+        "vars": {
+            "title": "Payload Attributes",
+            "meta_description": META_DESCRIPTION_GENERIC,
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+            "content": markdown("/docs/advanced-usage/payload-attributes.md")
         }
     },
     "/docs/entity-models": {

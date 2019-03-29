@@ -1,35 +1,39 @@
 [Home](/) / [Documentation](/docs) / [Basic Usage](/docs/basic-usage) / Multiple Resolver Resolution
 
 
-#### <a name="contents"></a>Basic Usage Tutorials
+#### <a name="contents"></a>Basic Usage Tutorials 📖
 
-This tutorial is part of a series to help you learn and perform the basic functions of zentity. Each tutorial adds a little more
-sophistication to the prior tutorials, so you can start simple and learn the more advanced features over time.
+This tutorial is part of a series to help you learn and perform the basic
+functions of zentity. Each tutorial adds a little more sophistication to the
+prior tutorials, so you can start simple and learn the more advanced features
+over time.
 
 1. [Exact Name Matching](/docs/basic-usage/exact-name-matching)
 2. [Robust Name Matching](/docs/basic-usage/robust-name-matching)
 3. [Multiple Attribute Resolution](/docs/basic-usage/multiple-attribute-resolution)
 4. **Multiple Resolver Resolution** *&#8592; You are here.*
 5. [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
+6. [Scoping Resolution](/docs/basic-usage/scoping-resolution)
 
 ---
 
 
 # <a name="multiple-resolver-resolution"></a>Multiple Resolver Resolution
 
-This tutorial adds more sophistication to the prior tutorial on [multiple attribute resolution](/docs/basic-usage/multiple-attribute-resolution).
-This time you will map *multiple combinations* of multiple attributes to multiple fields of a single index.
-
 One of the critical challenges of entity resolution is to minimize false positives and false negatives. The reduction of one tends to lead
 to the increase of the other. So far we have shown how you can reduce false negatives by using [robust matchers](/docs/basic-usage/robust-name-matching)
 and reduce false positives by using [multiple attributes](/docs/basic-usage/multiple-attribute-resolution) in your resolver.
 
-A good way to reduce both types of errors is to define multiple resolvers each with conservative matching logic.
+A good way to reduce both types of errors is to define multiple resolvers each with conservative matching logic. This allows you to cast a wide net
+using multiple matching strategies that have each demonstrated a low false positive rate individually.
 
 For example, suppose you have a dataset of people with five attributes: name, phone, email, date of birth, postal code. There are several ways you
 might try to match the people in this data set. Name and phone, name and email, name and date of birth and postal code, and perhaps even email and
 date of birth or phone and date of birth. Each of these combinations of attributes is likely "just enough" to match an entity. You can define each
 of these combinations as a resolver, and zentity can attempt to resolve the entities in each of these ways.
+
+This tutorial adds more sophistication to the prior tutorial on [multiple attribute resolution](/docs/basic-usage/multiple-attribute-resolution).
+This time you will map **multiple combinations of attributes** (i.e. "resolvers") to **multiple fields** of a **single index**.
 
 Let's dive in.
 
@@ -42,7 +46,7 @@ Let's dive in.
 ## <a name="prepare"></a>1. Prepare for the tutorial
 
 
-### <a name="install-phonetic-analysis-plugin"></a>1.1. Install the required plugins
+### <a name="install-required-plugins"></a>1.1 Install the required plugins
 
 This tutorial uses the [phonetic analysis plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html)
 and [ICU analysis plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html) for Elasticsearch. You will
@@ -64,12 +68,12 @@ bin/elasticsearch-plugin.bat install analysis-icu
 ```
 
 
-### <a name="open-kibana-console-ui"></a>1.2. Open the Kibana Console UI
+### <a name="open-kibana-console-ui"></a>1.2 Open the Kibana Console UI
 
 The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html) makes it easy to submit requests to Elasticsearch and read responses.
 
 
-### <a name="delete-old-tutorial-indices"></a>1.3. Delete any old tutorial indices
+### <a name="delete-old-tutorial-indices"></a>1.3 Delete any old tutorial indices
 
 Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.
 
@@ -78,11 +82,10 @@ DELETE .zentity-tutorial-*
 ```
 
 
-### <a name="create-tutorial-index"></a>1.4. Create the tutorial index
+### <a name="create-tutorial-index"></a>1.4 Create the tutorial index
 
 Now create the index for this tutorial.
 
-<span class="code-overflow"></span>
 ```javascript
 PUT .zentity-tutorial-index
 {
@@ -231,7 +234,7 @@ PUT .zentity-tutorial-index
 ```
 
 
-### <a name="load-tutorial-data"></a>1.5. Load the tutorial data
+### <a name="load-tutorial-data"></a>1.5 Load the tutorial data
 
 Add the tutorial data to the index.
 
@@ -422,7 +425,7 @@ The response will look like this:
 ```
 
 
-### <a name="review-attributes"></a>2.1. Review the attributes
+### <a name="review-attributes"></a>2.1 Review the attributes
 
 We defined seven attributes as shown in this section:
 
@@ -455,9 +458,9 @@ We defined seven attributes as shown in this section:
 ```
 
 
-### <a name="review-resolvers"></a>2.2. Review the resolvers
+### <a name="review-resolvers"></a>2.2 Review the resolvers
 
-We defined three resolvers as shown in this section:
+We defined four resolvers as shown in this section:
 
 ```javascript
 {
@@ -479,7 +482,7 @@ We defined three resolvers as shown in this section:
 ```
 
 
-### <a name="review-matchers"></a>2.3. Review the matchers
+### <a name="review-matchers"></a>2.3 Review the matchers
 
 We defined three matchers called `"simple"`, `"fuzzy"`, and `"exact"` as shown in this section:
 
@@ -515,7 +518,7 @@ We defined three matchers called `"simple"`, `"fuzzy"`, and `"exact"` as shown i
 ```
 
 
-### <a name="review-indices"></a>2.4. Review the indices
+### <a name="review-indices"></a>2.4 Review the indices
 
 We defined a single index as shown in this section:
 
@@ -569,10 +572,11 @@ We defined a single index as shown in this section:
 
 ## <a name="resolve-entity"></a>3. Resolve an entity
 
-Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a person with a known name and phone number:
+Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
+person with a known first name, last name, and phone number:
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person?_source=false
+POST _zentity/resolution/zentity-tutorial-person?pretty&_source=false
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -720,15 +724,25 @@ The results will look like this:
 }
 ```
 
-As expected, we retrieved ...
+As expected, we retrieved more documents than prior tutorials because we are using more matching strategies. In fact,
+the documents were collected from the results of five "hops," where each hop queried the index using newly discovered attributes
+of the entity. Let's walk through what happened briefly.
+
+The initial results (hop 0) returned two documents that matched the `name_street_city_state` resolver. Those documents
+contained a newly discovered phone number and email address. The first hop (hop 1) used those new attributes to search the index
+again, this time using the `name_phone` resolver and the `email_phone` resolver, which returned two more documents. One of those
+documents contained a different variant of the first name ("Allison" instead of "Allie"), which then was used to discover more
+documents in the second hop (hop 2). This iterative process of finding new attributes and submitting searches with those attributes
+using different resolvers continued until no new documents were returned.
 
 
 ## <a name="conclusion"></a>Conclusion
 
 Congratulations! You learned how to resolve an entity using multiple combinations of attributes mapped to multiple fields in a single index.
+This is a robust way to perform entity resolution on a single index.
 
 The next tutorial will introduce [cross index resolution](/docs/basic-usage/cross-index-resolution). You will
-resolve an entity using multiple combinations of multiple attributes mapped to multiple fields across multiple indices.
+resolve an entity using **multiple combinations of multiple attributes** mapped to **multiple fields** across **multiple indices**.
 
 
 &nbsp;
