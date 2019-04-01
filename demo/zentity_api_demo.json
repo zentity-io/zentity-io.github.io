@@ -1,0 +1,84 @@
+# zentity - API Demo
+# 
+# zentity is an open-source community plugin that brings
+# real-time entity resolution to Elasticsearch.
+# 
+# Website: https://zentity.io
+# Github:  https://github.com/zentity-io/zentity
+
+
+####  Entity Models  ########################################
+
+GET _zentity/models/http_session
+GET _zentity/models/organization
+
+
+####  Entity Resolution  ####################################
+
+POST _zentity/resolution/http_session
+{
+  "attributes": {
+    "ip": [ "192.168.0.1" ]
+  }
+}
+
+POST _zentity/resolution/organization?_source=false
+{
+  "attributes": {
+    "id": [ "1497077796" ]
+  }
+}
+
+
+####  Entity Resolution: Debugging  #########################
+
+POST _zentity/resolution/http_session?hits=false&queries
+{
+  "attributes": {
+    "ip": [ "192.168.0.1" ]
+  }
+}
+
+POST _zentity/resolution/organization?hits=false&queries
+{
+  "attributes": {
+    "id": [ "1497077796" ]
+  }
+}
+
+POST _zentity/resolution/organization?hits=false&queries&profile
+{
+  "attributes": {
+    "id": [ "1497077796" ]
+  }
+}
+
+
+####  Custom Analyzers: Mappings  ###########################
+
+GET demo_zentity_organization_nppes/_settings
+GET demo_zentity_organization_nppes/_mappings
+
+
+####  Custom Analyzers: Examples  ###########################
+
+POST demo_zentity_organization_nppes/_analyze
+{ "text": "Alice Jones-Smith", "analyzer": "name_clean" }
+
+POST demo_zentity_organization_nppes/_analyze
+{ "text": "Alice Jones-Smith", "analyzer": "name_phonetic" }
+
+POST demo_zentity_organization_nppes/_analyze
+{ "text": "Alicia Jane-Smith", "analyzer": "name_phonetic" }
+
+POST demo_zentity_organization_nppes/_analyze
+{ "text": "39630 W 14 MILE RD", "analyzer": "us_street_clean" }
+
+POST demo_zentity_organization_nppes/_analyze
+{ "text": "123 St Paul St", "analyzer": "us_street_clean" }
+
+POST demo_zentity_http_session/_analyze
+{
+  "text": "has_js=1; sid=9fa964fbe1fbaa28c810fe9763a27090; ref=/",
+  "analyzer": "cookie_ids"
+}
