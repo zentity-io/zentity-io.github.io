@@ -16,19 +16,19 @@ resolution. It aims to be:
 ## <a name="latest-release">Latest release</a>
 
 
-### zentity-1.0.2
+### zentity-1.0.3
 
 Select the plugin version that matches your version of Elasticsearch:
 
-- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.7.0.zip)
-- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.6.2.zip)
-- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.6.1.zip)
-- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.6.0.zip)
-- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.4.zip)
-- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.3.zip)
-- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.2.zip)
-- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.1.zip)
-- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.5.0.zip)
+- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.7.0.zip)
+- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.6.2.zip)
+- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.6.1.zip)
+- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.6.0.zip)
+- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.5.4.zip)
+- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.5.3.zip)
+- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.5.2.zip)
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.5.0.zip)
 
 
 ## <a name="quick-start">Quick start</a>
@@ -41,7 +41,7 @@ Once you have installed Elasticsearch, you can install zentity from a remote URL
 
 Example:
 
-`elasticsearch-plugin install https://zentity.io/releases/zentity-1.0.2-elasticsearch-6.7.0.zip`
+`elasticsearch-plugin install https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.7.0.zip`
 
 Read the [installation](/docs/installation) docs for more details.
 

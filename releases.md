@@ -6,8 +6,32 @@
 [View on Github](https://github.com/zentity-io/zentity/releases)
 
 
+
 <a name="latest"></a>
-## <a name="zentity-1.0.2">zentity-1.0.2 (latest)</a>
+## <a name="zentity-1.0.3">zentity-1.0.3 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.7.0.zip)
+- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.6.2.zip)
+- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.6.1.zip)
+- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.6.0.zip)
+- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.5.4.zip)
+- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.5.3.zip)
+- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.5.2.zip)
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.0.3-elasticsearch-6.5.0.zip)
+
+### Release notes
+
+- **Bug fix** - Fixed bug where model attribute params did not override matcher params.
+- **Security** - Updated Jackson dependency to resolve security vulnerabilities CVE-2018-12022, CVE-2018-19360, CVE-2018-19361, CVE-2018-19362, CVE-2018-14721, CVE-2018-14718, CVE-2018-14719, CVE-2018-14720.
+([1ad9127](https://github.com/zentity-io/zentity/commit/1ad9127996769423d72e44aba74d30091b1b6308))
+
+
+## <a name="zentity-1.0.2">zentity-1.0.2</a>
 
 ### Download
 
@@ -25,7 +49,7 @@ Select the plugin version that matches your version of Elasticsearch:
 
 ### Release notes
 
-- Updated Jackson dependency to resolve security vulnerability CVE-2018-7489.
+- **Security** - Updated Jackson dependency to resolve security vulnerability CVE-2018-7489.
 ([214eee1](https://github.com/zentity-io/zentity/commit/214eee19a734047504a5bee3d6afa48632e06da4))
 
 
