@@ -27,6 +27,7 @@ Select the plugin version that matches your version of Elasticsearch:
 ### Release notes
 
 - **Bug fix** - Fixed bug where model attribute params did not override matcher params.
+([3e0728b](https://github.com/zentity-io/zentity/commit/3e0728ba4b9dca6b87b7dd72a257eb473d0c6eec))
 - **Security** - Updated Jackson dependency to resolve security vulnerabilities CVE-2018-12022, CVE-2018-19360, CVE-2018-19361, CVE-2018-19362, CVE-2018-14721, CVE-2018-14718, CVE-2018-14719, CVE-2018-14720.
 ([1ad9127](https://github.com/zentity-io/zentity/commit/1ad9127996769423d72e44aba74d30091b1b6308))
 
