@@ -8,45 +8,44 @@ zentity, analysis plugins, data sets, and sample entity models. Download it,
 run it, and play with zentity using real data in minutes.
 
 
-> **Note:** If you downloaded this before 12:15pm EST on 8 April 2019, the indices were closed.
-> 
-> Run these commands to open the indices and use zentity:
-> 
-> ```javascript
-> POST .zentity-models/_open
-> POST zentity_sandbox_leie/_open
-> POST zentity_sandbox_nppes/_open
-> POST zentity_sandbox_pecos_enrollment/_open
-> POST zentity_sandbox_physician_compare/_open
-> ```
-
-
 ## <a name="get-started"></a>Get started
 
 
 **Step 1. Download**
 
-**[sandbox-zentity-1.0.3-elasticsearch-6.7.1.zip](https://drive.google.com/uc?id=1qQOGqu765GGMkoxmE0z8rCxgpry_L-Rj)** (2.4GB Compressed, 4.6GB Uncompressed)
+- **Windows**: [sandbox-zentity-1.0.3-elasticsearch-6.7.1-windows.zip](https://drive.google.com/uc?id=1qQOGqu765GGMkoxmE0z8rCxgpry_L-Rj) (2GB Compressed, 3GB Uncompressed)
+- **Mac**: [sandbox-zentity-1.0.3-elasticsearch-6.7.1-mac.tar.gz](https://drive.google.com/uc?id=1q6s1rSzMs653F_sgmg2HeyE86KTn2O5u) (2GB Compressed, 3GB Uncompressed)
+- **Linux**: [sandbox-zentity-1.0.3-elasticsearch-6.7-linux.1.tar.gz](https://drive.google.com/uc?id=1McGHqzxMuQDm0s_AGDxY0u0zPf8ennAo) (2GB Compressed, 3GB Uncompressed)
 
 
 **Step 2. Extract**
 
-Unzip the file and navigate into `./elasticsearch-6.7.1` directory (`$ES_HOME`)
+Extract the contents of the file and navigate into the `./sandbox-zentity-*` directory.
 
 
-**Step 3. Run**
+**Step 3. Start Elasticsearch**
 
-Run Elasticsearch from `$ES_HOME`:
+Navigate into the `./elasticsearch-*` directory and run:
 
 - Linux/Mac: `./bin/elasticsearch` 
-- Windows: `./bin/elasticsearch.bat` 
+- Windows: `./bin/elasticsearch.bat`
 
-Elasticsearch by default will run on `localhost:9200` using 1GB JVM Heap.
+Elasticsearch will be accessible at [`http://localhost:9200`](http://localhost:9200)
 
 
-**Step 4. Verify**
+**Step 4. Start Kibana**
 
-Visit this URL: [http://localhost:9200/_zentity?pretty](http://127.0.0.1:9200/_zentity?pretty)
+Navigate into the `./kibana-*` directory and run:
+
+- Linux/Mac: `./bin/kibana`
+- Windows: `./bin/kibana.bat`
+
+Kibana will be accessible at [`http://localhost:5601`](http://localhost:5601)
+
+
+**Step 5. Verify**
+
+Visit this URL: [http://localhost:9200/_zentity?pretty](http://localhost:9200/_zentity?pretty)
 
 You should see this response:
 
@@ -63,16 +62,12 @@ You should see this response:
 ```
 
 
-**Step 5: Install and run Kibana**
+**Step 5: Have fun!**
 
-Download, install, and run Kibana: [https://www.elastic.co/downloads/kibana](https://www.elastic.co/downloads/kibana)
+Consider using the [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html),
+which makes it easy to submit requests to Elasticsearch and read responses.
 
-You don't need to change the configuration if you're using the defaults for
-Elasticsearch.
-
-The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html)
-makes it easy to submit requests to Elasticsearch and read responses.
-
+[http://localhost:5601/app/kibana#/dev_tools/console](http://localhost:5601/app/kibana#/dev_tools/console)
 
 
 ## <a name="whats-included"></a>What's included
