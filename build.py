@@ -285,6 +285,14 @@ PAGES = {
             "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
             "content": markdown("/releases.md")
         }
+    },
+    "/sandbox": {
+        "vars": {
+            "title": "Sandbox",
+            "meta_description": "Download an Elasticsearch development environment preloaded with zentity, analysis plugins, real data, and sample entity models.",
+            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+            "content": markdown("/sandbox.md")
+        }
     }
 }
 

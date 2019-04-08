@@ -81,6 +81,12 @@ and [analysis-phonetic](https://www.elastic.co/guide/en/elasticsearch/plugins/cu
 from the list of plugins, which can help you index cleaner representations of that data.
 
 
+## <a name="sandbox"></a>Sandbox
+
+Just learning? Want to learn faster? Download and run the **[zentity sandbox](/sandbox)**
+development environment, which bundles Elasticsearch with zentity, analysis
+plugins, real data, and sample entity models.
+
 
 &nbsp;
 
