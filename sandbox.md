@@ -8,6 +8,19 @@ zentity, analysis plugins, data sets, and sample entity models. Download it,
 run it, and play with zentity using real data in minutes.
 
 
+> **Note:** If you downloaded this before 12:15pm EST on 8 April 2019, the indices were closed.
+> 
+> Run these commands to open the indices and use zentity:
+> 
+> ```javascript
+> POST .zentity-models/_open
+> POST zentity_sandbox_leie/_open
+> POST zentity_sandbox_nppes/_open
+> POST zentity_sandbox_pecos_enrollment/_open
+> POST zentity_sandbox_physician_compare/_open
+> ```
+
+
 ## <a name="get-started"></a>Get started
 
 
