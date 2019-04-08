@@ -7,6 +7,8 @@
 zentity, analysis plugins, data sets, and sample entity models. Download it,
 run it, and play with zentity using real data in minutes.
 
+> Questions or feedback? [Submit an issue](https://github.com/zentity-io/zentity-sandbox/issues) on Github.
+
 
 ## <a name="get-started"></a>Get started
 
