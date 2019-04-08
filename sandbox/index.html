@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>zentity - Sandbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+    <meta name="description" content="Download an Elasticsearch development environment preloaded with zentity, analysis plugins, real data, and sample entity models."/>
+    <meta property="og:title" content="zentity - Entity Resolution for Elasticsearch"/>
+    <meta property="og:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
+    <meta property="og:image" content="/img/zentity-og-image.png"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://zentity.io/"/>
+    <meta name="twitter:title" content="zentity - Entity Resolution for Elasticsearch"/>
+    <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/all.css?id=998217488"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
+      var to = function(uri, event_category) {
+        gtag('event', 'click', {
+          'event_category': event_category,
+          'event_label': uri,
+          'transport_type': 'beacon',
+          'event_callback': function(){document.location = uri;}
+        });
+      };
+    </script><script src="/js/all.js?id=455544281"></script>
+  </head>
+  <body>
+    <div id="app" >
+      <div id="top"><div id="nav">
+          <div style="max-width:950px;margin:0 auto;">
+            <a href="/">
+              <h1 aria-label="zentity">
+                <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span>
+              </h1>
+            </a>
+            <div id="buttons">
+              <a href="/docs">
+                <button type="button" class="btn btn-sm btn-primary" aria-label="Docs">
+                  Docs
+                </button>
+              </a>
+              <a href="/releases">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Releases">
+                  Releases
+                </button>
+              </a>
+              <a href="/sandbox">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Sandbox">
+                  Sandbox
+                </button>
+              </a>
+              <a href="https://github.com/zentity-io/zentity" title="Github" onclick="to('https://github.com/zentity-io/zentity');">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Github">
+                  Github
+                </button>
+              </a>
+            </div>
+          </div>
+        </div></div>
+      <div id="main" class="content">
+        <p><a href="/">Home</a> / Sandbox</p>
+<h1><a name="sandbox"></a>Sandbox</h1>
+<p><strong>zentity sandbox</strong> is an Elasticsearch development environment preloaded with
+zentity, analysis plugins, data sets, and sample entity models. Download it,
+run it, and play with zentity using real data in minutes.</p>
+<h2><a name="get-started"></a>Get started</h2>
+<p><strong>Step 1. Download</strong></p>
+<p><strong><a href="https://drive.google.com/uc?id=1qQOGqu765GGMkoxmE0z8rCxgpry_L-Rj" onclick="to('https://drive.google.com/uc?id=1qQOGqu765GGMkoxmE0z8rCxgpry_L-Rj', 'outbound');" class="external">sandbox-zentity-1.0.3-elasticsearch-6.7.1.zip</a></strong> (2.4GB Compressed, 4.6GB Uncompressed)</p>
+<p><strong>Step 2. Extract</strong></p>
+<p>Unzip the file and navigate into <code>./elasticsearch-6.7.1</code> directory (<code>$ES_HOME</code>)</p>
+<p><strong>Step 3. Run</strong></p>
+<p>Run Elasticsearch from <code>$ES_HOME</code>:</p>
+<ul>
+<li>Linux/Mac: <code>./bin/elasticsearch</code> </li>
+<li>Windows: <code>./bin/elasticsearch.bat</code> </li>
+</ul>
+<p>Elasticsearch by default will run on <code>localhost:9200</code> using 1GB JVM Heap.</p>
+<p><strong>Step 4. Verify</strong></p>
+<p>Visit this URL: <a href="http://127.0.0.1:9200/_zentity?pretty" onclick="to('http://127.0.0.1:9200/_zentity?pretty', 'outbound');" class="external">http://localhost:9200/_zentity?pretty</a></p>
+<p>You should see this response:</p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa59bdebfb76731c1">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="aa59bdebfb76731c1"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Real-time entity resolution for Elasticsearch.&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;website&quot;</span><span class="o">:</span> <span class="s2">&quot;http://zentity.io&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;zentity&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0.3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;elasticsearch&quot;</span><span class="o">:</span> <span class="s2">&quot;6.7.1&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <p><strong>Step 5: Install and run Kibana</strong></p>
+<p>Download, install, and run Kibana: <a href="https://www.elastic.co/downloads/kibana" onclick="to('https://www.elastic.co/downloads/kibana', 'outbound');" class="external">https://www.elastic.co/downloads/kibana</a></p>
+<p>You don't need to change the configuration if you're using the defaults for
+Elasticsearch.</p>
+<p>The <a href="https://www.elastic.co/guide/en/kibana/current/console-kibana.html" onclick="to('https://www.elastic.co/guide/en/kibana/current/console-kibana.html', 'outbound');" class="external">Kibana Console UI</a>
+makes it easy to submit requests to Elasticsearch and read responses.</p>
+<h2><a name="whats-included"></a>What's included</h2>
+<h3><a name="plugins"></a>Plugins</h3>
+<p>The sandbox comes with these plugins installed:</p>
+<ul>
+<li><a href="/">zentity</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html', 'outbound');" class="external">analysis-icu</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html', 'outbound');" class="external">analysis-phonetic</a></li>
+</ul>
+<h3><a name="data"></a>Data</h3>
+<p>The sandbox comes with these data sets loaded into indices:</p>
+<p><strong>LEIE</strong> - List of health care providers who have been excluded from
+federally funded health care programs in the United States for a variety of
+reasons, including a conviction for Medicare or Medicaid fraud.</p>
+<ul>
+<li>Index: <strong><a href="https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_leie.json" onclick="to('https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_leie.json', 'outbound');" class="external"><code>zentity_sandbox_leie</code></a></strong></li>
+<li>Source: <a href="https://oig.hhs.gov/exclusions/exclusions_list.asp" onclick="to('https://oig.hhs.gov/exclusions/exclusions_list.asp', 'outbound');" class="external">https://oig.hhs.gov/exclusions/exclusions_list.asp</a></li>
+</ul>
+<p><strong>NPPES</strong> - Registry of National Provider Identifiers (NPIs) issued to health
+care providers who are covered by HIPAA in the United States. NPIs are
+required in any HIPAA standard transaction.</p>
+<ul>
+<li>Index: <strong><a href="https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_nppes.json" onclick="to('https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_nppes.json', 'outbound');" class="external"><code>zentity_sandbox_nppes</code></a></strong></li>
+<li>Source: <a href="https://download.cms.gov/nppes/NPI_Files.html" onclick="to('https://download.cms.gov/nppes/NPI_Files.html', 'outbound');" class="external">https://download.cms.gov/nppes/NPI_Files.html</a></li>
+</ul>
+<p><strong>PECOS Enrollment</strong> - List of health care providers in the United States
+who are actively enrolled in Medicare.</p>
+<ul>
+<li>Index: <strong><a href="https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_pecos_enrollment.json" onclick="to('https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_pecos_enrollment.json', 'outbound');" class="external"><code>zentity_sandbox_pecos_enrollment</code></a></strong></li>
+<li>Source: <a href="https://data.cms.gov/Medicare-Enrollment/Base-Provider-Enrollment-File/ykfi-ffzq" onclick="to('https://data.cms.gov/Medicare-Enrollment/Base-Provider-Enrollment-File/ykfi-ffzq', 'outbound');" class="external">https://data.cms.gov/Medicare-Enrollment/Base-Provider-Enrollment-File/ykfi-ffzq</a></li>
+</ul>
+<p><strong>Physician Compare</strong> - List of individual eligible professionals in the
+United States that includes information on demographics and Medicare quality
+program participation.</p>
+<ul>
+<li>Index: <strong><a href="https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_physician_compare.json" onclick="to('https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_physician_compare.json', 'outbound');" class="external"><code>zentity_sandbox_physician_compare</code></a></strong></li>
+<li>Source: <a href="https://data.medicare.gov/Physician-Compare/Physician-Compare-National-Downloadable-File/mj5m-pzi6" onclick="to('https://data.medicare.gov/Physician-Compare/Physician-Compare-National-Downloadable-File/mj5m-pzi6', 'outbound');" class="external">https://data.cms.gov/Medicare-Enrollment/Base-Provider-Enrollment-File/ykfi-ffzq</a></li>
+</ul>
+<h3><a name="entity-models"></a>Entity Models</h3>
+<p>The sandbox comes with these entity models loaded in the <code>.zentity-models</code> index:</p>
+<ul>
+<li><strong><a href="https://github.com/zentity-io/zentity-sandbox/blob/master/models/organization.json" onclick="to('https://github.com/zentity-io/zentity-sandbox/blob/master/models/organization.json', 'outbound');" class="external">organization</a></strong></li>
+<li><strong><a href="https://github.com/zentity-io/zentity-sandbox/blob/master/models/person.json" onclick="to('https://github.com/zentity-io/zentity-sandbox/blob/master/models/person.json', 'outbound');" class="external">person</a></strong></li>
+</ul>
+<p>Both entity models represent health care providers. You can use them to discover
+more information about a given health care provider in the sample data sets.</p>
+<h2><a name="examples"></a>Examples</h2>
+<p>Here are some examples you can run in Kibana:</p>
+<p><strong>Blacklist lookup</strong></p>
+<p>Here is an entity that appears in the NPPES registry and LEIE exclusions list
+over six hops of queries.</p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a98eb021d5270db18">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a98eb021d5270db18"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">organization</span><span class="o">?</span><span class="nx">pretty</span>
+<span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;1497077796&quot;</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        
+      </div>
+      <div id="bottom">
+        <small>
+          <div>
+            &copy; 2018 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
+          </div>
+          <div>
+            Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" onclick="to('http://www.apache.org/licenses/LICENSE-2.0');">Apache License, Version 2.0</a>.
+          </div>
+          <div>
+            Elasticsearch is a trademark of Elasticsearch BV.
+          </div>
+          <div>
+            This website uses Google Analytics.</div>
+        </small>
+      </div>
+    </div>
+  </body>
+  <script>$(document).ready(function(){ new ClipboardJS('.copy'); });</script>
+</html>
