@@ -14,21 +14,14 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=353845234"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-27325874-2');
+    <link rel="stylesheet" href="/css/all.css?id=368136903"><script>
       var to = function(uri, event_category) {
-        gtag('event', 'click', {
-          'event_category': event_category,
-          'event_label': uri,
-          'transport_type': 'beacon',
-          'event_callback': function(){document.location = uri;}
-        });
+        if (event_category)
+          console.log(event_category + " " + uri);
+        else
+          console.log(uri);
       };
-    </script><script src="/js/all.js?id=625602624"></script>
+    </script><script src="/js/all.js?id=166095634"></script>
   </head>
   <body>
     <div id="app" >
@@ -138,10 +131,10 @@ entity resolution job using some input.</p>
 <p>Run an entity resolution job using an indexed entity model called <code>person</code>.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a810b30bf60de0b73">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aafb8472748a7144b">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a810b30bf60de0b73"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="aafb8472748a7144b"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice Jones&quot;</span> <span class="p">],</span>
@@ -155,10 +148,10 @@ entity resolution job using some input.</p>
         <p>Run an entity resolution job using an embeded entity model. This example uses three attributes, two resolvers, and two indices.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa8c58e68cd83652a">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a39135fa57b34846e">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aa8c58e68cd83652a"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="a39135fa57b34846e"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice Jones&quot;</span> <span class="p">],</span>
