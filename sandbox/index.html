@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=427540062"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=249324226"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=436760349"></script>
+    </script><script src="/js/all.js?id=619162844"></script>
   </head>
   <body>
     <div id="app" >
@@ -64,6 +64,23 @@
 <p><strong>zentity sandbox</strong> is an Elasticsearch development environment preloaded with
 zentity, analysis plugins, data sets, and sample entity models. Download it,
 run it, and play with zentity using real data in minutes.</p>
+<blockquote><p><strong>Note:</strong> If you downloaded this before 12:15pm EST on 8 April 2019, the indices were closed.</p>
+<p>Run these commands to open the indices and use zentity:</p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af8ad8c5728b022e2">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="af8ad8c5728b022e2"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">models</span><span class="o">/</span><span class="nx">_open</span>
+<span class="nx">POST</span> <span class="nx">zentity_sandbox_leie</span><span class="o">/</span><span class="nx">_open</span>
+<span class="nx">POST</span> <span class="nx">zentity_sandbox_nppes</span><span class="o">/</span><span class="nx">_open</span>
+<span class="nx">POST</span> <span class="nx">zentity_sandbox_pecos_enrollment</span><span class="o">/</span><span class="nx">_open</span>
+<span class="nx">POST</span> <span class="nx">zentity_sandbox_physician_compare</span><span class="o">/</span><span class="nx">_open</span>
+</pre></div>
+</span>
+        </div>
+        
+</blockquote>
 <h2><a name="get-started"></a>Get started</h2>
 <p><strong>Step 1. Download</strong></p>
 <p><strong><a href="https://drive.google.com/uc?id=1qQOGqu765GGMkoxmE0z8rCxgpry_L-Rj" onclick="to('https://drive.google.com/uc?id=1qQOGqu765GGMkoxmE0z8rCxgpry_L-Rj', 'outbound');" class="external">sandbox-zentity-1.0.3-elasticsearch-6.7.1.zip</a></strong> (2.4GB Compressed, 4.6GB Uncompressed)</p>
@@ -81,10 +98,10 @@ run it, and play with zentity using real data in minutes.</p>
 <p>You should see this response:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#affafba6a638e7458">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a08a6ba72b549d49e">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="affafba6a638e7458"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a08a6ba72b549d49e"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity&quot;</span><span class="p">,</span>
   <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Real-time entity resolution for Elasticsearch.&quot;</span><span class="p">,</span>
   <span class="s2">&quot;website&quot;</span><span class="o">:</span> <span class="s2">&quot;http://zentity.io&quot;</span><span class="p">,</span>
@@ -154,10 +171,10 @@ more information about a given health care provider in the sample data sets.</p>
 over six hops of queries.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae973438f5bf84b2b">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aee026b6dbb8b8fda">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ae973438f5bf84b2b"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">organization</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="aee026b6dbb8b8fda"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">organization</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;1497077796&quot;</span> <span class="p">]</span>
