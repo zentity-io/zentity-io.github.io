@@ -14,14 +14,21 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=232362481"><script>
+    <link rel="stylesheet" href="/css/all.css?id=643701949"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
       var to = function(uri, event_category) {
-        if (event_category)
-          console.log(event_category + " " + uri);
-        else
-          console.log(uri);
+        gtag('event', 'click', {
+          'event_category': event_category,
+          'event_label': uri,
+          'transport_type': 'beacon',
+          'event_callback': function(){document.location = uri;}
+        });
       };
-    </script><script src="/js/all.js?id=913050892"></script>
+    </script><script src="/js/all.js?id=254660664"></script>
   </head>
   <body>
     <div id="app" >
@@ -58,10 +65,10 @@
 <p>The request accepts two endpoints:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a11cad458af0921b4">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a19f6f5d45eab7a6f">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a11cad458af0921b4"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span>
+          <span id="a19f6f5d45eab7a6f"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span>
 <span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 </pre></div>
 </span>
@@ -76,10 +83,10 @@ the default params, such as to format the results of any date attributes in the 
 <p>Read the <strong><a href="/docs/entity-resolution/input-specification">input specification</a></strong> for complete details about the structure of a request.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a66ee2d1efe1f2a44">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae7defe62059491b9">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a66ee2d1efe1f2a44"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="ae7defe62059491b9"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice Jones&quot;</span> <span class="p">],</span>
@@ -129,10 +136,10 @@ span many hops if they have highly varied attribute values.</p>
 <p>Read the <strong><a href="/docs/entity-resolution/output-specification">output specification</a></strong> for complete details about the structure of a response.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a29c1ad3562d67098">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7838eeaafa5c7089">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a29c1ad3562d67098"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a7838eeaafa5c7089"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="mi">64</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>

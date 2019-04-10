@@ -14,14 +14,21 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=473940116"><script>
+    <link rel="stylesheet" href="/css/all.css?id=226393232"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
       var to = function(uri, event_category) {
-        if (event_category)
-          console.log(event_category + " " + uri);
-        else
-          console.log(uri);
+        gtag('event', 'click', {
+          'event_category': event_category,
+          'event_label': uri,
+          'transport_type': 'beacon',
+          'event_callback': function(){document.location = uri;}
+        });
       };
-    </script><script src="/js/all.js?id=985612029"></script>
+    </script><script src="/js/all.js?id=312402206"></script>
   </head>
   <body>
     <div id="app" >
@@ -56,10 +63,10 @@
 <h1><a name="input"></a>Entity Resolution Input Specification</h1>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6f3914c67c1839f7">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4b780baa31442500">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a6f3914c67c1839f7"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a4b780baa31442500"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -133,10 +140,10 @@ in the descriptions of each element.</p>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7a01e665a69f5d2d">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aae054b0180a362f7">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a7a01e665a69f5d2d"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aae054b0180a362f7"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -157,10 +164,10 @@ in the descriptions of each element.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#acfa91c12c80bea5f">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1fa28674e60d0dfb">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="acfa91c12c80bea5f"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a1fa28674e60d0dfb"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -189,10 +196,10 @@ in the descriptions of each element.</p>
         <p><strong>Shorthand Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5ae9a0ab25859c9b">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a47ebcd67ecb994de">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a5ae9a0ab25859c9b"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a47ebcd67ecb994de"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">[</span>
       <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
@@ -207,10 +214,10 @@ in the descriptions of each element.</p>
         <p><strong>Shorthand Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5806d9431545f865">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a594e73448389a373">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a5806d9431545f865"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a594e73448389a373"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span>
       <span class="s2">&quot;Allie Jones&quot;</span><span class="p">,</span>
@@ -286,10 +293,10 @@ will be serialized as a string when passed to the matcher clause. The value over
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a483659661a754852">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a08324df06499ea27">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a483659661a754852"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a08324df06499ea27"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;ids&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">INDEX_NAME</span><span class="o">:</span> <span class="p">[</span>
       <span class="nx">DOC_ID</span><span class="p">,</span>
@@ -304,10 +311,10 @@ will be serialized as a string when passed to the matcher clause. The value over
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae0ff2273f69a6b8a">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#acc4b01a2b50bce38">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ae0ff2273f69a6b8a"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="acc4b01a2b50bce38"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;ids&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">[</span>
       <span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
@@ -347,10 +354,10 @@ After that, the attributes are obtained from the documents and the job continues
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5e58b86e64479c02">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a22108475e1c0b165">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a5e58b86e64479c02"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a22108475e1c0b165"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exclude&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -394,10 +401,10 @@ After that, the attributes are obtained from the documents and the job continues
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6f77de22d1aa78cd">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac29afacd8a1bb7bf">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a6f77de22d1aa78cd"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ac29afacd8a1bb7bf"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exclude&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>

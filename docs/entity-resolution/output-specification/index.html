@@ -14,14 +14,21 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=664558218"><script>
+    <link rel="stylesheet" href="/css/all.css?id=247421250"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
       var to = function(uri, event_category) {
-        if (event_category)
-          console.log(event_category + " " + uri);
-        else
-          console.log(uri);
+        gtag('event', 'click', {
+          'event_category': event_category,
+          'event_label': uri,
+          'transport_type': 'beacon',
+          'event_callback': function(){document.location = uri;}
+        });
       };
-    </script><script src="/js/all.js?id=421659338"></script>
+    </script><script src="/js/all.js?id=201726542"></script>
   </head>
   <body>
     <div id="app" >
@@ -56,10 +63,10 @@
 <h1><a name="output"></a>Entity Resolution Output Specification</h1>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4ea4e4a439a87eef">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa6294d9cb6042360">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a4ea4e4a439a87eef"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aa6294d9cb6042360"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="nx">TOOK_IN_MILLIS</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="nx">HITS_TOTAL</span><span class="p">,</span>
@@ -163,10 +170,10 @@ are normalized into a format that will be common across documents from disparate
 <p>Different resolvers can share many of the same attributes. Consider the following:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af73c3e520d1a4800">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae1a6979fd995a4f2">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af73c3e520d1a4800"><div class="highlight"><pre><span></span><span class="p">[</span>
+          <span id="ae1a6979fd995a4f2"><div class="highlight"><pre><span></span><span class="p">[</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span> <span class="p">],</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;zip&quot;</span> <span class="p">],</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;dob&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span> <span class="p">],</span>
@@ -183,10 +190,10 @@ zentity optimizes queries by determining how the attributes can be nested to min
 <p>Here's the effect of the optimization:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a413822f51621f665">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a316208f8a0f395e2">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a413822f51621f665"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a316208f8a0f395e2"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="p">{</span>
