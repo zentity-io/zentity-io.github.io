@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=600889623"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=283793378"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=172303935"></script>
+    </script><script src="/js/all.js?id=290185590"></script>
   </head>
   <body>
     <div id="app" >
@@ -91,10 +91,10 @@ This tutorial was tested with <a href="/docs/releases">zentity-1.0.2-elasticsear
 <p>Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac7a78e690d07ad2a">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a90d1fad73687d381">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac7a78e690d07ad2a"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
+          <span id="a90d1fad73687d381"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
 </pre></div>
 </span>
         </div>
@@ -102,10 +102,10 @@ This tutorial was tested with <a href="/docs/releases">zentity-1.0.2-elasticsear
 <p>Now create the index for this tutorial.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7fb9d0541d92f490">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a420ef54268f2c678">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a7fb9d0541d92f490"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
+          <span id="a420ef54268f2c678"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
 <span class="p">{</span>
   <span class="s2">&quot;settings&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -186,10 +186,10 @@ This tutorial was tested with <a href="/docs/releases">zentity-1.0.2-elasticsear
 <p>Add the tutorial data to the index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8d5953e49d74fac1">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a9176d3e01e63b18b">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a8d5953e49d74fac1"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
+          <span id="a9176d3e01e63b18b"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
 <span class="p">{</span><span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">}</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
@@ -249,10 +249,10 @@ This tutorial was tested with <a href="/docs/releases">zentity-1.0.2-elasticsear
 <p>Let's use the <a href="/docs/rest-apis/models-api">Models API</a> to create the entity model below. We'll review the matchers in depth.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad66f4f39bb970107">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a66513b4f8f687d3b">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ad66f4f39bb970107"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
+          <span id="a66513b4f8f687d3b"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -321,10 +321,10 @@ This tutorial was tested with <a href="/docs/releases">zentity-1.0.2-elasticsear
 <p>We defined two matchers called <code>"fuzzy"</code> and <code>"fuzzy_params"</code> as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7b7533fb3b213ab2">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2f281a544e003222">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a7b7533fb3b213ab2"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a2f281a544e003222"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;fuzzy&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span><span class="p">{</span>
@@ -365,10 +365,10 @@ of any matcher requires two variables:</p>
 <p>Let's look at our <code>"fuzzy"</code> matcher. This matcher uses no params.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3d4bea3da026acd7">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6ea3514327c6f715">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3d4bea3da026acd7"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a6ea3514327c6f715"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;fuzzy&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span><span class="p">{</span>
@@ -394,10 +394,10 @@ object of a matcher.</p>
 allow the <code>"fuzziness"</code> field of the <code>match</code> clause to be changed at runtime.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a794b7ed2a39066cf">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a9287b0e9fe8887b3">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a794b7ed2a39066cf"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a9287b0e9fe8887b3"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;fuzzy_params&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span><span class="p">{</span>
@@ -424,10 +424,10 @@ override the default values of those parameters.</p>
 person with a known first name, last name, and phone number:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a28a69a9b340a2641">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab2595a2e7130bdd6">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a28a69a9b340a2641"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
+          <span id="ab2595a2e7130bdd6"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
@@ -441,10 +441,10 @@ person with a known first name, last name, and phone number:</p>
         <p>The results will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a59a02aef564bd4b9">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a40b7644ba9378493">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a59a02aef564bd4b9"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a40b7644ba9378493"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -487,10 +487,10 @@ one character difference to match.</p>
 <p>Let's set the value of <code>"fuzziness"</code> to <code>2</code> for our <code>"first_name"</code> attribute.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad7b14e27e82bc56a">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2b148b92dc2e14a7">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ad7b14e27e82bc56a"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
+          <span id="a2b148b92dc2e14a7"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -509,10 +509,10 @@ one character difference to match.</p>
         <p>The results will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a66afb34f2d929d79">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a80c3a5b6c41d6013">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a66afb34f2d929d79"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a80c3a5b6c41d6013"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
@@ -557,10 +557,10 @@ one character difference to match.</p>
 <p>Let's also set the value of <code>"fuzziness"</code> to <code>2</code> for our <code>"last_name"</code> attribute.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5539bec3a0d26229">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac501662255439529">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a5539bec3a0d26229"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
+          <span id="ac501662255439529"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -584,10 +584,10 @@ one character difference to match.</p>
         <p>The results will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a557d7d2710f6a721">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a000c974c1a5095f6">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a557d7d2710f6a721"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a000c974c1a5095f6"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
@@ -645,10 +645,10 @@ length of the strings are greater than or equal to six characters.</p>
 <p>What if we disabled <code>"fuzziness"</code> on every attribute? Let's try it.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad68ac8310df7813d">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a49ab5a6d08f9adf5">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ad68ac8310df7813d"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
+          <span id="a49ab5a6d08f9adf5"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -677,10 +677,10 @@ length of the strings are greater than or equal to six characters.</p>
         <p>The results will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7b5b94fc7fb7bb61">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab5918db0cc69b665">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a7b5b94fc7fb7bb61"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab5918db0cc69b665"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
