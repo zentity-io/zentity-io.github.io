@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=928242334"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=233743907"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=219378026"></script>
+    </script><script src="/js/all.js?id=757446952"></script>
   </head>
   <body>
     <div id="app" >
@@ -63,10 +63,10 @@
 <h1><a name="specification"></a>Entity Model Specification</h1>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a33bcd50990c8c0d4">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a149f0f8311dad010">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a33bcd50990c8c0d4"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a149f0f8311dad010"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_TYPE</span><span class="p">,</span>
@@ -82,7 +82,8 @@
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
         <span class="nx">ATTRIBUTE_NAME</span><span class="p">,</span>
         <span class="p">...</span>
-      <span class="p">]</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;priority&quot;</span><span class="o">:</span> <span class="nx">PRIORITY_LEVEL</span>
     <span class="p">}</span>
     <span class="p">...</span>
   <span class="p">},</span>
@@ -122,10 +123,10 @@ Optional elements are noted in the descriptions of each element listed on this p
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a78501d86184ed105">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aeae6e17a95a05620">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a78501d86184ed105"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aeae6e17a95a05620"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_TYPE</span><span class="p">,</span>
@@ -143,10 +144,10 @@ Optional elements are noted in the descriptions of each element listed on this p
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa8acff7977daae9d">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af225065b55920fef">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aa8acff7977daae9d"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="af225065b55920fef"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
@@ -248,16 +249,17 @@ across indices that have disparate date formats.</p>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a769242609c1d3af9">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aef193dce8e804aa6">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a769242609c1d3af9"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aef193dce8e804aa6"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">RESOLVER_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
         <span class="nx">ATTRIBUTE_NAME</span><span class="p">,</span>
         <span class="p">...</span>
-      <span class="p">]</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;priority&quot;</span><span class="o">:</span> <span class="nx">PRIORITY_LEVEL</span>
     <span class="p">}</span>
     <span class="p">...</span>
   <span class="p">}</span>
@@ -268,10 +270,10 @@ across indices that have disparate date formats.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a9a4de60eacc61c4b">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab280c247405f12ea">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a9a4de60eacc61c4b"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab280c247405f12ea"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_street_city_state&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -302,6 +304,12 @@ across indices that have disparate date formats.</p>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
         <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span>
       <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;ssn&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;ssn&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;priority&quot;</span><span class="o">:</span> <span class="mi">1</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -341,14 +349,29 @@ then the resolver will not be used in any resolution jobs.</p>
 <li>Required: Yes</li>
 <li>Type: String</li>
 </ul>
+<h3><a name="resolvers.RESOLVER_NAME.priority.PRIORITY_LEVEL"></a><code>"resolvers".RESOLVER_NAME."priority".PRIORITY_LEVEL</code></h3>
+<p>The priority level of the resolver. Resolvers with higher priority levels take precedence over resolvers with lower
+priority levels. If a resolution job uses resolvers with different priority levels, then the higher priority resolvers
+either must match or must not exist. This behavior can help prevent false matches.</p>
+<p>For example, let's say you have three resolvers: <code>"name_phone"</code> has a priority of <code>0</code>, <code>"ssn"</code> has a priority of <code>1</code>, and
+<code>"id"</code> has a priority of <code>2</code>. Because the <code>"id"</code> resolver has the highest priority, it will always match documents with
+the same <code>"id"</code> attribute. The <code>"ssn"</code> resolver has a lower priority than the <code>"id"</code> resolver, and so the <code>"ssn"</code> resolver
+will only match documents if the <code>"id"</code> resolver either matches or does not exist in the documents. And the <code>"name_phone"</code>
+resolver has the lowest priority, so the <code>"name_phone"</code> resolver will only match documents if both the <code>"ssn"</code> and <code>"id"</code>
+resolvers either match or do not exist in the documents.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Integer</li>
+<li>Default: <code>0</code></li>
+</ul>
 <h2><a name="matchers"></a><code>"matchers"</code></h2>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af0f3a561ab3a85bf">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab44bc223540ae6f8">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af0f3a561ab3a85bf"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab44bc223540ae6f8"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">MATCHER_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="nx">MATCHER_CLAUSE</span><span class="p">,</span>
@@ -366,10 +389,10 @@ then the resolver will not be used in any resolution jobs.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a655bb4396acf0969">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a039529c491a52fe8">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a655bb4396acf0969"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a039529c491a52fe8"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exact_matcher&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -464,10 +487,10 @@ will be serialized as a string when passed to the matcher clause. The value is o
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3558226de58c5be9">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae30bf2fdf87dfb1c">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3558226de58c5be9"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ae30bf2fdf87dfb1c"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">INDEX_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -487,10 +510,10 @@ will be serialized as a string when passed to the matcher clause. The value is o
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6881567b2ab42a12">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae5012b278daf6b1c">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a6881567b2ab42a12"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ae5012b278daf6b1c"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -590,10 +613,10 @@ an entity with an email address of <code>"user@example.net"</code> and one of th
 And assume that the index field is mapped to the matcher clause below:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a23dc0cf28eb39d25">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af6a494872c0104f0">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a23dc0cf28eb39d25"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="af6a494872c0104f0"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
   <span class="p">}</span>
@@ -604,10 +627,10 @@ And assume that the index field is mapped to the matcher clause below:</p>
         <p>The final clause will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a140dfabff6e80f08">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a334a39097f5da1da">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a140dfabff6e80f08"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a334a39097f5da1da"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;email.keyword&quot;</span><span class="o">:</span> <span class="s2">&quot;user@example.net&quot;</span>
   <span class="p">}</span>
