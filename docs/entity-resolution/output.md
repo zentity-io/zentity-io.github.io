@@ -36,7 +36,10 @@
           ...
         ],
         "tree": {
-          ATTRIBUTE_NAME: {
+          PRIORITY_LEVEL: {
+            ATTRIBUTE_NAME: {
+              ...
+            },
             ...
           },
           ...
@@ -175,22 +178,24 @@ Here's the effect of the optimization:
 
 ```javascript
 {
-  "name": {
-    "street": {
-      "city": {
-        "state": {
-          "zip": {}
-        }
+  "0": {
+    "name": {
+      "street": {
+        "city": {
+          "state": {
+            "zip": {}
+          }
+        },
+        "zip": {}
       },
-      "zip": {}
+      "dob": {
+        "state": {}
+      },
+      "phone": {},
+      "email": {}
     },
-    "dob": {
-      "state": {}
-    },
-    "phone": {},
-    "email": {}
-  },
-  "id": {}
+    "id": {}
+  }
 }
 ```
 

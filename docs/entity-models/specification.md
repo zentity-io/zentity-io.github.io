@@ -20,7 +20,8 @@
       "attributes": [
         ATTRIBUTE_NAME,
         ...
-      ]
+      ],
+      "priority": PRIORITY_LEVEL
     }
     ...
   },
@@ -217,7 +218,8 @@ across indices that have disparate date formats.
       "attributes": [
         ATTRIBUTE_NAME,
         ...
-      ]
+      ],
+      "priority": PRIORITY_LEVEL
     }
     ...
   }
@@ -258,6 +260,12 @@ across indices that have disparate date formats.
       "attributes": [
         "email", "phone"
       ]
+    },
+    "ssn": {
+      "attributes": [
+        "ssn"
+      ],
+      "priority": 1
     }
   }
 }
@@ -304,6 +312,24 @@ then the resolver will not be used in any resolution jobs.
 
 - Required: Yes
 - Type: String
+
+
+### <a name="resolvers.RESOLVER_NAME.priority.PRIORITY_LEVEL"></a>`"resolvers".RESOLVER_NAME."priority".PRIORITY_LEVEL`
+
+The priority level of the resolver. Resolvers with higher priority levels take precedence over resolvers with lower
+priority levels. If a resolution job uses resolvers with different priority levels, then the higher priority resolvers
+either must match or must not exist. This behavior can help prevent false matches.
+
+For example, let's say you have three resolvers: `"name_phone"` has a priority of `0`, `"ssn"` has a priority of `1`, and
+`"id"` has a priority of `2`. Because the `"id"` resolver has the highest priority, it will always match documents with
+the same `"id"` attribute. The `"ssn"` resolver has a lower priority than the `"id"` resolver, and so the `"ssn"` resolver
+will only match documents if the `"id"` resolver either matches or does not exist in the documents. And the `"name_phone"`
+resolver has the lowest priority, so the `"name_phone"` resolver will only match documents if both the `"ssn"` and `"id"`
+resolvers either match or do not exist in the documents.
+
+- Required: No
+- Type: Integer
+- Default: `0`
 
 
 ## <a name="matchers"></a>`"matchers"`
