@@ -8,7 +8,40 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.1.0">zentity-1.1.0 (latest)</a>
+## <a name="zentity-1.2.0">zentity-1.2.0 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 7.2.0](https://zentity.io/releases/zentity-1.2.0-elasticsearch-7.2.0.zip)
+- [Elasticsearch 7.1.1](https://zentity.io/releases/zentity-1.2.0-elasticsearch-7.1.1.zip)
+- [Elasticsearch 7.1.0](https://zentity.io/releases/zentity-1.2.0-elasticsearch-7.1.0.zip)
+- [Elasticsearch 7.0.1](https://zentity.io/releases/zentity-1.2.0-elasticsearch-7.0.1.zip)
+- [Elasticsearch 7.0.0](https://zentity.io/releases/zentity-1.2.0-elasticsearch-7.0.0.zip)
+- [Elasticsearch 6.8.0](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.8.0.zip)
+- [Elasticsearch 6.7.2](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.7.2.zip)
+- [Elasticsearch 6.7.1](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.7.1.zip)
+- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.7.0.zip)
+- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.6.2.zip)
+- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.6.1.zip)
+- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.6.0.zip)
+- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.5.4.zip)
+- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.5.3.zip)
+- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.5.2.zip)
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.2.0-elasticsearch-6.5.0.zip)
+
+### Release notes
+
+- **Feature** - Added an optional `"_explanation"` field to each document in the
+response object of the [Resolution API](/docs/rest-apis/resolution-api). This
+field explains which resolvers caused a document to match, and more specifically,
+which input value matched which indexed value using which matcher and params.
+([.......](https://github.com/zentity-io/zentity/commit/.......))
+
+
+## <a name="zentity-1.1.0">zentity-1.1.0</a>
 
 ### Download
 

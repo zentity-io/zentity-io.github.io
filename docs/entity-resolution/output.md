@@ -18,6 +18,28 @@
           ATTRIBUTE_NAME: ATTRIBUTE_VALUE,
           ...
         },
+        "_explanation": {
+          "resolvers": {
+            RESOLVER_NAME: {
+              "attributes": [
+                ATTRIBUTE_NAME,
+                ...
+              ]
+            },
+            ...
+          },
+          "matches": [
+            {
+              "attribute": ATTRIBUTE_NAME,
+              "target_field": FIELD_NAME,
+              "target_value": FIELD_VALUE
+              "input_value": ATTRIBUTE_VALUE,
+              "input_matcher": MATCHER_NAME,
+              "input_matcher_params": MATCHER_PARAMS,
+            },
+            ...
+          ]
+        },
         "_source": {
           FIELD_NAME: FIELD_VALUE,
           ...
@@ -124,6 +146,58 @@ are normalized into a format that will be common across documents from disparate
 This field can be excluded from the output by setting `_attributes=false` in the URI parameters of the [resolution request](/docs/rest-apis/resolution-api).
 
 
+### <a name="hits.hits._explanation"></a>`"hits"."hits"."_explanation"`
+
+An object that explains which [`"resolvers"`](#hits.hits._explanation.resolvers) caused the document to match and the reasons for the [`"matches"`](#hits.hits._explanation.matches).
+
+This field can be included in the output by setting `_explanation=true` in the URI parameters of the [resolution request](/docs/rest-apis/resolution-api).
+
+
+### <a name="hits.hits._explanation.resolvers"></a>`"hits"."hits"."_explanation"."resolvers"`
+
+An object that explains which resolvers caused the document to match. A resolver is listed if each of its [`"attributes"`](#hits.hits._explanation.resolvers.RESOLVER_NAME.attributes) has at least one match. The reason for each match is listed in the [`"matches"`](#hits.hits._explanation.matches) array.
+
+
+### <a name="hits.hits._explanation.resolvers.RESOLVER_NAME.attributes"></a>`"hits"."hits"."_explanation"."resolvers".RESOLVER_NAME."attributes"`
+
+The attributes of a resolver that caused the document to match.
+
+
+### <a name="hits.hits._explanation.matches"></a>`"hits"."hits"."_explanation"."matches"`
+
+An array of objects that explains how the inputs of the search matched the fields of the document. Each object represents a match between an [input value](#hits.hits._explanation.matches.input_value) and an [indexed value](#hits.hits._explanation.matches.target_value) for a given [attribute](#hits.hits._explanation.matches.attribute) using a given [matcher](#hits.hits._explanation.matches.input_matcher) and its [params](#hits.hits._explanation.matches.input_matcher_params).
+
+
+### <a name="hits.hits._explanation.matches.attribute"></a>`"hits"."hits"."_explanation"."matches"."attribute"`
+
+The name of the attribute for a match.
+
+
+### <a name="hits.hits._explanation.matches.target_field"></a>`"hits"."hits"."_explanation"."matches"."target_field"`
+
+The name of the index field for a match.
+
+
+### <a name="hits.hits._explanation.matches.target_value"></a>`"hits"."hits"."_explanation"."matches"."target_value"`
+
+The value of the index field for a match.
+
+
+### <a name="hits.hits._explanation.matches.input_value"></a>`"hits"."hits"."_explanation"."matches"."input_value"`
+
+The value of the input for a match.
+
+
+### <a name="hits.hits._explanation.matches.input_matcher"></a>`"hits"."hits"."_explanation"."matches"."input_matcher"`
+
+The name of the matcher for a match.
+
+
+### <a name="hits.hits._explanation.matches.input_matcher_params"></a>`"hits"."hits"."_explanation"."matches"."input_matcher_params"`
+
+The params of the matcher for a match.
+
+
 ### <a name="hits.hits._source"></a>`"hits"."hits"."_source"`
 
 The original fields from the document.
@@ -137,21 +211,26 @@ An object containing information about the queries that were submitted to to Ela
 
 This field is excluded from the output by default. It can be included by setting `queries=true` in the URI parameters of the [resolution request](/docs/rest-apis/resolution-api).
 
+
 ### <a name="queries._hop"></a>`"queries"."_hop"`
 
 The hop number at which the query was submitted.
+
 
 ### <a name="queries._index"></a>`"queries"."_index"`
 
 The index that was queried.
 
+
 ### <a name="queries.resolvers"></a>`"queries"."resolvers"`
 
 An object containing information about the resolvers used to construct the query.
 
+
 ### <a name="queries.resolvers.list"></a>`"queries"."resolvers"."list"`
 
 A flat list of names of the resolvers used to construct the query.
+
 
 ### <a name="queries.resolvers.tree"></a>`"queries"."resolvers"."tree"`
 

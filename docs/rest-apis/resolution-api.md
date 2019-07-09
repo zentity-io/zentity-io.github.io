@@ -141,6 +141,7 @@ Read the **[output specification](/docs/entity-resolution/output-specification)*
 |Param|Type|Default|Required|Description|
 |-----|----|-------|--------|-----------|
 |`_attributes`|Boolean|`true`|No|Return the `_attributes` field in each doc.|
+|`_explanation`|Boolean|`false`|No|Return the `_explanation` field in each doc.|
 |`_source`|Boolean|`true`|No|Return the `_source` field in each doc.|
 |`entity_type`|String| |Depends|The entity type. Required if `model` is not specified.|
 |`hits`|Boolean|`true`|No|Return the `hits` field in the response.|
