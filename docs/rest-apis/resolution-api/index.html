@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=142465503"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=728635307"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=636809614"></script>
+    </script><script src="/js/all.js?id=751767544"></script>
   </head>
   <body>
     <div id="app" >
@@ -65,10 +65,10 @@
 <p>The request accepts two endpoints:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af2ba5916940d369a">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#afa49a371391c3325">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af2ba5916940d369a"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span>
+          <span id="afa49a371391c3325"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span>
 <span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 </pre></div>
 </span>
@@ -83,10 +83,10 @@ the default params, such as to format the results of any date attributes in the 
 <p>Read the <strong><a href="/docs/entity-resolution/input-specification">input specification</a></strong> for complete details about the structure of a request.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a40af2eabcae757a0">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#afe4802d0917a53e9">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a40af2eabcae757a0"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="afe4802d0917a53e9"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice Jones&quot;</span> <span class="p">],</span>
@@ -136,10 +136,10 @@ span many hops if they have highly varied attribute values.</p>
 <p>Read the <strong><a href="/docs/entity-resolution/output-specification">output specification</a></strong> for complete details about the structure of a response.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7c9365f16b2f08ee">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0d228dc69bf2aab7">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a7c9365f16b2f08ee"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a0d228dc69bf2aab7"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="mi">64</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -217,6 +217,13 @@ span many hops if they have highly varied attribute values.</p>
 <td><code>true</code></td>
 <td>No</td>
 <td>Return the <code>_attributes</code> field in each doc.</td>
+</tr>
+<tr>
+<td><code>_explanation</code></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>No</td>
+<td>Return the <code>_explanation</code> field in each doc.</td>
 </tr>
 <tr>
 <td><code>_source</code></td>

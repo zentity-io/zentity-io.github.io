@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=726426704"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=353218132"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=333034487"></script>
+    </script><script src="/js/all.js?id=847349219"></script>
   </head>
   <body>
     <div id="app" >
@@ -63,10 +63,10 @@
 <h1><a name="output"></a>Entity Resolution Output Specification</h1>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6d5370758b5992bd">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#adc0944a29686a0be">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a6d5370758b5992bd"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="adc0944a29686a0be"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="nx">TOOK_IN_MILLIS</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="nx">HITS_TOTAL</span><span class="p">,</span>
@@ -79,6 +79,28 @@
         <span class="s2">&quot;_attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
           <span class="p">...</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;_explanation&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">RESOLVER_NAME</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="nx">ATTRIBUTE_NAME</span><span class="p">,</span>
+                <span class="p">...</span>
+              <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="p">...</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;matches&quot;</span><span class="o">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_NAME</span><span class="p">,</span>
+              <span class="s2">&quot;target_field&quot;</span><span class="o">:</span> <span class="nx">FIELD_NAME</span><span class="p">,</span>
+              <span class="s2">&quot;target_value&quot;</span><span class="o">:</span> <span class="nx">FIELD_VALUE</span>
+              <span class="s2">&quot;input_value&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
+              <span class="s2">&quot;input_matcher&quot;</span><span class="o">:</span> <span class="nx">MATCHER_NAME</span><span class="p">,</span>
+              <span class="s2">&quot;input_matcher_params&quot;</span><span class="o">:</span> <span class="nx">MATCHER_PARAMS</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="p">...</span>
+          <span class="p">]</span>
         <span class="p">},</span>
         <span class="s2">&quot;_source&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="nx">FIELD_NAME</span><span class="o">:</span> <span class="nx">FIELD_VALUE</span><span class="p">,</span>
@@ -154,6 +176,27 @@ the cluster to the client.</p>
 field that is associated with an attribute in the entity model and mapping it to the name of the attribute. Some values, such as <a href="/docs/entity-models/specification#attribute-type-date">dates</a>,
 are normalized into a format that will be common across documents from disparate indices.</p>
 <p>This field can be excluded from the output by setting <code>_attributes=false</code> in the URI parameters of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.</p>
+<h3><a name="hits.hits._explanation"></a><code>"hits"."hits"."_explanation"</code></h3>
+<p>An object that explains which <a href="#hits.hits._explanation.resolvers" onclick="to(window.location.pathname + '#hits.hits._explanation.resolvers', 'internal');"><code>"resolvers"</code></a> caused the document to match and the reasons for the <a href="#hits.hits._explanation.matches" onclick="to(window.location.pathname + '#hits.hits._explanation.matches', 'internal');"><code>"matches"</code></a>.</p>
+<p>This field can be included in the output by setting <code>_explanation=true</code> in the URI parameters of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.</p>
+<h3><a name="hits.hits._explanation.resolvers"></a><code>"hits"."hits"."_explanation"."resolvers"</code></h3>
+<p>An object that explains which resolvers caused the document to match. A resolver is listed if each of its <a href="#hits.hits._explanation.resolvers.RESOLVER_NAME.attributes" onclick="to(window.location.pathname + '#hits.hits._explanation.resolvers.RESOLVER_NAME.attributes', 'internal');"><code>"attributes"</code></a> has at least one match. The reason for each match is listed in the <a href="#hits.hits._explanation.matches" onclick="to(window.location.pathname + '#hits.hits._explanation.matches', 'internal');"><code>"matches"</code></a> array.</p>
+<h3><a name="hits.hits._explanation.resolvers.RESOLVER_NAME.attributes"></a><code>"hits"."hits"."_explanation"."resolvers".RESOLVER_NAME."attributes"</code></h3>
+<p>The attributes of a resolver that caused the document to match.</p>
+<h3><a name="hits.hits._explanation.matches"></a><code>"hits"."hits"."_explanation"."matches"</code></h3>
+<p>An array of objects that explains how the inputs of the search matched the fields of the document. Each object represents a match between an <a href="#hits.hits._explanation.matches.input_value" onclick="to(window.location.pathname + '#hits.hits._explanation.matches.input_value', 'internal');">input value</a> and an <a href="#hits.hits._explanation.matches.target_value" onclick="to(window.location.pathname + '#hits.hits._explanation.matches.target_value', 'internal');">indexed value</a> for a given <a href="#hits.hits._explanation.matches.attribute" onclick="to(window.location.pathname + '#hits.hits._explanation.matches.attribute', 'internal');">attribute</a> using a given <a href="#hits.hits._explanation.matches.input_matcher" onclick="to(window.location.pathname + '#hits.hits._explanation.matches.input_matcher', 'internal');">matcher</a> and its <a href="#hits.hits._explanation.matches.input_matcher_params" onclick="to(window.location.pathname + '#hits.hits._explanation.matches.input_matcher_params', 'internal');">params</a>.</p>
+<h3><a name="hits.hits._explanation.matches.attribute"></a><code>"hits"."hits"."_explanation"."matches"."attribute"</code></h3>
+<p>The name of the attribute for a match.</p>
+<h3><a name="hits.hits._explanation.matches.target_field"></a><code>"hits"."hits"."_explanation"."matches"."target_field"</code></h3>
+<p>The name of the index field for a match.</p>
+<h3><a name="hits.hits._explanation.matches.target_value"></a><code>"hits"."hits"."_explanation"."matches"."target_value"</code></h3>
+<p>The value of the index field for a match.</p>
+<h3><a name="hits.hits._explanation.matches.input_value"></a><code>"hits"."hits"."_explanation"."matches"."input_value"</code></h3>
+<p>The value of the input for a match.</p>
+<h3><a name="hits.hits._explanation.matches.input_matcher"></a><code>"hits"."hits"."_explanation"."matches"."input_matcher"</code></h3>
+<p>The name of the matcher for a match.</p>
+<h3><a name="hits.hits._explanation.matches.input_matcher_params"></a><code>"hits"."hits"."_explanation"."matches"."input_matcher_params"</code></h3>
+<p>The params of the matcher for a match.</p>
 <h3><a name="hits.hits._source"></a><code>"hits"."hits"."_source"</code></h3>
 <p>The original fields from the document.</p>
 <p>This field can be excluded from the output by setting <code>_source=false</code> in the URI parameters of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.</p>
@@ -173,10 +216,10 @@ are normalized into a format that will be common across documents from disparate
 <p>Different resolvers can share many of the same attributes. Consider the following:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3f2bb7f991047de8">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a83ad34eea042ec58">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3f2bb7f991047de8"><div class="highlight"><pre><span></span><span class="p">[</span>
+          <span id="a83ad34eea042ec58"><div class="highlight"><pre><span></span><span class="p">[</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span> <span class="p">],</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;zip&quot;</span> <span class="p">],</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;dob&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span> <span class="p">],</span>
@@ -193,10 +236,10 @@ zentity optimizes queries by determining how the attributes can be nested to min
 <p>Here's the effect of the optimization:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a27ba12c9b929ea1e">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a82c265349b076bde">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a27ba12c9b929ea1e"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a82c265349b076bde"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;0&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="p">{</span>
