@@ -38,7 +38,7 @@ Select the plugin version that matches your version of Elasticsearch:
 response object of the [Resolution API](/docs/rest-apis/resolution-api). This
 field explains which resolvers caused a document to match, and more specifically,
 which input value matched which indexed value using which matcher and params.
-([.......](https://github.com/zentity-io/zentity/commit/.......))
+([08a2ffc](https://github.com/zentity-io/zentity/commit/08a2ffcaac266aeab9bf63a688955c04d33ecf4b))
 
 
 ## <a name="zentity-1.1.0">zentity-1.1.0</a>
