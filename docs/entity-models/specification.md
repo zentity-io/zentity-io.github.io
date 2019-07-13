@@ -21,7 +21,7 @@
         ATTRIBUTE_NAME,
         ...
       ],
-      "priority": PRIORITY_LEVEL
+      "weight": WEIGHT_LEVEL
     }
     ...
   },
@@ -219,7 +219,7 @@ across indices that have disparate date formats.
         ATTRIBUTE_NAME,
         ...
       ],
-      "priority": PRIORITY_LEVEL
+      "weight": WEIGHT_LEVEL
     }
     ...
   }
@@ -265,7 +265,7 @@ across indices that have disparate date formats.
       "attributes": [
         "ssn"
       ],
-      "priority": 1
+      "weight": 1
     }
   }
 }
@@ -314,17 +314,17 @@ then the resolver will not be used in any resolution jobs.
 - Type: String
 
 
-### <a name="resolvers.RESOLVER_NAME.priority.PRIORITY_LEVEL"></a>`"resolvers".RESOLVER_NAME."priority".PRIORITY_LEVEL`
+### <a name="resolvers.RESOLVER_NAME.weight.WEIGHT_LEVEL"></a>`"resolvers".RESOLVER_NAME."weight".WEIGHT_LEVEL`
 
-The priority level of the resolver. Resolvers with higher priority levels take precedence over resolvers with lower
-priority levels. If a resolution job uses resolvers with different priority levels, then the higher priority resolvers
+The weight level of the resolver. Resolvers with higher weight levels take precedence over resolvers with lower
+weight levels. If a resolution job uses resolvers with different weight levels, then the higher weight resolvers
 either must match or must not exist. This behavior can help prevent false matches.
 
-For example, let's say you have three resolvers: `"name_phone"` has a priority of `0`, `"ssn"` has a priority of `1`, and
-`"id"` has a priority of `2`. Because the `"id"` resolver has the highest priority, it will always match documents with
-the same `"id"` attribute. The `"ssn"` resolver has a lower priority than the `"id"` resolver, and so the `"ssn"` resolver
+For example, let's say you have three resolvers: `"name_phone"` has a weight of `0`, `"ssn"` has a weight of `1`, and
+`"id"` has a weight of `2`. Because the `"id"` resolver has the highest weight, it will always match documents with
+the same `"id"` attribute. The `"ssn"` resolver has a lower weight than the `"id"` resolver, and so the `"ssn"` resolver
 will only match documents if the `"id"` resolver either matches or does not exist in the documents. And the `"name_phone"`
-resolver has the lowest priority, so the `"name_phone"` resolver will only match documents if both the `"ssn"` and `"id"`
+resolver has the lowest weight, so the `"name_phone"` resolver will only match documents if both the `"ssn"` and `"id"`
 resolvers either match or do not exist in the documents.
 
 - Required: No

@@ -58,7 +58,7 @@
           ...
         ],
         "tree": {
-          PRIORITY_LEVEL: {
+          WEIGHT_LEVEL: {
             ATTRIBUTE_NAME: {
               ...
             },
