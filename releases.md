@@ -34,7 +34,7 @@ Select the plugin version that matches your version of Elasticsearch:
 ### Release notes
 
 - **Breaking change** - Renamed `"priorty"` to "`weight`" in the resolver objects.
-([e30ac13](https://github.com/zentity-io/zentity/commit/e30ac13feb50b28337ea40159fde0707bf0be9b4))
+([117f38f](https://github.com/zentity-io/zentity/commit/117f38f3844f82247110a093230743f68fb078a1))
 
 
 ## <a name="zentity-1.2.0">zentity-1.2.0</a>
