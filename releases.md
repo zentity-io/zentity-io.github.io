@@ -7,7 +7,60 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.3.0">zentity-1.3.0 (latest)</a>
+## <a name="zentity-1.3.0">zentity-1.3.1 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 7.2.0](https://zentity.io/releases/zentity-1.3.1-elasticsearch-7.2.0.zip)
+- [Elasticsearch 7.1.1](https://zentity.io/releases/zentity-1.3.1-elasticsearch-7.1.1.zip)
+- [Elasticsearch 7.1.0](https://zentity.io/releases/zentity-1.3.1-elasticsearch-7.1.0.zip)
+- [Elasticsearch 7.0.1](https://zentity.io/releases/zentity-1.3.1-elasticsearch-7.0.1.zip)
+- [Elasticsearch 7.0.0](https://zentity.io/releases/zentity-1.3.1-elasticsearch-7.0.0.zip)
+- [Elasticsearch 6.8.0](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.8.0.zip)
+- [Elasticsearch 6.7.2](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.7.2.zip)
+- [Elasticsearch 6.7.1](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.7.1.zip)
+- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.7.0.zip)
+- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.6.2.zip)
+- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.6.1.zip)
+- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.6.0.zip)
+- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.5.4.zip)
+- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.5.3.zip)
+- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.5.2.zip)
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.3.1-elasticsearch-6.5.0.zip)
+
+### Release notes
+
+- **Bug fix** - When checking the existence of a resolver with a higher weight,
+the absence of any attribute should imply that the resolver does not exist.
+Until now the boolean logic had checked for the absence of all attributes of the
+resolver. This has been corrected to check for the absence of any attribute of
+the resolver.
+([4d97d39](https://github.com/zentity-io/zentity/commit/4d97d3974ad560d5a8cbb9430b11faf467c1cb91))
+
+- **Bug fix** - When submitting a resolution request with an embedded model and
+an entity type, raise an error because the request is ambiguous.
+([b45b24a](https://github.com/zentity-io/zentity/commit/b45b24a463836f88213984cc1538e29a1e2e1cbc))
+
+- **Bug fix** - When submitting a resolution request with an embedded model and
+no entity type, process the request.
+([b45b24a](https://github.com/zentity-io/zentity/commit/b45b24a463836f88213984cc1538e29a1e2e1cbc))
+
+- **Bug fix** - Return an error when an unrecognized field exists in the
+resolution request.
+([3fdde88](https://github.com/zentity-io/zentity/commit/3fdde88fea9ae0bd5058e0296d253af5c1e7cff4))
+
+- **Security** - Updated Jackson dependency to resolve security vulnerability
+CVE-2019--12814.
+([a8e006e](https://github.com/zentity-io/zentity/commit/a8e006eb0dd1b964c338c082345d89a3265d9e40))
+
+- **Minor** - Removed redundant "bool" wrapper clauses.
+([a1332ce](https://github.com/zentity-io/zentity/commit/a1332cec6ac44561899d8711ab056ee94274bec1))
+
+
+## <a name="zentity-1.3.0">zentity-1.3.0</a>
 
 ### Download
 
@@ -33,7 +86,7 @@ Select the plugin version that matches your version of Elasticsearch:
 
 ### Release notes
 
-- **Breaking change** - Renamed `"priorty"` to "`weight`" in the resolver objects.
+- **Breaking change** - Renamed `"priorty"` to `"weight"` in the resolver objects.
 ([117f38f](https://github.com/zentity-io/zentity/commit/117f38f3844f82247110a093230743f68fb078a1))
 
 
@@ -98,6 +151,7 @@ Select the plugin version that matches your version of Elasticsearch:
 
 - **Feature** - Introduced the concept of resolver priority.
 ([a57958d](https://github.com/zentity-io/zentity/commit/a57958dda8a1525a7d988890a21481d24212d8a8))
+
 - **Breaking change** - Changed the structure of [`"queries"."resolvers"."tree"`](/docs/entity-resolution/output-specification/#queries.resolvers.tree)
 in the response object of the [Resolution API]((/docs/rest-apis/resolution-api)).
 ([0d76da0](https://github.com/zentity-io/zentity/commit/0d76da05a810eb58b9537e1545dc259a3aa90a53))
@@ -131,6 +185,7 @@ Select the plugin version that matches your version of Elasticsearch:
 
 - **Bug fix** - Fixed bug where model attribute params did not override matcher params.
 ([3e0728b](https://github.com/zentity-io/zentity/commit/3e0728ba4b9dca6b87b7dd72a257eb473d0c6eec))
+
 - **Security** - Updated Jackson dependency to resolve security vulnerabilities CVE-2018-12022, CVE-2018-19360, CVE-2018-19361, CVE-2018-19362, CVE-2018-14721, CVE-2018-14718, CVE-2018-14719, CVE-2018-14720.
 ([1ad9127](https://github.com/zentity-io/zentity/commit/1ad9127996769423d72e44aba74d30091b1b6308))
 
@@ -197,10 +252,12 @@ Select the plugin version that matches your version of Elasticsearch:
 This allows a job to be started by selecting document(s) by _id(s) known to be associated with an entity. Either or both
 of the `"ids"` and `"attributes"` fields must be present and valid to start a job.
 ([b2f48bc](https://github.com/zentity-io/zentity/commit/b2f48bcd4db838bf5f7726b6756c9301b61c39d5))
+
 - **Feature** - Added the `POST _zentity/_setup` endpoint to create the `.zentity-models` index. This allows an
 administrator to set up the index in advance without having to give users permission to create or manage the index when
 using X-Pack Security. And it allows the number of shards and replicas to be defined as URI parameters.
 ([79a00e3](https://github.com/zentity-io/zentity/commit/79a00e36ffe486e8d34af769edf8d2c70de4a3da))
+
 - **Bug fix** - Fixed a NullPointerException whenever an `entity_type` does not exist when submitting a resolution job.
 ([b5b6d88](https://github.com/zentity-io/zentity/commit/b5b6d88007537323e12d6ec6a50654bdee85f0d9))
 
