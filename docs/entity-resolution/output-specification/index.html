@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=803713012"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=177741242"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=974934630"></script>
+    </script><script src="/js/all.js?id=596513852"></script>
   </head>
   <body>
     <div id="app" >
@@ -63,10 +63,10 @@
 <h1><a name="output"></a>Entity Resolution Output Specification</h1>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5c7aa18332db58f5">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad28a9d5b285438c7">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a5c7aa18332db58f5"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ad28a9d5b285438c7"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="nx">TOOK_IN_MILLIS</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="nx">HITS_TOTAL</span><span class="p">,</span>
@@ -76,6 +76,7 @@
         <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="nx">DOC_TYPE</span><span class="p">,</span>
         <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="nx">DOC_ID</span><span class="p">,</span>
         <span class="s2">&quot;_hop&quot;</span><span class="o">:</span> <span class="nx">HOP_NUMBER</span><span class="p">,</span>
+        <span class="s2">&quot;_query&quot;</span><span class="o">:</span> <span class="nx">QUERY_NUMBER</span><span class="p">,</span>
         <span class="s2">&quot;_attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
           <span class="p">...</span>
@@ -113,20 +114,48 @@
   <span class="s2">&quot;queries&quot;</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">&quot;_hop&quot;</span><span class="o">:</span> <span class="nx">HOP_NUMBER</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span><span class="o">:</span> <span class="nx">QUERY_NUMBER</span><span class="p">,</span>
       <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="nx">INDEX_NAME</span><span class="p">,</span>
-      <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;list&quot;</span><span class="o">:</span> <span class="p">[</span>
-          <span class="nx">RESOLVER_NAME</span><span class="p">,</span>
-          <span class="p">...</span>
-        <span class="p">],</span>
-        <span class="s2">&quot;tree&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="nx">WEIGHT_LEVEL</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;filters&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;tree&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">WEIGHT_LEVEL</span><span class="o">:</span> <span class="p">{</span>
+              <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
+                <span class="p">...</span>
+              <span class="p">},</span>
               <span class="p">...</span>
             <span class="p">},</span>
             <span class="p">...</span>
           <span class="p">},</span>
-          <span class="p">...</span>
+          <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">RESOLVER_NAME</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="nx">ATTRIBUTE_NAME</span><span class="p">,</span>
+                <span class="p">...</span>
+              <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="p">...</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;terms&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;tree&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">WEIGHT_LEVEL</span><span class="o">:</span> <span class="p">{</span>
+              <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
+                <span class="p">...</span>
+              <span class="p">},</span>
+              <span class="p">...</span>
+            <span class="p">},</span>
+            <span class="p">...</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">RESOLVER_NAME</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="nx">ATTRIBUTE_NAME</span><span class="p">,</span>
+                <span class="p">...</span>
+              <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="p">...</span>
+          <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">},</span>
       <span class="s2">&quot;search&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -171,6 +200,8 @@ the cluster to the client.</p>
 <p>The _id of the document.</p>
 <h3><a name="hits.hits._hop"></a><code>"hits"."hits"."_hop"</code></h3>
 <p>The hop number at which the document was received. A "hop" is an iteration in which zentity submits a query to each index that can be queried.</p>
+<h3><a name="hits.hits._query"></a><code>"hits"."hits"."_query"</code></h3>
+<p>The query number of a given <a href="#hits.hits._hop" onclick="to(window.location.pathname + '#hits.hits._hop', 'internal');"><code>"_hop"</code></a> at which the document was received.</p>
 <h3><a name="hits.hits._attributes"></a><code>"hits"."hits"."_attributes"</code></h3>
 <p>An object containing the normalized values for each attribute of the document. This object is constructed by taking each <a href="#hits.hits._source" onclick="to(window.location.pathname + '#hits.hits._source', 'internal');"><code>"_source"</code></a>
 field that is associated with an attribute in the entity model and mapping it to the name of the attribute. Some values, such as <a href="/docs/entity-models/specification#attribute-type-date">dates</a>,
@@ -205,21 +236,24 @@ are normalized into a format that will be common across documents from disparate
 <p>This field is excluded from the output by default. It can be included by setting <code>queries=true</code> in the URI parameters of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.</p>
 <h3><a name="queries._hop"></a><code>"queries"."_hop"</code></h3>
 <p>The hop number at which the query was submitted.</p>
+<h3><a name="queries._query"></a><code>"queries"."_query"</code></h3>
+<p>The query number at which the query was submitted for a given <a href="#queries._hop" onclick="to(window.location.pathname + '#queries._hop', 'internal');"><code>"_hop"</code></a>.</p>
 <h3><a name="queries._index"></a><code>"queries"."_index"</code></h3>
 <p>The index that was queried.</p>
-<h3><a name="queries.resolvers"></a><code>"queries"."resolvers"</code></h3>
-<p>An object containing information about the resolvers used to construct the query.</p>
-<h3><a name="queries.resolvers.list"></a><code>"queries"."resolvers"."list"</code></h3>
-<p>A flat list of names of the resolvers used to construct the query.</p>
-<h3><a name="queries.resolvers.tree"></a><code>"queries"."resolvers"."tree"</code></h3>
+<h3><a name="queries.filters"></a><code>"queries"."filters"</code></h3>
+<p>An object containing information about the filters created to construct the query.</p>
+<h3><a name="queries.filters.attributes"></a><code>"queries"."filters"."attributes"</code></h3>
+<p>An object containing information about the filters created for known attribute
+values of the entity.</p>
+<h3><a name="queries.filters.attributes.tree"></a><code>"queries"."filters"."attributes"."tree"</code></h3>
 <p>A recursive object containing the attributes of the resolvers as they were constructed in the query.</p>
 <p>Different resolvers can share many of the same attributes. Consider the following:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa98bfcaeff9a64bd">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a52040a43dc0cf1d2">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aa98bfcaeff9a64bd"><div class="highlight"><pre><span></span><span class="p">[</span>
+          <span id="a52040a43dc0cf1d2"><div class="highlight"><pre><span></span><span class="p">[</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span> <span class="p">],</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;zip&quot;</span> <span class="p">],</span>
   <span class="p">[</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;dob&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span> <span class="p">],</span>
@@ -236,10 +270,10 @@ zentity optimizes queries by determining how the attributes can be nested to min
 <p>Here's the effect of the optimization:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aaa9eca2d986555aa">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a57bf1ad8b9a1eb31">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aaa9eca2d986555aa"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a57bf1ad8b9a1eb31"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;0&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -265,6 +299,15 @@ zentity optimizes queries by determining how the attributes can be nested to min
         <p>In this example, zentity eliminates four redundant copies of <code>"name"</code> values and one redundant copy of <code>"street"</code> values.
 The clauses of attributes at the same level of the hierarchy are combined with their siblings using <code>OR</code>, while the clauses
 of child attributes are combined with their parents using <code>AND</code>.</p>
+<h3><a name="queries.filters.attributes.resolvers"></a><code>"queries"."filters"."attributes"."resolvers"</code></h3>
+<p>An object containing the resolvers that were used to construct the filter for the known attributes of the entity.</p>
+<h3><a name="queries.filters.terms"></a><code>"queries"."filters"."terms"</code></h3>
+<p>An object containing information about the filters created for arbitrary terms given in the resolution input.</p>
+<h3><a name="queries.filters.terms.tree"></a><code>"queries"."filters"."terms"."tree"</code></h3>
+<p>A recursive object containing the attributes of the resolvers as they were constructed in the query.
+Follows the same structure as <a href="#queries.filters.attributes.tree" onclick="to(window.location.pathname + '#queries.filters.attributes.tree', 'internal');"><code>"queries"."filters"."attributes"."tree"</code></a>.</p>
+<h3><a name="queries.filters.terms.resolvers"></a><code>"queries"."filters"."terms"."resolvers"</code></h3>
+<p>An object containing the resolvers that were used to construct the filter for arbitrary terms given in the resolution input.</p>
 <h3><a name="queries.search"></a><code>"queries"."search"</code></h3>
 <p>An object containing information about the search request and response to and from Elasticsearch.</p>
 <h3><a name="queries.search.request"></a><code>"queries"."search"."request"</code></h3>
