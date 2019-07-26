@@ -14,6 +14,7 @@
         "_type": DOC_TYPE,
         "_id": DOC_ID,
         "_hop": HOP_NUMBER,
+        "_query": QUERY_NUMBER,
         "_attributes": {
           ATTRIBUTE_NAME: ATTRIBUTE_VALUE,
           ...
@@ -51,20 +52,48 @@
   "queries": [
     {
       "_hop": HOP_NUMBER,
+      "_query": QUERY_NUMBER,
       "_index": INDEX_NAME,
-      "resolvers": {
-        "list": [
-          RESOLVER_NAME,
-          ...
-        ],
-        "tree": {
-          WEIGHT_LEVEL: {
-            ATTRIBUTE_NAME: {
+      "filters": {
+        "attributes": {
+          "tree": {
+            WEIGHT_LEVEL: {
+              ATTRIBUTE_NAME: {
+                ...
+              },
               ...
             },
             ...
           },
-          ...
+          "resolvers": {
+            RESOLVER_NAME: {
+              "attributes": [
+                ATTRIBUTE_NAME,
+                ...
+              ]
+            },
+            ...
+          }
+        },
+        "terms": {
+          "tree": {
+            WEIGHT_LEVEL: {
+              ATTRIBUTE_NAME: {
+                ...
+              },
+              ...
+            },
+            ...
+          },
+          "resolvers": {
+            RESOLVER_NAME: {
+              "attributes": [
+                ATTRIBUTE_NAME,
+                ...
+              ]
+            },
+            ...
+          }
         }
       },
       "search": {
@@ -135,6 +164,11 @@ The _id of the document.
 ### <a name="hits.hits._hop"></a>`"hits"."hits"."_hop"`
 
 The hop number at which the document was received. A "hop" is an iteration in which zentity submits a query to each index that can be queried.
+
+
+### <a name="hits.hits._query"></a>`"hits"."hits"."_query"`
+
+The query number of a given [`"_hop"`](#hits.hits._hop) at which the document was received.
 
 
 ### <a name="hits.hits._attributes"></a>`"hits"."hits"."_attributes"`
@@ -217,22 +251,28 @@ This field is excluded from the output by default. It can be included by setting
 The hop number at which the query was submitted.
 
 
+### <a name="queries._query"></a>`"queries"."_query"`
+
+The query number at which the query was submitted for a given [`"_hop"`](#queries._hop).
+
+
 ### <a name="queries._index"></a>`"queries"."_index"`
 
 The index that was queried.
 
 
-### <a name="queries.resolvers"></a>`"queries"."resolvers"`
+### <a name="queries.filters"></a>`"queries"."filters"`
 
-An object containing information about the resolvers used to construct the query.
-
-
-### <a name="queries.resolvers.list"></a>`"queries"."resolvers"."list"`
-
-A flat list of names of the resolvers used to construct the query.
+An object containing information about the filters created to construct the query.
 
 
-### <a name="queries.resolvers.tree"></a>`"queries"."resolvers"."tree"`
+### <a name="queries.filters.attributes"></a>`"queries"."filters"."attributes"`
+
+An object containing information about the filters created for known attribute
+values of the entity.
+
+
+### <a name="queries.filters.attributes.tree"></a>`"queries"."filters"."attributes"."tree"`
 
 A recursive object containing the attributes of the resolvers as they were constructed in the query.
 
@@ -281,6 +321,27 @@ Here's the effect of the optimization:
 In this example, zentity eliminates four redundant copies of `"name"` values and one redundant copy of `"street"` values.
 The clauses of attributes at the same level of the hierarchy are combined with their siblings using `OR`, while the clauses
 of child attributes are combined with their parents using `AND`.
+
+
+### <a name="queries.filters.attributes.resolvers"></a>`"queries"."filters"."attributes"."resolvers"`
+
+An object containing the resolvers that were used to construct the filter for the known attributes of the entity.
+
+
+### <a name="queries.filters.terms"></a>`"queries"."filters"."terms"`
+
+An object containing information about the filters created for arbitrary terms given in the resolution input.
+
+
+### <a name="queries.filters.terms.tree"></a>`"queries"."filters"."terms"."tree"`
+
+A recursive object containing the attributes of the resolvers as they were constructed in the query.
+Follows the same structure as [`"queries"."filters"."attributes"."tree"`](#queries.filters.attributes.tree).
+
+
+### <a name="queries.filters.terms.resolvers"></a>`"queries"."filters"."terms"."resolvers"`
+
+An object containing the resolvers that were used to construct the filter for arbitrary terms given in the resolution input.
 
 
 ### <a name="queries.search"></a>`"queries"."search"`

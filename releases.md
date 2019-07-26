@@ -7,7 +7,47 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.3.0">zentity-1.3.1 (latest)</a>
+## <a name="zentity-1.4.0">zentity-1.4.0 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 7.2.0](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.2.0.zip)
+- [Elasticsearch 7.1.1](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.1.1.zip)
+- [Elasticsearch 7.1.0](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.1.0.zip)
+- [Elasticsearch 7.0.1](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.0.1.zip)
+- [Elasticsearch 7.0.0](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.0.0.zip)
+- [Elasticsearch 6.8.0](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.8.0.zip)
+- [Elasticsearch 6.7.2](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.7.2.zip)
+- [Elasticsearch 6.7.1](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.7.1.zip)
+- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.7.0.zip)
+- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.6.2.zip)
+- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.6.1.zip)
+- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.6.0.zip)
+- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.5.4.zip)
+- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.5.3.zip)
+- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.5.2.zip)
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.4.0-elasticsearch-6.5.0.zip)
+
+### Release notes
+
+- **Feature** - Added an optional [`"terms"`](/docs/entity-resolution/input-specification/#terms)
+field to the resolution input which allows resolutions jobs to be submitted with
+unknown or unstructured input values.
+([1f3e452](https://github.com/zentity-io/zentity/commit/1f3e452599be63ebbe68d42297f3248d3e978071))
+
+- **Feature** - Added a `"_query"` field to each object under `"hit"."hits"` and
+`"queries"` to indicate which query of which hop that the object relates to.
+([ac567bb](https://github.com/zentity-io/zentity/commit/ac567bb15ca6a23ba7abebdf590d448986210c26))
+
+- **Breaking change** - Renamed `"queries"."resolvers"` to [`"queries"."filters"`](/docs/entity-resolution/output-specification/#queries.filters)
+and changed its structure.
+([1f3e452](https://github.com/zentity-io/zentity/commit/1f3e452599be63ebbe68d42297f3248d3e978071))
+
+
+## <a name="zentity-1.3.1">zentity-1.3.1</a>
 
 ### Download
 
@@ -116,9 +156,9 @@ Select the plugin version that matches your version of Elasticsearch:
 
 ### Release notes
 
-- **Feature** - Added an optional `"_explanation"` field to each document in the
-response object of the [Resolution API](/docs/rest-apis/resolution-api). This
-field explains which resolvers caused a document to match, and more specifically,
+- **Feature** - Added an optional [`"_explanation"`](/docs/entity-resolution/output-specification/#hits.hits._explanation)
+field to each document in the response object of the [Resolution API](/docs/rest-apis/resolution-api).
+This field explains which resolvers caused a document to match, and more specifically,
 which input value matched which indexed value using which matcher and params.
 ([08a2ffc](https://github.com/zentity-io/zentity/commit/08a2ffcaac266aeab9bf63a688955c04d33ecf4b))
 

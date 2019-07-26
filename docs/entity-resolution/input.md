@@ -18,6 +18,10 @@
     },
     ...
   },
+  "terms": [
+    TERM,
+    ...
+  ],
   "ids": {
     INDEX_NAME: [
       DOC_ID,
@@ -177,15 +181,15 @@ The value of the field can be one of two things:
 - An object that contains the [`"values"`](#attributes.ATTRIBUTE_NAME.values) and/or [`"params`"](#attributes.ATTRIBUTE_NAME.params) of the attribute.
 - An array that contains the [`"values`"](#attributes.ATTRIBUTE_NAME.values) of the attribute.
 
-At least one attribute must be specified, otherwise there would be no input to supply to the entity resolution job.
+At least one attribute must be specified, otherwise there would be no input to supply to the [resolution job](/docs/rest-apis/resolution-api).
 
-- Required: Only if [`"ids"`](#ids) is not given
+- Required: Only if [`"terms"`](#terms) and [`"ids"`](#ids) are not given
 - Type: String
 
 
 ### <a name="attributes.ATTRIBUTE_NAME.type"></a>`"attributes".ATTRIBUTE_NAME."values"`
 
-An array of attribute values. These values will serve as the initial inputs to the entity resolution job.
+An array of attribute values. These values will serve as the initial inputs to the [resolution job](/docs/rest-apis/resolution-api).
 
 Each value must conform to the respective [attribute type](/docs/entity-models/specification#attributes.ATTRIBUTE_NAME.type)
 specified in the [entity model](/docs/entity-models). For example, [string](/docs/entity-models/specification#attribute-type-string) values
@@ -196,9 +200,9 @@ object if it was not already specified in either the attribute or matcher of the
 This field is not necessarily required. It would be valid to specify and attribute with no values and to override the
 [`"params"`](#attributes.ATTRIBUTE_NAME.params) of the attribute or matcher of the entity model. One reason might be to override the
 `"format"` param of a [`"date"`](/docs/entity-models/specification#attribute-type-date) attribute, which would affect the format of
-any date values for that attribute returned by the entity resolution job.
+any date values for that attribute returned by the resolution job.
 
-At least one attribute must have the `"values"` field specified, otherwise there would be no input to supply to the entity resolution job.
+At least one attribute must have the `"values"` field specified, otherwise there would be no input to supply to the resolution job.
 
 - Required: At least for one attribute
 - Type: Array
@@ -229,6 +233,58 @@ will be serialized as a string when passed to the matcher clause. The value over
 
 - Required: No
 - Type: Any
+
+
+## <a name="terms"></a>`"terms"`
+
+**Model**
+
+```javascript
+{
+  "terms": [
+    TERM,
+    ...
+  ]
+}
+```
+
+**Example**
+
+```javascript
+{
+  "terms": [
+    "Allie Jones",
+    "Allison Jones-Smith",
+    "555-123-4567"
+  ]
+}
+```
+
+The `"terms"` field allows the first iteration of a [resolution job](/docs/rest-apis/resolution-api) to begin with inputs
+that are not associated with any attributes. Each [`term`](#terms.TERM) is supplied to each
+attribute of each resolver in the scope of the resolution job. This is a convenient way
+to resolve an entity quickly, because the user doesn't need to structure their search
+to conform to the entity model. The tradeoff is that the results are more prone to
+false positives.
+
+The `"terms"` field is only used in the first query to each index in a [resolution job](/docs/rest-apis/resolution-api).
+After that, the attributes are obtained from the documents and the job continues with those attributes values.
+
+When both `"attributes"` and `"terms"` are given, the first query to each index will create
+a filter tree for each of `"attributes"` and `"terms"`, and both filters must match for a
+document to match.
+
+- Required: Only if [`"attributes"`](#attributes) and [`"ids"`](#ids) are not given
+- Type: Array
+
+
+### <a name="terms.TERM"></a>`"terms".TERM`
+
+An arbitrary search term string.
+
+- Required: Yes
+- Type: String
+
 
 ## <a name="ids"></a>`"ids"`
 
@@ -262,15 +318,15 @@ will be serialized as a string when passed to the matcher clause. The value over
 }
 ```
 
-The `"ids"` field allows the first iteration of an entity resolution to begin by selecting one or more documents
-by _id for one or more indices. Like `"attributes"`, any document that matches the `_id` values will be considered
+The `"ids"` field allows the first iteration of a [resolution job](/docs/rest-apis/resolution-api) to begin by selecting one or more documents
+by `_id` for one or more indices. Like [`"attributes"`](#attributes), any document that matches the `_id` values will be considered
 a match to the entity. Documents are queried by `_id` only within a given index to prevent collisions in which
 the same `_id` is present in two or more indices.
 
-The `"ids"` field is only used in the first query to each index in a [resolution job](/docs/rest-apis/resolution-api).
+The `"ids"` field is only used in the first query to each index in a resolution job.
 After that, the attributes are obtained from the documents and the job continues with those attributes values.
 
-- Required: Only if [`"attributes"`](#attributes) is not given
+- Required: Only if [`"attributes"`](#attributes) and [`"terms"`](#terms) are not given
 - Type: Object
 
 
