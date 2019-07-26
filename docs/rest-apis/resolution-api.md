@@ -155,7 +155,9 @@ Read the **[output specification](/docs/entity-resolution/output-specification)*
 
 |Param|Type|Default|Required|Description|
 |-----|----|-------|--------|-----------|
-|`attributes`|Object| |Yes|The initial attribute values to search.|
+|`attributes`|Object| |Deopends|The initial attribute values to search. Required if `terms` and `ids` are not specified.|
+|`terms`|Object| |Depends|The initial terms to search. Required if `attributes` and `ids` are not specified.|
+|`ids`|Object| |Depends|The initial document _ids to search. Required if `attributes` and `terms` are not specified.|
 |`scope.exclude`|Object| |No|The names of indices to limit the job to.|
 |`scope.exclude.attributes`|Object| |No|The names and values of attributes to exclude in each query.|
 |`scope.exclude.indices`|Object| |No|The names of indices to exclude in each query.|
