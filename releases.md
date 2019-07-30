@@ -13,6 +13,7 @@
 
 Select the plugin version that matches your version of Elasticsearch:
 
+- [Elasticsearch 7.2.1](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.2.1.zip)
 - [Elasticsearch 7.2.0](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.2.0.zip)
 - [Elasticsearch 7.1.1](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.1.1.zip)
 - [Elasticsearch 7.1.0](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.1.0.zip)

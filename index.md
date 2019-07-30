@@ -20,6 +20,7 @@ resolution. It aims to be:
 
 Select the plugin version that matches your version of Elasticsearch:
 
+- [Elasticsearch 7.2.1](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.2.1.zip)
 - [Elasticsearch 7.2.0](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.2.0.zip)
 - [Elasticsearch 7.1.1](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.1.1.zip)
 - [Elasticsearch 7.1.0](https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.1.0.zip)
@@ -49,7 +50,7 @@ Once you have installed Elasticsearch, you can install zentity from a remote URL
 
 Example:
 
-`elasticsearch-plugin install https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.2.0.zip`
+`elasticsearch-plugin install https://zentity.io/releases/zentity-1.4.0-elasticsearch-7.2.1.zip`
 
 Read the [installation](/docs/installation) docs for more details.
 
