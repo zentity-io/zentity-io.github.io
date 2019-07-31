@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=685211970"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=286950131"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=339173048"></script>
+    </script><script src="/js/all.js?id=562915698"></script>
   </head>
   <body>
     <div id="app" >
@@ -64,10 +64,10 @@
 <h2><a name="get-entity-models"></a>Get all entity models</h2>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#acdea2593cd4c5e51">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0fb898a6ffd10c03">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="acdea2593cd4c5e51"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span>
+          <span id="a0fb898a6ffd10c03"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span>
 </pre></div>
 </span>
         </div>
@@ -95,10 +95,10 @@
 <h2><a name="get-entity-model"></a>Get an entity model</h2>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a906fdc1b01bd41d6">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1fcc4ea8b98e2a2d">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a906fdc1b01bd41d6"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
+          <span id="a1fcc4ea8b98e2a2d"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 </pre></div>
 </span>
         </div>
@@ -137,10 +137,10 @@ Returns an error if an entity model already exists for that <code>entity_type</c
 <a href="/docs/entity-models/specification">entity model specification</a>.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a33e28ee2e6988b8a">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a680bc838d3fac1f2">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a33e28ee2e6988b8a"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
+          <span id="a680bc838d3fac1f2"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
@@ -221,10 +221,10 @@ Creates the entity model if it does not already exist.</p>
 <a href="/docs/entity-models/specification">entity model specification</a>.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af7a434dae084e002">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a607974d6eacd537a">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af7a434dae084e002"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
+          <span id="a607974d6eacd537a"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
@@ -302,10 +302,10 @@ Creates the entity model if it does not already exist.</p>
 <p>Deletes the entity model for a given <code>entity_type</code> from the <code>.zentity-models</code> index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a61ba36e4109eff9f">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa492738e1302cc0f">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a61ba36e4109eff9f"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
+          <span id="aa492738e1302cc0f"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 </pre></div>
 </span>
         </div>
