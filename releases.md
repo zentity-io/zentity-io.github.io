@@ -7,7 +7,51 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.4.0">zentity-1.4.0 (latest)</a>
+## <a name="zentity-1.4.1">zentity-1.4.1 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 7.3.1](https://zentity.io/releases/zentity-1.4.1-elasticsearch-7.3.1.zip)
+- [Elasticsearch 7.3.0](https://zentity.io/releases/zentity-1.4.1-elasticsearch-7.3.0.zip)
+- [Elasticsearch 7.2.1](https://zentity.io/releases/zentity-1.4.1-elasticsearch-7.2.1.zip)
+- [Elasticsearch 7.2.0](https://zentity.io/releases/zentity-1.4.1-elasticsearch-7.2.0.zip)
+- [Elasticsearch 7.1.1](https://zentity.io/releases/zentity-1.4.1-elasticsearch-7.1.1.zip)
+- [Elasticsearch 7.1.0](https://zentity.io/releases/zentity-1.4.1-elasticsearch-7.1.0.zip)
+- [Elasticsearch 7.0.1](https://zentity.io/releases/zentity-1.4.1-elasticsearch-7.0.1.zip)
+- [Elasticsearch 7.0.0](https://zentity.io/releases/zentity-1.4.1-elasticsearch-7.0.0.zip)
+- [Elasticsearch 6.8.2](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.8.2.zip)
+- [Elasticsearch 6.8.1](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.8.1.zip)
+- [Elasticsearch 6.8.0](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.8.0.zip)
+- [Elasticsearch 6.7.2](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.7.2.zip)
+- [Elasticsearch 6.7.1](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.7.1.zip)
+- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.7.0.zip)
+- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.6.2.zip)
+- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.6.1.zip)
+- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.6.0.zip)
+- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.5.4.zip)
+- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.5.3.zip)
+- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.5.2.zip)
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.4.1-elasticsearch-6.5.0.zip)
+
+### Release notes
+
+- **Feature** - Catch errors returned by Elasticsearch and then fail the job.
+Include the error and the query context in the response. Allow errors where the
+index was not found, and ignore those indices in subsequent hops.
+([3e96b6d](https://github.com/zentity-io/zentity/commit/3e96b6de8ad86429de76cd89a6b7fbc995d3a531))
+
+- **Security** - Updated Jackson dependency to resolve security vulnerabilities
+CVE-2019-14379, CVE-2019-14439.
+([189e412](https://github.com/zentity-io/zentity/commit/189e41282d17d9b16ce6694dfb45ee9ad6820f01))
+
+- **Other** - Now using JDK 11 instead of JDK 8 to build zentity.
+([94c4f90](https://github.com/zentity-io/zentity/commit/94c4f90d76dd1f4bd5b0a6ac5f0cf208f954d6fa))
+
+
+## <a name="zentity-1.4.0">zentity-1.4.0</a>
 
 ### Download
 
@@ -97,7 +141,7 @@ resolution request.
 ([3fdde88](https://github.com/zentity-io/zentity/commit/3fdde88fea9ae0bd5058e0296d253af5c1e7cff4))
 
 - **Security** - Updated Jackson dependency to resolve security vulnerability
-CVE-2019--12814.
+CVE-2019-12814.
 ([a8e006e](https://github.com/zentity-io/zentity/commit/a8e006eb0dd1b964c338c082345d89a3265d9e40))
 
 - **Minor** - Removed redundant "bool" wrapper clauses.
