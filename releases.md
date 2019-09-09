@@ -7,7 +7,64 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.4.1">zentity-1.4.1 (latest)</a>
+## <a name="zentity-1.4.2">zentity-1.4.2 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 7.3.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.3.1.zip)
+- [Elasticsearch 7.3.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.3.0.zip)
+- [Elasticsearch 7.2.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.2.1.zip)
+- [Elasticsearch 7.2.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.2.0.zip)
+- [Elasticsearch 7.1.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.1.1.zip)
+- [Elasticsearch 7.1.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.1.0.zip)
+- [Elasticsearch 7.0.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.0.1.zip)
+- [Elasticsearch 7.0.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.0.0.zip)
+- [Elasticsearch 6.8.2](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.8.2.zip)
+- [Elasticsearch 6.8.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.8.1.zip)
+- [Elasticsearch 6.8.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.8.0.zip)
+- [Elasticsearch 6.7.2](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.7.2.zip)
+- [Elasticsearch 6.7.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.7.1.zip)
+- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.7.0.zip)
+- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.6.2.zip)
+- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.6.1.zip)
+- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.6.0.zip)
+- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.5.4.zip)
+- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.5.3.zip)
+- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.5.2.zip)
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.5.0.zip)
+
+### Release notes
+
+- **Bug fix** - Fixed a bug in the logic that determines whether an index in the
+entity model should be queried at a given hop in the resolution job. There were
+cases observed in which zentity queried an index even though it had not gathered
+sufficent attribute values to populate any resolvers. In those cases, zentity
+submitted an empty query to Elasticsearch, which caused the resolution job to
+fail because an empty query is an invalid syntax.
+([431e2d8](https://github.com/zentity-io/zentity/commit/431e2d89a0d756a4d22bc2b86f040ec640754b11))
+
+- **Bug fix** - During a resolution job, when Elasticsearch retrieves a document
+that lacks an index field defined in the entity model, zentity now skips that
+field and attempt to extract the other fields. Previously, jobs failed whenever
+an index field defined in the entity model was missing from any retrieved
+documents. But it's entirely valid for documents in Elasticsearch to lack fields
+that are defined in the index mapping.
+([cbaaa51](https://github.com/zentity-io/zentity/commit/cbaaa51538378611b76b25a64c2abbc6c17239da))
+
+- **Bug fix** - The HTTP response code for a failed resolution job is now 500
+instead of 200.
+([f4e629c](https://github.com/zentity-io/zentity/commit/f4e629c87a5caf0ef554bb880561a9bc5c790ed2))
+
+- **Feature** - zentity now handles any exception thrown during a resolution job.
+zentity allows a Java stack trace and all hits and queries up to the point of
+failure to be included in the response when a resolution job fails.
+([f4e629c](https://github.com/zentity-io/zentity/commit/f4e629c87a5caf0ef554bb880561a9bc5c790ed2))
+
+
+## <a name="zentity-1.4.1">zentity-1.4.1</a>
 
 ### Download
 

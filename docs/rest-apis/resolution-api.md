@@ -144,6 +144,7 @@ Read the **[output specification](/docs/entity-resolution/output-specification)*
 |`_explanation`|Boolean|`false`|No|Return the `_explanation` field in each doc.|
 |`_source`|Boolean|`true`|No|Return the `_source` field in each doc.|
 |`entity_type`|String| |Depends|The entity type. Required if `model` is not specified.|
+|`error_trace`|Boolean|`true`|No|Return the Java stack trace when an exception is thrown.|
 |`hits`|Boolean|`true`|No|Return the `hits` field in the response.|
 |`max_docs_per_query`|Integer|`1000`|No|Maximum number of docs per query result.|
 |`max_hops`|Integer|`100`|No|Maximum level of recursion.|
