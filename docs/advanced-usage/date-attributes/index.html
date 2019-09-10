@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=931124943"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=171916760"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=919616922"></script>
+    </script><script src="/js/all.js?id=681686852"></script>
   </head>
   <body>
     <div id="app" >
@@ -94,10 +94,10 @@ This tutorial was tested with <a href="/docs/releases">zentity-1.0.2-elasticsear
 <p>Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1604fbb9a07f0cc5">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aafbce44164f9f3fd">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a1604fbb9a07f0cc5"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
+          <span id="aafbce44164f9f3fd"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-*</span>
 </pre></div>
 </span>
         </div>
@@ -105,10 +105,10 @@ This tutorial was tested with <a href="/docs/releases">zentity-1.0.2-elasticsear
 <p>Now create the index for this tutorial.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6bd6ae894c4fef21">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac3b1800560182d1f">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a6bd6ae894c4fef21"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
+          <span id="ac3b1800560182d1f"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="p">.</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">index</span>
 <span class="p">{</span>
   <span class="s2">&quot;settings&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -142,10 +142,10 @@ This tutorial was tested with <a href="/docs/releases">zentity-1.0.2-elasticsear
 <p>Add the tutorial data to the index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a88e5f7cb63b7cfdd">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a129a771ad8f8e04b">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a88e5f7cb63b7cfdd"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
+          <span id="a129a771ad8f8e04b"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
 <span class="p">{</span><span class="s2">&quot;@timestamp&quot;</span><span class="o">:</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;ip&quot;</span><span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span><span class="p">}</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-tutorial-index&quot;</span><span class="p">,</span> <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">}}</span>
@@ -309,10 +309,10 @@ This tutorial was tested with <a href="/docs/releases">zentity-1.0.2-elasticsear
 <p>Let's use the <a href="/docs/rest-apis/models-api">Models API</a> to create the entity model below. We'll review the matchers in depth.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a75add6e0685225a0">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a68b4d31e91a27f8c">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a75add6e0685225a0"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">http</span><span class="o">-</span><span class="nx">session</span>
+          <span id="a68b4d31e91a27f8c"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">http</span><span class="o">-</span><span class="nx">session</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;timestamp&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -379,10 +379,10 @@ to match documents within a given time window.</p>
 <p><strong>Example Range Query with Date Math</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aaddab9529930d5fe">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6eadcfddffc0cba0">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aaddab9529930d5fe"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_search</span>
+          <span id="a6eadcfddffc0cba0"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_search</span>
 <span class="p">{</span>
   <span class="s2">&quot;query&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;range&quot;</span> <span class="o">:</span> <span class="p">{</span>
@@ -402,10 +402,10 @@ date attributes require, and a <code>"window"</code> parameter to control the ti
 of the range query.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1066a255bda9c0cb">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#abac6a96496e4fdad">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a1066a255bda9c0cb"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="abac6a96496e4fdad"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;time_range&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -434,10 +434,10 @@ web traffic session with a known IP address at a given timestamp:</p>
 which we defined as <code>"15m"</code> in the matcher.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af52e709265a016be">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8985644454bc5f01">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af52e709265a016be"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">http</span><span class="o">-</span><span class="nx">session</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="a8985644454bc5f01"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">http</span><span class="o">-</span><span class="nx">session</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;ip&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
@@ -450,10 +450,10 @@ which we defined as <code>"15m"</code> in the matcher.</p>
         <p>The results will look like this.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac5822084cb3ad745">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1930a436c50ccc46">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac5822084cb3ad745"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a1930a436c50ccc46"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
@@ -580,10 +580,10 @@ smaller time range.</p>
 <p>Now let's expand the <code>"window"</code> parameter from <code>"15m"</code> to <code>"2d"</code>.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af6f557e8c04e0d2c">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0537ef61433fb846">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af6f557e8c04e0d2c"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">http</span><span class="o">-</span><span class="nx">session</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="a0537ef61433fb846"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">http</span><span class="o">-</span><span class="nx">session</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;ip&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
@@ -601,10 +601,10 @@ smaller time range.</p>
         <p>The results will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a91f41c1772979f28">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1bf16e564247d2ba">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a91f41c1772979f28"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a1bf16e564247d2ba"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
@@ -785,10 +785,10 @@ several days after the other documents.</p>
 Let's find out.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac743b9d70d759c39">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a66d06513a38d5372">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac743b9d70d759c39"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">http</span><span class="o">-</span><span class="nx">session</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="a66d06513a38d5372"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity</span><span class="o">-</span><span class="nx">tutorial</span><span class="o">-</span><span class="nx">http</span><span class="o">-</span><span class="nx">session</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;ip&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
@@ -806,10 +806,10 @@ Let's find out.</p>
         <p>The results will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8611f7b28ba61ea3">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8eae4f79ef82fe19">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a8611f7b28ba61ea3"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a8eae4f79ef82fe19"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
