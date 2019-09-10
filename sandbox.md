@@ -15,9 +15,9 @@ run it, and play with zentity using real data in minutes.
 
 **Step 1. Download**
 
-- **Windows**: [sandbox-zentity-1.0.3-elasticsearch-6.7.1-windows.zip](https://drive.google.com/uc?id=1qQOGqu765GGMkoxmE0z8rCxgpry_L-Rj) (2GB Compressed, 3GB Uncompressed)
-- **Mac**: [sandbox-zentity-1.0.3-elasticsearch-6.7.1-mac.tar.gz](https://drive.google.com/uc?id=1q6s1rSzMs653F_sgmg2HeyE86KTn2O5u) (2GB Compressed, 3GB Uncompressed)
-- **Linux**: [sandbox-zentity-1.0.3-elasticsearch-6.7-linux.1.tar.gz](https://drive.google.com/uc?id=1McGHqzxMuQDm0s_AGDxY0u0zPf8ennAo) (2GB Compressed, 3GB Uncompressed)
+- **Windows**: [sandbox-zentity-1.4.2-elasticsearch-7.3.1-windows.zip](https://drive.google.com/uc?id=1fk4w-tuU0c0Ktaa0ZW-6T5iv5B5g-zmj) (2.5GB Compressed, 3.5GB Uncompressed)
+- **Mac**: [sandbox-zentity-1.4.2-elasticsearch-7.3.1-mac.tar.gz](https://drive.google.com/uc?id=1lTdF20yrsbMcE4lQ6QydEzXHf5VdqCoA) (2.5GB Compressed, 3.5GB Uncompressed)
+- **Linux**: [sandbox-zentity-1.4.2-elasticsearch-7.3.1-linux.tar.gz](https://drive.google.com/uc?id=1QJOi1fqqQCtq17JYv6UVfCjXTXpjr88_) (2.5GB Compressed, 3.5GB Uncompressed)
 
 
 **Step 2. Extract**
@@ -57,8 +57,8 @@ You should see this response:
   "description": "Real-time entity resolution for Elasticsearch.",
   "website": "http://zentity.io",
   "version": {
-    "zentity": "1.0.3",
-    "elasticsearch": "6.7.1"
+    "zentity": "1.4.2",
+    "elasticsearch": "7.3.1"
   }
 }
 ```
