@@ -69,15 +69,20 @@
 }
 ```
 
-Entity resolution inputs are [JSON](https://www.json.org/) documents. In the framework shown above, lowercase quoted values
-(e.g. `"attributes"`) are constant fields, uppercase literal values (e.g. `ATTRIBUTE_NAME`) are variable fields or values,
-and elipses (`...`) are optional repetitions of the preceding field or value.
+Entity resolution inputs are [JSON](https://www.json.org/) documents. In the
+framework shown above, lowercase quoted values (e.g. `"attributes"`) are
+constant fields, uppercase literal values (e.g. `ATTRIBUTE_NAME`) are variable
+fields or values, and elipses (`...`) are optional repetitions of the preceding
+field or value.
 
-An entity resolution input has two objects where at least one must be present (**[`"attributes"`](#attributes)** and **[`"ids"`](#ids)**),
-one optional object (**[`"scope"`](#scope)**) and one object that is required only if `entity_type` is not specified in the endpoint
-of the request (**[`"model"`](#model)**).  Not all elements within these objects are required. Optional elements are noted in the
-descriptions of each element listed on this page. Some elements have alternate forms that are acceptable, and those are also noted
-in the descriptions of each element.
+An entity resolution input has two objects where at least one must be present
+(**[`"attributes"`](#attributes)** and **[`"ids"`](#ids)**), one optional object
+(**[`"scope"`](#scope)**) and one object that is required only if `entity_type`
+is not specified in the endpoint of the request (**[`"model"`](#model)**).  Not
+all elements within these objects are required. Optional elements are noted in
+the descriptions of each element listed on this page. Some elements have
+alternate forms that are acceptable, and those are also noted in the
+descriptions of each element.
 
 
 ## <a name="attributes"></a>`"attributes"`
@@ -160,21 +165,25 @@ in the descriptions of each element.
 }
 ```
 
-Attributes are elements that can assist the identification and resolution of entities. For example, some common
-attributes of a person include name, date of birth, and phone number. Each attribute has its own particular data
-qualities and purposes in the real world. Therefore, zentity matches the values of each attribute using logic that
-is distinct to each attribute.
+Attributes are elements that can assist the identification and resolution of
+entities. For example, some common attributes of a person include name, date of
+birth, and phone number. Each attribute has its own particular data qualities
+and purposes in the real world. Therefore, zentity matches the values of each
+attribute using logic that is distinct to each attribute.
 
-Some attributes can be matched using different methods. For example, a name could be matched by its exact value or its
-phonetic value. Therefore the entity model allows each attribute to have one or more matchers. A matcher is simply a
+Some attributes can be matched using different methods. For example, a name
+could be matched by its exact value or its phonetic value. Therefore the entity
+model allows each attribute to have one or more matchers. A matcher is simply a
 clause of a [`"bool"` query](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html)
-in Elasticsearch. This means that if *any* matcher of an attribute yields a match for a given value, then the attribute
-will be considered a match regardless of the results of the other matchers.
+in Elasticsearch. This means that if *any* matcher of an attribute yields a
+match for a given value, then the attribute will be considered a match
+regardless of the results of the other matchers.
 
 
 ### <a name="attributes.ATTRIBUTE_NAME"></a>`"attributes".ATTRIBUTE_NAME`
 
-A field with the name of a distinct attribute. Some examples might be `"name"`, `"dob"`, `"phone"`, etc.
+A field with the name of a distinct attribute. Some examples might be `"name"`,
+`"dob"`, `"phone"`, etc.
 
 The value of the field can be one of two things:
 
@@ -189,20 +198,27 @@ At least one attribute must be specified, otherwise there would be no input to s
 
 ### <a name="attributes.ATTRIBUTE_NAME.type"></a>`"attributes".ATTRIBUTE_NAME."values"`
 
-An array of attribute values. These values will serve as the initial inputs to the [resolution job](/docs/rest-apis/resolution-api).
+An array of attribute values. These values will serve as the initial inputs to
+the [resolution job](/docs/rest-apis/resolution-api).
 
 Each value must conform to the respective [attribute type](/docs/entity-models/specification#attributes.ATTRIBUTE_NAME.type)
-specified in the [entity model](/docs/entity-models). For example, [string](/docs/entity-models/specification#attribute-type-string) values
-must be JSON compliant string values, [number](/docs/entity-models/specification#attribute-type-number) values must be JSON compliant number values,
-and [date](/docs/entity-models/specification#attribute-type-date) values must include a `"format"` field in the [`"params"`](#attributes.ATTRIBUTE_NAME.params)
-object if it was not already specified in either the attribute or matcher of the entity model.
+specified in the [entity model](/docs/entity-models). For example,
+[string](/docs/entity-models/specification#attribute-type-string) values must be
+JSON compliant string values, [number](/docs/entity-models/specification#attribute-type-number)
+values must be JSON compliant number values, and [date](/docs/entity-models/specification#attribute-type-date)
+values must include a `"format"` field in the [`"params"`](#attributes.ATTRIBUTE_NAME.params)
+object if it was not already specified in either the attribute or matcher of the
+entity model.
 
-This field is not necessarily required. It would be valid to specify and attribute with no values and to override the
-[`"params"`](#attributes.ATTRIBUTE_NAME.params) of the attribute or matcher of the entity model. One reason might be to override the
-`"format"` param of a [`"date"`](/docs/entity-models/specification#attribute-type-date) attribute, which would affect the format of
-any date values for that attribute returned by the resolution job.
+This field is not necessarily required. It would be valid to specify and
+attribute with no values and to override the [`"params"`](#attributes.ATTRIBUTE_NAME.params)
+of the attribute or matcher of the entity model. One reason might be to override
+the `"format"` param of a [`"date"`](/docs/entity-models/specification#attribute-type-date)
+attribute, which would affect the format of any date values for that attribute
+returned by the resolution job.
 
-At least one attribute must have the `"values"` field specified, otherwise there would be no input to supply to the resolution job.
+At least one attribute must have the `"values"` field specified, otherwise there
+would be no input to supply to the resolution job.
 
 - Required: At least for one attribute
 - Type: Array
@@ -226,10 +242,11 @@ A field with the name of a distinct param for the attribute. Some examples might
 
 ### <a name="attributes.ATTRIBUTE_NAME.params.PARAM_NAME.PARAM_VALUE"></a>`"attributes".ATTRIBUTE_NAME."params".PARAM_NAME.PARAM_VALUE`
 
-A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
-will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
-[`"attributes".ATTRIBUTE_NAME."params"`](#attributes.ATTRIBUTE_NAME.params) in the model and
-[`"matchers".MATCHER_NAME."params"`](#matchers.MATCHER_NAME.params).
+A value for the param. This can be any JSON compliant value such as a string,
+number, boolean, array, or object. The value will be serialized as a string when
+passed to the matcher clause. The value overrides the same field specified in
+[`"attributes".ATTRIBUTE_NAME."params"`](#attributes.ATTRIBUTE_NAME.params) in
+the model and [`"matchers".MATCHER_NAME."params"`](#matchers.MATCHER_NAME.params).
 
 - Required: No
 - Type: Any
@@ -260,19 +277,20 @@ will be serialized as a string when passed to the matcher clause. The value over
 }
 ```
 
-The `"terms"` field allows the first iteration of a [resolution job](/docs/rest-apis/resolution-api) to begin with inputs
-that are not associated with any attributes. Each [`term`](#terms.TERM) is supplied to each
-attribute of each resolver in the scope of the resolution job. This is a convenient way
-to resolve an entity quickly, because the user doesn't need to structure their search
-to conform to the entity model. The tradeoff is that the results are more prone to
-false positives.
+The `"terms"` field allows the first iteration of a [resolution job](/docs/rest-apis/resolution-api)
+to begin with inputs that are not associated with any attributes. Each [`term`](#terms.TERM)
+is supplied to each attribute of each resolver in the scope of the resolution
+job. This is a convenient way to resolve an entity quickly, because the user
+doesn't need to structure their search to conform to the entity model. The
+tradeoff is that the results are more prone to false positives.
 
-The `"terms"` field is only used in the first query to each index in a [resolution job](/docs/rest-apis/resolution-api).
-After that, the attributes are obtained from the documents and the job continues with those attributes values.
+The `"terms"` field is only used in the first query to each index in a
+[resolution job](/docs/rest-apis/resolution-api). After that, the attributes are
+obtained from the documents and the job continues with those attributes values.
 
-When both `"attributes"` and `"terms"` are given, the first query to each index will create
-a filter tree for each of `"attributes"` and `"terms"`, and both filters must match for a
-document to match.
+When both `"attributes"` and `"terms"` are given, the first query to each index
+will create a filter tree for each of `"attributes"` and `"terms"`, and both
+filters must match for a document to match.
 
 - Required: Only if [`"attributes"`](#attributes) and [`"ids"`](#ids) are not given
 - Type: Array
@@ -318,13 +336,16 @@ An arbitrary search term string.
 }
 ```
 
-The `"ids"` field allows the first iteration of a [resolution job](/docs/rest-apis/resolution-api) to begin by selecting one or more documents
-by `_id` for one or more indices. Like [`"attributes"`](#attributes), any document that matches the `_id` values will be considered
-a match to the entity. Documents are queried by `_id` only within a given index to prevent collisions in which
-the same `_id` is present in two or more indices.
+The `"ids"` field allows the first iteration of a [resolution job](/docs/rest-apis/resolution-api)
+to begin by selecting one or more documents by `_id` for one or more indices.
+Like [`"attributes"`](#attributes), any document that matches the `_id` values
+will be considered a match to the entity. Documents are queried by `_id` only
+within a given index to prevent collisions in which the same `_id` is present in
+two or more indices.
 
-The `"ids"` field is only used in the first query to each index in a resolution job.
-After that, the attributes are obtained from the documents and the job continues with those attributes values.
+The `"ids"` field is only used in the first query to each index in a resolution
+job. After that, the attributes are obtained from the documents and the job
+continues with those attributes values.
 
 - Required: Only if [`"attributes"`](#attributes) and [`"terms"`](#terms) are not given
 - Type: Object
@@ -332,7 +353,8 @@ After that, the attributes are obtained from the documents and the job continues
 
 ### <a name="ids.INDEX_NAME"></a>`"ids".INDEX_NAME`
 
-The name of a distinct index. Any `_id` values specified in this array will be queried within that index.
+The name of a distinct index. Any `_id` values specified in this array will be
+queried within that index.
 
 - Required: Yes
 - Type: Array
@@ -428,9 +450,10 @@ The value of a distinct `_id` within a given index.
 }
 ```
 
-An optional field that contains an object to limit the scope of the [resolution request](/docs/rest-apis/resolution-api).
-Scope can be controlled by [excluding](#scope.exclude) ("blacklisting") or [including](#scope.include) ("whitelisting") attribute values,
-indices, and resolvers.
+An optional field that contains an object to limit the scope of the
+[resolution request](/docs/rest-apis/resolution-api). Scope can be controlled by
+[excluding](#scope.exclude) ("blacklisting") or [including](#scope.include)
+("whitelisting") attribute values, indices, and resolvers.
 
 - Required: No
 - Type: Object
@@ -438,11 +461,14 @@ indices, and resolvers.
 
 ### <a name="scope.exclude"></a>`"scope"."exclude"`
 
-An optional field that excludes [`"attributes"`](#scope.exclude.attributes), [`"indices"`](#scope.exclude.indices), or [`"resolvers"`](#scope.exclude.resolvers)
-from the [resolution job](/docs/rest-apis/resolution-api). By setting any of these exclusions, no query will be allowed to include the given
-attribute values, indices, or resolvers.
+An optional field that excludes [`"attributes"`](#scope.exclude.attributes),
+[`"indices"`](#scope.exclude.indices), or [`"resolvers"`](#scope.exclude.resolvers)
+from the [resolution job](/docs/rest-apis/resolution-api). By setting any of
+these exclusions, no query will be allowed to include the given attribute
+values, indices, or resolvers.
 
-The values in `"scope"."exclude"` take precedence over any duplicate values specified [`"scope"."include"`](#scope.include).
+The values in `"scope"."exclude"` take precedence over any duplicate values
+specified [`"scope"."include"`](#scope.include).
 
 - Required: No
 - Type: Object
@@ -450,8 +476,9 @@ The values in `"scope"."exclude"` take precedence over any duplicate values spec
 
 ### <a name="scope.exclude.attributes"></a>`"scope"."exclude"."attributes"`
 
-An optional field that excludes specific attribute values from the [resolution job](/docs/rest-apis/resolution-api).
-By setting any of these attributes, no query will be allowed to include the values specified within them.
+An optional field that excludes specific attribute values from the
+[resolution job](/docs/rest-apis/resolution-api). By setting any of these
+attributes, no query will be allowed to include the values specified within them.
 
 - Required: No
 - Type: Object
@@ -459,8 +486,9 @@ By setting any of these attributes, no query will be allowed to include the valu
 
 ### <a name="scope.exclude.attributes.ATTRIBUTE_NAME"></a>`"scope"."exclude"."attributes".ATTRIBUTE_NAME`
 
-A field with the name of a distinct attribute. Some examples might be `"name"`, `"dob"`, `"phone"`, etc.
-By setting an attribute, no query will be allowed to include the values specified within it.
+A field with the name of a distinct attribute. Some examples might be `"name"`,
+`"dob"`, `"phone"`, etc. By setting an attribute, no query will be allowed to
+include the values specified within it.
 
 - Required: No
 - Type: Array
@@ -469,7 +497,8 @@ By setting an attribute, no query will be allowed to include the values specifie
 ### <a name="scope.exclude.indices"></a>`"scope"."exclude"."indices"`
 
 An optional field that excludes specific indices from the [resolution job](/docs/rest-apis/resolution-api).
-By setting any of these indices, no query will be allowed to include those indices.
+By setting any of these indices, no query will be allowed to include those
+indices.
 
 - Required: No
 - Type: Object
@@ -477,7 +506,8 @@ By setting any of these indices, no query will be allowed to include those indic
 
 ### <a name="scope.exclude.indices.INDEX_NAME"></a>`"scope"."exclude"."indices".INDEX_NAME`
 
-The name of a distinct index. By setting an index, no query will be allowed to include it.
+The name of a distinct index. By setting an index, no query will be allowed to
+include it.
 
 - Required: No
 - Type: String
@@ -486,7 +516,8 @@ The name of a distinct index. By setting an index, no query will be allowed to i
 ### <a name="scope.exclude.resolvers"></a>`"scope"."exclude"."resolvers"`
 
 An optional field that excludes specific resolvers from the [resolution job](/docs/rest-apis/resolution-api).
-By setting any of these resolvers, no query will be allowed to include those resolvers.
+By setting any of these resolvers, no query will be allowed to include those
+resolvers.
 
 - Required: No
 - Type: Object
@@ -494,7 +525,8 @@ By setting any of these resolvers, no query will be allowed to include those res
 
 ### <a name="scope.exclude.resolvers.RESOLVER_NAME"></a>`"scope"."exclude"."resolvers".RESOLVER_NAME`
 
-The name of a distinct resolver. By setting an resolver, no query will be allowed to include it.
+The name of a distinct resolver. By setting an resolver, no query will be
+allowed to include it.
 
 - Required: No
 - Type: String
@@ -502,11 +534,14 @@ The name of a distinct resolver. By setting an resolver, no query will be allowe
 
 ### <a name="scope.include"></a>`"scope"."include"`
 
-An optional field that includes [`"attributes"`](#scope.include.attributes), [`"indices"`](#scope.include.indices), or [`"resolvers"`](#scope.include.resolvers)
-from the [resolution job](/docs/rest-apis/resolution-api). By setting any of these inclusions, no query will be allowed to exclude the given
-attribute values, indices, or resolvers.
+An optional field that includes [`"attributes"`](#scope.include.attributes),
+[`"indices"`](#scope.include.indices), or [`"resolvers"`](#scope.include.resolvers)
+from the [resolution job](/docs/rest-apis/resolution-api). By setting any of
+these inclusions, no query will be allowed to exclude the given attribute
+values, indices, or resolvers.
 
-The values in [`"scope"."exclude"`](#scope.exclude) take precedence over any duplicate values specified `"scope"."include"`.
+The values in [`"scope"."exclude"`](#scope.exclude) take precedence over any
+duplicate values specified `"scope"."include"`.
 
 - Required: No
 - Type: Object
@@ -514,8 +549,9 @@ The values in [`"scope"."exclude"`](#scope.exclude) take precedence over any dup
 
 ### <a name="scope.include.attributes"></a>`"scope"."include"."attributes"`
 
-An optional field that includes specific attribute values from the [resolution job](/docs/rest-apis/resolution-api).
-By setting any of these attributes, no query will be allowed to exclude the values specified within them.
+An optional field that includes specific attribute values from the
+[resolution job](/docs/rest-apis/resolution-api). By setting any of these
+attributes, no query will be allowed to exclude the values specified within them.
 
 - Required: No
 - Type: Object
@@ -523,8 +559,9 @@ By setting any of these attributes, no query will be allowed to exclude the valu
 
 ### <a name="scope.include.attributes.ATTRIBUTE_NAME"></a>`"scope"."include"."attributes".ATTRIBUTE_NAME`
 
-A field with the name of a distinct attribute. Some examples might be `"name"`, `"dob"`, `"phone"`, etc.
-By setting an attribute, no query will be allowed to exclude the values specified within it.
+A field with the name of a distinct attribute. Some examples might be `"name"`,
+`"dob"`, `"phone"`, etc. By setting an attribute, no query will be allowed to
+exclude the values specified within it.
 
 - Required: No
 - Type: Array
@@ -533,7 +570,8 @@ By setting an attribute, no query will be allowed to exclude the values specifie
 ### <a name="scope.include.indices"></a>`"scope"."include"."indices"`
 
 An optional field that includes specific indices from the [resolution job](/docs/rest-apis/resolution-api).
-By setting any of these indices, no query will be allowed to exclude those indices.
+By setting any of these indices, no query will be allowed to exclude those
+indices.
 
 - Required: No
 - Type: Object
@@ -541,7 +579,8 @@ By setting any of these indices, no query will be allowed to exclude those indic
 
 ### <a name="scope.include.indices.INDEX_NAME"></a>`"scope"."include"."indices".INDEX_NAME`
 
-The name of a distinct index. By setting an index, no query will be allowed to exclude it.
+The name of a distinct index. By setting an index, no query will be allowed to
+exclude it.
 
 - Required: No
 - Type: String
@@ -550,7 +589,8 @@ The name of a distinct index. By setting an index, no query will be allowed to e
 ### <a name="scope.include.resolvers"></a>`"scope"."include"."resolvers"`
 
 An optional field that includes specific resolvers from the [resolution job](/docs/rest-apis/resolution-api).
-By setting any of these resolvers, no query will be allowed to exclude those resolvers.
+By setting any of these resolvers, no query will be allowed to exclude those
+resolvers.
 
 - Required: No
 - Type: Object
@@ -558,7 +598,8 @@ By setting any of these resolvers, no query will be allowed to exclude those res
 
 ### <a name="scope.include.resolvers.RESOLVER_NAME"></a>`"scope"."include"."resolvers".RESOLVER_NAME`
 
-The name of a distinct resolver. By setting an resolver, no query will be allowed to exclude it.
+The name of a distinct resolver. By setting an resolver, no query will be
+allowed to exclude it.
 
 - Required: No
 - Type: String
@@ -566,10 +607,13 @@ The name of a distinct resolver. By setting an resolver, no query will be allowe
 
 ## <a name="model"></a>`"model"`
 
-The [entity model](/docs/entity-models) to use for the entity resolution job. This is only required if `entity_type` is not specified
-in the endpoint of the [resolution request](/docs/rest-apis/resolution-api). Otherwise this field **must not** be present.
+The [entity model](/docs/entity-models) to use for the entity resolution job.
+This is only required if `entity_type` is not specified in the endpoint of the
+[resolution request](/docs/rest-apis/resolution-api). Otherwise this field
+**must not** be present.
 
-- Required: Only if `entity_type` is not specified in the endpoint of the [resolution request](/docs/rest-apis/resolution-api)
+- Required: Only if `entity_type` is not specified in the endpoint of the
+[resolution request](/docs/rest-apis/resolution-api)
 - Type: Object
 
 

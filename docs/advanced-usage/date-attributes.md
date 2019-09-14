@@ -16,27 +16,38 @@ tutorials before completing these advanced usage tutorials.
 
 # <a name="date-attributes"></a>Date Attributes
 
-Date attributes are useful in many applications of entity resolution. You can resolve a person with the aid of a date of birth, a credit card with a date of expiration,
-a driver's license with a date of issuance, or an event with a specific timestamp. You can use a date range to disambiguate two people who occupied the same home address at different times,
-preventing a false match. You can reliably sessionize events in an application log by the client IP address if you match the events within a small time window, knowing that IP addresses
-can change owners over longer periods of time.
+Date attributes are useful in many applications of entity resolution. You can
+resolve a person with the aid of a date of birth, a credit card with a date of
+expiration, a driver's license with a date of issuance, or an event with a
+specific timestamp. You can use a date range to disambiguate two people who
+occupied the same home address at different times, preventing a false match. You
+can reliably sessionize events in an application log by the client IP address if
+you match the events within a small time window, knowing that IP addresses can
+change owners over longer periods of time.
 
-Date matching comes its own challenges. Indices can represent dates and times in different formats
-and at different levels of precision. Sometimes it makes sense to match within a date or time range rather than a specific point in time. zentity uses date attributes to help surmount these challenges.
+Date matching comes its own challenges. Indices can represent dates and times in
+different formats and at different levels of precision. Sometimes it makes sense
+to match within a date or time range rather than a specific point in time.
+zentity uses date attributes to help surmount these challenges.
 
-The [`"date"`](/docs/entity-models/specification#attribute-type-date) attribute type can be used to match [date](https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html) fields in Elasticsearch.
-Date attributes use [matcher parameters](/docs/advanced-usage/matcher-parameters) to define the ["format"](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html) of the date field.
-A `"format"` parameter is required to ensure that matchers use the date format that the indexed date field expects.
-You must understand how matcher parameters work before writing date matchers.
+The [`"date"`](/docs/entity-models/specification#attribute-type-date) attribute
+type can be used to match [date](https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html)
+fields in Elasticsearch. Date attributes use [matcher parameters](/docs/advanced-usage/matcher-parameters)
+to define the ["format"](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html)
+of the date field. A `"format"` parameter is required to ensure that matchers
+use the date format that the indexed date field expects. You must understand how
+matcher parameters work before writing date matchers.
 
-This tutorial will show you how to write a matcher that gives you control over the window of a date range query.
+This tutorial will show you how to write a matcher that gives you control over
+the window of a date range query.
 
 Let's dive in.
 
 > **Important**
 > 
-> You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation) to complete this tutorial.
-> This tutorial was tested with [zentity-1.0.2-elasticsearch-6.7.0](/docs/releases).
+> You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch),
+> [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation)
+> to complete this tutorial. This tutorial was tested with [zentity-1.4.2-elasticsearch-7.3.1](/docs/releases).
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
@@ -44,15 +55,17 @@ Let's dive in.
 
 ### <a name="open-kibana-console-ui"></a>1.1 Open the Kibana Console UI
 
-The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html) makes it easy to submit requests to Elasticsearch and read responses.
+The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html)
+makes it easy to submit requests to Elasticsearch and read responses.
 
 
 ### <a name="delete-old-tutorial-indices"></a>1.2 Delete any old tutorial indices
 
-Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.
+Let's start from scratch. Delete any tutorial indices you might have created
+from other tutorials.
 
 ```javascript
-DELETE .zentity-tutorial-*
+DELETE zentity_tutorial_8_*
 ```
 
 
@@ -61,7 +74,7 @@ DELETE .zentity-tutorial-*
 Now create the index for this tutorial.
 
 ```javascript
-PUT .zentity-tutorial-index
+PUT zentity_tutorial_8_date_attributes
 {
   "settings": {
     "index": {
@@ -70,20 +83,18 @@ PUT .zentity-tutorial-index
     }
   },
   "mappings": {
-    "_doc": {
-      "properties": {
-        "@timestamp": {
-          "type": "date"
-        },
-        "id": {
-          "type": "keyword"
-        },
-        "ip": {
-          "type": "keyword"
-        },
-        "path": {
-          "type": "keyword"
-        }
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "id": {
+        "type": "keyword"
+      },
+      "ip": {
+        "type": "keyword"
+      },
+      "path": {
+        "type": "keyword"
       }
     }
   }
@@ -97,41 +108,41 @@ Add the tutorial data to the index.
 
 ```javascript
 POST _bulk?refresh
-{"index": {"_id": "1", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "1", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:01:45.248", "id": "1", "ip": "192.168.0.1", "path": "/"}
-{"index": {"_id": "2", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "2", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:02:05.658", "id": "2", "ip": "192.168.0.1", "path": "/docs"}
-{"index": {"_id": "3", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "3", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:02:08.782", "id": "3", "ip": "192.168.2.1", "path": "/"}
-{"index": {"_id": "4", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "4", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:02:12.024", "id": "4", "ip": "192.168.0.1", "path": "/docs/installation"}
-{"index": {"_id": "5", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "5", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:02:27.745", "id": "5", "ip": "192.168.2.1", "path": "/"}
-{"index": {"_id": "6", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "6", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:02:15.628", "id": "6", "ip": "192.168.0.1", "path": "/releases"}
-{"index": {"_id": "7", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "7", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:14:01.956", "id": "7", "ip": "192.168.0.1", "path": "/docs"}
-{"index": {"_id": "8", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "8", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:14:08.345", "id": "8", "ip": "192.168.3.1", "path": "/"}
-{"index": {"_id": "9", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "9", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:14:08.921", "id": "9", "ip": "192.168.0.1", "path": "/docs/installation"}
-{"index": {"_id": "10", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "10", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:21:00.003", "id": "10", "ip": "192.168.2.1", "path": "/"}
-{"index": {"_id": "11", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "11", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:22:07.565", "id": "11", "ip": "192.168.2.1", "path": "/"}
-{"index": {"_id": "12", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "12", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:28:11.114", "id": "12", "ip": "192.168.0.1", "path": "/docs/basic-usage"}
-{"index": {"_id": "13", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "13", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-02-28T23:30:45.346", "id": "13", "ip": "192.168.3.1", "path": "/docs/releases"}
-{"index": {"_id": "14", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "14", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-03-01T10:30:45.982", "id": "14", "ip": "192.168.4.1", "path": "/"}
-{"index": {"_id": "15", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "15", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-03-02T12:30:45.452", "id": "15", "ip": "192.168.0.1", "path": "/"}
-{"index": {"_id": "16", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "16", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-03-03T14:32:01.837", "id": "16", "ip": "192.168.0.1", "path": "/"}
-{"index": {"_id": "17", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "17", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-03-03T14:32:03.897", "id": "17", "ip": "192.168.0.1", "path": "/releases"}
-{"index": {"_id": "18", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "18", "_index": "zentity_tutorial_8_date_attributes"}}
 {"@timestamp": "2019-03-03T12:33:56.553", "id": "18", "ip": "192.168.0.1", "path": "/docs"}
 ```
 
@@ -161,10 +172,11 @@ Here's what the tutorial data looks like.
 
 ## <a name="create-entity-model"></a>2. Create the entity model
 
-Let's use the [Models API](/docs/rest-apis/models-api) to create the entity model below. We'll review the matchers in depth.
+Let's use the [Models API](/docs/rest-apis/models-api) to create the entity
+model below. We'll review the matchers in depth.
 
 ```javascript
-PUT _zentity/models/zentity-tutorial-http-session
+PUT _zentity/models/zentity_tutorial_8_http_session
 {
   "attributes": {
     "timestamp": {
@@ -204,7 +216,7 @@ PUT _zentity/models/zentity-tutorial-http-session
     }
   },
   "indices": {
-    ".zentity-tutorial-index": {
+    "zentity_tutorial_8_date_attributes": {
       "fields": {
         "@timestamp": {
           "attribute": "timestamp",
@@ -284,7 +296,7 @@ Submit a resolution job with the `"window"` parameter set to its default value,
 which we defined as `"15m"` in the matcher.
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-http-session?pretty
+POST _zentity/resolution/zentity_tutorial_8_http_session?pretty
 {
   "attributes": {
     "ip": [ "192.168.0.1" ],
@@ -301,7 +313,7 @@ The results will look like this.
   "hits" : {
     "total" : 7,
     "hits" : [ {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
@@ -316,7 +328,7 @@ The results will look like this.
         "path" : "/"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "2",
       "_hop" : 0,
@@ -331,7 +343,7 @@ The results will look like this.
         "path" : "/docs"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
@@ -346,7 +358,7 @@ The results will look like this.
         "path" : "/docs/installation"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "6",
       "_hop" : 0,
@@ -361,7 +373,7 @@ The results will look like this.
         "path" : "/releases"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "7",
       "_hop" : 0,
@@ -376,7 +388,7 @@ The results will look like this.
         "path" : "/docs"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "9",
       "_hop" : 0,
@@ -391,7 +403,7 @@ The results will look like this.
         "path" : "/docs/installation"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "12",
       "_hop" : 1,
@@ -423,7 +435,7 @@ smaller time range.
 Now let's expand the `"window"` parameter from `"15m"` to `"2d"`.
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-http-session?pretty
+POST _zentity/resolution/zentity_tutorial_8_http_session?pretty
 {
   "attributes": {
     "ip": [ "192.168.0.1" ],
@@ -445,7 +457,7 @@ The results will look like this:
   "hits" : {
     "total" : 11,
     "hits" : [ {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
@@ -460,7 +472,7 @@ The results will look like this:
         "path" : "/"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "2",
       "_hop" : 0,
@@ -475,7 +487,7 @@ The results will look like this:
         "path" : "/docs"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
@@ -490,7 +502,7 @@ The results will look like this:
         "path" : "/docs/installation"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "6",
       "_hop" : 0,
@@ -505,7 +517,7 @@ The results will look like this:
         "path" : "/releases"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "7",
       "_hop" : 0,
@@ -520,7 +532,7 @@ The results will look like this:
         "path" : "/docs"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "9",
       "_hop" : 0,
@@ -535,7 +547,7 @@ The results will look like this:
         "path" : "/docs/installation"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "12",
       "_hop" : 0,
@@ -550,7 +562,7 @@ The results will look like this:
         "path" : "/docs/basic-usage"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "15",
       "_hop" : 0,
@@ -565,7 +577,7 @@ The results will look like this:
         "path" : "/"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "16",
       "_hop" : 1,
@@ -580,7 +592,7 @@ The results will look like this:
         "path" : "/"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "17",
       "_hop" : 1,
@@ -595,7 +607,7 @@ The results will look like this:
         "path" : "/releases"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "18",
       "_hop" : 1,
@@ -621,14 +633,14 @@ What if we contracted the `"window"` parameter to a small value such as `"2m"`?
 Let's find out.
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-http-session?pretty
+POST _zentity/resolution/zentity_tutorial_8_http_session?pretty
 {
   "attributes": {
     "ip": [ "192.168.0.1" ],
     "timestamp": {
       "values": [ "2019-02-28T23:02:15.628" ],
       "params": {
-        "window": "2d"
+        "window": "2m"
       }
     }
   }
@@ -643,7 +655,7 @@ The results will look like this:
   "hits" : {
     "total" : 4,
     "hits" : [ {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
@@ -658,7 +670,7 @@ The results will look like this:
         "path" : "/"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "2",
       "_hop" : 1,
@@ -673,7 +685,7 @@ The results will look like this:
         "path" : "/docs"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 1,
@@ -688,7 +700,7 @@ The results will look like this:
         "path" : "/docs/installation"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "6",
       "_hop" : 1,

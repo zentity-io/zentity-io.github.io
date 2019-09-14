@@ -25,7 +25,8 @@ Returns all entity models from the `.zentity-models` index.
 GET _zentity/models/{entity_type}
 ```
 
-Returns the entity model for a given `entity_type` from the `.zentity-models` index.
+Returns the entity model for a given `entity_type` from the `.zentity-models`
+index.
 
 **URL Params**
 
@@ -37,8 +38,9 @@ Returns the entity model for a given `entity_type` from the `.zentity-models` in
 
 ## <a name="create-entity-model"></a>Create an entity model
 
-Creates an entity model for a given `entity_type` and puts it in the `.zentity-models` index.
-Returns an error if an entity model already exists for that `entity_type`.
+Creates an entity model for a given `entity_type` and puts it in the
+`.zentity-models` index. Returns an error if an entity model already exists for
+that `entity_type`.
 
 For more details about the contents of the payload, read the
 [entity model specification](/docs/entity-models/specification).
@@ -163,7 +165,8 @@ PUT _zentity/models/{entity_type}
 
 ## <a name="delete-entity-model"></a>Delete an entity model
 
-Deletes the entity model for a given `entity_type` from the `.zentity-models` index.
+Deletes the entity model for a given `entity_type` from the `.zentity-models`
+index.
 
 ```javascript
 DELETE _zentity/models/{entity_type}

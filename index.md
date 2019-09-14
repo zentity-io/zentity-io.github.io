@@ -16,33 +16,33 @@ resolution. It aims to be:
 ## <a name="latest-release">Download the latest release</a>
 
 
-### zentity-1.4.2
+### zentity-{$ latest.zentity $}
 
 Select the plugin version that matches your version of Elasticsearch:
 
-- [Elasticsearch 7.3.2](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.3.2.zip)
-- [Elasticsearch 7.3.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.3.1.zip)
-- [Elasticsearch 7.3.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.3.0.zip)
-- [Elasticsearch 7.2.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.2.1.zip)
-- [Elasticsearch 7.2.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.2.0.zip)
-- [Elasticsearch 7.1.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.1.1.zip)
-- [Elasticsearch 7.1.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.1.0.zip)
-- [Elasticsearch 7.0.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.0.1.zip)
-- [Elasticsearch 7.0.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.0.0.zip)
-- [Elasticsearch 6.8.2](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.8.2.zip)
-- [Elasticsearch 6.8.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.8.1.zip)
-- [Elasticsearch 6.8.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.8.0.zip)
-- [Elasticsearch 6.7.2](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.7.2.zip)
-- [Elasticsearch 6.7.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.7.1.zip)
-- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.7.0.zip)
-- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.6.2.zip)
-- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.6.1.zip)
-- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.6.0.zip)
-- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.5.4.zip)
-- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.5.3.zip)
-- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.5.2.zip)
-- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.5.1.zip)
-- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.4.2-elasticsearch-6.5.0.zip)
+- [Elasticsearch 7.3.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.3.2.zip)
+- [Elasticsearch 7.3.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.3.1.zip)
+- [Elasticsearch 7.3.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.3.0.zip)
+- [Elasticsearch 7.2.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.2.1.zip)
+- [Elasticsearch 7.2.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.2.0.zip)
+- [Elasticsearch 7.1.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.1.1.zip)
+- [Elasticsearch 7.1.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.1.0.zip)
+- [Elasticsearch 7.0.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.0.1.zip)
+- [Elasticsearch 7.0.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.0.0.zip)
+- [Elasticsearch 6.8.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.8.2.zip)
+- [Elasticsearch 6.8.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.8.1.zip)
+- [Elasticsearch 6.8.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.8.0.zip)
+- [Elasticsearch 6.7.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.7.2.zip)
+- [Elasticsearch 6.7.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.7.1.zip)
+- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.7.0.zip)
+- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.6.2.zip)
+- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.6.1.zip)
+- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.6.0.zip)
+- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.5.4.zip)
+- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.5.3.zip)
+- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.5.2.zip)
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.5.0.zip)
 
 
 ## <a name="quick-start">Quick start</a>
@@ -55,7 +55,7 @@ Once you have installed Elasticsearch, you can install zentity from a remote URL
 
 Example:
 
-`elasticsearch-plugin install https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.3.1.zip`
+`elasticsearch-plugin install https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-{$ latest.elasticsearch $}.zip`
 
 Read the [installation](/docs/installation) docs for more details.
 

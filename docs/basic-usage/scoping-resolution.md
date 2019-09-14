@@ -20,18 +20,28 @@ over time.
 
 # <a name="scoping-resolution"></a>Scoping Resolution
 
-A resolution job will attempt to run every resolver for every index in the entity model, unless otherwise instructed. If you use the same entity model for multiple applications,
-then you might need only some of the resolvers or indices for each application. You can limit the scope of a resolution job to the resolvers and indices
-that apply to a given use case. This will prevent unnecessary searches, omit unnecessary results, optimize the performance of your resolution jobs, and minimize the load on your cluster.
+A resolution job will attempt to run every resolver for every index in the
+entity model, unless otherwise instructed. If you use the same entity model for
+multiple applications, then you might need only some of the resolvers or indices
+for each application. You can limit the scope of a resolution job to the
+resolvers and indices that apply to a given use case. This will prevent
+unnecessary searches, omit unnecessary results, optimize the performance of your
+resolution jobs, and minimize the load on your cluster.
 
-This tutorial shows how you can scope a resolution job to prevent unnecessary searches.
+This tutorial shows how you can scope a resolution job to prevent unnecessary
+searches.
 
 Let's dive in.
 
 > **Important**
 > 
-> You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation) to complete this tutorial.
-> This tutorial was tested with [zentity-1.0.2-elasticsearch-6.7.0](/docs/releases).
+> You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch),
+> [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation)
+> to complete this tutorial. This tutorial was tested with
+> [zentity-1.4.2-elasticsearch-7.3.1](/docs/releases).
+>
+> You can use the [zentity sandbox](/sandbox) which has the required software
+> and data for these tutorials.
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
@@ -39,9 +49,12 @@ Let's dive in.
 
 ### <a name="install-required-plugins"></a>1.1 Install the required plugins
 
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
 This tutorial uses the [phonetic analysis plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html)
-and [ICU analysis plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html) for Elasticsearch. You will
-need to stop Elasticsearch, install these plugin, and start Elasticsearch. You can learn more about Elasticsearch plugin management
+and [ICU analysis plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html)
+for Elasticsearch. You will need to stop Elasticsearch, install these plugin,
+and start Elasticsearch. You can learn more about Elasticsearch plugin management
 [here](https://www.elastic.co/guide/en/elasticsearch/plugins/current/plugin-management.html).
 
 For Linux (in the `$ES_HOME` directory of a .tar.gz installation):
@@ -61,26 +74,33 @@ bin/elasticsearch-plugin.bat install analysis-icu
 
 ### <a name="open-kibana-console-ui"></a>1.2 Open the Kibana Console UI
 
-The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html) makes it easy to submit requests to Elasticsearch and read responses.
+The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html)
+makes it easy to submit requests to Elasticsearch and read responses.
 
 
 ### <a name="delete-old-tutorial-indices"></a>1.3 Delete any old tutorial indices
 
-Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
+Let's start from scratch. Delete any tutorial indices you might have created
+from other tutorials.
 
 ```javascript
-DELETE .zentity-tutorial-*
+DELETE zentity_tutorial_5_*
 ```
 
 
 ### <a name="create-tutorial-index"></a>1.4 Create the tutorial index
 
-Now create the indices for this tutorial. These is the same data used in the prior tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution).
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
+Now create the indices for this tutorial. This is the same data used in the
+prior tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution).
 
 **Index A**
 
 ```javascript
-PUT .zentity-tutorial-index-a
+PUT zentity_tutorial_5_cross_index_resolution_a
 {
   "settings": {
     "index": {
@@ -146,78 +166,76 @@ PUT .zentity-tutorial-index-a
     }
   },
   "mappings": {
-    "_doc": {
-      "properties": {
-        "id_a": {
-          "type": "keyword"
-        },
-        "first_name_a": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "name_clean"
-            },
-            "phonetic": {
-              "type": "text",
-              "analyzer": "name_phonetic"
-            }
+    "properties": {
+      "id_a": {
+        "type": "keyword"
+      },
+      "first_name_a": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "name_clean"
+          },
+          "phonetic": {
+            "type": "text",
+            "analyzer": "name_phonetic"
           }
-        },
-        "last_name_a": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "name_clean"
-            },
-            "phonetic": {
-              "type": "text",
-              "analyzer": "name_phonetic"
-            }
+        }
+      },
+      "last_name_a": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "name_clean"
+          },
+          "phonetic": {
+            "type": "text",
+            "analyzer": "name_phonetic"
           }
-        },
-        "street_a": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "street_clean"
-            }
+        }
+      },
+      "street_a": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "street_clean"
           }
-        },
-        "city_a": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "name_clean"
-            }
+        }
+      },
+      "city_a": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "name_clean"
           }
-        },
-        "state_a": {
-          "type": "text",
-          "fields": {
-            "keyword": {
-              "type": "keyword"
-            }
+        }
+      },
+      "state_a": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
           }
-        },
-        "phone_a": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "phone_clean"
-            }
+        }
+      },
+      "phone_a": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "phone_clean"
           }
-        },
-        "email_a": {
-          "type": "text",
-          "fields": {
-            "keyword": {
-              "type": "keyword"
-            }
+        }
+      },
+      "email_a": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
           }
         }
       }
@@ -230,7 +248,7 @@ PUT .zentity-tutorial-index-a
 
 <span class="code-overflow"></span>
 ```javascript
-PUT .zentity-tutorial-index-b
+PUT zentity_tutorial_5_cross_index_resolution_b
 {
   "settings": {
     "index": {
@@ -296,78 +314,76 @@ PUT .zentity-tutorial-index-b
     }
   },
   "mappings": {
-    "_doc": {
-      "properties": {
-        "id_b": {
-          "type": "keyword"
-        },
-        "first_name_b": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "name_clean"
-            },
-            "phonetic": {
-              "type": "text",
-              "analyzer": "name_phonetic"
-            }
+    "properties": {
+      "id_b": {
+        "type": "keyword"
+      },
+      "first_name_b": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "name_clean"
+          },
+          "phonetic": {
+            "type": "text",
+            "analyzer": "name_phonetic"
           }
-        },
-        "last_name_b": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "name_clean"
-            },
-            "phonetic": {
-              "type": "text",
-              "analyzer": "name_phonetic"
-            }
+        }
+      },
+      "last_name_b": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "name_clean"
+          },
+          "phonetic": {
+            "type": "text",
+            "analyzer": "name_phonetic"
           }
-        },
-        "street_b": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "street_clean"
-            }
+        }
+      },
+      "street_b": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "street_clean"
           }
-        },
-        "city_b": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "name_clean"
-            }
+        }
+      },
+      "city_b": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "name_clean"
           }
-        },
-        "state_b": {
-          "type": "text",
-          "fields": {
-            "keyword": {
-              "type": "keyword"
-            }
+        }
+      },
+      "state_b": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
           }
-        },
-        "phone_b": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "phone_clean"
-            }
+        }
+      },
+      "phone_b": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "phone_clean"
           }
-        },
-        "email_b": {
-          "type": "text",
-          "fields": {
-            "keyword": {
-              "type": "keyword"
-            }
+        }
+      },
+      "email_b": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
           }
         }
       }
@@ -379,37 +395,40 @@ PUT .zentity-tutorial-index-b
 
 ### <a name="load-tutorial-data"></a>1.5 Load the tutorial data
 
-Add the tutorial data to the index. This is the same data used in the prior tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution).
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
+Add the tutorial data to the index. This is the same data used in the prior
+tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution).
 
 ```javascript
 POST _bulk?refresh
-{"index": {"_id": "1", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"index": {"_id": "1", "_index": "zentity_tutorial_5_cross_index_resolution_a"}}
 {"city_a": "Washington", "email_a": "allie@example.net", "first_name_a": "Allie", "id_a": "1", "last_name_a": "Jones", "phone_a": "202-555-1234", "state_a": "DC", "street_a": "123 Main St"}
-{"index": {"_id": "2", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"index": {"_id": "2", "_index": "zentity_tutorial_5_cross_index_resolution_b"}}
 {"city_b": "Washington", "email_b": "", "first_name_b": "Alicia", "id_b": "2", "last_name_b": "Johnson", "phone_b": "202-123-4567", "state_b": "DC", "street_b": "300 Main St"}
-{"index": {"_id": "3", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"index": {"_id": "3", "_index": "zentity_tutorial_5_cross_index_resolution_a"}}
 {"city_a": "Washington", "email_a": "", "first_name_a": "Allie", "id_a": "3", "last_name_a": "Jones", "phone_a": "", "state_a": "DC", "street_a": "123 Main St"}
-{"index": {"_id": "4", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"index": {"_id": "4", "_index": "zentity_tutorial_5_cross_index_resolution_b"}}
 {"city_b": "", "email_b": "", "first_name_b": "Ally", "id_b": "4", "last_name_b": "Joans", "phone_b": "202-555-1234", "state_b": "", "street_b": ""}
-{"index": {"_id": "5", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"index": {"_id": "5", "_index": "zentity_tutorial_5_cross_index_resolution_a"}}
 {"city_a": "Arlington", "email_a": "ej@example.net", "first_name_a": "Eli", "id_a": "5", "last_name_a": "Jonas", "phone_a": "", "state_a": "VA", "street_a": "500 23rd Street"}
-{"index": {"_id": "6", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"index": {"_id": "6", "_index": "zentity_tutorial_5_cross_index_resolution_b"}}
 {"city_b": "Washington", "email_b": "allie@example.net", "first_name_b": "Allison", "id_b": "6", "last_name_b": "Jones", "phone_b": "202-555-1234", "state_b": "DC", "street_b": "123 Main St"}
-{"index": {"_id": "7", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"index": {"_id": "7", "_index": "zentity_tutorial_5_cross_index_resolution_a"}}
 {"city_a": "Washington", "email_a": "", "first_name_a": "Allison", "id_a": "7", "last_name_a": "Smith", "phone_a": "+1 (202) 555 1234", "state_a": "DC", "street_a": "555 Broad St"}
-{"index": {"_id": "8", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"index": {"_id": "8", "_index": "zentity_tutorial_5_cross_index_resolution_b"}}
 {"city_b": "Washington", "email_b": "alan.smith@example.net", "first_name_b": "Alan", "id_b": "8", "last_name_b": "Smith", "phone_b": "202-000-5555", "state_b": "DC", "street_b": "555 Broad St"}
-{"index": {"_id": "9", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"index": {"_id": "9", "_index": "zentity_tutorial_5_cross_index_resolution_a"}}
 {"city_a": "Washington", "email_a": "alan.smith@example.net", "first_name_a": "Alan", "id_a": "9", "last_name_a": "Smith", "phone_a": "2020005555", "state_a": "DC", "street_a": "555 Broad St"}
-{"index": {"_id": "10", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"index": {"_id": "10", "_index": "zentity_tutorial_5_cross_index_resolution_b"}}
 {"city_b": "Washington", "email_b": "", "first_name_b": "Alison", "id_b": "10", "last_name_b": "Smith", "phone_b": "202-555-9876", "state_b": "DC", "street_b": "555 Broad St"}
-{"index": {"_id": "11", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"index": {"_id": "11", "_index": "zentity_tutorial_5_cross_index_resolution_a"}}
 {"city_a": "", "email_a": "allie@example.net", "first_name_a": "Alison", "id_a": "11", "last_name_a": "Jones-Smith", "phone_a": "2025559867", "state_a": "", "street_a": ""}
-{"index": {"_id": "12", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"index": {"_id": "12", "_index": "zentity_tutorial_5_cross_index_resolution_b"}}
 {"city_b": "Washington", "email_b": "allison.j.smith@corp.example.net", "first_name_b": "Allison", "id_b": "12", "last_name_b": "Jones-Smith", "phone_b": "", "state_b": "DC", "street_b": "555 Broad St"}
-{"index": {"_id": "13", "_index": ".zentity-tutorial-index-a", "_type": "_doc"}}
+{"index": {"_id": "13", "_index": "zentity_tutorial_5_cross_index_resolution_a"}}
 {"city_a": "Arlington", "email_a": "allison.j.smith@corp.example.net", "first_name_a": "Allison", "id_a": "13", "last_name_a": "Jones Smith", "phone_a": "703-555-5555", "state_a": "VA", "street_a": "1 Corporate Way"}
-{"index": {"_id": "14", "_index": ".zentity-tutorial-index-b", "_type": "_doc"}}
+{"index": {"_id": "14", "_index": "zentity_tutorial_5_cross_index_resolution_b"}}
 {"city_b": "Arlington", "email_b": "elise.jonas@corp.example.net", "first_name_b": "Elise", "id_b": "14", "last_name_b": "Jonas", "phone_b": "703-555-5555", "state_b": "VA", "street_b": "1 Corporate Way"}
 ```
 
@@ -442,12 +461,16 @@ Here's what the tutorial data looks like.
 
 ## <a name="create-entity-model"></a>2. Create the entity model
 
-Let's use the [Models API](/docs/rest-apis/models-api) to create the entity model below.
-This is the same model used in the prior tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution).
-This tutorial will show how to omit some of the resolvers and indices during a resolution job.
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
+Let's use the [Models API](/docs/rest-apis/models-api) to create the entity
+model below. This is the same model used in the prior tutorial on
+[cross index resolution](/docs/basic-usage/cross-index-resolution). This
+tutorial will show how to omit some of the resolvers and indices during a
+resolution job.
 
 ```javascript
-PUT _zentity/models/zentity-tutorial-person
+PUT _zentity/models/zentity_tutorial_5_person
 {
   "attributes": {
     "first_name": {
@@ -513,7 +536,7 @@ PUT _zentity/models/zentity-tutorial-person
     }
   },
   "indices": {
-    ".zentity-tutorial-index-a": {
+    "zentity_tutorial_5_cross_index_resolution_a": {
       "fields": {
         "first_name_a.clean": {
           "attribute": "first_name",
@@ -553,7 +576,7 @@ PUT _zentity/models/zentity-tutorial-person
         }
       }
     },
-    ".zentity-tutorial-index-b": {
+    "zentity_tutorial_5_cross_index_resolution_b": {
       "fields": {
         "first_name_b.clean": {
           "attribute": "first_name",
@@ -606,11 +629,11 @@ Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
 person with a known first name, last name, and phone number. These are the same
 attributes used in the prior tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution),
 which returned nine results. This time, we are going to control the scope of the
-indices searched during the resolution job. Let's limit the job to the `".zentity-tutorial-index-a"`
-index.
+indices searched during the resolution job. Let's limit the job to the
+`"zentity_tutorial_5_cross_index_resolution_a"` index.
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person?pretty
+POST _zentity/resolution/zentity_tutorial_5_person?pretty
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -620,7 +643,7 @@ POST _zentity/resolution/zentity-tutorial-person?pretty
   "scope": {
     "include": {
       "indices": [
-        ".zentity-tutorial-index-a"
+        "zentity_tutorial_5_cross_index_resolution_a"
       ]
     }
   }
@@ -635,7 +658,7 @@ The results will look like this:
   "hits" : {
     "total" : 2,
     "hits" : [ {
-      "_index" : ".zentity-tutorial-index-a",
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
@@ -659,7 +682,7 @@ The results will look like this:
         "street_a" : "123 Main St"
       }
     }, {
-      "_index" : ".zentity-tutorial-index-a",
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
       "_type" : "_doc",
       "_id" : "3",
       "_hop" : 1,
@@ -687,7 +710,7 @@ The results will look like this:
 }
 ```
 
-As expected, we retrieved results only from `".zentity-tutorial-index-a"`.
+As expected, we retrieved results only from `"zentity_tutorial_5_cross_index_resolution_a"`.
 There are only two results, which is less than the nine results of the prior
 tutorial on [cross index resolution](/docs/basic-usage/cross-index-resolution)
 because some of those matches required searching both indices.
@@ -703,7 +726,7 @@ resolvers searched during the resolution job. Let's exclude only the
 `"name_street_city_state"` resolver. Let's also search across both indices.
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person?pretty
+POST _zentity/resolution/zentity_tutorial_5_person?pretty
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -713,8 +736,8 @@ POST _zentity/resolution/zentity-tutorial-person?pretty
   "scope": {
     "include": {
       "indices": [
-        ".zentity-tutorial-index-a",
-        ".zentity-tutorial-index-b"
+        "zentity_tutorial_5_cross_index_resolution_a",
+        "zentity_tutorial_5_cross_index_resolution_b"
       ]
     },
     "exclude": {
@@ -734,7 +757,7 @@ The results will look like this:
   "hits" : {
     "total" : 6,
     "hits" : [ {
-      "_index" : ".zentity-tutorial-index-a",
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
@@ -758,7 +781,7 @@ The results will look like this:
         "street_a" : "123 Main St"
       }
     }, {
-      "_index" : ".zentity-tutorial-index-b",
+      "_index" : "zentity_tutorial_5_cross_index_resolution_b",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
@@ -782,7 +805,7 @@ The results will look like this:
         "street_b" : ""
       }
     }, {
-      "_index" : ".zentity-tutorial-index-b",
+      "_index" : "zentity_tutorial_5_cross_index_resolution_b",
       "_type" : "_doc",
       "_id" : "6",
       "_hop" : 1,
@@ -806,7 +829,7 @@ The results will look like this:
         "street_b" : "123 Main St"
       }
     }, {
-      "_index" : ".zentity-tutorial-index-a",
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
       "_type" : "_doc",
       "_id" : "11",
       "_hop" : 2,
@@ -830,7 +853,7 @@ The results will look like this:
         "street_a" : ""
       }
     }, {
-      "_index" : ".zentity-tutorial-index-a",
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
       "_type" : "_doc",
       "_id" : "7",
       "_hop" : 3,
@@ -854,7 +877,7 @@ The results will look like this:
         "street_a" : "555 Broad St"
       }
     }, {
-      "_index" : ".zentity-tutorial-index-b",
+      "_index" : "zentity_tutorial_5_cross_index_resolution_b",
       "_type" : "_doc",
       "_id" : "10",
       "_hop" : 3,
@@ -902,8 +925,9 @@ resolver that we excluded in this job.
 
 ## <a name="conclusion"></a>Conclusion
 
-Congratulations! You learned how to resolve an entity using a controlled scope of indices and resolvers.
-This is an important concept to understand and implement when you use zentity in production.
+Congratulations! You learned how to resolve an entity using a controlled scope
+of indices and resolvers. This is an important concept to understand and
+implement when you use zentity in production.
 
 
 &nbsp;

@@ -22,16 +22,23 @@ over time.
 
 Welcome to the "Hello world!" of entity resolution.
 
-This tutorial will guide you through one the simplest forms of entity resolution &ndash; exact name matching. You will learn
-how to create an entity model and how to resolve an entity using a **single attribute** mapped to a **single field** of a **single index**.
-This is meant to introduce you to the most basic functions of entity resolution with zentity.
+This tutorial will guide you through one the simplest forms of entity resolution
+&ndash; exact name matching. You will learn how to create an entity model and
+how to resolve an entity using a **single attribute** mapped to a **single field**
+of a **single index**. This is meant to introduce you to the most basic functions
+of entity resolution with zentity.
 
 Let's dive in.
 
 > **Important**
 > 
-> You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation) to complete this tutorial.
-> This tutorial was tested with [zentity-1.0.2-elasticsearch-6.7.0](/docs/releases).
+> You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch),
+> [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation)
+> to complete this tutorial. This tutorial was tested with
+> [zentity-1.4.2-elasticsearch-7.3.1](/docs/releases).
+>
+> You can use the [zentity sandbox](/sandbox) which has the required software
+> and data for these tutorials.
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
@@ -39,25 +46,30 @@ Let's dive in.
 
 ### <a name="open-kibana-console-ui"></a>1.1 Open the Kibana Console UI
 
-The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html) makes it easy to
-submit requests to Elasticsearch and read responses.
+The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html)
+makes it easy to submit requests to Elasticsearch and read responses.
 
 
 ### <a name="delete-old-tutorial-indices"></a>1.2 Delete any old tutorial indices
 
-Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
+Let's start from scratch. Delete any tutorial indices you might have created
+from other tutorials.
 
 ```javascript
-DELETE .zentity-tutorial-*
+DELETE zentity_tutorial_1_*
 ```
 
 
 ### <a name="create-tutorial-index"></a>1.3 Create the tutorial index
 
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
 Now create the index for this tutorial.
 
 ```javascript
-PUT .zentity-tutorial-index
+PUT zentity_tutorial_1_exact_name_matching
 {
   "settings": {
     "index": {
@@ -66,32 +78,30 @@ PUT .zentity-tutorial-index
     }
   },
   "mappings": {
-    "_doc": {
-      "properties": {
-        "id": {
-          "type": "keyword"
-        },
-        "first_name": {
-          "type": "text"
-        },
-        "last_name": {
-          "type": "text"
-        },
-        "street": {
-          "type": "text"
-        },
-        "city": {
-          "type": "text"
-        },
-        "state": {
-          "type": "text"
-        },
-        "phone": {
-          "type": "text"
-        },
-        "email": {
-          "type": "text"
-        }
+    "properties": {
+      "id": {
+        "type": "keyword"
+      },
+      "first_name": {
+        "type": "text"
+      },
+      "last_name": {
+        "type": "text"
+      },
+      "street": {
+        "type": "text"
+      },
+      "city": {
+        "type": "text"
+      },
+      "state": {
+        "type": "text"
+      },
+      "phone": {
+        "type": "text"
+      },
+      "email": {
+        "type": "text"
       }
     }
   }
@@ -101,37 +111,39 @@ PUT .zentity-tutorial-index
 
 ### <a name="load-tutorial-data"></a>1.4 Load the tutorial data
 
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
 Add the tutorial data to the index.
 
 ```javascript
 POST _bulk?refresh
-{"index": {"_id": "1", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "1", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Washington", "email": "allie@example.net", "first_name": "Allie", "id": "1", "last_name": "Jones", "phone": "202-555-1234", "state": "DC", "street": "123 Main St"}
-{"index": {"_id": "2", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "2", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Washington", "email": "", "first_name": "Alicia", "id": "2", "last_name": "Johnson", "phone": "202-123-4567", "state": "DC", "street": "300 Main St"}
-{"index": {"_id": "3", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "3", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Washington", "email": "", "first_name": "Allie", "id": "3", "last_name": "Jones", "phone": "", "state": "DC", "street": "123 Main St"}
-{"index": {"_id": "4", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "4", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "", "email": "", "first_name": "Ally", "id": "4", "last_name": "Joans", "phone": "202-555-1234", "state": "", "street": ""}
-{"index": {"_id": "5", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "5", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Arlington", "email": "ej@example.net", "first_name": "Eli", "id": "5", "last_name": "Jonas", "phone": "", "state": "VA", "street": "500 23rd Street"}
-{"index": {"_id": "6", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "6", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Washington", "email": "allie@example.net", "first_name": "Allison", "id": "6", "last_name": "Jones", "phone": "202-555-1234", "state": "DC", "street": "123 Main St"}
-{"index": {"_id": "7", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "7", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Washington", "email": "", "first_name": "Allison", "id": "7", "last_name": "Smith", "phone": "+1 (202) 555 1234", "state": "DC", "street": "555 Broad St"}
-{"index": {"_id": "8", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "8", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Washington", "email": "alan.smith@example.net", "first_name": "Alan", "id": "8", "last_name": "Smith", "phone": "202-000-5555", "state": "DC", "street": "555 Broad St"}
-{"index": {"_id": "9", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "9", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Washington", "email": "alan.smith@example.net", "first_name": "Alan", "id": "9", "last_name": "Smith", "phone": "2020005555", "state": "DC", "street": "555 Broad St"}
-{"index": {"_id": "10", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "10", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Washington", "email": "", "first_name": "Alison", "id": "10", "last_name": "Smith", "phone": "202-555-9876", "state": "DC", "street": "555 Broad St"}
-{"index": {"_id": "11", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "11", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "", "email": "allie@example.net", "first_name": "Alison", "id": "11", "last_name": "Jones-Smith", "phone": "2025559867", "state": "", "street": ""}
-{"index": {"_id": "12", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "12", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Washington", "email": "allison.j.smith@corp.example.net", "first_name": "Allison", "id": "12", "last_name": "Jones-Smith", "phone": "", "state": "DC", "street": "555 Broad St"}
-{"index": {"_id": "13", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "13", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Arlington", "email": "allison.j.smith@corp.example.net", "first_name": "Allison", "id": "13", "last_name": "Jones Smith", "phone": "703-555-5555", "state": "VA", "street": "1 Corporate Way"}
-{"index": {"_id": "14", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "14", "_index": "zentity_tutorial_1_exact_name_matching"}}
 {"city": "Arlington", "email": "elise.jonas@corp.example.net", "first_name": "Elise", "id": "14", "last_name": "Jonas", "phone": "703-555-5555", "state": "VA", "street": "1 Corporate Way"}
 ```
 
@@ -157,11 +169,13 @@ Here's what the tutorial data looks like.
 
 ## <a name="create-entity-model"></a>2. Create the entity model
 
-Let's use the [Models API](/docs/rest-apis/models-api) to create the entity model below. We'll review
-each part of the model in depth.
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
+Let's use the [Models API](/docs/rest-apis/models-api) to create the entity
+model below. We'll review each part of the model in depth.
 
 ```javascript
-PUT _zentity/models/zentity-tutorial-person
+PUT _zentity/models/zentity_tutorial_1_person
 {
   "attributes": {
     "first_name": {
@@ -186,7 +200,7 @@ PUT _zentity/models/zentity-tutorial-person
     }
   },
   "indices": {
-    ".zentity-tutorial-index": {
+    "zentity_tutorial_1_exact_name_matching": {
       "fields": {
         "first_name": {
           "attribute": "first_name",
@@ -202,10 +216,30 @@ PUT _zentity/models/zentity-tutorial-person
 }
 ```
 
+The response will look like this:
+
+```javascript
+{
+  "_index" : ".zentity-models",
+  "_type" : "doc",
+  "_id" : "zentity_tutorial_1_person",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 1,
+  "_primary_term" : 1
+}
+```
+
 
 ### <a name="review-attributes"></a>2.1 Review the attributes
 
-We defined two attributes called `"first_name"` and `"last_name"` as shown in this section:
+We defined two attributes called `"first_name"` and `"last_name"` as shown in
+this section:
 
 ```javascript
 {
@@ -220,8 +254,8 @@ We defined two attributes called `"first_name"` and `"last_name"` as shown in th
 }
 ```
 
-The default type of any attribute is `"string"`. You can exclude `"type"` to simplify the entity model
-like this:
+The default type of any attribute is `"string"`. You can exclude `"type"` to
+simplify the entity model like this:
 
 ```javascript
 {
@@ -247,18 +281,20 @@ We defined a single resolver called `"name_only"` as shown in this section:
 }
 ```
 
-This resolver requires only the `"first_name"` and `"last_name"` attributes to resolve an entity. So if you try to resolve a
-person named "Alice," then every document with the name "Alice" will be grouped with her. Obviously
-this would raise many false positives in the real world. We're doing this as a gentle introduction to
-the concept of entity resolution.
+This resolver requires only the `"first_name"` and `"last_name"` attributes to
+resolve an entity. So if you try to resolve a person named "Alice," then every
+document with the name "Alice" will be grouped with her. Obviously this would
+raise many false positives in the real world. We're doing this as a gentle
+introduction to the concept of entity resolution.
 
 > **Tip**
 > 
-> Most resolvers should use multiple attributes to resolve an entity to minimize false positives.
-Many people share the same name, but few people share the same name and address. Consider all the
-combinations of attributes that could resolve an entity with confidence, and then create a resolver
-for each combination. [Other tutorials](/docs/basic-usage) explore how to use resolvers with
-multiple attributes.
+> Most resolvers should use multiple attributes to resolve an entity to minimize
+false positives. Many people share the same name, but few people share the same
+name and address. Consider all the combinations of attributes that could resolve
+an entity with confidence, and then create a resolver for each combination.
+[Other tutorials](/docs/basic-usage) explore how to use resolvers with multiple
+attributes.
 
 
 ### <a name="review-matchers"></a>2.3 Review the matchers
@@ -279,7 +315,8 @@ We defined a single matcher called `"simple"` as shown in this section:
 }
 ```
 
-This matcher uses a simple [`match` clause](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html):
+This matcher uses a simple [`match`](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html)
+clause:
 
 ```javascript
 {
@@ -289,9 +326,10 @@ This matcher uses a simple [`match` clause](https://www.elastic.co/guide/en/elas
 }
 ```
 
-The `"{{ field }}"` and `"{{ value }}"` strings are special variables. Every matcher should have these
-variables defined somewhere in the `"clause"` field. zentity will replace the `"{{ field }}"` variable
-with the name of an index field and the `"{{ value }}"` variable with the value of an attribute.
+The `"{{ field }}"` and `"{{ value }}"` strings are special variables. Every
+matcher should have these variables defined somewhere in the `"clause"` field.
+zentity will replace the `"{{ field }}"` variable with the name of an index
+field and the `"{{ value }}"` variable with the value of an attribute.
 
 
 ### <a name="review-indices"></a>2.4 Review the indices
@@ -301,7 +339,7 @@ We defined a single index as shown in this section:
 ```javascript
 {
   "indices": {
-    ".zentity-tutorial-index": {
+    "zentity_tutorial_1_exact_name_matching": {
       "fields": {
         "first_name": {
           "attribute": "first_name",
@@ -324,7 +362,7 @@ Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
 person with a known first name and last name:
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person?pretty
+POST _zentity/resolution/zentity_tutorial_1_person?pretty
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -341,7 +379,7 @@ The results will look like this:
   "hits" : {
     "total" : 2,
     "hits" : [ {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_1_exact_name_matching",
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
@@ -360,7 +398,7 @@ The results will look like this:
         "street" : "123 Main St"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_1_exact_name_matching",
       "_type" : "_doc",
       "_id" : "3",
       "_hop" : 0,
@@ -383,20 +421,24 @@ The results will look like this:
 }
 ```
 
-As expected, we retrieved two documents each with a first name that exactly matches "Allie" and a last name
-that exactly matches "Jones." All other documents, including those that were similar to these, were excluded from
-the results because we required exact matches on those two fields.
+As expected, we retrieved two documents each with a first name that exactly
+matches "Allie" and a last name that exactly matches "Jones." All other
+documents, including those that were similar to these, were excluded from the
+results because we required exact matches on those two fields.
 
 
 ## <a name="conclusion"></a>Conclusion
 
-Congratulations! You just did one of the simplest forms of entity resolution &ndash; exact name matching.
+Congratulations! You just did one of the simplest forms of entity resolution
+&ndash; exact name matching.
 
 Not too exciting yet, right? Let's make things a little more interesting.
 
 The next tutorial will show how you can accomplish [robust name matching](/docs/basic-usage/robust-name-matching)
-using multiple forms of a name to handle challenges such as typos or phonetic variance. You will resolve an entity
-using a **single attribute** matched to **multiple fields** of a **single index**, rather than a single field of a single index.
+using multiple forms of a name to handle challenges such as typos or phonetic
+variance. You will resolve an entity using a **single attribute** matched to
+**multiple fields** of a **single index**, rather than a single field of a
+single index.
 
 
 &nbsp;

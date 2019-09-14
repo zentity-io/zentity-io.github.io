@@ -30,8 +30,9 @@ Let's dive in.
 
 > **Important**
 > 
-> You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch), [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation) to complete this tutorial.
-> This tutorial was tested with [zentity-1.0.2-elasticsearch-6.7.0](/docs/releases).
+> You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch),
+> [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation)
+> to complete this tutorial. This tutorial was tested with [zentity-1.4.2-elasticsearch-7.3.1](/docs/releases).
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
@@ -39,15 +40,17 @@ Let's dive in.
 
 ### <a name="open-kibana-console-ui"></a>1.1 Open the Kibana Console UI
 
-The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html) makes it easy to submit requests to Elasticsearch and read responses.
+The [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html)
+makes it easy to submit requests to Elasticsearch and read responses.
 
 
 ### <a name="delete-old-tutorial-indices"></a>1.2 Delete any old tutorial indices
 
-Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.
+Let's start from scratch. Delete any tutorial indices you might have created from
+other tutorials.
 
 ```javascript
-DELETE .zentity-tutorial-*
+DELETE zentity_tutorial_7_*
 ```
 
 
@@ -56,7 +59,7 @@ DELETE .zentity-tutorial-*
 Now create the index for this tutorial.
 
 ```javascript
-PUT .zentity-tutorial-index
+PUT zentity_tutorial_7_matcher_parameters
 {
   "settings": {
     "index": {
@@ -94,36 +97,34 @@ PUT .zentity-tutorial-index
     }
   },
   "mappings": {
-    "_doc": {
-      "properties": {
-        "id": {
-          "type": "keyword"
-        },
-        "first_name": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "name_clean"
-            }
+    "properties": {
+      "id": {
+        "type": "keyword"
+      },
+      "first_name": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "name_clean"
           }
-        },
-        "last_name": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "name_clean"
-            }
+        }
+      },
+      "last_name": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "name_clean"
           }
-        },
-        "phone": {
-          "type": "text",
-          "fields": {
-            "clean": {
-              "type": "text",
-              "analyzer": "phone_clean"
-            }
+        }
+      },
+      "phone": {
+        "type": "text",
+        "fields": {
+          "clean": {
+            "type": "text",
+            "analyzer": "phone_clean"
           }
         }
       }
@@ -139,15 +140,15 @@ Add the tutorial data to the index.
 
 ```javascript
 POST _bulk?refresh
-{"index": {"_id": "1", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "1", "_index": "zentity_tutorial_7_matcher_parameters"}}
 {"first_name": "Allie", "id": "1", "last_name": "Jones", "phone": "202-555-1234"}
-{"index": {"_id": "2", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "2", "_index": "zentity_tutorial_7_matcher_parameters"}}
 {"first_name": "Alicia", "id": "2", "last_name": "Johnson", "phone": "202-123-4567"}
-{"index": {"_id": "3", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "3", "_index": "zentity_tutorial_7_matcher_parameters"}}
 {"first_name": "Allie", "id": "3", "last_name": "Joans", "phone": "202-555-1432"}
-{"index": {"_id": "4", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "4", "_index": "zentity_tutorial_7_matcher_parameters"}}
 {"first_name": "Ellie", "id": "4", "last_name": "Jones", "phone": "202-555-1234"}
-{"index": {"_id": "5", "_index": ".zentity-tutorial-index", "_type": "_doc"}}
+{"index": {"_id": "5", "_index": "zentity_tutorial_7_matcher_parameters"}}
 {"first_name": "Ali", "id": "5", "last_name": "Jones", "phone": "202-555-1234"}
 ```
 
@@ -164,10 +165,11 @@ Here's what the tutorial data looks like.
 
 ## <a name="create-entity-model"></a>2. Create the entity model
 
-Let's use the [Models API](/docs/rest-apis/models-api) to create the entity model below. We'll review the matchers in depth.
+Let's use the [Models API](/docs/rest-apis/models-api) to create the entity
+model below. We'll review the matchers in depth.
 
 ```javascript
-PUT _zentity/models/zentity-tutorial-person
+PUT _zentity/models/zentity_tutorial_7_person
 {
   "attributes": {
     "first_name": {
@@ -211,7 +213,7 @@ PUT _zentity/models/zentity-tutorial-person
     }
   },
   "indices": {
-    ".zentity-tutorial-index": {
+    "zentity_tutorial_7_matcher_parameters": {
       "fields": {
         "first_name.clean": {
           "attribute": "first_name",
@@ -234,7 +236,8 @@ PUT _zentity/models/zentity-tutorial-person
 
 ### <a name="review-matchers"></a>2.1 Review the matchers
 
-We defined two matchers called `"fuzzy"` and `"fuzzy_params"` as shown in this section:
+We defined two matchers called `"fuzzy"` and `"fuzzy_params"` as shown in this
+section:
 
 ```javascript
 {
@@ -274,7 +277,11 @@ According to the [entity model specification](/docs/entity-models/specification)
 the [`"clause"`](/docs/entity-models/specification#matchers.MATCHER_NAME.clause)
 of any matcher requires two variables:
 
-> Matcher clauses use Mustache syntax to pass two important variables: **`{{ field }}`** and **`{{ value }}`**. The `field` variable will be populated with the index field that maps to the attribute. The `value` field will be populated with the value that will be queried for that attribute. This syntax is the same as the one used by Elasticsearch [search templates](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html).
+> Matcher clauses use Mustache syntax to pass two important variables:
+**`{{ field }}`** and **`{{ value }}`**. The `field` variable will be populated
+with the index field that maps to the attribute. The `value` field will be
+populated with the value that will be queried for that attribute. This syntax is
+the same as the one used by Elasticsearch [search templates](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html).
 
 Let's look at our `"fuzzy"` matcher. This matcher uses no params.
 
@@ -334,7 +341,7 @@ Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
 person with a known first name, last name, and phone number:
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person?pretty&_source=false
+POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -352,7 +359,7 @@ The results will look like this:
   "hits" : {
     "total" : 2,
     "hits" : [ {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
@@ -362,7 +369,7 @@ The results will look like this:
         "phone" : "202-555-1234"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
@@ -391,7 +398,7 @@ one character difference to match.
 Let's set the value of `"fuzziness"` to `2` for our `"first_name"` attribute.
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person?pretty&_source=false
+POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
 {
   "attributes": {
     "first_name": {
@@ -414,7 +421,7 @@ The results will look like this:
   "hits" : {
     "total" : 3,
     "hits" : [ {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
@@ -424,7 +431,7 @@ The results will look like this:
         "phone" : "202-555-1234"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
@@ -434,7 +441,7 @@ The results will look like this:
         "phone" : "202-555-1234"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "5",
       "_hop" : 0,
@@ -454,7 +461,7 @@ This returned three of the four matching documents. The first names "Allie" and
 Let's also set the value of `"fuzziness"` to `2` for our `"last_name"` attribute.
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person?pretty&_source=false
+POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
 {
   "attributes": {
     "first_name": {
@@ -482,7 +489,7 @@ The results will look like this:
   "hits" : {
     "total" : 4,
     "hits" : [ {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
@@ -492,7 +499,7 @@ The results will look like this:
         "phone" : "202-555-1234"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "3",
       "_hop" : 0,
@@ -502,7 +509,7 @@ The results will look like this:
         "phone" : "202-555-1432"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
@@ -512,7 +519,7 @@ The results will look like this:
         "phone" : "202-555-1234"
       }
     }, {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "5",
       "_hop" : 0,
@@ -535,7 +542,7 @@ length of the strings are greater than or equal to six characters.
 What if we disabled `"fuzziness"` on every attribute? Let's try it.
 
 ```javascript
-POST _zentity/resolution/zentity-tutorial-person?pretty&_source=false
+POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
 {
   "attributes": {
     "first_name": {
@@ -568,7 +575,7 @@ The results will look like this:
   "hits" : {
     "total" : 1,
     "hits" : [ {
-      "_index" : ".zentity-tutorial-index",
+      "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,

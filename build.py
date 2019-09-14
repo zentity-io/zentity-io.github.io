@@ -5,6 +5,7 @@ import copy
 import errno
 import json
 import os
+import re
 import shutil
 import sys
 from distutils.dir_util import copy_tree
@@ -20,11 +21,20 @@ from pygments.formatters import html
 META_DESCRIPTION_GENERIC = "zentity brings entity resolution to Elasticsearch. Connect the hidden fragments of an identity in your data. Fast, scalable, open source."
 META_DESCRIPTION_GENERIC_SHORT = "Connect the hidden fragments of an identity in your data. Fast, scalable, open source."
 
+RE_VERSION_ELASTICSEARCH = re.compile(r"-elasticsearch-(.+)$")
+RE_VERSION_ZENTITY = re.compile(r"^zentity-(.+)-elasticsearch")
+
 env = jinja2.Environment(
     loader = jinja2.FileSystemLoader("templates"),
     variable_start_string = "{$",
     variable_end_string = "$}"
 )
+
+def parse_latest_version(latest_version):
+    return {
+        "zentity": re.findall(RE_VERSION_ZENTITY, latest_version)[0],
+        "elasticsearch": re.findall(RE_VERSION_ELASTICSEARCH, latest_version)[0]
+    }
 
 class ZentityRenderer(mistune.Renderer):
     
@@ -69,232 +79,239 @@ class ZentityRenderer(mistune.Renderer):
 def fullpath(filename):
     return (os.path.dirname(os.path.abspath(__file__)) + filename).replace("\\", "/")
 
-def markdown(filename):
+def markdown(filename, args):
     content = ""
     with open(fullpath(filename), "rb") as file:
         content = file.read().decode("utf8")
+    markdownEnv = jinja2.Environment(
+        loader = jinja2.BaseLoader(),
+        variable_start_string = "{$",
+        variable_end_string = "$}"
+    )
+    content = markdownEnv.from_string(content).render(**args)
     markdown = mistune.Markdown(renderer=ZentityRenderer())
     return markdown(content)
 
-PAGES = {
-    "/": {
-        "vars": {
-            "title": "Entity Resolution for Elasticsearch",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/index.md"),
-            "home": True
-        }
-    },
-    "/docs": {
-        "vars": {
-            "title": "Documentation",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/index.md")
-        }
-    },
-    "/docs/installation": {
-        "vars": {
-            "title": "Installation",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/installation.md")
-        }
-    },
-    "/docs/basic-usage": {
-        "vars": {
-            "title": "Basic Usage",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/basic-usage.md")
-        }
-    },
-    "/docs/basic-usage/exact-name-matching": {
-        "vars": {
-            "title": "Exact Name Matching",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/basic-usage/exact-name-matching.md")
-        }
-    },
-    "/docs/basic-usage/robust-name-matching": {
-        "vars": {
-            "title": "Robust Name Matching",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/basic-usage/robust-name-matching.md")
-        }
-    },
-    "/docs/basic-usage/multiple-attribute-resolution": {
-        "vars": {
-            "title": "Multiple Attribute Resolution",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/basic-usage/multiple-attribute-resolution.md")
-        }
-    },
-    "/docs/basic-usage/multiple-resolver-resolution": {
-        "vars": {
-            "title": "Multiple Resolver Resolution",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/basic-usage/multiple-resolver-resolution.md")
-        }
-    },
-    "/docs/basic-usage/cross-index-resolution": {
-        "vars": {
-            "title": "Cross Index Resolution",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/basic-usage/cross-index-resolution.md")
-        }
-    },
-    "/docs/basic-usage/scoping-resolution": {
-        "vars": {
-            "title": "Scoping Resolution",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/basic-usage/scoping-resolution.md")
-        }
-    },
-    "/docs/advanced-usage": {
-        "vars": {
-            "title": "Advanced Usage",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/advanced-usage.md")
-        }
-    },
-    "/docs/advanced-usage/matcher-parameters": {
-        "vars": {
-            "title": "Matcher Parameters",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/advanced-usage/matcher-parameters.md")
-        }
-    },
-    "/docs/advanced-usage/date-attributes": {
-        "vars": {
-            "title": "Date Attributes",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/advanced-usage/date-attributes.md")
-        }
-    },
-    "/docs/advanced-usage/payload-attributes": {
-        "vars": {
-            "title": "Payload Attributes",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/advanced-usage/payload-attributes.md")
-        }
-    },
-    "/docs/entity-models": {
-        "vars": {
-            "title": "Entity Models",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/entity-models.md")
-        }
-    },
-    "/docs/entity-models/specification": {
-        "vars": {
-            "title": "Entity Model Specification",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/entity-models/specification.md")
-        }
-    },
-    "/docs/entity-models/tips": {
-        "vars": {
-            "title": "Entity Modeling Tips",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/entity-models/tips.md")
-        }
-    },
-    "/docs/entity-resolution": {
-        "vars": {
-            "title": "Entity Resolution",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/entity-resolution.md")
-        }
-    },
-    "/docs/entity-resolution/input-specification": {
-        "vars": {
-            "title": "Entity Resolution Input Specification",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/entity-resolution/input.md")
-        }
-    },
-    "/docs/entity-resolution/output-specification": {
-        "vars": {
-            "title": "Entity Resolution Output Specification",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/entity-resolution/output.md")
-        }
-    },
-    "/docs/rest-apis": {
-        "vars": {
-            "title": "REST APIs",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/rest-apis.md")
-        }
-    },
-    "/docs/rest-apis/setup-api": {
-        "vars": {
-            "title": "Setup API",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/rest-apis/setup-api.md")
-        }
-    },
-    "/docs/rest-apis/models-api": {
-        "vars": {
-            "title": "Models API",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/rest-apis/models-api.md")
-        }
-    },
-    "/docs/rest-apis/resolution-api": {
-        "vars": {
-            "title": "Resolution API",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/rest-apis/resolution-api.md")
-        }
-    },
-    "/docs/security": {
-        "vars": {
-            "title": "Security",
-            "meta_description": META_DESCRIPTION_GENERIC,
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/docs/security.md")
-        }
-    },
-    "/releases": {
-        "vars": {
-            "title": "Releases",
-            "meta_description": "Downloads and release notes for zentity.",
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/releases.md")
-        }
-    },
-    "/sandbox": {
-        "vars": {
-            "title": "Sandbox",
-            "meta_description": "Download an Elasticsearch development environment preloaded with zentity, analysis plugins, real data, and sample entity models.",
-            "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
-            "content": markdown("/sandbox.md")
+def PAGES(args):
+    return {
+        "/": {
+            "vars": {
+                "title": "Entity Resolution for Elasticsearch",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/index.md", args),
+                "home": True
+            }
+        },
+        "/docs": {
+            "vars": {
+                "title": "Documentation",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/index.md", args)
+            }
+        },
+        "/docs/installation": {
+            "vars": {
+                "title": "Installation",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/installation.md", args)
+            }
+        },
+        "/docs/basic-usage": {
+            "vars": {
+                "title": "Basic Usage",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/basic-usage.md", args)
+            }
+        },
+        "/docs/basic-usage/exact-name-matching": {
+            "vars": {
+                "title": "Exact Name Matching",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/basic-usage/exact-name-matching.md", args)
+            }
+        },
+        "/docs/basic-usage/robust-name-matching": {
+            "vars": {
+                "title": "Robust Name Matching",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/basic-usage/robust-name-matching.md", args)
+            }
+        },
+        "/docs/basic-usage/multiple-attribute-resolution": {
+            "vars": {
+                "title": "Multiple Attribute Resolution",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/basic-usage/multiple-attribute-resolution.md", args)
+            }
+        },
+        "/docs/basic-usage/multiple-resolver-resolution": {
+            "vars": {
+                "title": "Multiple Resolver Resolution",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/basic-usage/multiple-resolver-resolution.md", args)
+            }
+        },
+        "/docs/basic-usage/cross-index-resolution": {
+            "vars": {
+                "title": "Cross Index Resolution",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/basic-usage/cross-index-resolution.md", args)
+            }
+        },
+        "/docs/basic-usage/scoping-resolution": {
+            "vars": {
+                "title": "Scoping Resolution",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/basic-usage/scoping-resolution.md", args)
+            }
+        },
+        "/docs/advanced-usage": {
+            "vars": {
+                "title": "Advanced Usage",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/advanced-usage.md", args)
+            }
+        },
+        "/docs/advanced-usage/matcher-parameters": {
+            "vars": {
+                "title": "Matcher Parameters",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/advanced-usage/matcher-parameters.md", args)
+            }
+        },
+        "/docs/advanced-usage/date-attributes": {
+            "vars": {
+                "title": "Date Attributes",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/advanced-usage/date-attributes.md", args)
+            }
+        },
+        "/docs/advanced-usage/payload-attributes": {
+            "vars": {
+                "title": "Payload Attributes",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/advanced-usage/payload-attributes.md", args)
+            }
+        },
+        "/docs/entity-models": {
+            "vars": {
+                "title": "Entity Models",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/entity-models.md", args)
+            }
+        },
+        "/docs/entity-models/specification": {
+            "vars": {
+                "title": "Entity Model Specification",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/entity-models/specification.md", args)
+            }
+        },
+        "/docs/entity-models/tips": {
+            "vars": {
+                "title": "Entity Modeling Tips",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/entity-models/tips.md", args)
+            }
+        },
+        "/docs/entity-resolution": {
+            "vars": {
+                "title": "Entity Resolution",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/entity-resolution.md", args)
+            }
+        },
+        "/docs/entity-resolution/input-specification": {
+            "vars": {
+                "title": "Entity Resolution Input Specification",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/entity-resolution/input.md", args)
+            }
+        },
+        "/docs/entity-resolution/output-specification": {
+            "vars": {
+                "title": "Entity Resolution Output Specification",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/entity-resolution/output.md", args)
+            }
+        },
+        "/docs/rest-apis": {
+            "vars": {
+                "title": "REST APIs",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/rest-apis.md", args)
+            }
+        },
+        "/docs/rest-apis/setup-api": {
+            "vars": {
+                "title": "Setup API",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/rest-apis/setup-api.md", args)
+            }
+        },
+        "/docs/rest-apis/models-api": {
+            "vars": {
+                "title": "Models API",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/rest-apis/models-api.md", args)
+            }
+        },
+        "/docs/rest-apis/resolution-api": {
+            "vars": {
+                "title": "Resolution API",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/rest-apis/resolution-api.md", args)
+            }
+        },
+        "/docs/security": {
+            "vars": {
+                "title": "Security",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/security.md", args)
+            }
+        },
+        "/releases": {
+            "vars": {
+                "title": "Releases",
+                "meta_description": "Downloads and release notes for zentity.",
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/releases.md", args)
+            }
+        },
+        "/sandbox": {
+            "vars": {
+                "title": "Sandbox",
+                "meta_description": "Download an Elasticsearch development environment preloaded with zentity, analysis plugins, real data, and sample entity models.",
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/sandbox.md", args)
+            }
         }
     }
-}
 
 def wipe_build_dir():
     filepath = fullpath("/build")
@@ -327,13 +344,14 @@ def build_page(page, args={}):
     vars.update(args)
     return env.get_template(template).render(**vars)
 
-def build_pages(pages=PAGES, args={}):
+def build_pages(pages, args={}):
     for uri_path, page in pages.iteritems():
         print "Building page: {}".format(uri_path)
         content = build_page(page, args)
         write_page(uri_path, content)
         
-def build(pages=PAGES, args={}):
+def build(args={}):
+    pages = PAGES(args)
     wipe_build_dir()
     copy_assets_dir()
     build_pages(pages, args)
@@ -341,9 +359,21 @@ def build(pages=PAGES, args={}):
 if __name__ == "__main__":
     args = {}
     args["test"] = False
+    args["latest"] = None
     for arg in sys.argv[1:]:
         if arg == "--test":
             args["test"] = True
+        if arg.startswith("--latest="):
+            args["latest"] = parse_latest_version(arg.split("=", 1)[1])
+    if not args["latest"]:
+        print "Missing required --latest argument"
+        sys.exit(0)
+    if not args["latest"]["zentity"]:
+        print "Missing required zentity version in --latest argument"
+        sys.exit(0)
+    if not args["latest"]["elasticsearch"]:
+        print "Missing required elasticsearch version --latest argument"
+        sys.exit(0)
     print args
-    build(args=args)
+    build(args)
     

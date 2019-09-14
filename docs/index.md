@@ -6,7 +6,6 @@
 ## <a name="getting-started"></a>Getting Started
 
 - [Installation](/docs/installation)
-[comment]: # (- [Basic Usage](/docs/basic-usage))
 
 
 ## <a name="tutorials"></a>Tutorials
@@ -22,9 +21,6 @@
     - [Matcher Parameters](/docs/advanced-usage/matcher-parameters)
     - [Date Attributes](/docs/advanced-usage/date-attributes)
     - [Payload Attributes](/docs/advanced-usage/payload-attributes)
-[comment]: # ( - Examples)
-[comment]: # (     - U.S. Health Care Providers)
-[comment]: # (     - HTTP Sessions)
 
 ## <a name="reference"></a>Reference
 

@@ -5,7 +5,7 @@
 
 Creates the `.zentity-models` index.
 
-The request accepts two endpoints:
+The request accepts one endpoint:
 
 ```javascript
 POST _zentity/_setup

@@ -11,7 +11,8 @@ Download and install: [https://www.elastic.co/downloads/elasticsearch](https://w
 
 ## <a name="install-zentity"></a>Step 2. Install zentity
 
-Once you have installed Elasticsearch, you can install zentity from a remote URL or a local file.
+Once you have installed Elasticsearch, you can install zentity from a remote URL
+or a local file.
 
 
 ### <a name="install-zentity-remote-url"></a>Install from remote URL
@@ -22,7 +23,7 @@ Once you have installed Elasticsearch, you can install zentity from a remote URL
 
 Example:
 
-`elasticsearch-plugin install https://zentity.io/releases/zentity-1.4.2-elasticsearch-7.3.2.zip`
+`elasticsearch-plugin install https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-{$ latest.elasticsearch $}.zip`
 
 
 ### <a name="install-zentity-local-file"></a>Install from local file
@@ -33,7 +34,7 @@ Example:
 
 Example:
 
-`elasticsearch-plugin install file:///path/to/zentity-1.4.2-elasticsearch-7.3.2.zip`
+`elasticsearch-plugin install file:///path/to/zentity-{$ latest.zentity $}-elasticsearch-{$ latest.elasticsearch $}.zip`
 
 
 ## <a name="verify-installation"></a>Step 3. Verify installation
@@ -50,35 +51,63 @@ Example:
   "description": "Real-time entity resolution for Elasticsearch.",
   "website": "http://zentity.io",
   "version": {
-    "zentity": "1.4.2",
-    "elasticsearch": "7.3.2"
+    "zentity": "{$ latest.zentity $}",
+    "elasticsearch": "{$ latest.elasticsearch $}"
   }
 }
 ```
 
-## <a name="installation-elastic-cloud"></a>Installation on Elastic Cloud
+## <a name="run-setup"></a>Step 4. Invoke the Setup API (Optional)
 
-[Elastic Cloud](https://www.elastic.co/cloud) is a hosted Elasticsearch service offered by Elastic,
-the creators of Elasticsearch and the Elastic Stack. Elastic Cloud supports the usage of custom
-Elasticsearch plugins such as zentity.
+The [Setup API](/docs/rest-apis/setup-api) creates the `.zentity-models` index.
+This is optional to invoke because zentity will create the index if it doesn't
+already exist upon invoking the [Models API](/docs/rest-apis/models-api).
 
-To install zentity on an Elastic Cloud cluster:
+**Example Request**
+
+`POST http://localhost:9200/_zentity/_setup`
+
+**Example Response**
+
+```javascript
+{
+  "acknowledged": true
+}
+```
+
+## <a name="installation-elasticsearch-service"></a>Installation on Elasticsearch Service
+
+[Elasticsearch Service](https://www.elastic.co/products/elasticsearch/service)
+is a hosted service offered by Elastic, the creators of Elasticsearch and the
+Elastic Stack. Elasticsearch Service supports the usage of custom Elasticsearch
+plugins such as zentity.
+
+To install zentity on an Elasticsearch Service deployment:
 
 1. Browse the [releases](/releases) and download one of the .zip files.
-2. Sign into Elastic Cloud and navigate to the [Custom Plugins](https://cloud.elastic.co/plugins) tab.
-3. Click the "Add plugin" button.
-4. Name the plugin "zentity".
-5. Specify the version of your Elasticsearch cluster.
-6. Under plugin type, select "An installable plugin (Compiled, no source code)".
-7. Click the "Create plugin" button.
-8. Upload the .zip file under the "Plugin file" section.
-9. Create or restart your cluster. If creating a cluster, select "zentity" under the list of custom plugins.
+2. [Sign in](https://cloud.elastic.co/) to Elasticsearch Service.
+3. Navigate to the [Custom Plugins](https://cloud.elastic.co/plugins) tab.
+4. Click the "Add plugin" button.
+5. Name the plugin "zentity".
+6. Specify the version of your Elasticsearch deployment.
+7. Under plugin type, select "An installable plugin (Compiled, no source code)".
+8. Click the "Create plugin" button.
+9. Upload the .zip file under the "Plugin file" section.
+10. Create or restart your deployment. If creating a deployment, select "zentity" under the list of custom plugins.
 
-If you will be creating indices and performing entity resolution with data that has names of people or
-companies or other fields that often have data quality challenges, consider also selecting
-[analysis-icu](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html)
+If you will be creating indices and performing entity resolution with data that
+has names of people or companies or other fields that often have data quality
+challenges, consider also selecting [analysis-icu](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html)
 and [analysis-phonetic](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html)
-from the list of plugins, which can help you index cleaner representations of that data.
+from the list of plugins, which can help you index cleaner representations of
+that data.
+
+> **Important**
+> 
+> Amazon's Elasticsearch Service does not let you install community plugins.
+> You will need to use the official Elasticsearch Service offered by Elastic.
+> You can [compare the services](https://www.elastic.co/aws-elasticsearch-service#aws-elasticsearch-service:-amazon-vs.-elastic)
+> and then learn [how to migrate from AWS to Elastic](https://www.elastic.co/blog/migrating-from-aws-elasticsearch-to-elasticsearch-service-on-elastic-cloud). 
 
 
 ## <a name="sandbox"></a>Sandbox
