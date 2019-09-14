@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=340253819"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=138127979"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=609162698"></script>
+    </script><script src="/js/all.js?id=917205535"></script>
   </head>
   <body>
     <div id="app" >
@@ -71,9 +71,25 @@ tutorials before completing these advanced usage tutorials.</p>
 </ol>
 <hr>
 <h1><a name="payload-attributes"></a>Payload Attributes</h1>
-<p>Payload attributes are data elements that don't represent the entity that you resolve, but are worth retrieving when you resolve the entity. They are not used in matching, but they relate to the entity nonetheless. Think of payload attributes as data that you join to the entity, so that you can analyze information that relates to the entity.</p>
-<p>For example, let's say you have two indices with purchase order receipts, where each document has details about the customer, the product, and the amount paid. You might want to resolve a customer or a product from the two indices. You might also want to retrieve information about the amount paid so that you can calculate its sum. "Amount paid" is not an attribute of the customer or the product. But you can return the amount paid simply by defining it as an attribute.</p>
-<p>There is no distinct concept of a payload attribute in zentity. Attributes will automatically function as payloads if you don't define a <a href="/docs/entity-models/specification#indices.INDEX_NAME.fields.INDEX_FIELD_NAME.matcher"><code>"matcher"</code></a> for the field associated with that attribute in the <a href="/docs/entity-models/specification#indices"><code>"indices"</code></a> object of the entity model. Without a matcher, the attribute will not be used for matching. But if two records are matched with other attributes in the index, then the attributes without matchers will be returned with the result as payload attributes.</p>
+<p>Payload attributes are data elements that don't represent the entity that you
+resolve, but are worth retrieving when you resolve the entity. They are not used
+in matching, but they relate to the entity nonetheless. Think of payload
+attributes as data that you join to the entity, so that you can analyze
+information that relates to the entity.</p>
+<p>For example, let's say you have two indices with purchase order receipts, where
+each document has details about the customer, the product, and the amount paid.
+You might want to resolve a customer or a product from the two indices. You
+might also want to retrieve information about the amount paid so that you can
+calculate its sum. "Amount paid" is not an attribute of the customer or the
+product. But you can return the amount paid simply by defining it as an
+attribute.</p>
+<p>There is no distinct concept of a payload attribute in zentity. Attributes will
+automatically function as payloads if you don't define a <a href="/docs/entity-models/specification#indices.INDEX_NAME.fields.INDEX_FIELD_NAME.matcher"><code>"matcher"</code></a>
+for the field associated with that attribute in the <a href="/docs/entity-models/specification#indices"><code>"indices"</code></a>
+object of the entity model. Without a matcher, the attribute will not be used
+for matching. But if two records are matched with other attributes in the index,
+then the attributes without matchers will be returned with the result as payload
+attributes.</p>
 <p>&nbsp;</p>
 <hr>
 <h4>Continue Reading</h4>

@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=970482422"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=202939009"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=802918984"></script>
+    </script><script src="/js/all.js?id=221976155"></script>
   </head>
   <body>
     <div id="app" >
@@ -65,28 +65,31 @@
 <p>The request accepts two endpoints:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0e31ba0db8d72b4a">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0b35963df5aa19c3">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a0e31ba0db8d72b4a"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span>
+          <span id="a0b35963df5aa19c3"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span>
 <span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 </pre></div>
 </span>
         </div>
         <p><strong>Example Request</strong></p>
-<p>This example request resolves a <code>person</code> identified by a <code>name</code>, a <code>dob</code>, and two <code>phone</code> values, while limiting the
-search to one index called <code>users_index</code> ane two resolvers called <code>name_dob</code> and <code>name_phone</code>. The request passes
-a param called <code>fuzziness</code> to the <code>phone</code> attribute, which can be referenced in any matcher clause that uses
-the <code>fuzziness</code> param. Note that an attribute can accept either an array of values or an object with the values
-specified in a field called <code>"values"</code>. It's also valid to specify an attribute with no values but to override
-the default params, such as to format the results of any date attributes in the response.</p>
+<p>This example request resolves a <code>person</code> identified by a <code>name</code>, a <code>dob</code>, and
+two <code>phone</code> values, while limiting the search to one index called <code>users_index</code>
+and two resolvers called <code>name_dob</code> and <code>name_phone</code>. The request passes a param
+called <code>fuzziness</code> to the <code>phone</code> attribute, which can be referenced in any
+matcher clause that uses the <code>fuzziness</code> param. Note that an attribute can
+accept either an array of values or an object with the values specified in a
+field called <code>"values"</code>. It's also valid to specify an attribute with no values
+but to override the default params, such as to format the results of any date
+attributes in the response.</p>
 <p>Read the <strong><a href="/docs/entity-resolution/input-specification">input specification</a></strong> for complete details about the structure of a request.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a67d87598ade95140">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab64157bddc3ed415">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a67d87598ade95140"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="ab64157bddc3ed415"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice Jones&quot;</span> <span class="p">],</span>
@@ -128,18 +131,21 @@ the default params, such as to format the results of any date attributes in the 
 </span>
         </div>
         <p><strong>Example Response</strong></p>
-<p>This example response took 64 milliseconds and returned 2 hits. The <code>_source</code> field contains the fields and values
-as they exist in the document indexed in Elasticsearch. The <code>_attributes</code> field contains any values from the
-<code>_source</code> field that can be mapped to the <a href="/docs/entity-models/specification#attributes"><code>"attributes"</code></a> field of the entity model.
-The <code>_hop</code> field shows the level of recursion at which the document was fetched. Entities with many documents can
-span many hops if they have highly varied attribute values.</p>
-<p>Read the <strong><a href="/docs/entity-resolution/output-specification">output specification</a></strong> for complete details about the structure of a response.</p>
+<p>This example response took 64 milliseconds and returned 2 hits. The <code>_source</code>
+field contains the fields and values as they exist in the document indexed in
+Elasticsearch. The <code>_attributes</code> field contains any values from the <code>_source</code>
+field that can be mapped to the <a href="/docs/entity-models/specification#attributes"><code>"attributes"</code></a>
+field of the entity model. The <code>_hop</code> field shows the level of recursion at
+which the document was fetched. Entities with many documents can span many hops
+if they have highly varied attribute values.</p>
+<p>Read the <strong><a href="/docs/entity-resolution/output-specification">output specification</a></strong>
+for complete details about the structure of a response.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#abd0eaae0480f41bd">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af4725d45c5869e61">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="abd0eaae0480f41bd"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="af4725d45c5869e61"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="mi">64</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>

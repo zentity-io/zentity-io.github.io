@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=682800515"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=229290166"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=742854334"></script>
+    </script><script src="/js/all.js?id=221012869"></script>
   </head>
   <body>
     <div id="app" >
@@ -63,10 +63,10 @@
 <h1><a name="input"></a>Entity Resolution Input Specification</h1>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a34ea270c7bccd017">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a201ce632a26c6a23">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a34ea270c7bccd017"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a201ce632a26c6a23"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -132,22 +132,27 @@
 </pre></div>
 </span>
         </div>
-        <p>Entity resolution inputs are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
-(e.g. <code>"attributes"</code>) are constant fields, uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable fields or values,
-and elipses (<code>...</code>) are optional repetitions of the preceding field or value.</p>
-<p>An entity resolution input has two objects where at least one must be present (<strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a></strong> and <strong><a href="#ids" onclick="to(window.location.pathname + '#ids', 'internal');"><code>"ids"</code></a></strong>),
-one optional object (<strong><a href="#scope" onclick="to(window.location.pathname + '#scope', 'internal');"><code>"scope"</code></a></strong>) and one object that is required only if <code>entity_type</code> is not specified in the endpoint
-of the request (<strong><a href="#model" onclick="to(window.location.pathname + '#model', 'internal');"><code>"model"</code></a></strong>).  Not all elements within these objects are required. Optional elements are noted in the
-descriptions of each element listed on this page. Some elements have alternate forms that are acceptable, and those are also noted
-in the descriptions of each element.</p>
+        <p>Entity resolution inputs are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the
+framework shown above, lowercase quoted values (e.g. <code>"attributes"</code>) are
+constant fields, uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable
+fields or values, and elipses (<code>...</code>) are optional repetitions of the preceding
+field or value.</p>
+<p>An entity resolution input has two objects where at least one must be present
+(<strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a></strong> and <strong><a href="#ids" onclick="to(window.location.pathname + '#ids', 'internal');"><code>"ids"</code></a></strong>), one optional object
+(<strong><a href="#scope" onclick="to(window.location.pathname + '#scope', 'internal');"><code>"scope"</code></a></strong>) and one object that is required only if <code>entity_type</code>
+is not specified in the endpoint of the request (<strong><a href="#model" onclick="to(window.location.pathname + '#model', 'internal');"><code>"model"</code></a></strong>).  Not
+all elements within these objects are required. Optional elements are noted in
+the descriptions of each element listed on this page. Some elements have
+alternate forms that are acceptable, and those are also noted in the
+descriptions of each element.</p>
 <h2><a name="attributes"></a><code>"attributes"</code></h2>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a9eea9ce519361655">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa1d1eb030f87b7dc">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a9eea9ce519361655"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aa1d1eb030f87b7dc"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -168,10 +173,10 @@ in the descriptions of each element.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a86952547fe8b28fe">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae7484fe9f67b80f7">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a86952547fe8b28fe"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ae7484fe9f67b80f7"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -200,10 +205,10 @@ in the descriptions of each element.</p>
         <p><strong>Shorthand Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a003ea066658287e2">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab700bf4c28fabd2d">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a003ea066658287e2"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab700bf4c28fabd2d"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">[</span>
       <span class="nx">ATTRIBUTE_VALUE</span><span class="p">,</span>
@@ -218,10 +223,10 @@ in the descriptions of each element.</p>
         <p><strong>Shorthand Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af594c1c9c657dda6">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6109e14e3705dc41">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af594c1c9c657dda6"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a6109e14e3705dc41"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span>
       <span class="s2">&quot;Allie Jones&quot;</span><span class="p">,</span>
@@ -235,17 +240,21 @@ in the descriptions of each element.</p>
 </pre></div>
 </span>
         </div>
-        <p>Attributes are elements that can assist the identification and resolution of entities. For example, some common
-attributes of a person include name, date of birth, and phone number. Each attribute has its own particular data
-qualities and purposes in the real world. Therefore, zentity matches the values of each attribute using logic that
-is distinct to each attribute.</p>
-<p>Some attributes can be matched using different methods. For example, a name could be matched by its exact value or its
-phonetic value. Therefore the entity model allows each attribute to have one or more matchers. A matcher is simply a
+        <p>Attributes are elements that can assist the identification and resolution of
+entities. For example, some common attributes of a person include name, date of
+birth, and phone number. Each attribute has its own particular data qualities
+and purposes in the real world. Therefore, zentity matches the values of each
+attribute using logic that is distinct to each attribute.</p>
+<p>Some attributes can be matched using different methods. For example, a name
+could be matched by its exact value or its phonetic value. Therefore the entity
+model allows each attribute to have one or more matchers. A matcher is simply a
 clause of a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html', 'outbound');" class="external"><code>"bool"</code> query</a>
-in Elasticsearch. This means that if <em>any</em> matcher of an attribute yields a match for a given value, then the attribute
-will be considered a match regardless of the results of the other matchers.</p>
+in Elasticsearch. This means that if <em>any</em> matcher of an attribute yields a
+match for a given value, then the attribute will be considered a match
+regardless of the results of the other matchers.</p>
 <h3><a name="attributes.ATTRIBUTE_NAME"></a><code>"attributes".ATTRIBUTE_NAME</code></h3>
-<p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>, <code>"dob"</code>, <code>"phone"</code>, etc.</p>
+<p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>,
+<code>"dob"</code>, <code>"phone"</code>, etc.</p>
 <p>The value of the field can be one of two things:</p>
 <ul>
 <li>An object that contains the <a href="#attributes.ATTRIBUTE_NAME.values" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.values', 'internal');"><code>"values"</code></a> and/or <a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"params</code>"</a> of the attribute.</li>
@@ -257,17 +266,24 @@ will be considered a match regardless of the results of the other matchers.</p>
 <li>Type: String</li>
 </ul>
 <h3><a name="attributes.ATTRIBUTE_NAME.type"></a><code>"attributes".ATTRIBUTE_NAME."values"</code></h3>
-<p>An array of attribute values. These values will serve as the initial inputs to the <a href="/docs/rest-apis/resolution-api">resolution job</a>.</p>
+<p>An array of attribute values. These values will serve as the initial inputs to
+the <a href="/docs/rest-apis/resolution-api">resolution job</a>.</p>
 <p>Each value must conform to the respective <a href="/docs/entity-models/specification#attributes.ATTRIBUTE_NAME.type">attribute type</a>
-specified in the <a href="/docs/entity-models">entity model</a>. For example, <a href="/docs/entity-models/specification#attribute-type-string">string</a> values
-must be JSON compliant string values, <a href="/docs/entity-models/specification#attribute-type-number">number</a> values must be JSON compliant number values,
-and <a href="/docs/entity-models/specification#attribute-type-date">date</a> values must include a <code>"format"</code> field in the <a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"params"</code></a>
-object if it was not already specified in either the attribute or matcher of the entity model.</p>
-<p>This field is not necessarily required. It would be valid to specify and attribute with no values and to override the
-<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"params"</code></a> of the attribute or matcher of the entity model. One reason might be to override the
-<code>"format"</code> param of a <a href="/docs/entity-models/specification#attribute-type-date"><code>"date"</code></a> attribute, which would affect the format of
-any date values for that attribute returned by the resolution job.</p>
-<p>At least one attribute must have the <code>"values"</code> field specified, otherwise there would be no input to supply to the resolution job.</p>
+specified in the <a href="/docs/entity-models">entity model</a>. For example,
+<a href="/docs/entity-models/specification#attribute-type-string">string</a> values must be
+JSON compliant string values, <a href="/docs/entity-models/specification#attribute-type-number">number</a>
+values must be JSON compliant number values, and <a href="/docs/entity-models/specification#attribute-type-date">date</a>
+values must include a <code>"format"</code> field in the <a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"params"</code></a>
+object if it was not already specified in either the attribute or matcher of the
+entity model.</p>
+<p>This field is not necessarily required. It would be valid to specify and
+attribute with no values and to override the <a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"params"</code></a>
+of the attribute or matcher of the entity model. One reason might be to override
+the <code>"format"</code> param of a <a href="/docs/entity-models/specification#attribute-type-date"><code>"date"</code></a>
+attribute, which would affect the format of any date values for that attribute
+returned by the resolution job.</p>
+<p>At least one attribute must have the <code>"values"</code> field specified, otherwise there
+would be no input to supply to the resolution job.</p>
 <ul>
 <li>Required: At least for one attribute</li>
 <li>Type: Array</li>
@@ -285,10 +301,11 @@ any date values for that attribute returned by the resolution job.</p>
 <li>Type: String</li>
 </ul>
 <h3><a name="attributes.ATTRIBUTE_NAME.params.PARAM_NAME.PARAM_VALUE"></a><code>"attributes".ATTRIBUTE_NAME."params".PARAM_NAME.PARAM_VALUE</code></h3>
-<p>A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
-will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
-<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in the model and
-<a href="#matchers.MATCHER_NAME.params" onclick="to(window.location.pathname + '#matchers.MATCHER_NAME.params', 'internal');"><code>"matchers".MATCHER_NAME."params"</code></a>.</p>
+<p>A value for the param. This can be any JSON compliant value such as a string,
+number, boolean, array, or object. The value will be serialized as a string when
+passed to the matcher clause. The value overrides the same field specified in
+<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in
+the model and <a href="#matchers.MATCHER_NAME.params" onclick="to(window.location.pathname + '#matchers.MATCHER_NAME.params', 'internal');"><code>"matchers".MATCHER_NAME."params"</code></a>.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Any</li>
@@ -297,10 +314,10 @@ will be serialized as a string when passed to the matcher clause. The value over
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aecf10ad945c3d6fb">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a30ac133abc783df9">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aecf10ad945c3d6fb"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a30ac133abc783df9"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;terms&quot;</span><span class="o">:</span> <span class="p">[</span>
     <span class="nx">TERM</span><span class="p">,</span>
     <span class="p">...</span>
@@ -312,10 +329,10 @@ will be serialized as a string when passed to the matcher clause. The value over
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aca129d04a199179d">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac871540289d4a0b4">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aca129d04a199179d"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ac871540289d4a0b4"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;terms&quot;</span><span class="o">:</span> <span class="p">[</span>
     <span class="s2">&quot;Allie Jones&quot;</span><span class="p">,</span>
     <span class="s2">&quot;Allison Jones-Smith&quot;</span><span class="p">,</span>
@@ -325,17 +342,18 @@ will be serialized as a string when passed to the matcher clause. The value over
 </pre></div>
 </span>
         </div>
-        <p>The <code>"terms"</code> field allows the first iteration of a <a href="/docs/rest-apis/resolution-api">resolution job</a> to begin with inputs
-that are not associated with any attributes. Each <a href="#terms.TERM" onclick="to(window.location.pathname + '#terms.TERM', 'internal');"><code>term</code></a> is supplied to each
-attribute of each resolver in the scope of the resolution job. This is a convenient way
-to resolve an entity quickly, because the user doesn't need to structure their search
-to conform to the entity model. The tradeoff is that the results are more prone to
-false positives.</p>
-<p>The <code>"terms"</code> field is only used in the first query to each index in a <a href="/docs/rest-apis/resolution-api">resolution job</a>.
-After that, the attributes are obtained from the documents and the job continues with those attributes values.</p>
-<p>When both <code>"attributes"</code> and <code>"terms"</code> are given, the first query to each index will create
-a filter tree for each of <code>"attributes"</code> and <code>"terms"</code>, and both filters must match for a
-document to match.</p>
+        <p>The <code>"terms"</code> field allows the first iteration of a <a href="/docs/rest-apis/resolution-api">resolution job</a>
+to begin with inputs that are not associated with any attributes. Each <a href="#terms.TERM" onclick="to(window.location.pathname + '#terms.TERM', 'internal');"><code>term</code></a>
+is supplied to each attribute of each resolver in the scope of the resolution
+job. This is a convenient way to resolve an entity quickly, because the user
+doesn't need to structure their search to conform to the entity model. The
+tradeoff is that the results are more prone to false positives.</p>
+<p>The <code>"terms"</code> field is only used in the first query to each index in a
+<a href="/docs/rest-apis/resolution-api">resolution job</a>. After that, the attributes are
+obtained from the documents and the job continues with those attributes values.</p>
+<p>When both <code>"attributes"</code> and <code>"terms"</code> are given, the first query to each index
+will create a filter tree for each of <code>"attributes"</code> and <code>"terms"</code>, and both
+filters must match for a document to match.</p>
 <ul>
 <li>Required: Only if <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> and <a href="#ids" onclick="to(window.location.pathname + '#ids', 'internal');"><code>"ids"</code></a> are not given</li>
 <li>Type: Array</li>
@@ -350,10 +368,10 @@ document to match.</p>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a091f3ab887a54040">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4a4a5195340b9fec">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a091f3ab887a54040"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a4a4a5195340b9fec"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;ids&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">INDEX_NAME</span><span class="o">:</span> <span class="p">[</span>
       <span class="nx">DOC_ID</span><span class="p">,</span>
@@ -368,10 +386,10 @@ document to match.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aafdc19f832cbf7ef">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a663349e8d502a118">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aafdc19f832cbf7ef"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a663349e8d502a118"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;ids&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">[</span>
       <span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
@@ -385,18 +403,22 @@ document to match.</p>
 </pre></div>
 </span>
         </div>
-        <p>The <code>"ids"</code> field allows the first iteration of a <a href="/docs/rest-apis/resolution-api">resolution job</a> to begin by selecting one or more documents
-by <code>_id</code> for one or more indices. Like <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a>, any document that matches the <code>_id</code> values will be considered
-a match to the entity. Documents are queried by <code>_id</code> only within a given index to prevent collisions in which
-the same <code>_id</code> is present in two or more indices.</p>
-<p>The <code>"ids"</code> field is only used in the first query to each index in a resolution job.
-After that, the attributes are obtained from the documents and the job continues with those attributes values.</p>
+        <p>The <code>"ids"</code> field allows the first iteration of a <a href="/docs/rest-apis/resolution-api">resolution job</a>
+to begin by selecting one or more documents by <code>_id</code> for one or more indices.
+Like <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a>, any document that matches the <code>_id</code> values
+will be considered a match to the entity. Documents are queried by <code>_id</code> only
+within a given index to prevent collisions in which the same <code>_id</code> is present in
+two or more indices.</p>
+<p>The <code>"ids"</code> field is only used in the first query to each index in a resolution
+job. After that, the attributes are obtained from the documents and the job
+continues with those attributes values.</p>
 <ul>
 <li>Required: Only if <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> and <a href="#terms" onclick="to(window.location.pathname + '#terms', 'internal');"><code>"terms"</code></a> are not given</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="ids.INDEX_NAME"></a><code>"ids".INDEX_NAME</code></h3>
-<p>The name of a distinct index. Any <code>_id</code> values specified in this array will be queried within that index.</p>
+<p>The name of a distinct index. Any <code>_id</code> values specified in this array will be
+queried within that index.</p>
 <ul>
 <li>Required: Yes</li>
 <li>Type: Array</li>
@@ -411,10 +433,10 @@ After that, the attributes are obtained from the documents and the job continues
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a53cc3a7bd1530bc4">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a975055995411ee40">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a53cc3a7bd1530bc4"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a975055995411ee40"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exclude&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -458,10 +480,10 @@ After that, the attributes are obtained from the documents and the job continues
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4364c1133bb2e95b">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab2149daf5236634e">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a4364c1133bb2e95b"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab2149daf5236634e"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;scope&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exclude&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -496,116 +518,138 @@ After that, the attributes are obtained from the documents and the job continues
 </pre></div>
 </span>
         </div>
-        <p>An optional field that contains an object to limit the scope of the <a href="/docs/rest-apis/resolution-api">resolution request</a>.
-Scope can be controlled by <a href="#scope.exclude" onclick="to(window.location.pathname + '#scope.exclude', 'internal');">excluding</a> ("blacklisting") or <a href="#scope.include" onclick="to(window.location.pathname + '#scope.include', 'internal');">including</a> ("whitelisting") attribute values,
-indices, and resolvers.</p>
+        <p>An optional field that contains an object to limit the scope of the
+<a href="/docs/rest-apis/resolution-api">resolution request</a>. Scope can be controlled by
+<a href="#scope.exclude" onclick="to(window.location.pathname + '#scope.exclude', 'internal');">excluding</a> ("blacklisting") or <a href="#scope.include" onclick="to(window.location.pathname + '#scope.include', 'internal');">including</a>
+("whitelisting") attribute values, indices, and resolvers.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="scope.exclude"></a><code>"scope"."exclude"</code></h3>
-<p>An optional field that excludes <a href="#scope.exclude.attributes" onclick="to(window.location.pathname + '#scope.exclude.attributes', 'internal');"><code>"attributes"</code></a>, <a href="#scope.exclude.indices" onclick="to(window.location.pathname + '#scope.exclude.indices', 'internal');"><code>"indices"</code></a>, or <a href="#scope.exclude.resolvers" onclick="to(window.location.pathname + '#scope.exclude.resolvers', 'internal');"><code>"resolvers"</code></a>
-from the <a href="/docs/rest-apis/resolution-api">resolution job</a>. By setting any of these exclusions, no query will be allowed to include the given
-attribute values, indices, or resolvers.</p>
-<p>The values in <code>"scope"."exclude"</code> take precedence over any duplicate values specified <a href="#scope.include" onclick="to(window.location.pathname + '#scope.include', 'internal');"><code>"scope"."include"</code></a>.</p>
+<p>An optional field that excludes <a href="#scope.exclude.attributes" onclick="to(window.location.pathname + '#scope.exclude.attributes', 'internal');"><code>"attributes"</code></a>,
+<a href="#scope.exclude.indices" onclick="to(window.location.pathname + '#scope.exclude.indices', 'internal');"><code>"indices"</code></a>, or <a href="#scope.exclude.resolvers" onclick="to(window.location.pathname + '#scope.exclude.resolvers', 'internal');"><code>"resolvers"</code></a>
+from the <a href="/docs/rest-apis/resolution-api">resolution job</a>. By setting any of
+these exclusions, no query will be allowed to include the given attribute
+values, indices, or resolvers.</p>
+<p>The values in <code>"scope"."exclude"</code> take precedence over any duplicate values
+specified <a href="#scope.include" onclick="to(window.location.pathname + '#scope.include', 'internal');"><code>"scope"."include"</code></a>.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="scope.exclude.attributes"></a><code>"scope"."exclude"."attributes"</code></h3>
-<p>An optional field that excludes specific attribute values from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
-By setting any of these attributes, no query will be allowed to include the values specified within them.</p>
+<p>An optional field that excludes specific attribute values from the
+<a href="/docs/rest-apis/resolution-api">resolution job</a>. By setting any of these
+attributes, no query will be allowed to include the values specified within them.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="scope.exclude.attributes.ATTRIBUTE_NAME"></a><code>"scope"."exclude"."attributes".ATTRIBUTE_NAME</code></h3>
-<p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>, <code>"dob"</code>, <code>"phone"</code>, etc.
-By setting an attribute, no query will be allowed to include the values specified within it.</p>
+<p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>,
+<code>"dob"</code>, <code>"phone"</code>, etc. By setting an attribute, no query will be allowed to
+include the values specified within it.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Array</li>
 </ul>
 <h3><a name="scope.exclude.indices"></a><code>"scope"."exclude"."indices"</code></h3>
 <p>An optional field that excludes specific indices from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
-By setting any of these indices, no query will be allowed to include those indices.</p>
+By setting any of these indices, no query will be allowed to include those
+indices.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="scope.exclude.indices.INDEX_NAME"></a><code>"scope"."exclude"."indices".INDEX_NAME</code></h3>
-<p>The name of a distinct index. By setting an index, no query will be allowed to include it.</p>
+<p>The name of a distinct index. By setting an index, no query will be allowed to
+include it.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: String</li>
 </ul>
 <h3><a name="scope.exclude.resolvers"></a><code>"scope"."exclude"."resolvers"</code></h3>
 <p>An optional field that excludes specific resolvers from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
-By setting any of these resolvers, no query will be allowed to include those resolvers.</p>
+By setting any of these resolvers, no query will be allowed to include those
+resolvers.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="scope.exclude.resolvers.RESOLVER_NAME"></a><code>"scope"."exclude"."resolvers".RESOLVER_NAME</code></h3>
-<p>The name of a distinct resolver. By setting an resolver, no query will be allowed to include it.</p>
+<p>The name of a distinct resolver. By setting an resolver, no query will be
+allowed to include it.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: String</li>
 </ul>
 <h3><a name="scope.include"></a><code>"scope"."include"</code></h3>
-<p>An optional field that includes <a href="#scope.include.attributes" onclick="to(window.location.pathname + '#scope.include.attributes', 'internal');"><code>"attributes"</code></a>, <a href="#scope.include.indices" onclick="to(window.location.pathname + '#scope.include.indices', 'internal');"><code>"indices"</code></a>, or <a href="#scope.include.resolvers" onclick="to(window.location.pathname + '#scope.include.resolvers', 'internal');"><code>"resolvers"</code></a>
-from the <a href="/docs/rest-apis/resolution-api">resolution job</a>. By setting any of these inclusions, no query will be allowed to exclude the given
-attribute values, indices, or resolvers.</p>
-<p>The values in <a href="#scope.exclude" onclick="to(window.location.pathname + '#scope.exclude', 'internal');"><code>"scope"."exclude"</code></a> take precedence over any duplicate values specified <code>"scope"."include"</code>.</p>
+<p>An optional field that includes <a href="#scope.include.attributes" onclick="to(window.location.pathname + '#scope.include.attributes', 'internal');"><code>"attributes"</code></a>,
+<a href="#scope.include.indices" onclick="to(window.location.pathname + '#scope.include.indices', 'internal');"><code>"indices"</code></a>, or <a href="#scope.include.resolvers" onclick="to(window.location.pathname + '#scope.include.resolvers', 'internal');"><code>"resolvers"</code></a>
+from the <a href="/docs/rest-apis/resolution-api">resolution job</a>. By setting any of
+these inclusions, no query will be allowed to exclude the given attribute
+values, indices, or resolvers.</p>
+<p>The values in <a href="#scope.exclude" onclick="to(window.location.pathname + '#scope.exclude', 'internal');"><code>"scope"."exclude"</code></a> take precedence over any
+duplicate values specified <code>"scope"."include"</code>.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="scope.include.attributes"></a><code>"scope"."include"."attributes"</code></h3>
-<p>An optional field that includes specific attribute values from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
-By setting any of these attributes, no query will be allowed to exclude the values specified within them.</p>
+<p>An optional field that includes specific attribute values from the
+<a href="/docs/rest-apis/resolution-api">resolution job</a>. By setting any of these
+attributes, no query will be allowed to exclude the values specified within them.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="scope.include.attributes.ATTRIBUTE_NAME"></a><code>"scope"."include"."attributes".ATTRIBUTE_NAME</code></h3>
-<p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>, <code>"dob"</code>, <code>"phone"</code>, etc.
-By setting an attribute, no query will be allowed to exclude the values specified within it.</p>
+<p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>,
+<code>"dob"</code>, <code>"phone"</code>, etc. By setting an attribute, no query will be allowed to
+exclude the values specified within it.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Array</li>
 </ul>
 <h3><a name="scope.include.indices"></a><code>"scope"."include"."indices"</code></h3>
 <p>An optional field that includes specific indices from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
-By setting any of these indices, no query will be allowed to exclude those indices.</p>
+By setting any of these indices, no query will be allowed to exclude those
+indices.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="scope.include.indices.INDEX_NAME"></a><code>"scope"."include"."indices".INDEX_NAME</code></h3>
-<p>The name of a distinct index. By setting an index, no query will be allowed to exclude it.</p>
+<p>The name of a distinct index. By setting an index, no query will be allowed to
+exclude it.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: String</li>
 </ul>
 <h3><a name="scope.include.resolvers"></a><code>"scope"."include"."resolvers"</code></h3>
 <p>An optional field that includes specific resolvers from the <a href="/docs/rest-apis/resolution-api">resolution job</a>.
-By setting any of these resolvers, no query will be allowed to exclude those resolvers.</p>
+By setting any of these resolvers, no query will be allowed to exclude those
+resolvers.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="scope.include.resolvers.RESOLVER_NAME"></a><code>"scope"."include"."resolvers".RESOLVER_NAME</code></h3>
-<p>The name of a distinct resolver. By setting an resolver, no query will be allowed to exclude it.</p>
+<p>The name of a distinct resolver. By setting an resolver, no query will be
+allowed to exclude it.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: String</li>
 </ul>
 <h2><a name="model"></a><code>"model"</code></h2>
-<p>The <a href="/docs/entity-models">entity model</a> to use for the entity resolution job. This is only required if <code>entity_type</code> is not specified
-in the endpoint of the <a href="/docs/rest-apis/resolution-api">resolution request</a>. Otherwise this field <strong>must not</strong> be present.</p>
+<p>The <a href="/docs/entity-models">entity model</a> to use for the entity resolution job.
+This is only required if <code>entity_type</code> is not specified in the endpoint of the
+<a href="/docs/rest-apis/resolution-api">resolution request</a>. Otherwise this field
+<strong>must not</strong> be present.</p>
 <ul>
-<li>Required: Only if <code>entity_type</code> is not specified in the endpoint of the <a href="/docs/rest-apis/resolution-api">resolution request</a></li>
+<li>Required: Only if <code>entity_type</code> is not specified in the endpoint of the
+<a href="/docs/rest-apis/resolution-api">resolution request</a></li>
 <li>Type: Object</li>
 </ul>
 <p>&nbsp;</p>

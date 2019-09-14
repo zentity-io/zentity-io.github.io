@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=136191593"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=951041474"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=677117774"></script>
+    </script><script src="/js/all.js?id=974725854"></script>
   </head>
   <body>
     <div id="app" >
@@ -64,7 +64,8 @@
 <h2><a name="install-elasticsearch"></a>Step 1. Install Elasticsearch</h2>
 <p>Download and install: <a href="https://www.elastic.co/downloads/elasticsearch" onclick="to('https://www.elastic.co/downloads/elasticsearch', 'outbound');" class="external">https://www.elastic.co/downloads/elasticsearch</a></p>
 <h2><a name="install-zentity"></a>Step 2. Install zentity</h2>
-<p>Once you have installed Elasticsearch, you can install zentity from a remote URL or a local file.</p>
+<p>Once you have installed Elasticsearch, you can install zentity from a remote URL
+or a local file.</p>
 <h3><a name="install-zentity-remote-url"></a>Install from remote URL</h3>
 <ol>
 <li>Browse the <a href="/releases">releases</a>.</li>
@@ -87,10 +88,10 @@
 <p><strong>Example Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ada0b52bdfdf87da3">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0207b47afac075fa">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ada0b52bdfdf87da3"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a0207b47afac075fa"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity&quot;</span><span class="p">,</span>
   <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Real-time entity resolution for Elasticsearch.&quot;</span><span class="p">,</span>
   <span class="s2">&quot;website&quot;</span><span class="o">:</span> <span class="s2">&quot;http://zentity.io&quot;</span><span class="p">,</span>
@@ -102,27 +103,54 @@
 </pre></div>
 </span>
         </div>
-        <h2><a name="installation-elastic-cloud"></a>Installation on Elastic Cloud</h2>
-<p><a href="https://www.elastic.co/cloud" onclick="to('https://www.elastic.co/cloud', 'outbound');" class="external">Elastic Cloud</a> is a hosted Elasticsearch service offered by Elastic,
-the creators of Elasticsearch and the Elastic Stack. Elastic Cloud supports the usage of custom
-Elasticsearch plugins such as zentity.</p>
-<p>To install zentity on an Elastic Cloud cluster:</p>
+        <h2><a name="run-setup"></a>Step 4. Invoke the Setup API (Optional)</h2>
+<p>The <a href="/docs/rest-apis/setup-api">Setup API</a> creates the <code>.zentity-models</code> index.
+This is optional to invoke because zentity will create the index if it doesn't
+already exist upon invoking the <a href="/docs/rest-apis/models-api">Models API</a>.</p>
+<p><strong>Example Request</strong></p>
+<p><code>POST http://localhost:9200/_zentity/_setup</code></p>
+<p><strong>Example Response</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a020911a1fe4a8952">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a020911a1fe4a8952"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;acknowledged&quot;</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <h2><a name="installation-elasticsearch-service"></a>Installation on Elasticsearch Service</h2>
+<p><a href="https://www.elastic.co/products/elasticsearch/service" onclick="to('https://www.elastic.co/products/elasticsearch/service', 'outbound');" class="external">Elasticsearch Service</a>
+is a hosted service offered by Elastic, the creators of Elasticsearch and the
+Elastic Stack. Elasticsearch Service supports the usage of custom Elasticsearch
+plugins such as zentity.</p>
+<p>To install zentity on an Elasticsearch Service deployment:</p>
 <ol>
 <li>Browse the <a href="/releases">releases</a> and download one of the .zip files.</li>
-<li>Sign into Elastic Cloud and navigate to the <a href="https://cloud.elastic.co/plugins" onclick="to('https://cloud.elastic.co/plugins', 'outbound');" class="external">Custom Plugins</a> tab.</li>
+<li><a href="https://cloud.elastic.co/" onclick="to('https://cloud.elastic.co/', 'outbound');" class="external">Sign in</a> to Elasticsearch Service.</li>
+<li>Navigate to the <a href="https://cloud.elastic.co/plugins" onclick="to('https://cloud.elastic.co/plugins', 'outbound');" class="external">Custom Plugins</a> tab.</li>
 <li>Click the "Add plugin" button.</li>
 <li>Name the plugin "zentity".</li>
-<li>Specify the version of your Elasticsearch cluster.</li>
+<li>Specify the version of your Elasticsearch deployment.</li>
 <li>Under plugin type, select "An installable plugin (Compiled, no source code)".</li>
 <li>Click the "Create plugin" button.</li>
 <li>Upload the .zip file under the "Plugin file" section.</li>
-<li>Create or restart your cluster. If creating a cluster, select "zentity" under the list of custom plugins.</li>
+<li>Create or restart your deployment. If creating a deployment, select "zentity" under the list of custom plugins.</li>
 </ol>
-<p>If you will be creating indices and performing entity resolution with data that has names of people or
-companies or other fields that often have data quality challenges, consider also selecting
-<a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html', 'outbound');" class="external">analysis-icu</a>
+<p>If you will be creating indices and performing entity resolution with data that
+has names of people or companies or other fields that often have data quality
+challenges, consider also selecting <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html', 'outbound');" class="external">analysis-icu</a>
 and <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html', 'outbound');" class="external">analysis-phonetic</a>
-from the list of plugins, which can help you index cleaner representations of that data.</p>
+from the list of plugins, which can help you index cleaner representations of
+that data.</p>
+<blockquote><p><strong>Important</strong></p>
+<p>Amazon's Elasticsearch Service does not let you install community plugins.
+You will need to use the official Elasticsearch Service offered by Elastic.
+You can <a href="https://www.elastic.co/aws-elasticsearch-service#aws-elasticsearch-service:-amazon-vs.-elastic" onclick="to('https://www.elastic.co/aws-elasticsearch-service#aws-elasticsearch-service:-amazon-vs.-elastic', 'outbound');" class="external">compare the services</a>
+and then learn <a href="https://www.elastic.co/blog/migrating-from-aws-elasticsearch-to-elasticsearch-service-on-elastic-cloud" onclick="to('https://www.elastic.co/blog/migrating-from-aws-elasticsearch-to-elasticsearch-service-on-elastic-cloud', 'outbound');" class="external">how to migrate from AWS to Elastic</a>.</p>
+</blockquote>
 <h2><a name="sandbox"></a>Sandbox</h2>
 <p>Just learning? Want to learn faster? Download and run the <strong><a href="/sandbox">zentity sandbox</a></strong>
 development environment, which bundles Elasticsearch with zentity, analysis

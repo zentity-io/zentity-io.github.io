@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=319326054"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=472134739"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=475644091"></script>
+    </script><script src="/js/all.js?id=249509400"></script>
   </head>
   <body>
     <div id="app" >
@@ -62,42 +62,51 @@
         <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/entity-models">Entity Models</a> / Entity Modeling Tips</p>
 <h1><a name="tips"></a>Entity Modeling Tips</h1>
 <p><strong>1. Become familiar with your data.</strong></p>
-<p>The real world has countless entity types and ways of resolving them. Start with what's relevant to your data. Look at
-your data and understand the qualities of the fields and values within them. Are the values consistent? Are the values
-created by end users with poor quality control measures? Are there duplicate values? Are there empty values? Do some
-values appear more frequently than others? Which fields have high cardinality? Which fields are useful or useless for
-identification purposes?</p>
-<p>Knowing your data will help you determine what entity types you can resolve, which attributes constitute which entity
-type, and what logic is needed to match the attributes and resolve the entities.</p>
+<p>The real world has countless entity types and ways of resolving them. Start with
+what's relevant to your data. Look at your data and understand the qualities of
+the fields and values within them. Are the values consistent? Are the values
+created by end users with poor quality control measures? Are there duplicate
+values? Are there empty values? Do some values appear more frequently than
+others? Which fields have high cardinality? Which fields are useful or useless
+for identification purposes?</p>
+<p>Knowing your data will help you determine what entity types you can resolve,
+which attributes constitute which entity type, and what logic is needed to match
+the attributes and resolve the entities.</p>
 <p><strong>2. Outline the attributes of your entity types.</strong></p>
-<p>The first step to understanding an entity is to think about the attributes that describe it. Useful attributes will
-include anything that can help identify an entity. For example, some common attributes to identify a person include
-<code>name</code>, <code>address</code>, <code>dob</code>, <code>email</code>, <code>phone</code>, <code>ssn</code>, etc. Some attributes can also be represented in different ways. For
-example, you might have an attribute for <code>address</code> and more specific attributes for <code>street</code>, <code>city</code>, <code>state</code>, <code>zip</code>,
+<p>The first step to understanding an entity is to think about the attributes that
+describe it. Useful attributes will include anything that can help identify an
+entity. For example, some common attributes to identify a person include <code>name</code>,
+<code>address</code>, <code>dob</code>, <code>email</code>, <code>phone</code>, <code>ssn</code>, etc. Some attributes can also be
+represented in different ways. For example, you might have an attribute for
+<code>address</code> and more specific attributes for <code>street</code>, <code>city</code>, <code>state</code>, <code>zip</code>,
 <code>country</code>.</p>
-<p>Start with the attributes that you know exist in your data. Don't worry about how to match an email address if you
-don't have any email addresses in your data. Afterward, you can consider any additional attributes that you might see
-in future data sets. You can always update your entity models later without having to reindex any data, so there's no
-pressure to get it right the first time.</p>
+<p>Start with the attributes that you know exist in your data. Don't worry about
+how to match an email address if you don't have any email addresses in your data.
+Afterward, you can consider any additional attributes that you might see in
+future data sets. You can always update your entity models later without having
+to reindex any data, so there's no pressure to get it right the first time.</p>
 <p><strong>3. Determine the matching logic for each attribute.</strong></p>
-<p>You need to write at least one <a href="/docs/entity-models/specification#matchers">matcher</a> for the resolution job to build queries.
-A matcher is simply a clause of a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html', 'outbound');" class="external"><code>"bool"</code> query</a>
-in Elasticsearch. Some attributes might have exact matches. Some attributes such as a <code>name</code> will tolerate
-<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html', 'outbound');" class="external">fuzziness</a> or target
-<a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/phonetic-matching.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/guide/current/phonetic-matching.html', 'outbound');" class="external">phonetic tokens</a>, while other
-attributes such as an <code>email_address</code> might not.</p>
-<p>Below is an example of two matchers called <code>text</code> and <code>phonetic</code>. You might use the <code>text</code> matcher, which uses the
-<code>"fuzziness"</code> field to allow for typos, on indexed name fields that used the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html', 'outbound');" class="external">standard analyzer</a>.
-You might use the <code>phonetic</code> matcher on indexed name fields that used a <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html', 'outbound');" class="external">phonetic token filter</a>,
-which is already a loose match that wouldn't benefit from the <code>"fuzziness"</code> field and might even generate more false
-positives if you did use it.</p>
+<p>You need to write at least one <a href="/docs/entity-models/specification#matchers">matcher</a>
+for the resolution job to build queries. A matcher is simply a clause of a
+<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html', 'outbound');" class="external"><code>"bool"</code> query</a>
+in Elasticsearch. Some attributes might have exact matches. Some attributes such
+as a <code>name</code> will tolerate <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html', 'outbound');" class="external">fuzziness</a>
+or target <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/phonetic-matching.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/guide/current/phonetic-matching.html', 'outbound');" class="external">phonetic tokens</a>,
+while other attributes such as an <code>email_address</code> might not.</p>
+<p>Below is an example of two matchers called <code>text</code> and <code>phonetic</code>. You might use
+the <code>text</code> matcher, which uses the <code>"fuzziness"</code> field to allow for typos, on
+indexed name fields that used the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html', 'outbound');" class="external">standard analyzer</a>.
+You might use the <code>phonetic</code> matcher on indexed name fields that used a
+<a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html', 'outbound');" class="external">phonetic token filter</a>,
+which is already a loose match that wouldn't benefit from the <code>"fuzziness"</code>
+field and might even generate more false positives if you did use it.</p>
 <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac81954ce567057cb">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac5abed6c842db34f">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac81954ce567057cb"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ac5abed6c842db34f"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -125,21 +134,24 @@ positives if you did use it.</p>
 </span>
         </div>
         <p><strong>4. Determine which combinations attributes lead to resolution.</strong></p>
-<p>Usually you don't want to rely on a single attribute to resolve an entity. Imagine how many false positives you would
-get if you tried to resolve a person by a name, like John Smith! Even attributes like Social Security Numbers (SSNs)
-can be fraught with errors such as typos or bogus numbers, and there are valid reasons why a person might change an
-SSN.</p>
-<p>Instead, try to write resolvers that use combinations of attributes to avoid those "snowballs" of false positives.
-Each combination represents a minimum amount of matching attributes that you would need to resolve an entity with
-confidence. Below is an example that shows how you might combine the attributes <code>name</code>, <code>dob</code>, <code>street</code>, <code>city</code>,
-<code>state</code>, <code>zip</code>, <code>email</code>, <code>phone</code> to resolve a <code>person</code> entity type.</p>
+<p>Usually you don't want to rely on a single attribute to resolve an entity.
+Imagine how many false positives you would get if you tried to resolve a person
+by a name, like John Smith! Even attributes like Social Security Numbers (SSNs)
+can be fraught with errors such as typos or bogus numbers, and there are valid
+reasons why a person might change an SSN.</p>
+<p>Instead, try to write resolvers that use combinations of attributes to avoid
+those "snowballs" of false positives. Each combination represents a minimum
+amount of matching attributes that you would need to resolve an entity with
+confidence. Below is an example that shows how you might combine the attributes
+<code>name</code>, <code>dob</code>, <code>street</code>, <code>city</code>, <code>state</code>, <code>zip</code>, <code>email</code>, <code>phone</code> to resolve a
+<code>person</code> entity type.</p>
 <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2aead6a8d255079b">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4247ec7e00a96247">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a2aead6a8d255079b"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a4247ec7e00a96247"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_dob_city_state&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -176,19 +188,22 @@ confidence. Below is an example that shows how you might combine the attributes 
 </pre></div>
 </span>
         </div>
-        <p>What combinations of attributes are right for you? That depends entirely on your data and your tolerance to errors.
-You will need to experiment do determine what combinations of attributes yield satisfactory error rates on your
-particular data sets.</p>
+        <p>What combinations of attributes are right for you? That depends entirely on your
+data and your tolerance to errors. You will need to experiment do determine what
+combinations of attributes yield satisfactory error rates on your particular
+data sets.</p>
 <p><strong>5. Use custom analyzers to index data in clever ways to improve accuracy.</strong></p>
-<p>One of the goals of zentity is to prevent you from ever needing to reindex your data. But there are still cases
-where you might want to do this. For example, you might have an indexed field called <code>name</code> that was indexed using
-the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html', 'outbound');" class="external">standard analyzer</a>.
-You can write a matcher that performs a basic match on this field, perhaps allowing for some fuzziness. But you
-might want to have a <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html', 'outbound');" class="external">phonetic</a>
-matcher, too. There are many ways to spell transliterated names, such as Muhammad: <em>Muhammed, Muhamad, Muhamed, Muhamet, Mahamed,
-Mohamad, Mohamed, Mohammad, Mohammed</em>, etc. All of these spelling variations can be reduced to the same phonetic value. But that
-value has to exist in the index if we want to use it for matching. If it doesn't exist, you would need to update your index mapping
-to create a field that uses a <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/custom-analyzers.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/guide/current/custom-analyzers.html', 'outbound');" class="external">custom analyzer</a>
+<p>One of the goals of zentity is to prevent you from ever needing to reindex your
+data. But there are still cases where you might want to do this. For example,
+you might have an indexed field called <code>name</code> that was indexed using the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html', 'outbound');" class="external">standard analyzer</a>.
+You can write a matcher that performs a basic match on this field, perhaps
+allowing for some fuzziness. But you might want to have a <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic-token-filter.html', 'outbound');" class="external">phonetic</a>
+matcher, too. There are many ways to spell transliterated names, such as
+Muhammad: <em>Muhammed, Muhamad, Muhamed, Muhamet, Mahamed, Mohamad, Mohamed,
+Mohammad, Mohammed</em>, etc. All of these spelling variations can be reduced to the
+same phonetic value. But that value has to exist in the index if we want to use
+it for matching. If it doesn't exist, you would need to update your index
+mapping to create a field that uses a <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/custom-analyzers.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/guide/current/custom-analyzers.html', 'outbound');" class="external">custom analyzer</a>
 using a phonetic tokenizer, and then <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html', 'outbound');" class="external">reindex</a>
 the data.</p>
 <p>&nbsp;</p>

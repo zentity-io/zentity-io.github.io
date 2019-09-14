@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=973278514"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=259782669"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=966205825"></script>
+    </script><script src="/js/all.js?id=421769690"></script>
   </head>
   <body>
     <div id="app" >
@@ -63,10 +63,10 @@
 <h1><a name="specification"></a>Entity Model Specification</h1>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a232deb842216644f">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad2670cf23226565e">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a232deb842216644f"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ad2670cf23226565e"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_TYPE</span><span class="p">,</span>
@@ -113,20 +113,22 @@
 </pre></div>
 </span>
         </div>
-        <p>Entity models are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework shown above, lowercase quoted values
-(e.g. <code>"attributes"</code>) are constant fields, uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable fields or values,
+        <p>Entity models are <a href="https://www.json.org/" onclick="to('https://www.json.org/', 'outbound');" class="external">JSON</a> documents. In the framework
+shown above, lowercase quoted values (e.g. <code>"attributes"</code>) are constant fields,
+uppercase literal values (e.g. <code>ATTRIBUTE_NAME</code>) are variable fields or values,
 and elipses (<code>...</code>) are optional repetitions of the preceding field or value.</p>
-<p>An entity model has four required objects: <strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a></strong>, <strong><a href="#resolvers" onclick="to(window.location.pathname + '#resolvers', 'internal');"><code>"resolvers"</code></a></strong>,
-<strong><a href="#matchers" onclick="to(window.location.pathname + '#matchers', 'internal');"><code>"matchers"</code></a></strong>, <strong><a href="#indices" onclick="to(window.location.pathname + '#indices', 'internal');"><code>"indices"</code></a></strong>. Not all elements within these objects are required.
-Optional elements are noted in the descriptions of each element listed on this page.</p>
+<p>An entity model has four required objects: <strong><a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a></strong>,
+<strong><a href="#resolvers" onclick="to(window.location.pathname + '#resolvers', 'internal');"><code>"resolvers"</code></a></strong>, <strong><a href="#matchers" onclick="to(window.location.pathname + '#matchers', 'internal');"><code>"matchers"</code></a></strong>, <strong><a href="#indices" onclick="to(window.location.pathname + '#indices', 'internal');"><code>"indices"</code></a></strong>.
+Not all elements within these objects are required. Optional elements are noted
+in the descriptions of each element listed on this page.</p>
 <h2><a name="attributes"></a><code>"attributes"</code></h2>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#adb492db7e08b05bc">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3d7b81925a676e85">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="adb492db7e08b05bc"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a3d7b81925a676e85"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_TYPE</span><span class="p">,</span>
@@ -144,10 +146,10 @@ Optional elements are noted in the descriptions of each element listed on this p
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6180d35dee8f8538">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3c0ac681f28995a0">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a6180d35dee8f8538"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a3c0ac681f28995a0"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
@@ -181,50 +183,59 @@ Optional elements are noted in the descriptions of each element listed on this p
 </pre></div>
 </span>
         </div>
-        <p>Attributes are elements that can assist the identification and resolution of entities. For example, some common
-attributes of a person include name, date of birth, and phone number. Each attribute has its own particular data
-qualities and purposes in the real world. Therefore, zentity matches the values of each attribute using logic that
-is distinct to each attribute.</p>
-<p>Some attributes can be matched using different methods. For example, a name could be matched by its exact value or its
-phonetic value. Therefore the entity model allows each attribute to have one or more matchers. A matcher is simply a
+        <p>Attributes are elements that can assist the identification and resolution of
+entities. For example, some common attributes of a person include name, date of
+birth, and phone number. Each attribute has its own particular data qualities
+and purposes in the real world. Therefore, zentity matches the values of each
+attribute using logic that is distinct to each attribute.</p>
+<p>Some attributes can be matched using different methods. For example, a name
+could be matched by its exact value or its phonetic value. Therefore the entity
+model allows each attribute to have one or more matchers. A matcher is simply a
 clause of a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html', 'outbound');" class="external"><code>"bool"</code> query</a>
-in Elasticsearch. This means that if <em>any</em> matcher of an attribute yields a match for a given value, then the attribute
-will be considered a match regardless of the results of the other matchers.</p>
+in Elasticsearch. This means that if <em>any</em> matcher of an attribute yields a
+match for a given value, then the attribute will be considered a match
+regardless of the results of the other matchers.</p>
 <h3><a name="attributes.ATTRIBUTE_NAME"></a><code>"attributes".ATTRIBUTE_NAME</code></h3>
-<p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>, <code>"dob"</code>, <code>"phone"</code>, etc. The value of the
-field is an object that contains metadata about the attribute.</p>
+<p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>,
+<code>"dob"</code>, <code>"phone"</code>, etc. The value of the field is an object that contains
+metadata about the attribute.</p>
 <ul>
 <li>Required: Yes</li>
 <li>Type: String</li>
 </ul>
 <h3><a name="attributes.ATTRIBUTE_NAME.type"></a><code>"attributes".ATTRIBUTE_NAME."type"</code></h3>
-<p>The data type of the attribute. The default value is <code>"string"</code> if unspecified in the model. Data types of attribute
-values are validated on input when submitting a request to the <a href="/docs/rest-apis/resolution-api">Resolution API</a> endpoint.
-Attribute data types only affect the inputs to a resolution job and the queries submitted to Elasticsearch. The data types
-of the values returned in the <code>"_attributes"</code> field of the documents in the resolution job response are kept as they were
-in the <code>"_source"</code> fields of those documents.</p>
+<p>The data type of the attribute. The default value is <code>"string"</code> if unspecified
+in the model. Data types of attribute values are validated on input when
+submitting a request to the <a href="/docs/rest-apis/resolution-api">Resolution API</a>
+endpoint. Attribute data types only affect the inputs to a resolution job and
+the queries submitted to Elasticsearch. The data types of the values returned in
+the <code>"_attributes"</code> field of the documents in the resolution job response are
+kept as they were in the <code>"_source"</code> fields of those documents.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: String</li>
 <li>Default: <code>"string"</code></li>
 </ul>
 <h3><a name="attributes.ATTRIBUTE_NAME.params"></a><code>"attributes".ATTRIBUTE_NAME."params"</code></h3>
-<p>An optional object that passes arbitrary variables (<code>"params"</code>) to the matcher clauses.</p>
+<p>An optional object that passes arbitrary variables (<code>"params"</code>) to the matcher
+clauses.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="attributes.ATTRIBUTE_NAME.params.PARAM_NAME"></a><code>"attributes".ATTRIBUTE_NAME."params".PARAM_NAME</code></h3>
-<p>A field with the name of a distinct param for the attribute. Some examples might be <code>"fuzziness"</code> or <code>"format"</code>.</p>
+<p>A field with the name of a distinct param for the attribute. Some examples might
+be <code>"fuzziness"</code> or <code>"format"</code>.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: String</li>
 </ul>
 <h3><a name="attributes.ATTRIBUTE_NAME.params.PARAM_NAME.PARAM_VALUE"></a><code>"attributes".ATTRIBUTE_NAME."params".PARAM_NAME.PARAM_VALUE</code></h3>
-<p>A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
-will be serialized as a string when passed to the matcher clause. The value overrides the same field specified in
-<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in the model and
-<a href="#matchers.MATCHER_NAME.params" onclick="to(window.location.pathname + '#matchers.MATCHER_NAME.params', 'internal');"><code>"matchers".MATCHER_NAME."params"</code></a>.</p>
+<p>A value for the param. This can be any JSON compliant value such as a string,
+number, boolean, array, or object. The value will be serialized as a string when
+passed to the matcher clause. The value overrides the same field specified in
+<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in
+the model and <a href="#matchers.MATCHER_NAME.params" onclick="to(window.location.pathname + '#matchers.MATCHER_NAME.params', 'internal');"><code>"matchers".MATCHER_NAME."params"</code></a>.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Any</li>
@@ -232,27 +243,32 @@ will be serialized as a string when passed to the matcher clause. The value over
 <h4><a name="valid-attribute-types"></a>Valid attribute types</h4>
 <p>Listed below are each of the currently valid attribute types.</p>
 <h5><a name="attribute-type-string"></a><code>"string"</code></h5>
-<p>Indicates that the values of an attribute must be supplied as JSON compliant string values. Elasticsearch can perform text
-analysis, fuzzy matching, and other operations solely on string values.</p>
+<p>Indicates that the values of an attribute must be supplied as JSON compliant
+string values. Elasticsearch can perform text analysis, fuzzy matching, and
+other operations solely on string values.</p>
 <h5><a name="attribute-type-number"></a><code>"number"</code></h5>
-<p>Indicates that the values of an attribute must be supplied as JSON compliant number value. This includes any positive or
-negative integer or fractional value. zentity handles the appropriate conversion of number values to floats, doubles,
+<p>Indicates that the values of an attribute must be supplied as JSON compliant
+number value. This includes any positive or negative integer or fractional value.
+zentity handles the appropriate conversion of number values to floats, doubles,
 integers, or longs.</p>
 <h5><a name="attribute-type-boolean"></a><code>"boolean"</code></h5>
-<p>Indicates that the values of an attribute must be supplied as JSON compliant boolean values (<code>true</code> or <code>false</code>).</p>
+<p>Indicates that the values of an attribute must be supplied as JSON compliant
+boolean values (<code>true</code> or <code>false</code>).</p>
 <h5><a name="attribute-type-date"></a><code>"date"</code></h5>
-<p>Indicates that the values of an attribute must be supplied as JSON compliant string values. Additionally, date attributes
-must include a param called <code>"format"</code> that contains an <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html', 'outbound');" class="external">Elasticsearch date format</a>.
-Date values are queried and returned in the specified format. This is both useful and necessary when querying date fields
-across indices that have disparate date formats.</p>
+<p>Indicates that the values of an attribute must be supplied as JSON compliant
+string values. Additionally, date attributes must include a param called
+<code>"format"</code> that contains an <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html', 'outbound');" class="external">Elasticsearch date format</a>.
+Date values are queried and returned in the specified format. This is both
+useful and necessary when querying date fields across indices that have
+disparate date formats.</p>
 <h2><a name="resolvers"></a><code>"resolvers"</code></h2>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac37e05943aeaa4db">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a22b575a736da4faa">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac37e05943aeaa4db"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a22b575a736da4faa"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">RESOLVER_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -270,10 +286,10 @@ across indices that have disparate date formats.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a433f539a5ac1944d">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#afc18f1392177b6e6">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a433f539a5ac1944d"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="afc18f1392177b6e6"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_street_city_state&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -316,49 +332,61 @@ across indices that have disparate date formats.</p>
 </pre></div>
 </span>
         </div>
-        <p>Resolvers are combinations of attributes that imply a resolution. For example, you might decide to resolve entities
-that share matching values for <code>"name"</code> and <code>"dob"</code> or <code>"name"</code> and <code>"phone"</code>. You can create a resolver for both
-combinations of attributes. Then any documents whose values share either a matching <code>"name"</code> and <code>"dob"</code> or  <code>"name"</code>
-and <code>"phone"</code> will resolve to the same entity.</p>
-<p>Remember that attributes can be associated with more than one matcher in the <a href="#indices" onclick="to(window.location.pathname + '#indices', 'internal');"><code>"indices"</code></a> object. This means that if
-<em>any</em> matcher of an attribute yields a match for a given value, then the attribute will be considered a match
-regardless of the results of the other matchers. So if you have an attribute called <code>name</code> with matchers called
-<code>keyword</code> and <code>phonetic</code>, then any resolver that uses the <code>name</code> attribute is effectively saying that <em>either</em>
-<code>name.keyword</code> <em>or</em> <code>name.phonetic</code> are required to match.</p>
+        <p>Resolvers are combinations of attributes that imply a resolution. For example,
+you might decide to resolve entities that share matching values for <code>"name"</code> and
+<code>"dob"</code> or <code>"name"</code> and <code>"phone"</code>. You can create a resolver for both
+combinations of attributes. Then any documents whose values share either a
+matching <code>"name"</code> and <code>"dob"</code> or  <code>"name"</code> and <code>"phone"</code> will resolve to the
+same entity.</p>
+<p>Remember that attributes can be associated with more than one matcher in the
+<a href="#indices" onclick="to(window.location.pathname + '#indices', 'internal');"><code>"indices"</code></a> object. This means that if <em>any</em> matcher of an attribute
+yields a match for a given value, then the attribute will be considered a match
+regardless of the results of the other matchers. So if you have an attribute
+called <code>name</code> with matchers called <code>keyword</code> and <code>phonetic</code>, then any resolver
+that uses the <code>name</code> attribute is effectively saying that <em>either</em> <code>name.keyword</code>
+<em>or</em> <code>name.phonetic</code> are required to match.</p>
 <h3><a name="resolvers.RESOLVER_NAME"></a><code>"resolvers".RESOLVER_NAME</code></h3>
-<p>A field with the name of a distinct resolver. The value of the field is an object that contains metadata about the
+<p>A field with the name of a distinct resolver. The value of the field is an
+object that contains metadata about the
 resolver.</p>
-<p>A resolver represents a combination of attributes that implies a resolution. For example, if a resolver lists the
-attributes <code>"name"</code> and <code>"phone"</code>, then any documents whose values match those attributes -- either in the inputs
-of the resolution job or any subsequent hops -- will be considered a match to the entity.</p>
+<p>A resolver represents a combination of attributes that implies a resolution.
+For example, if a resolver lists the attributes <code>"name"</code> and <code>"phone"</code>, then any
+documents whose values match those attributes -- either in the inputs of the
+resolution job or any subsequent hops -- will be considered a match to the
+entity.</p>
 <ul>
 <li>Required: Yes</li>
 <li>Type: String</li>
 </ul>
 <h3><a name="resolvers.RESOLVER_NAME.attributes"></a><code>"resolvers".RESOLVER_NAME."attributes"</code></h3>
-<p>A set of attribute names. The order of the values has no effect on resolution. Duplicate values are redundant and
-have no effect on resolution.</p>
+<p>A set of attribute names. The order of the values has no effect on resolution.
+Duplicate values are redundant and have no effect on resolution.</p>
 <ul>
 <li>Required: Yes</li>
 <li>Type: Array</li>
 </ul>
 <h3><a name="resolvers.RESOLVER_NAME.attributes.ATTRIBUTE_NAME"></a><code>"resolvers".RESOLVER_NAME."attributes".ATTRIBUTE_NAME</code></h3>
-<p>The name of an attribute from the <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> object of the entity model. If the attribute does not exist,
-then the resolver will not be used in any resolution jobs.</p>
+<p>The name of an attribute from the <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> object of the
+entity model. If the attribute does not exist, then the resolver will not be
+used in any resolution jobs.</p>
 <ul>
 <li>Required: Yes</li>
 <li>Type: String</li>
 </ul>
 <h3><a name="resolvers.RESOLVER_NAME.weight.WEIGHT_LEVEL"></a><code>"resolvers".RESOLVER_NAME."weight".WEIGHT_LEVEL</code></h3>
-<p>The weight level of the resolver. Resolvers with higher weight levels take precedence over resolvers with lower
-weight levels. If a resolution job uses resolvers with different weight levels, then the higher weight resolvers
-either must match or must not exist. This behavior can help prevent false matches.</p>
-<p>For example, let's say you have three resolvers: <code>"name_phone"</code> has a weight of <code>0</code>, <code>"ssn"</code> has a weight of <code>1</code>, and
-<code>"id"</code> has a weight of <code>2</code>. Because the <code>"id"</code> resolver has the highest weight, it will always match documents with
-the same <code>"id"</code> attribute. The <code>"ssn"</code> resolver has a lower weight than the <code>"id"</code> resolver, and so the <code>"ssn"</code> resolver
-will only match documents if the <code>"id"</code> resolver either matches or does not exist in the documents. And the <code>"name_phone"</code>
-resolver has the lowest weight, so the <code>"name_phone"</code> resolver will only match documents if both the <code>"ssn"</code> and <code>"id"</code>
-resolvers either match or do not exist in the documents.</p>
+<p>The weight level of the resolver. Resolvers with higher weight levels take
+precedence over resolvers with lower weight levels. If a resolution job uses
+resolvers with different weight levels, then the higher weight resolvers either
+must match or must not exist. This behavior can help prevent false matches.</p>
+<p>For example, let's say you have three resolvers: <code>"name_phone"</code> has a weight of
+<code>0</code>, <code>"ssn"</code> has a weight of <code>1</code>, and <code>"id"</code> has a weight of <code>2</code>. Because the
+<code>"id"</code> resolver has the highest weight, it will always match documents with the
+same <code>"id"</code> attribute. The <code>"ssn"</code> resolver has a lower weight than the <code>"id"</code>
+resolver, and so the <code>"ssn"</code> resolver will only match documents if the <code>"id"</code>
+resolver either matches or does not exist in the documents. And the
+<code>"name_phone"</code> resolver has the lowest weight, so the <code>"name_phone"</code> resolver
+will only match documents if both the <code>"ssn"</code> and <code>"id"</code> resolvers either match
+or do not exist in the documents.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Integer</li>
@@ -368,10 +396,10 @@ resolvers either match or do not exist in the documents.</p>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a89894188f5100271">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4207ceec0847a436">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a89894188f5100271"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a4207ceec0847a436"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">MATCHER_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="nx">MATCHER_CLAUSE</span><span class="p">,</span>
@@ -389,10 +417,10 @@ resolvers either match or do not exist in the documents.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3a0ed543355c1428">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab1d5051810ffaab6">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3a0ed543355c1428"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab1d5051810ffaab6"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exact_matcher&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -442,43 +470,50 @@ resolvers either match or do not exist in the documents.</p>
 </span>
         </div>
         <h3><a name="matchers.MATCHER_NAME"></a><code>"matchers".MATCHER_NAME</code></h3>
-<p>A field with the name of a distinct matcher. The value of the field is an object that contains metadata about the
-matcher.</p>
+<p>A field with the name of a distinct matcher. The value of the field is an object
+that contains metadata about the matcher.</p>
 <p>A matcher is a templated clause of a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html', 'outbound');" class="external"><code>"bool"</code> query</a>
-that can be populated with the names of index fields and the values of attributes.</p>
+that can be populated with the names of index fields and the values of
+attributes.</p>
 <ul>
 <li>Required: Yes</li>
 <li>Type: String</li>
 </ul>
 <h3><a name="matchers.MATCHER_NAME.clause"></a><code>"matchers".MATCHER_NAME."clause"</code></h3>
 <p>An object that represents the clause of a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html', 'outbound');" class="external"><code>"bool"</code> query</a>
-in Elasticsearch. Each clause will be stitched together to form a single <code>"bool"</code> query, so it must follow the correct
-syntax for a <code>"bool"</code> query clause, except you don't need to include the top-level field <code>"bool"</code> or its subfields such
-as <code>"must"</code> or <code>"should"</code>.</p>
-<p>Matcher clauses use Mustache syntax to pass two important variables: <strong><code>{{ field }}</code></strong> and <strong><code>{{ value }}</code></strong>.
-The <code>field</code> variable will be populated with the index field that maps to the attribute. The <code>value</code> field will be
-populated with the value that will be queried for that attribute. This syntax is the same as the one used by
-Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html', 'outbound');" class="external">search templates</a>.</p>
+in Elasticsearch. Each clause will be stitched together to form a single <code>"bool"</code>
+query, so it must follow the correct syntax for a <code>"bool"</code> query clause, except
+you don't need to include the top-level field <code>"bool"</code> or its subfields such as
+<code>"must"</code> or <code>"should"</code>.</p>
+<p>Matcher clauses use Mustache syntax to pass two important variables:
+<strong><code>{{ field }}</code></strong> and <strong><code>{{ value }}</code></strong>. The <code>field</code> variable will be populated
+with the index field that maps to the attribute. The <code>value</code> field will be
+populated with the value that will be queried for that attribute. This syntax is
+the same as the one used by Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html', 'outbound');" class="external">search templates</a>.</p>
 <ul>
 <li>Required: Yes</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="matchers.MATCHER_NAME.params"></a><code>"matchers".MATCHER_NAME."params"</code></h3>
-<p>An optional object that specifies the default values for any variables ("params") in the matcher clause.</p>
+<p>An optional object that specifies the default values for any variables
+("params") in the matcher clause.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Object</li>
 </ul>
 <h3><a name="matchers.MATCHER_NAME.params.PARAM_NAME"></a><code>"matchers".MATCHER_NAME."params".PARAM_NAME</code></h3>
-<p>A field with the name of a distinct param for the matcher clause. Some examples might be <code>"fuzziness"</code> or <code>"format"</code>.</p>
+<p>A field with the name of a distinct param for the matcher clause. Some examples
+might be <code>"fuzziness"</code> or <code>"format"</code>.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: String</li>
 </ul>
 <h3><a name="matchers.MATCHER_NAME.params.PARAM_NAME.PARAM_VALUE"></a><code>"matchers".MATCHER_NAME."params".PARAM_NAME.PARAM_VALUE</code></h3>
-<p>A value for the param. This can be any JSON compliant value such as a string, number, boolean, array, or object. The value
-will be serialized as a string when passed to the matcher clause. The value is overridden by the same field specified in
-<a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a> in either the input or the model.</p>
+<p>A value for the param. This can be any JSON compliant value such as a string,
+number, boolean, array, or object. The value will be serialized as a string when
+passed to the matcher clause. The value is overridden by the same field
+specified in <a href="#attributes.ATTRIBUTE_NAME.params" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.params', 'internal');"><code>"attributes".ATTRIBUTE_NAME."params"</code></a>
+in either the input or the model.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: Any</li>
@@ -487,10 +522,10 @@ will be serialized as a string when passed to the matcher clause. The value is o
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad19716fd5105236c">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7ea61b63eae95134">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ad19716fd5105236c"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a7ea61b63eae95134"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">INDEX_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -510,10 +545,10 @@ will be serialized as a string when passed to the matcher clause. The value is o
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a123eac16192a68bb">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa43d750c482d9764">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a123eac16192a68bb"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aa43d750c482d9764"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -568,19 +603,23 @@ will be serialized as a string when passed to the matcher clause. The value is o
 </pre></div>
 </span>
         </div>
-        <p>Different indices in Elasticsearch might have data that can be matched as attributes, but each index might use slightly
-different field names or data types for the same data. Therefore, zentity uses a map to translate the different field
-names to the attributes of our entity model.</p>
-<p>The entity model maps attributes and matchers to index fields. Remember how each attribute can be matched in different ways,
-such as a name that can be matched by its exact value or its phonetic value? Elasticsearch would index those different
-values as distinct fields, such as <code>"name.keyword"</code> and <code>"name.phonetic"</code>. This is why the entity model maps attributes
-and matchers -- not just attributes -- to index fields.</p>
+        <p>Different indices in Elasticsearch might have data that can be matched as
+attributes, but each index might use slightly different field names or data
+types for the same data. Therefore, zentity uses a map to translate the
+different field names to the attributes of our entity model.</p>
+<p>The entity model maps attributes and matchers to index fields. Remember how each
+attribute can be matched in different ways, such as a name that can be matched
+by its exact value or its phonetic value? Elasticsearch would index those
+different values as distinct fields, such as <code>"name.keyword"</code> and
+<code>"name.phonetic"</code>. This is why the entity model maps attributes and matchers --
+not just attributes -- to index fields.</p>
 <h3><a name="indices.INDEX_NAME"></a><code>"indices".INDEX_NAME</code></h3>
 <p>A field with the name of a distinct Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/_basic_concepts.html#_index" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/_basic_concepts.html#_index', 'outbound');" class="external">index</a>
-or <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-index.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-index.html', 'outbound');" class="external">index pattern</a>. The value of the
-field is an object that contains metadata about the index.</p>
-<p>zentity does not verify the existence of indices or the validity of index patterns or the syntax of field names that
-Elasticsearch requires. Elasticsearch may respond with an error for resolution jobs that submit queries to indices
+or <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-index.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-index.html', 'outbound');" class="external">index pattern</a>.
+The value of the field is an object that contains metadata about the index.</p>
+<p>zentity does not verify the existence of indices or the validity of index
+patterns or the syntax of field names that Elasticsearch requires. Elasticsearch
+may respond with an error for resolution jobs that submit queries to indices
 that do not exist.</p>
 <ul>
 <li>Required: Yes</li>
@@ -590,33 +629,39 @@ that do not exist.</p>
 <p>An object that maps an index field name to an attribute and a matcher.</p>
 <h3><a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME"></a><code>"indices".INDEX_NAME."fields".INDEX_FIELD_NAME</code></h3>
 <p>A field with the name of a distinct <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/properties.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/properties.html', 'outbound');" class="external">property</a>
-or <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html', 'outbound');" class="external">field</a> in an Elasticsearch index.
-The value of the field is an object that contians metadata about the index field, particularly the attribute and matcher
-that is mapped to it.</p>
-<p>zentity does not verify the existence of field names within indices or the syntax of field names that Elasticsearch
+or <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html', 'outbound');" class="external">field</a>
+in an Elasticsearch index. The value of the field is an object that contians
+metadata about the index field, particularly the attribute and matcher that is
+mapped to it.</p>
+<p>zentity does not verify the existence of field names within indices or the
+syntax of field names that Elasticsearch
 requires.</p>
 <h3><a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.attribute"></a><code>"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."attribute"</code></h3>
-<p>The name of an attribute from the <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> object of the entity model. If the attribute does not exist,
-then the index field will not be queried in any resolution jobs and will not be returned in the <code>"_attributes"</code>
+<p>The name of an attribute from the <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> object of the
+entity model. If the attribute does not exist, then the index field will not be
+queried in any resolution jobs and will not be returned in the <code>"_attributes"</code>
 field of the documents matched in a resolution job.</p>
 <ul>
 <li>Required: Yes</li>
 <li>Type: String</li>
 </ul>
 <h3><a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.matcher"></a><code>"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."matcher"</code></h3>
-<p>The name of a matcher from the <a href="#matchers" onclick="to(window.location.pathname + '#matchers', 'internal');"><code>"matchers"</code></a> object of the entity model. If the matcher does not exist,
-then the index field will not be queried in any resolution jobs. However, the index field can still be returned
-in the <a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> field of the documents matched in a resolution job if those documents matched the attributes
-of other resolvers.</p>
-<p>Let's illustrate how index fields relate to matchers and attributes during a resolution job. Assume you are resolving
-an entity with an email address of <code>"user@example.net"</code> and one of the indices has an field name of <code>"email.keyword"</code>.
-And assume that the index field is mapped to the matcher clause below:</p>
+<p>The name of a matcher from the <a href="#matchers" onclick="to(window.location.pathname + '#matchers', 'internal');"><code>"matchers"</code></a> object of the entity
+model. If the matcher does not exist, then the index field will not be queried
+in any resolution jobs. However, the index field can still be returned in the
+<a href="#attributes" onclick="to(window.location.pathname + '#attributes', 'internal');"><code>"attributes"</code></a> field of the documents matched in a resolution job
+if those documents matched the attributes of other resolvers.</p>
+<p>Let's illustrate how index fields relate to matchers and attributes during a
+resolution job. Assume you are resolving an entity with an email address of
+<code>"user@example.net"</code> and one of the indices has an field name of
+<code>"email.keyword"</code>. And assume that the index field is mapped to the matcher
+clause below:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4e7e3e075692b4f5">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#acc23392aaf9f5b9c">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a4e7e3e075692b4f5"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="acc23392aaf9f5b9c"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
   <span class="p">}</span>
@@ -627,10 +672,10 @@ And assume that the index field is mapped to the matcher clause below:</p>
         <p>The final clause will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af917daa3f8161dd3">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a474bd5e4039024c4">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af917daa3f8161dd3"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a474bd5e4039024c4"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;email.keyword&quot;</span><span class="o">:</span> <span class="s2">&quot;user@example.net&quot;</span>
   <span class="p">}</span>
@@ -638,11 +683,14 @@ And assume that the index field is mapped to the matcher clause below:</p>
 </pre></div>
 </span>
         </div>
-        <p>The <code>"matcher"</code> field is optional. The index field won't be queried if the <code>"matcher"</code> field is unspecified.
-There are valid reasons to map an index field only an attribute and not a matcher. It allows the value of index field
-to be returned as the <code>"attribute"</code> if the document is matched by other resolvers. For example, an attribute for
-<code>"salary"</code> might not be useful in identifying and resolving entities, but it could be useful to return salary data
-from disparate indices under a field with a common name. These are sometimes called "payload" attributes.</p>
+        <p>The <code>"matcher"</code> field is optional. The index field won't be queried if the
+<code>"matcher"</code> field is unspecified. There are valid reasons to map an index field
+only an attribute and not a matcher. It allows the value of index field to be
+returned as the <code>"attribute"</code> if the document is matched by other resolvers. For
+example, an attribute for <code>"salary"</code> might not be useful in identifying and
+resolving entities, but it could be useful to return salary data from disparate
+indices under a field with a common name. These are sometimes called "payload"
+attributes.</p>
 <ul>
 <li>Required: No</li>
 <li>Type: String</li>

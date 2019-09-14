@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=207743126"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=163627097"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=237245291"></script>
+    </script><script src="/js/all.js?id=560116724"></script>
   </head>
   <body>
     <div id="app" >
@@ -61,26 +61,31 @@
       <div id="main" class="content">
         <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / Entity Models</p>
 <h1><a name="entity-models"></a>Entity Models</h1>
-<p>zentity relies on objects called <strong><a href="/docs/entity-models/specification">entity models</a></strong> to control the execution of entity resolution jobs.</p>
+<p>zentity relies on objects called <strong><a href="/docs/entity-models/specification">entity models</a></strong>
+to control the execution of entity resolution jobs.</p>
 <p>Entity models serve multiple purposes:</p>
 <ol>
 <li>They define which attributes map to which fields of which Elasticsearch indices.</li>
 <li>They define how to match an attribute for any index field it maps to.</li>
 <li>They define which combinations of matching attributes imply a resolution.</li>
 </ol>
-<p>Read the <a href="/docs/entity-models/specification">entity model specification</a> for specific details on the contents of entity models.</p>
+<p>Read the <a href="/docs/entity-models/specification">entity model specification</a> for
+specific details on the contents of entity models.</p>
 <h2><a name="usage"></a>Usage</h2>
-<p>You must provide an entity model when making a resolution request. You can provide it in two ways:</p>
+<p>You must provide an entity model when making a resolution request. You can
+provide it in two ways:</p>
 <ol>
 <li>You can embed the entity model in the request under a field called <code>"model"</code>.</li>
 <li>You can index the entity model using the <a href="/docs/rest-apis/models-api">Models API</a> and reference it by its <code>entity_type</code>.</li>
 </ol>
-<p>Option (2) gives you the ability to share, reuse, and build upon existing entity models. You can manage entity models
-using the <a href="REST-APIs#models-api" onclick="to('REST-APIs#models-api', 'outbound');" class="external">Models API</a>. zentity stores entity models in an Elasticsearch index called <code>.zentity-models</code>.
-Each document in this index represents the entity model for a distinct entity type. The entity type is listed in the
-<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html', 'outbound');" class="external"><code>_id</code></a> field of the document.
-There can be only one entity model for a given entity type. Once you have indexed an entity model, you can use it by
-setting the <code>entity_type</code> parameter in your requests.</p>
+<p>Option (2) gives you the ability to share, reuse, and build upon existing entity
+models. You can manage entity models using the <a href="REST-APIs#models-api" onclick="to('REST-APIs#models-api', 'outbound');" class="external">Models API</a>.
+zentity stores entity models in an Elasticsearch index called <code>.zentity-models</code>.
+Each document in this index represents the entity model for a distinct entity
+type. The entity type is listed in the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html', 'outbound');" class="external"><code>_id</code></a>
+field of the document. There can be only one entity model for a given entity type.
+Once you have indexed an entity model, you can use it by setting the <code>entity_type</code>
+parameter in your requests.</p>
 <h2>More info</h2>
 <ul>
 <li><a href="/docs/entity-models/specification">Entity Model Specification</a></li>
