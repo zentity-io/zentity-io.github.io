@@ -7,7 +7,50 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.4.2">zentity-1.4.2 (latest)</a>
+## <a name="zentity-1.5.0">zentity-1.5.0 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 7.3.2](https://zentity.io/releases/zentity-1.5.0-elasticsearch-7.3.2.zip)
+- [Elasticsearch 7.3.1](https://zentity.io/releases/zentity-1.5.0-elasticsearch-7.3.1.zip)
+- [Elasticsearch 7.3.0](https://zentity.io/releases/zentity-1.5.0-elasticsearch-7.3.0.zip)
+- [Elasticsearch 7.2.1](https://zentity.io/releases/zentity-1.5.0-elasticsearch-7.2.1.zip)
+- [Elasticsearch 7.2.0](https://zentity.io/releases/zentity-1.5.0-elasticsearch-7.2.0.zip)
+- [Elasticsearch 7.1.1](https://zentity.io/releases/zentity-1.5.0-elasticsearch-7.1.1.zip)
+- [Elasticsearch 7.1.0](https://zentity.io/releases/zentity-1.5.0-elasticsearch-7.1.0.zip)
+- [Elasticsearch 7.0.1](https://zentity.io/releases/zentity-1.5.0-elasticsearch-7.0.1.zip)
+- [Elasticsearch 7.0.0](https://zentity.io/releases/zentity-1.5.0-elasticsearch-7.0.0.zip)
+- [Elasticsearch 6.8.2](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.8.2.zip)
+- [Elasticsearch 6.8.1](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.8.1.zip)
+- [Elasticsearch 6.8.0](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.8.0.zip)
+- [Elasticsearch 6.7.2](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.7.2.zip)
+- [Elasticsearch 6.7.1](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.7.1.zip)
+- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.7.0.zip)
+- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.6.2.zip)
+- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.6.1.zip)
+- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.6.0.zip)
+- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.5.4.zip)
+- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.5.3.zip)
+- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.5.2.zip)
+- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.5.1.zip)
+- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-1.5.0-elasticsearch-6.5.0.zip)
+
+### Release notes
+
+- **Breaking change** - Attribute values in the [`"_attributes"`](/docs/entity-resolution/output-specification/#hits.hits._attributes)
+object of each document returned by the [Resolution API](/docs/rest-apis/resolution-api)
+are now arrays of values instead of single values.
+([c2c723b](https://github.com/zentity-io/zentity/commit/c2c723b38903e5c462dacb196c718de366c98d10))
+
+- **Bug fix** - Fixed cases in which null values or missing fields from the
+`"_source"` field caused jobs to fail with a validation exception. Null values
+and missing fields are now skipped.
+([998c04b](https://github.com/zentity-io/zentity/commit/998c04b1c00fe97e95824615fb586e1bb6f3c16b))
+
+
+## <a name="zentity-1.4.2">zentity-1.4.2</a>
 
 ### Download
 

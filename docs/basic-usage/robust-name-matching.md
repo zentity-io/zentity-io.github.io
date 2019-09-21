@@ -40,15 +40,17 @@ attributes will be compared to every index field to which they are mapped.
 
 Let's dive in.
 
-> **Important**
+> **Before you start**
 > 
 > You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch),
 > [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation)
 > to complete this tutorial. This tutorial was tested with
-> [zentity-1.4.2-elasticsearch-7.3.1](/docs/releases).
->
+> [zentity-{$ tutorial.zentity $}-elasticsearch-{$ tutorial.elasticsearch $}](/releases#zentity-{$ tutorial.zentity $}).
+> 
+> **Quick start**
+> 
 > You can use the [zentity sandbox](/sandbox) which has the required software
-> and data for these tutorials.
+> and data for these tutorials. This will let you skip many of the setup steps.
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
@@ -437,6 +439,8 @@ Here's what the tutorial data looks like.
 Let's use the [Models API](/docs/rest-apis/models-api) to create the entity
 model below. We'll review each part of the model in depth.
 
+**Request**
+
 ```javascript
 PUT _zentity/models/zentity_tutorial_2_person
 {
@@ -497,7 +501,7 @@ PUT _zentity/models/zentity_tutorial_2_person
 }
 ```
 
-The response will look like this:
+**Response**
 
 ```javascript
 {
@@ -662,11 +666,15 @@ We defined a single index as shown in this section:
 
 ## <a name="resolve-entity"></a>3. Resolve an entity
 
+### <a name="resolve-entity-basic"></a>3.1 Run a basic resolution job
+
 Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
-person with a known first name and last name:
+person with a known first name and last name.
+
+**Request**
 
 ```javascript
-POST _zentity/resolution/zentity_tutorial_2_person?pretty
+POST _zentity/resolution/zentity_tutorial_2_person?pretty&_source=false
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -675,11 +683,11 @@ POST _zentity/resolution/zentity_tutorial_2_person?pretty
 }
 ```
 
-The results will look like this:
+**Response**
 
 ```javascript
 {
-  "took" : 12,
+  "took" : 10,
   "hits" : {
     "total" : 3,
     "hits" : [ {
@@ -687,9 +695,81 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Allie",
-        "last_name" : "Jones"
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ]
+      }
+    }, {
+      "_index" : "zentity_tutorial_2_robust_name_matching",
+      "_type" : "_doc",
+      "_id" : "3",
+      "_hop" : 0,
+      "_query" : 0,
+      "_attributes" : {
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ]
+      }
+    }, {
+      "_index" : "zentity_tutorial_2_robust_name_matching",
+      "_type" : "_doc",
+      "_id" : "4",
+      "_hop" : 0,
+      "_query" : 0,
+      "_attributes" : {
+        "first_name" : [ "Ally" ],
+        "last_name" : [ "Joans" ]
+      }
+    } ]
+  }
+}
+```
+
+As expected, we retrieved three documents that match the first name "Allie" and
+the last name "Jones," whether those matches were exact matches, phonetic
+matches, or transposed matches. The results include a document with the first
+name "Ally" and the last name "Joans," which meet this criteria. All documents
+came from the same index at the same query of the same hop, as shown in the
+`"_index"`, `"_hop"`, and `"_query"` fields.
+
+
+### <a name="resolve-entity-source"></a>3.2 Show the `"_source"`
+
+We can include the original values of each document as they exist in
+Elasticsearch.
+
+Let's run the job again, and now let's include the [`"_source"`](/docs/entity-resolution/output-specification/#hits.hits._source)
+field of each document. The [`"_source"`](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-source-field.html)
+field is the original JSON document that's stored in an Elasticsearch index.
+
+**Request**
+
+```javascript
+POST _zentity/resolution/zentity_tutorial_2_person?pretty&_source=true
+{
+  "attributes": {
+    "first_name": [ "Allie" ],
+    "last_name": [ "Jones" ]
+  }
+}
+```
+
+**Response**
+
+```javascript
+{
+  "took" : 9,
+  "hits" : {
+    "total" : 3,
+    "hits" : [ {
+      "_index" : "zentity_tutorial_2_robust_name_matching",
+      "_type" : "_doc",
+      "_id" : "1",
+      "_hop" : 0,
+      "_query" : 0,
+      "_attributes" : {
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ]
       },
       "_source" : {
         "city" : "Washington",
@@ -706,9 +786,10 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "3",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Allie",
-        "last_name" : "Jones"
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ]
       },
       "_source" : {
         "city" : "Washington",
@@ -725,9 +806,10 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Ally",
-        "last_name" : "Joans"
+        "first_name" : [ "Ally" ],
+        "last_name" : [ "Joans" ]
       },
       "_source" : {
         "city" : "",
@@ -744,10 +826,286 @@ The results will look like this:
 }
 ```
 
-As expected, we retrieved three documents that match the first name "Allie" and
-the last name "Jones," whether those matches were exact matches, phonetic
-matches, or transposed matches. The results include a document with the first
-name "Ally" and the last name "Joans," which meet this criteria.
+Now, in addition to the values mapped to our normalized `"_attributes"`, we can
+see the values of those attributes and the values of every other field as they
+exist in the `"_source"` of the documents.
+
+
+### <a name="resolve-entity-explanation"></a>3.3 Show the `"_explanation"`
+
+We can learn how the documents matched, too.
+
+Let's run the job again, and now let's include the [`"_explanation"`](/docs/entity-resolution/output-specification/#hits.hits._explanation)
+field to see exactly why each document matched. The `"_explanation"` field tells
+us which resolvers caused a document to match, and more specifically, which
+input value matched which indexed value using which matcher and any parameters.
+
+**Request**
+
+```javascript
+POST _zentity/resolution/zentity_tutorial_2_person?pretty&_source=true&_explanation=true
+{
+  "attributes": {
+    "first_name": [ "Allie" ],
+    "last_name": [ "Jones" ]
+  }
+}
+```
+
+**Response**
+
+```javascript
+{
+  "took" : 12,
+  "hits" : {
+    "total" : 3,
+    "hits" : [ {
+      "_index" : "zentity_tutorial_2_robust_name_matching",
+      "_type" : "_doc",
+      "_id" : "1",
+      "_hop" : 0,
+      "_query" : 0,
+      "_attributes" : {
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_only" : {
+            "attributes" : [ "first_name", "last_name" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name.phonetic",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.phonetic",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city" : "Washington",
+        "email" : "allie@example.net",
+        "first_name" : "Allie",
+        "id" : "1",
+        "last_name" : "Jones",
+        "phone" : "202-555-1234",
+        "state" : "DC",
+        "street" : "123 Main St"
+      }
+    }, {
+      "_index" : "zentity_tutorial_2_robust_name_matching",
+      "_type" : "_doc",
+      "_id" : "3",
+      "_hop" : 0,
+      "_query" : 0,
+      "_attributes" : {
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_only" : {
+            "attributes" : [ "first_name", "last_name" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name.phonetic",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.phonetic",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city" : "Washington",
+        "email" : "",
+        "first_name" : "Allie",
+        "id" : "3",
+        "last_name" : "Jones",
+        "phone" : "",
+        "state" : "DC",
+        "street" : "123 Main St"
+      }
+    }, {
+      "_index" : "zentity_tutorial_2_robust_name_matching",
+      "_type" : "_doc",
+      "_id" : "4",
+      "_hop" : 0,
+      "_query" : 0,
+      "_attributes" : {
+        "first_name" : [ "Ally" ],
+        "last_name" : [ "Joans" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_only" : {
+            "attributes" : [ "first_name", "last_name" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.phonetic",
+          "target_value" : "Ally",
+          "input_value" : "Allie",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.phonetic",
+          "target_value" : "Joans",
+          "input_value" : "Jones",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city" : "",
+        "email" : "",
+        "first_name" : "Ally",
+        "id" : "4",
+        "last_name" : "Joans",
+        "phone" : "202-555-1234",
+        "state" : "",
+        "street" : ""
+      }
+    } ]
+  }
+}
+```
+
+Each document matched because of the `"name_only"` resolver as shown under
+`"_explanation"."resolvers"`. Two of the documents had attributes that each
+matched in two different ways as shown in `"_explanation"."matches"`.
+
+Let's look at a few of those matches:
+
+```javascript
+"_explanation": {
+  ...
+  "matches" : [
+    {
+      "attribute" : "first_name",
+      "target_field" : "first_name.clean",
+      "target_value" : "Allie",
+      "input_value" : "Allie",
+      "input_matcher" : "fuzzy",
+      "input_matcher_params" : { }
+    },{
+      "attribute" : "first_name",
+      "target_field" : "first_name.phonetic",
+      "target_value" : "Allie",
+      "input_value" : "Allie",
+      "input_matcher" : "simple",
+      "input_matcher_params" : { }
+    },
+    ...
+  ]
+}
+```
+
+These two matches tell us that the `"first_name"` attribute was discovered at
+two index fields called `"first_name.clean"` and `"first_name.phonetic"`.
+We can see that both fields had a value of `"Allie"` that matched a prior known
+attribute value of `"Allie"` using the "`fuzzy`" and `"simple"` matchers that we
+defined in our entity model. In other words, there were multiple reasons for the
+match.
+
+```javascript
+"_explanation": {
+  ...
+  "matches" : [
+    {
+      "attribute" : "last_name",
+      "target_field" : "last_name.phonetic",
+      "target_value" : "Joans",
+      "input_value" : "Jones",
+      "input_matcher" : "simple",
+      "input_matcher_params" : { }
+    }
+    ...
+  ]
+}
+```
+
+This match shows something more interesting than the prior tutorial on exact
+name matching. This time the value of `"target_value"` (`"Joans"`) was different
+from `"input_value"` (`"Jones"`). But they were considered a match because the
+text value of `"last_name.phonetic"` is stored in a phonetic representation that
+matched the text of the input value.
+
+> **Tip**
+> 
+> Keep in mind that the `"target_value"` under the `"_explanation"."matches"`
+> shows the value *prior* to any text analysis. In this example, the field
+> `"last_name.phonetic"` was a text field that uses phonetic analysis. So the
+> actual match was between the values of `"target_value"` and `"input_value"`
+> *after* the values were analyzed.
+> 
+> 
+> 
+> ```javascript
+> POST zentity_tutorial_2_robust_name_matching/_analyze
+> {
+>   "text": "Jones",
+>   "analyzer": "name_phonetic"
+> }
+> ```
+> 
+> ```javascript
+> POST zentity_tutorial_2_robust_name_matching/_analyze
+> {
+>   "text": "Joans",
+>   "analyzer": "name_phonetic"
+> }
+> ```
+> 
+> Our `"name_phonetic"` analyzer, which we defined in our [index settings](/docs/basic-usage/robust-name-matching/#create-tutorial-index),
+> converts both `"Jones"` and `"Joans"` to the token `"JAN"`, hence the match.
 
 
 ## <a name="conclusion"></a>Conclusion

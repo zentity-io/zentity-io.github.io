@@ -34,15 +34,17 @@ This time you will map **multiple combinations of attributes**
 
 Let's dive in.
 
-> **Important**
+> **Before you start**
 > 
 > You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch),
 > [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation)
 > to complete this tutorial. This tutorial was tested with
-> [zentity-1.4.2-elasticsearch-7.3.1](/docs/releases).
->
+> [zentity-{$ tutorial.zentity $}-elasticsearch-{$ tutorial.elasticsearch $}](/releases#zentity-{$ tutorial.zentity $}).
+> 
+> **Quick start**
+> 
 > You can use the [zentity sandbox](/sandbox) which has the required software
-> and data for these tutorials.
+> and data for these tutorials. This will let you skip many of the setup steps.
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
@@ -465,6 +467,8 @@ Here's what the tutorial data looks like.
 Let's use the [Models API](/docs/rest-apis/models-api) to create the entity
 model below. We'll review each part of the model in depth.
 
+**Request**
+
 ```javascript
 PUT _zentity/models/zentity_tutorial_5_person
 {
@@ -805,11 +809,16 @@ We defined a two indices as shown in this section:
 
 ## <a name="resolve-entity"></a>3. Resolve an entity
 
+
+### <a name="resolve-entity-basic"></a>3.1 Run a basic resolution job
+
 Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
-person with a known first name, last name, and phone number:
+person with a known first name, last name, and phone number.
+
+**Request**
 
 ```javascript
-POST _zentity/resolution/zentity_tutorial_5_person?pretty
+POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=false
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -819,11 +828,11 @@ POST _zentity/resolution/zentity_tutorial_5_person?pretty
 }
 ```
 
-The results will look like this:
+**Response**
 
 ```javascript
 {
-  "took" : 63,
+  "took" : 64,
   "hits" : {
     "total" : 9,
     "hits" : [ {
@@ -831,14 +840,190 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "allie@example.net",
-        "first_name" : "Allie",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234",
-        "state" : "DC",
-        "street" : "123 Main St"
+        "city" : [ "Washington" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_b",
+      "_type" : "_doc",
+      "_id" : "4",
+      "_hop" : 0,
+      "_query" : 1,
+      "_attributes" : {
+        "city" : [ "" ],
+        "email" : [ "" ],
+        "first_name" : [ "Ally" ],
+        "last_name" : [ "Joans" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "" ],
+        "street" : [ "" ]
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
+      "_type" : "_doc",
+      "_id" : "3",
+      "_hop" : 1,
+      "_query" : 0,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_b",
+      "_type" : "_doc",
+      "_id" : "6",
+      "_hop" : 1,
+      "_query" : 1,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
+      "_type" : "_doc",
+      "_id" : "11",
+      "_hop" : 2,
+      "_query" : 0,
+      "_attributes" : {
+        "city" : [ "" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Alison" ],
+        "last_name" : [ "Jones-Smith" ],
+        "phone" : [ "2025559867" ],
+        "state" : [ "" ],
+        "street" : [ "" ]
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
+      "_type" : "_doc",
+      "_id" : "7",
+      "_hop" : 3,
+      "_query" : 0,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Smith" ],
+        "phone" : [ "+1 (202) 555 1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "555 Broad St" ]
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_b",
+      "_type" : "_doc",
+      "_id" : "10",
+      "_hop" : 3,
+      "_query" : 1,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Alison" ],
+        "last_name" : [ "Smith" ],
+        "phone" : [ "202-555-9876" ],
+        "state" : [ "DC" ],
+        "street" : [ "555 Broad St" ]
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_b",
+      "_type" : "_doc",
+      "_id" : "12",
+      "_hop" : 4,
+      "_query" : 1,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "allison.j.smith@corp.example.net" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Jones-Smith" ],
+        "phone" : [ "" ],
+        "state" : [ "DC" ],
+        "street" : [ "555 Broad St" ]
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
+      "_type" : "_doc",
+      "_id" : "13",
+      "_hop" : 5,
+      "_query" : 0,
+      "_attributes" : {
+        "city" : [ "Arlington" ],
+        "email" : [ "allison.j.smith@corp.example.net" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Jones Smith" ],
+        "phone" : [ "703-555-5555" ],
+        "state" : [ "VA" ],
+        "street" : [ "1 Corporate Way" ]
+      }
+    } ]
+  }
+}
+```
+
+As expected, we retrieved the same results as the prior tutorial on
+[multiple resolver resolution](/docs/basic-usage/multiple-resolver-resolution)
+even though the documents were separated into two indices. These are shown in
+the `"_index"`, `"_hop"`, and `"_query"` fields.
+
+
+### <a name="resolve-entity-source"></a>3.2 Show the `"_source"`
+
+We can include the original values of each document as they exist in
+Elasticsearch.
+
+Let's run the job again, and now let's include the [`"_source"`](/docs/entity-resolution/output-specification/#hits.hits._source)
+field of each document. The [`"_source"`](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-source-field.html)
+field is the original JSON document that's stored in an Elasticsearch index.
+
+**Request**
+
+```javascript
+POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=true
+{
+  "attributes": {
+    "first_name": [ "Allie" ],
+    "last_name": [ "Jones" ],
+    "phone": [ "202-555-1234" ]
+  }
+}
+```
+
+**Response**
+
+```javascript
+{
+  "took" : 62,
+  "hits" : {
+    "total" : 9,
+    "hits" : [ {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
+      "_type" : "_doc",
+      "_id" : "1",
+      "_hop" : 0,
+      "_query" : 0,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
       },
       "_source" : {
         "city_a" : "Washington",
@@ -855,14 +1040,15 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
+      "_query" : 1,
       "_attributes" : {
-        "city" : "",
-        "email" : "",
-        "first_name" : "Ally",
-        "last_name" : "Joans",
-        "phone" : "202-555-1234",
-        "state" : "",
-        "street" : ""
+        "city" : [ "" ],
+        "email" : [ "" ],
+        "first_name" : [ "Ally" ],
+        "last_name" : [ "Joans" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "" ],
+        "street" : [ "" ]
       },
       "_source" : {
         "city_b" : "",
@@ -879,14 +1065,15 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "3",
       "_hop" : 1,
+      "_query" : 0,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "",
-        "first_name" : "Allie",
-        "last_name" : "Jones",
-        "phone" : "",
-        "state" : "DC",
-        "street" : "123 Main St"
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
       },
       "_source" : {
         "city_a" : "Washington",
@@ -903,14 +1090,15 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "6",
       "_hop" : 1,
+      "_query" : 1,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "allie@example.net",
-        "first_name" : "Allison",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234",
-        "state" : "DC",
-        "street" : "123 Main St"
+        "city" : [ "Washington" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
       },
       "_source" : {
         "city_b" : "Washington",
@@ -927,14 +1115,15 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "11",
       "_hop" : 2,
+      "_query" : 0,
       "_attributes" : {
-        "city" : "",
-        "email" : "allie@example.net",
-        "first_name" : "Alison",
-        "last_name" : "Jones-Smith",
-        "phone" : "2025559867",
-        "state" : "",
-        "street" : ""
+        "city" : [ "" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Alison" ],
+        "last_name" : [ "Jones-Smith" ],
+        "phone" : [ "2025559867" ],
+        "state" : [ "" ],
+        "street" : [ "" ]
       },
       "_source" : {
         "city_a" : "",
@@ -951,14 +1140,15 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "7",
       "_hop" : 3,
+      "_query" : 0,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "",
-        "first_name" : "Allison",
-        "last_name" : "Smith",
-        "phone" : "+1 (202) 555 1234",
-        "state" : "DC",
-        "street" : "555 Broad St"
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Smith" ],
+        "phone" : [ "+1 (202) 555 1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "555 Broad St" ]
       },
       "_source" : {
         "city_a" : "Washington",
@@ -975,14 +1165,15 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "10",
       "_hop" : 3,
+      "_query" : 1,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "",
-        "first_name" : "Alison",
-        "last_name" : "Smith",
-        "phone" : "202-555-9876",
-        "state" : "DC",
-        "street" : "555 Broad St"
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Alison" ],
+        "last_name" : [ "Smith" ],
+        "phone" : [ "202-555-9876" ],
+        "state" : [ "DC" ],
+        "street" : [ "555 Broad St" ]
       },
       "_source" : {
         "city_b" : "Washington",
@@ -999,14 +1190,15 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "12",
       "_hop" : 4,
+      "_query" : 1,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "allison.j.smith@corp.example.net",
-        "first_name" : "Allison",
-        "last_name" : "Jones-Smith",
-        "phone" : "",
-        "state" : "DC",
-        "street" : "555 Broad St"
+        "city" : [ "Washington" ],
+        "email" : [ "allison.j.smith@corp.example.net" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Jones-Smith" ],
+        "phone" : [ "" ],
+        "state" : [ "DC" ],
+        "street" : [ "555 Broad St" ]
       },
       "_source" : {
         "city_b" : "Washington",
@@ -1023,14 +1215,15 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "13",
       "_hop" : 5,
+      "_query" : 0,
       "_attributes" : {
-        "city" : "Arlington",
-        "email" : "allison.j.smith@corp.example.net",
-        "first_name" : "Allison",
-        "last_name" : "Jones Smith",
-        "phone" : "703-555-5555",
-        "state" : "VA",
-        "street" : "1 Corporate Way"
+        "city" : [ "Arlington" ],
+        "email" : [ "allison.j.smith@corp.example.net" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Jones Smith" ],
+        "phone" : [ "703-555-5555" ],
+        "state" : [ "VA" ],
+        "street" : [ "1 Corporate Way" ]
       },
       "_source" : {
         "city_a" : "Arlington",
@@ -1047,14 +1240,869 @@ The results will look like this:
 }
 ```
 
-As expected, we retrieved the same results as the prior tutorial on
-[multiple resolver resolution](/docs/basic-usage/multiple-resolver-resolution)
-even though the documents were separated into two indices. Also notice how the
-`"_attributes"` of each result have the same field names regardless of which
-index the documents came from. The `"_source"` fields show the original names of
-the fields as they exist in the indices. This mapping of the source field names
-to the canonical attribute names allows you to access their under as a common
-schema. This makes it much easier to analyze the values of the entity.
+Notice how the `"_attributes"` of each result have the same field names
+regardless of which index the documents came from. The `"_source"` fields show
+the original names of the fields as they exist in the indices. This mapping of
+the source field names to the canonical attribute names allows you to access
+their under as a common schema. This makes it much easier to analyze the values
+of the entity.
+
+
+### <a name="resolve-entity-explanation"></a>3.3 Show the `"_explanation"`
+
+We can learn how the documents matched, too.
+
+Let's run the job again, and now let's include the [`"_explanation"`](/docs/entity-resolution/output-specification/#hits.hits._explanation)
+field to see exactly why each document matched. The `"_explanation"` field tells
+us which resolvers caused a document to match, and more specifically, which
+input value matched which indexed value using which matcher and any parameters.
+
+**Request**
+
+```javascript
+POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=true&_explanation=true
+{
+  "attributes": {
+    "first_name": [ "Allie" ],
+    "last_name": [ "Jones" ],
+    "phone": [ "202-555-1234" ]
+  }
+}
+```
+
+**Response**
+
+```javascript
+{
+  "took" : 77,
+  "hits" : {
+    "total" : 9,
+    "hits" : [ {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
+      "_type" : "_doc",
+      "_id" : "1",
+      "_hop" : 0,
+      "_query" : 0,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.clean",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.phonetic",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.phonetic",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone_a.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city_a" : "Washington",
+        "email_a" : "allie@example.net",
+        "first_name_a" : "Allie",
+        "id_a" : "1",
+        "last_name_a" : "Jones",
+        "phone_a" : "202-555-1234",
+        "state_a" : "DC",
+        "street_a" : "123 Main St"
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_b",
+      "_type" : "_doc",
+      "_id" : "4",
+      "_hop" : 0,
+      "_query" : 1,
+      "_attributes" : {
+        "city" : [ "" ],
+        "email" : [ "" ],
+        "first_name" : [ "Ally" ],
+        "last_name" : [ "Joans" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "" ],
+        "street" : [ "" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name_b.phonetic",
+          "target_value" : "Ally",
+          "input_value" : "Allie",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.phonetic",
+          "target_value" : "Joans",
+          "input_value" : "Jones",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone_b.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city_b" : "",
+        "email_b" : "",
+        "first_name_b" : "Ally",
+        "id_b" : "4",
+        "last_name_b" : "Joans",
+        "phone_b" : "202-555-1234",
+        "state_b" : "",
+        "street_b" : ""
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
+      "_type" : "_doc",
+      "_id" : "3",
+      "_hop" : 1,
+      "_query" : 0,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_street_city_state" : {
+            "attributes" : [ "city", "first_name", "last_name", "state", "street" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "city",
+          "target_field" : "city_a.clean",
+          "target_value" : "Washington",
+          "input_value" : "Washington",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.clean",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.phonetic",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.phonetic",
+          "target_value" : "Allie",
+          "input_value" : "Ally",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.phonetic",
+          "target_value" : "Jones",
+          "input_value" : "Joans",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.phonetic",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "state",
+          "target_field" : "state_a.keyword",
+          "target_value" : "DC",
+          "input_value" : "DC",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "street",
+          "target_field" : "street_a.clean",
+          "target_value" : "123 Main St",
+          "input_value" : "123 Main St",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city_a" : "Washington",
+        "email_a" : "",
+        "first_name_a" : "Allie",
+        "id_a" : "3",
+        "last_name_a" : "Jones",
+        "phone_a" : "",
+        "state_a" : "DC",
+        "street_a" : "123 Main St"
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_b",
+      "_type" : "_doc",
+      "_id" : "6",
+      "_hop" : 1,
+      "_query" : 1,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "email_phone" : {
+            "attributes" : [ "email", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "city",
+          "target_field" : "city_b.clean",
+          "target_value" : "Washington",
+          "input_value" : "Washington",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "email",
+          "target_field" : "email_b.keyword",
+          "target_value" : "allie@example.net",
+          "input_value" : "allie@example.net",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.phonetic",
+          "target_value" : "Jones",
+          "input_value" : "Joans",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.phonetic",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone_b.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "state",
+          "target_field" : "state_b.keyword",
+          "target_value" : "DC",
+          "input_value" : "DC",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "street",
+          "target_field" : "street_b.clean",
+          "target_value" : "123 Main St",
+          "input_value" : "123 Main St",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city_b" : "Washington",
+        "email_b" : "allie@example.net",
+        "first_name_b" : "Allison",
+        "id_b" : "6",
+        "last_name_b" : "Jones",
+        "phone_b" : "202-555-1234",
+        "state_b" : "DC",
+        "street_b" : "123 Main St"
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
+      "_type" : "_doc",
+      "_id" : "11",
+      "_hop" : 2,
+      "_query" : 0,
+      "_attributes" : {
+        "city" : [ "" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Alison" ],
+        "last_name" : [ "Jones-Smith" ],
+        "phone" : [ "2025559867" ],
+        "state" : [ "" ],
+        "street" : [ "" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_email" : {
+            "attributes" : [ "email", "first_name", "last_name" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "email",
+          "target_field" : "email_a.keyword",
+          "target_value" : "allie@example.net",
+          "input_value" : "allie@example.net",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.clean",
+          "target_value" : "Alison",
+          "input_value" : "Allison",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.phonetic",
+          "target_value" : "Alison",
+          "input_value" : "Allison",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.clean",
+          "target_value" : "Jones-Smith",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.phonetic",
+          "target_value" : "Jones-Smith",
+          "input_value" : "Joans",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.phonetic",
+          "target_value" : "Jones-Smith",
+          "input_value" : "Jones",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city_a" : "",
+        "email_a" : "allie@example.net",
+        "first_name_a" : "Alison",
+        "id_a" : "11",
+        "last_name_a" : "Jones-Smith",
+        "phone_a" : "2025559867",
+        "state_a" : "",
+        "street_a" : ""
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
+      "_type" : "_doc",
+      "_id" : "7",
+      "_hop" : 3,
+      "_query" : 0,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Smith" ],
+        "phone" : [ "+1 (202) 555 1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "555 Broad St" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "city",
+          "target_field" : "city_a.clean",
+          "target_value" : "Washington",
+          "input_value" : "Washington",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.clean",
+          "target_value" : "Allison",
+          "input_value" : "Alison",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.clean",
+          "target_value" : "Allison",
+          "input_value" : "Allison",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.phonetic",
+          "target_value" : "Allison",
+          "input_value" : "Alison",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.phonetic",
+          "target_value" : "Allison",
+          "input_value" : "Allison",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.clean",
+          "target_value" : "Smith",
+          "input_value" : "Jones-Smith",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.phonetic",
+          "target_value" : "Smith",
+          "input_value" : "Jones-Smith",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone_a.clean",
+          "target_value" : "+1 (202) 555 1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "state",
+          "target_field" : "state_a.keyword",
+          "target_value" : "DC",
+          "input_value" : "DC",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city_a" : "Washington",
+        "email_a" : "",
+        "first_name_a" : "Allison",
+        "id_a" : "7",
+        "last_name_a" : "Smith",
+        "phone_a" : "+1 (202) 555 1234",
+        "state_a" : "DC",
+        "street_a" : "555 Broad St"
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_b",
+      "_type" : "_doc",
+      "_id" : "10",
+      "_hop" : 3,
+      "_query" : 1,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Alison" ],
+        "last_name" : [ "Smith" ],
+        "phone" : [ "202-555-9876" ],
+        "state" : [ "DC" ],
+        "street" : [ "555 Broad St" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "city",
+          "target_field" : "city_b.clean",
+          "target_value" : "Washington",
+          "input_value" : "Washington",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_b.clean",
+          "target_value" : "Alison",
+          "input_value" : "Alison",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_b.clean",
+          "target_value" : "Alison",
+          "input_value" : "Allison",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_b.phonetic",
+          "target_value" : "Alison",
+          "input_value" : "Alison",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_b.phonetic",
+          "target_value" : "Alison",
+          "input_value" : "Allison",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.clean",
+          "target_value" : "Smith",
+          "input_value" : "Jones-Smith",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.phonetic",
+          "target_value" : "Smith",
+          "input_value" : "Jones-Smith",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone_b.clean",
+          "target_value" : "202-555-9876",
+          "input_value" : "2025559867",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "state",
+          "target_field" : "state_b.keyword",
+          "target_value" : "DC",
+          "input_value" : "DC",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city_b" : "Washington",
+        "email_b" : "",
+        "first_name_b" : "Alison",
+        "id_b" : "10",
+        "last_name_b" : "Smith",
+        "phone_b" : "202-555-9876",
+        "state_b" : "DC",
+        "street_b" : "555 Broad St"
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_b",
+      "_type" : "_doc",
+      "_id" : "12",
+      "_hop" : 4,
+      "_query" : 1,
+      "_attributes" : {
+        "city" : [ "Washington" ],
+        "email" : [ "allison.j.smith@corp.example.net" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Jones-Smith" ],
+        "phone" : [ "" ],
+        "state" : [ "DC" ],
+        "street" : [ "555 Broad St" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_street_city_state" : {
+            "attributes" : [ "city", "first_name", "last_name", "state", "street" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "city",
+          "target_field" : "city_b.clean",
+          "target_value" : "Washington",
+          "input_value" : "Washington",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_b.clean",
+          "target_value" : "Allison",
+          "input_value" : "Alison",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_b.clean",
+          "target_value" : "Allison",
+          "input_value" : "Allison",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_b.phonetic",
+          "target_value" : "Allison",
+          "input_value" : "Alison",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_b.phonetic",
+          "target_value" : "Allison",
+          "input_value" : "Allison",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.clean",
+          "target_value" : "Jones-Smith",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.clean",
+          "target_value" : "Jones-Smith",
+          "input_value" : "Jones-Smith",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.clean",
+          "target_value" : "Jones-Smith",
+          "input_value" : "Smith",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.phonetic",
+          "target_value" : "Jones-Smith",
+          "input_value" : "Joans",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.phonetic",
+          "target_value" : "Jones-Smith",
+          "input_value" : "Jones",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.phonetic",
+          "target_value" : "Jones-Smith",
+          "input_value" : "Jones-Smith",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_b.phonetic",
+          "target_value" : "Jones-Smith",
+          "input_value" : "Smith",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "state",
+          "target_field" : "state_b.keyword",
+          "target_value" : "DC",
+          "input_value" : "DC",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "street",
+          "target_field" : "street_b.clean",
+          "target_value" : "555 Broad St",
+          "input_value" : "555 Broad St",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city_b" : "Washington",
+        "email_b" : "allison.j.smith@corp.example.net",
+        "first_name_b" : "Allison",
+        "id_b" : "12",
+        "last_name_b" : "Jones-Smith",
+        "phone_b" : "",
+        "state_b" : "DC",
+        "street_b" : "555 Broad St"
+      }
+    }, {
+      "_index" : "zentity_tutorial_5_cross_index_resolution_a",
+      "_type" : "_doc",
+      "_id" : "13",
+      "_hop" : 5,
+      "_query" : 0,
+      "_attributes" : {
+        "city" : [ "Arlington" ],
+        "email" : [ "allison.j.smith@corp.example.net" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Jones Smith" ],
+        "phone" : [ "703-555-5555" ],
+        "state" : [ "VA" ],
+        "street" : [ "1 Corporate Way" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_email" : {
+            "attributes" : [ "email", "first_name", "last_name" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "email",
+          "target_field" : "email_a.keyword",
+          "target_value" : "allison.j.smith@corp.example.net",
+          "input_value" : "allison.j.smith@corp.example.net",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.clean",
+          "target_value" : "Allison",
+          "input_value" : "Alison",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.clean",
+          "target_value" : "Allison",
+          "input_value" : "Allison",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.phonetic",
+          "target_value" : "Allison",
+          "input_value" : "Alison",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "first_name",
+          "target_field" : "first_name_a.phonetic",
+          "target_value" : "Allison",
+          "input_value" : "Allison",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.clean",
+          "target_value" : "Jones Smith",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.clean",
+          "target_value" : "Jones Smith",
+          "input_value" : "Jones-Smith",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.clean",
+          "target_value" : "Jones Smith",
+          "input_value" : "Smith",
+          "input_matcher" : "fuzzy",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.phonetic",
+          "target_value" : "Jones Smith",
+          "input_value" : "Joans",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.phonetic",
+          "target_value" : "Jones Smith",
+          "input_value" : "Jones",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.phonetic",
+          "target_value" : "Jones Smith",
+          "input_value" : "Jones-Smith",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name_a.phonetic",
+          "target_value" : "Jones Smith",
+          "input_value" : "Smith",
+          "input_matcher" : "simple",
+          "input_matcher_params" : { }
+        } ]
+      },
+      "_source" : {
+        "city_a" : "Arlington",
+        "email_a" : "allison.j.smith@corp.example.net",
+        "first_name_a" : "Allison",
+        "id_a" : "13",
+        "last_name_a" : "Jones Smith",
+        "phone_a" : "703-555-5555",
+        "state_a" : "VA",
+        "street_a" : "1 Corporate Way"
+      }
+    } ]
+  }
+}
+```
 
 
 ## <a name="conclusion"></a>Conclusion

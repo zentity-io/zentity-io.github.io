@@ -33,15 +33,17 @@ searches.
 
 Let's dive in.
 
-> **Important**
+> **Before you start**
 > 
 > You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch),
 > [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation)
 > to complete this tutorial. This tutorial was tested with
-> [zentity-1.4.2-elasticsearch-7.3.1](/docs/releases).
->
+> [zentity-{$ tutorial.zentity $}-elasticsearch-{$ tutorial.elasticsearch $}](/releases#zentity-{$ tutorial.zentity $}).
+> 
+> **Quick start**
+> 
 > You can use the [zentity sandbox](/sandbox) which has the required software
-> and data for these tutorials.
+> and data for these tutorials. This will let you skip many of the setup steps.
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
@@ -469,6 +471,8 @@ model below. This is the same model used in the prior tutorial on
 tutorial will show how to omit some of the resolvers and indices during a
 resolution job.
 
+**Request**
+
 ```javascript
 PUT _zentity/models/zentity_tutorial_5_person
 {
@@ -623,6 +627,7 @@ PUT _zentity/models/zentity_tutorial_5_person
 
 ## <a name="resolve-entity"></a>3. Resolve an entity
 
+
 ## <a name="resolve-entity-scope-indices"></a>3.1 Control the scope of indices
 
 Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
@@ -632,8 +637,10 @@ which returned nine results. This time, we are going to control the scope of the
 indices searched during the resolution job. Let's limit the job to the
 `"zentity_tutorial_5_cross_index_resolution_a"` index.
 
+**Request**
+
 ```javascript
-POST _zentity/resolution/zentity_tutorial_5_person?pretty
+POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=false
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -650,7 +657,7 @@ POST _zentity/resolution/zentity_tutorial_5_person?pretty
 }
 ```
 
-The results will look like this:
+**Response**
 
 ```javascript
 {
@@ -662,48 +669,30 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "allie@example.net",
-        "first_name" : "Allie",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234",
-        "state" : "DC",
-        "street" : "123 Main St"
-      },
-      "_source" : {
-        "city_a" : "Washington",
-        "email_a" : "allie@example.net",
-        "first_name_a" : "Allie",
-        "id_a" : "1",
-        "last_name_a" : "Jones",
-        "phone_a" : "202-555-1234",
-        "state_a" : "DC",
-        "street_a" : "123 Main St"
+        "city" : [ "Washington" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_a",
       "_type" : "_doc",
       "_id" : "3",
       "_hop" : 1,
+      "_query" : 0,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "",
-        "first_name" : "Allie",
-        "last_name" : "Jones",
-        "phone" : "",
-        "state" : "DC",
-        "street" : "123 Main St"
-      },
-      "_source" : {
-        "city_a" : "Washington",
-        "email_a" : "",
-        "first_name_a" : "Allie",
-        "id_a" : "3",
-        "last_name_a" : "Jones",
-        "phone_a" : "",
-        "state_a" : "DC",
-        "street_a" : "123 Main St"
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
       }
     } ]
   }
@@ -725,8 +714,10 @@ which returned nine results. This time, we are going to control the scope of the
 resolvers searched during the resolution job. Let's exclude only the
 `"name_street_city_state"` resolver. Let's also search across both indices.
 
+**Request**
+
 ```javascript
-POST _zentity/resolution/zentity_tutorial_5_person?pretty
+POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=false
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -749,7 +740,7 @@ POST _zentity/resolution/zentity_tutorial_5_person?pretty
 }
 ```
 
-The results will look like this:
+**Response**
 
 ```javascript
 {
@@ -761,144 +752,90 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "allie@example.net",
-        "first_name" : "Allie",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234",
-        "state" : "DC",
-        "street" : "123 Main St"
-      },
-      "_source" : {
-        "city_a" : "Washington",
-        "email_a" : "allie@example.net",
-        "first_name_a" : "Allie",
-        "id_a" : "1",
-        "last_name_a" : "Jones",
-        "phone_a" : "202-555-1234",
-        "state_a" : "DC",
-        "street_a" : "123 Main St"
+        "city" : [ "Washington" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_b",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
+      "_query" : 1,
       "_attributes" : {
-        "city" : "",
-        "email" : "",
-        "first_name" : "Ally",
-        "last_name" : "Joans",
-        "phone" : "202-555-1234",
-        "state" : "",
-        "street" : ""
-      },
-      "_source" : {
-        "city_b" : "",
-        "email_b" : "",
-        "first_name_b" : "Ally",
-        "id_b" : "4",
-        "last_name_b" : "Joans",
-        "phone_b" : "202-555-1234",
-        "state_b" : "",
-        "street_b" : ""
+        "city" : [ "" ],
+        "email" : [ "" ],
+        "first_name" : [ "Ally" ],
+        "last_name" : [ "Joans" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "" ],
+        "street" : [ "" ]
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_b",
       "_type" : "_doc",
       "_id" : "6",
       "_hop" : 1,
+      "_query" : 1,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "allie@example.net",
-        "first_name" : "Allison",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234",
-        "state" : "DC",
-        "street" : "123 Main St"
-      },
-      "_source" : {
-        "city_b" : "Washington",
-        "email_b" : "allie@example.net",
-        "first_name_b" : "Allison",
-        "id_b" : "6",
-        "last_name_b" : "Jones",
-        "phone_b" : "202-555-1234",
-        "state_b" : "DC",
-        "street_b" : "123 Main St"
+        "city" : [ "Washington" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "123 Main St" ]
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_a",
       "_type" : "_doc",
       "_id" : "11",
       "_hop" : 2,
+      "_query" : 0,
       "_attributes" : {
-        "city" : "",
-        "email" : "allie@example.net",
-        "first_name" : "Alison",
-        "last_name" : "Jones-Smith",
-        "phone" : "2025559867",
-        "state" : "",
-        "street" : ""
-      },
-      "_source" : {
-        "city_a" : "",
-        "email_a" : "allie@example.net",
-        "first_name_a" : "Alison",
-        "id_a" : "11",
-        "last_name_a" : "Jones-Smith",
-        "phone_a" : "2025559867",
-        "state_a" : "",
-        "street_a" : ""
+        "city" : [ "" ],
+        "email" : [ "allie@example.net" ],
+        "first_name" : [ "Alison" ],
+        "last_name" : [ "Jones-Smith" ],
+        "phone" : [ "2025559867" ],
+        "state" : [ "" ],
+        "street" : [ "" ]
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_a",
       "_type" : "_doc",
       "_id" : "7",
       "_hop" : 3,
+      "_query" : 0,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "",
-        "first_name" : "Allison",
-        "last_name" : "Smith",
-        "phone" : "+1 (202) 555 1234",
-        "state" : "DC",
-        "street" : "555 Broad St"
-      },
-      "_source" : {
-        "city_a" : "Washington",
-        "email_a" : "",
-        "first_name_a" : "Allison",
-        "id_a" : "7",
-        "last_name_a" : "Smith",
-        "phone_a" : "+1 (202) 555 1234",
-        "state_a" : "DC",
-        "street_a" : "555 Broad St"
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Allison" ],
+        "last_name" : [ "Smith" ],
+        "phone" : [ "+1 (202) 555 1234" ],
+        "state" : [ "DC" ],
+        "street" : [ "555 Broad St" ]
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_b",
       "_type" : "_doc",
       "_id" : "10",
       "_hop" : 3,
+      "_query" : 1,
       "_attributes" : {
-        "city" : "Washington",
-        "email" : "",
-        "first_name" : "Alison",
-        "last_name" : "Smith",
-        "phone" : "202-555-9876",
-        "state" : "DC",
-        "street" : "555 Broad St"
-      },
-      "_source" : {
-        "city_b" : "Washington",
-        "email_b" : "",
-        "first_name_b" : "Alison",
-        "id_b" : "10",
-        "last_name_b" : "Smith",
-        "phone_b" : "202-555-9876",
-        "state_b" : "DC",
-        "street_b" : "555 Broad St"
+        "city" : [ "Washington" ],
+        "email" : [ "" ],
+        "first_name" : [ "Alison" ],
+        "last_name" : [ "Smith" ],
+        "phone" : [ "202-555-9876" ],
+        "state" : [ "DC" ],
+        "street" : [ "555 Broad St" ]
       }
     } ]
   }

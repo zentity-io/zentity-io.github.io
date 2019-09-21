@@ -28,11 +28,17 @@ the behavior of matchers at runtime.
 
 Let's dive in.
 
-> **Important**
+> **Before you start**
 > 
 > You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch),
 > [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation)
-> to complete this tutorial. This tutorial was tested with [zentity-1.4.2-elasticsearch-7.3.1](/docs/releases).
+> to complete this tutorial. This tutorial was tested with
+> [zentity-{$ tutorial.zentity $}-elasticsearch-{$ tutorial.elasticsearch $}](/releases#zentity-{$ tutorial.zentity $}).
+> 
+> **Quick start**
+> 
+> You can use the [zentity sandbox](/sandbox) which has the required software
+> and data for these tutorials. This will let you skip many of the setup steps.
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
@@ -46,6 +52,8 @@ makes it easy to submit requests to Elasticsearch and read responses.
 
 ### <a name="delete-old-tutorial-indices"></a>1.2 Delete any old tutorial indices
 
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
 Let's start from scratch. Delete any tutorial indices you might have created from
 other tutorials.
 
@@ -55,6 +63,8 @@ DELETE zentity_tutorial_7_*
 
 
 ### <a name="create-tutorial-index"></a>1.3 Create the tutorial index
+
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
 
 Now create the index for this tutorial.
 
@@ -136,6 +146,8 @@ PUT zentity_tutorial_7_matcher_parameters
 
 ### <a name="load-tutorial-data"></a>1.4 Load the tutorial data
 
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
 Add the tutorial data to the index.
 
 ```javascript
@@ -165,8 +177,12 @@ Here's what the tutorial data looks like.
 
 ## <a name="create-entity-model"></a>2. Create the entity model
 
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
 Let's use the [Models API](/docs/rest-apis/models-api) to create the entity
 model below. We'll review the matchers in depth.
+
+**Request**
 
 ```javascript
 PUT _zentity/models/zentity_tutorial_7_person
@@ -338,10 +354,12 @@ override the default values of those parameters.
 ## <a name="resolve-entity"></a>3. Resolve an entity
 
 Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
-person with a known first name, last name, and phone number:
+person with a known first name, last name, and phone number.
+
+**Request**
 
 ```javascript
-POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
+POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explanation=true
 {
   "attributes": {
     "first_name": [ "Allie" ],
@@ -351,11 +369,11 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
 }
 ```
 
-The results will look like this:
+**Response**
 
 ```javascript
 {
-  "took" : 5,
+  "took" : 7,
   "hits" : {
     "total" : 2,
     "hits" : [ {
@@ -363,20 +381,80 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Allie",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234"
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Ellie",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234"
+        "first_name" : [ "Ellie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Ellie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        } ]
       }
     } ]
   }
@@ -397,8 +475,10 @@ one character difference to match.
 
 Let's set the value of `"fuzziness"` to `2` for our `"first_name"` attribute.
 
+**Request**
+
 ```javascript
-POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
+POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explanation=true
 {
   "attributes": {
     "first_name": {
@@ -413,11 +493,11 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
 }
 ```
 
-The results will look like this:
+**Response**
 
 ```javascript
 {
-  "took" : 5,
+  "took" : 10,
   "hits" : {
     "total" : 3,
     "hits" : [ {
@@ -425,30 +505,126 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Allie",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234"
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "2"
+          }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Ellie",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234"
+        "first_name" : [ "Ellie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Ellie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "2"
+          }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "5",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Ali",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234"
+        "first_name" : [ "Ali" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Ali",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "2"
+          }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        } ]
       }
     } ]
   }
@@ -460,8 +636,10 @@ This returned three of the four matching documents. The first names "Allie" and
 
 Let's also set the value of `"fuzziness"` to `2` for our `"last_name"` attribute.
 
+**Request**
+
 ```javascript
-POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
+POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explanation=true
 {
   "attributes": {
     "first_name": {
@@ -481,11 +659,11 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
 }
 ```
 
-The results will look like this:
+**Response**
 
 ```javascript
 {
-  "took" : 11,
+  "took" : 15,
   "hits" : {
     "total" : 4,
     "hits" : [ {
@@ -493,40 +671,176 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Allie",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234"
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "2"
+          }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "2"
+          }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "3",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Allie",
-        "last_name" : "Joans",
-        "phone" : "202-555-1432"
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Joans" ],
+        "phone" : [ "202-555-1432" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "2"
+          }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Joans",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "2"
+          }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone.clean",
+          "target_value" : "202-555-1432",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Ellie",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234"
+        "first_name" : [ "Ellie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Ellie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "2"
+          }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "2"
+          }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
       "_type" : "_doc",
       "_id" : "5",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Ali",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234"
+        "first_name" : [ "Ali" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Ali",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "2"
+          }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "2"
+          }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : { }
+        } ]
       }
     } ]
   }
@@ -541,8 +855,10 @@ length of the strings are greater than or equal to six characters.
 
 What if we disabled `"fuzziness"` on every attribute? Let's try it.
 
+**Request**
+
 ```javascript
-POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
+POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explanation=true
 {
   "attributes": {
     "first_name": {
@@ -567,7 +883,7 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false
 }
 ```
 
-The results will look like this:
+**Response**
 
 ```javascript
 {
@@ -579,10 +895,46 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "first_name" : "Allie",
-        "last_name" : "Jones",
-        "phone" : "202-555-1234"
+        "first_name" : [ "Allie" ],
+        "last_name" : [ "Jones" ],
+        "phone" : [ "202-555-1234" ]
+      },
+      "_explanation" : {
+        "resolvers" : {
+          "name_phone" : {
+            "attributes" : [ "first_name", "last_name", "phone" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "first_name",
+          "target_field" : "first_name.clean",
+          "target_value" : "Allie",
+          "input_value" : "Allie",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "0"
+          }
+        }, {
+          "attribute" : "last_name",
+          "target_field" : "last_name.clean",
+          "target_value" : "Jones",
+          "input_value" : "Jones",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "0"
+          }
+        }, {
+          "attribute" : "phone",
+          "target_field" : "phone.clean",
+          "target_value" : "202-555-1234",
+          "input_value" : "202-555-1234",
+          "input_matcher" : "fuzzy_params",
+          "input_matcher_params" : {
+            "fuzziness" : "0"
+          }
+        } ]
       }
     } ]
   }

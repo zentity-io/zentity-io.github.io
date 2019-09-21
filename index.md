@@ -18,6 +18,15 @@ resolution. It aims to be:
 
 ### zentity-{$ latest.zentity $}
 
+> **Breaking change**: There is a breaking change that affects all users
+> upgrading to zentity-1.5.0 or later. Fields in the [`"_attributes"`](/docs/entity-resolution/output-specification/#hits.hits._attributes)
+> object of each document returned by the [Resolution API](/docs/rest-apis/resolution-api)
+> are now arrays of values instead of single values. You will need to modify
+> your client application to retrieve the first element of [`"hits"."hits"."_attributes"`](/docs/entity-resolution/output-specification/#hits.hits._attributes)
+> to achieve the same behavior as your prior version. This is a quick solution
+> for the short term. However, keep in mind that it's now possible for an
+> attribute of a document to have multiple values.
+
 Select the plugin version that matches your version of Elasticsearch:
 
 - [Elasticsearch 7.3.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.3.2.zip)

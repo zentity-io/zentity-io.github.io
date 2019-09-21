@@ -24,6 +24,11 @@ META_DESCRIPTION_GENERIC_SHORT = "Connect the hidden fragments of an identity in
 RE_VERSION_ELASTICSEARCH = re.compile(r"-elasticsearch-(.+)$")
 RE_VERSION_ZENTITY = re.compile(r"^zentity-(.+)-elasticsearch")
 
+SANDBOX_VERSION_ELASTICSEARCH = "7.3.1"
+SANDBOX_VERSION_ZENTITY = "1.5.0"
+TUTORIAL_VERSION_ELASTICSEARCH = "7.3.1"
+TUTORIAL_VERSION_ZENTITY = "1.5.0"
+
 env = jinja2.Environment(
     loader = jinja2.FileSystemLoader("templates"),
     variable_start_string = "{$",
@@ -374,6 +379,14 @@ if __name__ == "__main__":
     if not args["latest"]["elasticsearch"]:
         print "Missing required elasticsearch version --latest argument"
         sys.exit(0)
+    args["sandbox"] = {
+        "elasticsearch": SANDBOX_VERSION_ELASTICSEARCH,
+        "zentity": SANDBOX_VERSION_ZENTITY
+    }
+    args["tutorial"] = {
+        "elasticsearch": TUTORIAL_VERSION_ELASTICSEARCH,
+        "zentity": TUTORIAL_VERSION_ZENTITY
+    }
     print args
     build(args)
     

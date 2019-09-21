@@ -43,11 +43,17 @@ the window of a date range query.
 
 Let's dive in.
 
-> **Important**
+> **Before you start**
 > 
 > You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch),
 > [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation)
-> to complete this tutorial. This tutorial was tested with [zentity-1.4.2-elasticsearch-7.3.1](/docs/releases).
+> to complete this tutorial. This tutorial was tested with
+> [zentity-{$ tutorial.zentity $}-elasticsearch-{$ tutorial.elasticsearch $}](/releases#zentity-{$ tutorial.zentity $}).
+> 
+> **Quick start**
+> 
+> You can use the [zentity sandbox](/sandbox) which has the required software
+> and data for these tutorials. This will let you skip many of the setup steps.
 
 
 ## <a name="prepare"></a>1. Prepare for the tutorial
@@ -61,6 +67,8 @@ makes it easy to submit requests to Elasticsearch and read responses.
 
 ### <a name="delete-old-tutorial-indices"></a>1.2 Delete any old tutorial indices
 
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
 Let's start from scratch. Delete any tutorial indices you might have created
 from other tutorials.
 
@@ -70,6 +78,8 @@ DELETE zentity_tutorial_8_*
 
 
 ### <a name="create-tutorial-index"></a>1.3 Create the tutorial index
+
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
 
 Now create the index for this tutorial.
 
@@ -103,6 +113,8 @@ PUT zentity_tutorial_8_date_attributes
 
 
 ### <a name="load-tutorial-data"></a>1.4 Load the tutorial data
+
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
 
 Add the tutorial data to the index.
 
@@ -172,8 +184,12 @@ Here's what the tutorial data looks like.
 
 ## <a name="create-entity-model"></a>2. Create the entity model
 
+> **Note:** Skip this step if you're using the [zentity sandbox](/sandbox).
+
 Let's use the [Models API](/docs/rest-apis/models-api) to create the entity
 model below. We'll review the matchers in depth.
+
+**Request**
 
 ```javascript
 PUT _zentity/models/zentity_tutorial_8_http_session
@@ -231,6 +247,7 @@ PUT _zentity/models/zentity_tutorial_8_http_session
   }
 }
 ```
+
 
 ### <a name="review-matchers"></a>2.1 Review the matchers
 
@@ -290,13 +307,15 @@ of the range query.
 ## <a name="resolve-entity"></a>3. Resolve an entity
 
 Let's use the [Resolution API](/docs/rest-apis/resolution-api) to resolve a
-web traffic session with a known IP address at a given timestamp:
+web traffic session with a known IP address at a given timestamp.
 
 Submit a resolution job with the `"window"` parameter set to its default value,
 which we defined as `"15m"` in the matcher.
 
+**Request**
+
 ```javascript
-POST _zentity/resolution/zentity_tutorial_8_http_session?pretty
+POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_explanation=true
 {
   "attributes": {
     "ip": [ "192.168.0.1" ],
@@ -305,11 +324,11 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty
 }
 ```
 
-The results will look like this.
+**Response**
 
 ```javascript
 {
-  "took" : 25,
+  "took" : 26,
   "hits" : {
     "total" : 7,
     "hits" : [ {
@@ -317,105 +336,231 @@ The results will look like this.
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:01:45.248"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:01:45.248" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:01:45.248",
-        "id" : "1",
-        "ip" : "192.168.0.1",
-        "path" : "/"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:01:45.248",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "2",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:02:05.658"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:02:05.658" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:02:05.658",
-        "id" : "2",
-        "ip" : "192.168.0.1",
-        "path" : "/docs"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:02:05.658",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:02:12.024"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:02:12.024" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:02:12.024",
-        "id" : "4",
-        "ip" : "192.168.0.1",
-        "path" : "/docs/installation"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:02:12.024",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "6",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:02:15.628"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:02:15.628" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:02:15.628",
-        "id" : "6",
-        "ip" : "192.168.0.1",
-        "path" : "/releases"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:02:15.628",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "7",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:14:01.956"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:14:01.956" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:14:01.956",
-        "id" : "7",
-        "ip" : "192.168.0.1",
-        "path" : "/docs"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:14:01.956",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "9",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:14:08.921"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:14:08.921" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:14:08.921",
-        "id" : "9",
-        "ip" : "192.168.0.1",
-        "path" : "/docs/installation"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:14:08.921",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : { }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "12",
       "_hop" : 1,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:28:11.114"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:28:11.114" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:28:11.114",
-        "id" : "12",
-        "ip" : "192.168.0.1",
-        "path" : "/docs/basic-usage"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:28:11.114",
+          "input_value" : "2019-02-28T23:14:01.956",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:28:11.114",
+          "input_value" : "2019-02-28T23:14:08.921",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : { }
+        } ]
       }
     } ]
   }
@@ -434,8 +579,10 @@ smaller time range.
 
 Now let's expand the `"window"` parameter from `"15m"` to `"2d"`.
 
+**Request**
+
 ```javascript
-POST _zentity/resolution/zentity_tutorial_8_http_session?pretty
+POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_explanation=true
 {
   "attributes": {
     "ip": [ "192.168.0.1" ],
@@ -449,11 +596,11 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty
 }
 ```
 
-The results will look like this:
+**Response**
 
 ```javascript
 {
-  "took" : 12,
+  "took" : 25,
   "hits" : {
     "total" : 11,
     "hits" : [ {
@@ -461,165 +608,374 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:01:45.248"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:01:45.248" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:01:45.248",
-        "id" : "1",
-        "ip" : "192.168.0.1",
-        "path" : "/"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:01:45.248",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2d"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "2",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:02:05.658"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:02:05.658" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:02:05.658",
-        "id" : "2",
-        "ip" : "192.168.0.1",
-        "path" : "/docs"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:02:05.658",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2d"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:02:12.024"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:02:12.024" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:02:12.024",
-        "id" : "4",
-        "ip" : "192.168.0.1",
-        "path" : "/docs/installation"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:02:12.024",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2d"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "6",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:02:15.628"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:02:15.628" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:02:15.628",
-        "id" : "6",
-        "ip" : "192.168.0.1",
-        "path" : "/releases"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:02:15.628",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2d"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "7",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:14:01.956"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:14:01.956" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:14:01.956",
-        "id" : "7",
-        "ip" : "192.168.0.1",
-        "path" : "/docs"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:14:01.956",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2d"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "9",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:14:08.921"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:14:08.921" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:14:08.921",
-        "id" : "9",
-        "ip" : "192.168.0.1",
-        "path" : "/docs/installation"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:14:08.921",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2d"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "12",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:28:11.114"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:28:11.114" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:28:11.114",
-        "id" : "12",
-        "ip" : "192.168.0.1",
-        "path" : "/docs/basic-usage"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:28:11.114",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2d"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "15",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-03-02T12:30:45.452"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-03-02T12:30:45.452" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-03-02T12:30:45.452",
-        "id" : "15",
-        "ip" : "192.168.0.1",
-        "path" : "/"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-03-02T12:30:45.452",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2d"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "16",
       "_hop" : 1,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-03-03T14:32:01.837"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-03-03T14:32:01.837" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-03-03T14:32:01.837",
-        "id" : "16",
-        "ip" : "192.168.0.1",
-        "path" : "/"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-03-03T14:32:01.837",
+          "input_value" : "2019-03-02T12:30:45.452",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2d"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "17",
       "_hop" : 1,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-03-03T14:32:03.897"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-03-03T14:32:03.897" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-03-03T14:32:03.897",
-        "id" : "17",
-        "ip" : "192.168.0.1",
-        "path" : "/releases"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-03-03T14:32:03.897",
+          "input_value" : "2019-03-02T12:30:45.452",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2d"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "18",
       "_hop" : 1,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-03-03T12:33:56.553"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-03-03T12:33:56.553" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-03-03T12:33:56.553",
-        "id" : "18",
-        "ip" : "192.168.0.1",
-        "path" : "/docs"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-03-03T12:33:56.553",
+          "input_value" : "2019-03-02T12:30:45.452",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2d"
+          }
+        } ]
       }
     } ]
   }
@@ -632,8 +988,10 @@ several days after the other documents.
 What if we contracted the `"window"` parameter to a small value such as `"2m"`?
 Let's find out.
 
+**Request**
+
 ```javascript
-POST _zentity/resolution/zentity_tutorial_8_http_session?pretty
+POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_explanation=true
 {
   "attributes": {
     "ip": [ "192.168.0.1" ],
@@ -647,7 +1005,7 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty
 }
 ```
 
-The results will look like this:
+**Response**
 
 ```javascript
 {
@@ -659,60 +1017,136 @@ The results will look like this:
       "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:01:45.248"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:01:45.248" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:01:45.248",
-        "id" : "1",
-        "ip" : "192.168.0.1",
-        "path" : "/"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:01:45.248",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2m"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "2",
-      "_hop" : 1,
+      "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:02:05.658"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:02:05.658" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:02:05.658",
-        "id" : "2",
-        "ip" : "192.168.0.1",
-        "path" : "/docs"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:02:05.658",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2m"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "4",
-      "_hop" : 1,
+      "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:02:12.024"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:02:12.024" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:02:12.024",
-        "id" : "4",
-        "ip" : "192.168.0.1",
-        "path" : "/docs/installation"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:02:12.024",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2m"
+          }
+        } ]
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
       "_type" : "_doc",
       "_id" : "6",
-      "_hop" : 1,
+      "_hop" : 0,
+      "_query" : 0,
       "_attributes" : {
-        "ip" : "192.168.0.1",
-        "timestamp" : "2019-02-28T23:02:15.628"
+        "ip" : [ "192.168.0.1" ],
+        "timestamp" : [ "2019-02-28T23:02:15.628" ]
       },
-      "_source" : {
-        "@timestamp" : "2019-02-28T23:02:15.628",
-        "id" : "6",
-        "ip" : "192.168.0.1",
-        "path" : "/releases"
+      "_explanation" : {
+        "resolvers" : {
+          "timestamp_ip" : {
+            "attributes" : [ "ip", "timestamp" ]
+          }
+        },
+        "matches" : [ {
+          "attribute" : "ip",
+          "target_field" : "ip",
+          "target_value" : "192.168.0.1",
+          "input_value" : "192.168.0.1",
+          "input_matcher" : "exact",
+          "input_matcher_params" : { }
+        }, {
+          "attribute" : "timestamp",
+          "target_field" : "@timestamp",
+          "target_value" : "2019-02-28T23:02:15.628",
+          "input_value" : "2019-02-28T23:02:15.628",
+          "input_matcher" : "time_range",
+          "input_matcher_params" : {
+            "window" : "2m"
+          }
+        } ]
       }
     } ]
   }

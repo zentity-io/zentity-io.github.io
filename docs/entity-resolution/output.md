@@ -16,7 +16,10 @@
         "_hop": HOP_NUMBER,
         "_query": QUERY_NUMBER,
         "_attributes": {
-          ATTRIBUTE_NAME: ATTRIBUTE_VALUE,
+          ATTRIBUTE_NAME: [
+            ATTRIBUTE_VALUE,
+            ...
+          ],
           ...
         },
         "_explanation": {
