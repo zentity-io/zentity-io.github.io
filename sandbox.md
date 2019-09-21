@@ -15,9 +15,9 @@ run it, and play with zentity using real data in minutes.
 
 **Step 1. Download**
 
-- **Windows**: [sandbox-zentity-{$ sandbox.zentity $}-elasticsearch-{$ sandbox.elasticsearch $}-windows.zip](https://drive.google.com/uc?id=1fk4w-tuU0c0Ktaa0ZW-6T5iv5B5g-zmj) (2.5GB Compressed, 3.5GB Uncompressed)
-- **Mac**: [sandbox-zentity-{$ sandbox.zentity $}-elasticsearch-{$ sandbox.elasticsearch $}-mac.tar.gz](https://drive.google.com/uc?id=1lTdF20yrsbMcE4lQ6QydEzXHf5VdqCoA) (2.5GB Compressed, 3.5GB Uncompressed)
-- **Linux**: [sandbox-zentity-{$ sandbox.zentity $}-elasticsearch-{$ sandbox.elasticsearch $}-linux.tar.gz](https://drive.google.com/uc?id=1QJOi1fqqQCtq17JYv6UVfCjXTXpjr88_) (2.5GB Compressed, 3.5GB Uncompressed)
+- **Windows**: [sandbox-zentity-{$ sandbox.zentity $}-elasticsearch-{$ sandbox.elasticsearch $}-windows.zip](https://drive.google.com/uc?id=1m_CtKyn3Ml49ChQ-tSbEdcymsqexVeBj) (2.5GB Compressed, 3.5GB Uncompressed)
+- **Mac**: [sandbox-zentity-{$ sandbox.zentity $}-elasticsearch-{$ sandbox.elasticsearch $}-mac.tar.gz](https://drive.google.com/uc?id=1cdXRoA0MbmuwmeiRjbdr86mgRRmbCNkK) (2.5GB Compressed, 3.5GB Uncompressed)
+- **Linux**: [sandbox-zentity-{$ sandbox.zentity $}-elasticsearch-{$ sandbox.elasticsearch $}-linux.tar.gz](https://drive.google.com/uc?id=1fwclmqBPjtTBfwt8af95uH5Cf-9TxQl5) (2.5GB Compressed, 3.5GB Uncompressed)
 
 
 **Step 2. Extract**
