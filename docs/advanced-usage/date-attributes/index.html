@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=145906506"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=876856996"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=478926192"></script>
+    </script><script src="/js/all.js?id=920333163"></script>
   </head>
   <body>
     <div id="app" >
@@ -93,35 +93,43 @@ matcher parameters work before writing date matchers.</p>
 <p>This tutorial will show you how to write a matcher that gives you control over
 the window of a date range query.</p>
 <p>Let's dive in.</p>
-<blockquote><p><strong>Important</strong></p>
+<blockquote><p><strong>Before you start</strong></p>
 <p>You must install <a href="https://www.elastic.co/downloads/elasticsearch" onclick="to('https://www.elastic.co/downloads/elasticsearch', 'outbound');" class="external">Elasticsearch</a>,
 <a href="https://www.elastic.co/downloads/kibana" onclick="to('https://www.elastic.co/downloads/kibana', 'outbound');" class="external">Kibana</a>, and <a href="/docs/installation">zentity</a>
-to complete this tutorial. This tutorial was tested with <a href="/docs/releases">zentity-1.4.2-elasticsearch-7.3.1</a>.</p>
+to complete this tutorial. This tutorial was tested with
+<a href="/releases#zentity-1.5.0">zentity-1.5.0-elasticsearch-7.3.1</a>.</p>
+<p><strong>Quick start</strong></p>
+<p>You can use the <a href="/sandbox">zentity sandbox</a> which has the required software
+and data for these tutorials. This will let you skip many of the setup steps.</p>
 </blockquote>
 <h2><a name="prepare"></a>1. Prepare for the tutorial</h2>
 <h3><a name="open-kibana-console-ui"></a>1.1 Open the Kibana Console UI</h3>
 <p>The <a href="https://www.elastic.co/guide/en/kibana/current/console-kibana.html" onclick="to('https://www.elastic.co/guide/en/kibana/current/console-kibana.html', 'outbound');" class="external">Kibana Console UI</a>
 makes it easy to submit requests to Elasticsearch and read responses.</p>
 <h3><a name="delete-old-tutorial-indices"></a>1.2 Delete any old tutorial indices</h3>
+<blockquote><p><strong>Note:</strong> Skip this step if you're using the <a href="/sandbox">zentity sandbox</a>.</p>
+</blockquote>
 <p>Let's start from scratch. Delete any tutorial indices you might have created
 from other tutorials.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6c60a239851af665">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a20939204e83a9fd4">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a6c60a239851af665"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">zentity_tutorial_8_</span><span class="o">*</span>
+          <span id="a20939204e83a9fd4"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">zentity_tutorial_8_</span><span class="o">*</span>
 </pre></div>
 </span>
         </div>
         <h3><a name="create-tutorial-index"></a>1.3 Create the tutorial index</h3>
+<blockquote><p><strong>Note:</strong> Skip this step if you're using the <a href="/sandbox">zentity sandbox</a>.</p>
+</blockquote>
 <p>Now create the index for this tutorial.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a484b8d333879d4d3">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2cb6b506b2c12c77">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a484b8d333879d4d3"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">zentity_tutorial_8_date_attributes</span>
+          <span id="a2cb6b506b2c12c77"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">zentity_tutorial_8_date_attributes</span>
 <span class="p">{</span>
   <span class="s2">&quot;settings&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -150,13 +158,15 @@ from other tutorials.</p>
 </span>
         </div>
         <h3><a name="load-tutorial-data"></a>1.4 Load the tutorial data</h3>
+<blockquote><p><strong>Note:</strong> Skip this step if you're using the <a href="/sandbox">zentity sandbox</a>.</p>
+</blockquote>
 <p>Add the tutorial data to the index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#acf37aa96d946e9c7">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4e588230f0350c0e">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="acf37aa96d946e9c7"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
+          <span id="a4e588230f0350c0e"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">}}</span>
 <span class="p">{</span><span class="s2">&quot;@timestamp&quot;</span><span class="o">:</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;ip&quot;</span><span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span><span class="p">}</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">}}</span>
@@ -317,14 +327,17 @@ from other tutorials.</p>
 </tbody>
 </table>
 <h2><a name="create-entity-model"></a>2. Create the entity model</h2>
+<blockquote><p><strong>Note:</strong> Skip this step if you're using the <a href="/sandbox">zentity sandbox</a>.</p>
+</blockquote>
 <p>Let's use the <a href="/docs/rest-apis/models-api">Models API</a> to create the entity
 model below. We'll review the matchers in depth.</p>
+<p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1f448a457e1edc19">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#affdd7f66c1e828a2">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a1f448a457e1edc19"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity_tutorial_8_http_session</span>
+          <span id="affdd7f66c1e828a2"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity_tutorial_8_http_session</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;timestamp&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -391,10 +404,10 @@ to match documents within a given time window.</p>
 <p><strong>Example Range Query with Date Math</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac358d58b1ec8884e">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a223e7b1c76ea40d9">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac358d58b1ec8884e"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_search</span>
+          <span id="a223e7b1c76ea40d9"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_search</span>
 <span class="p">{</span>
   <span class="s2">&quot;query&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;range&quot;</span> <span class="o">:</span> <span class="p">{</span>
@@ -414,10 +427,10 @@ date attributes require, and a <code>"window"</code> parameter to control the ti
 of the range query.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4bd5b41d11629c78">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af6ca497f5502b414">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a4bd5b41d11629c78"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="af6ca497f5502b414"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;time_range&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -441,15 +454,16 @@ of the range query.</p>
         </div>
         <h2><a name="resolve-entity"></a>3. Resolve an entity</h2>
 <p>Let's use the <a href="/docs/rest-apis/resolution-api">Resolution API</a> to resolve a
-web traffic session with a known IP address at a given timestamp:</p>
+web traffic session with a known IP address at a given timestamp.</p>
 <p>Submit a resolution job with the <code>"window"</code> parameter set to its default value,
 which we defined as <code>"15m"</code> in the matcher.</p>
+<p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7c9b6f14165ae18e">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa868c1197bfb38c3">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a7c9b6f14165ae18e"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_8_http_session</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="aa868c1197bfb38c3"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_8_http_session</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span><span class="o">&amp;</span><span class="nx">_explanation</span><span class="o">=</span><span class="kc">true</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;ip&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
@@ -459,14 +473,14 @@ which we defined as <code>"15m"</code> in the matcher.</p>
 </pre></div>
 </span>
         </div>
-        <p>The results will look like this.</p>
+        <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a900e22fd5de946ec">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae343a5e752494db1">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a900e22fd5de946ec"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
+          <span id="ae343a5e752494db1"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">26</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
     <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
@@ -474,105 +488,231 @@ which we defined as <code>"15m"</code> in the matcher.</p>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs/installation&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/releases&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:01.956&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:14:01.956&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:01.956&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:01.956&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:08.921&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:14:08.921&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:08.921&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs/installation&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:08.921&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:28:11.114&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:28:11.114&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:28:11.114&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs/basic-usage&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:28:11.114&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:01.956&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:28:11.114&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:08.921&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">}</span> <span class="p">]</span>
   <span class="p">}</span>
@@ -590,12 +730,13 @@ resolution job. It is entirely possible to chain together many documents over
 a long time range where each pair of documents must match within a much
 smaller time range.</p>
 <p>Now let's expand the <code>"window"</code> parameter from <code>"15m"</code> to <code>"2d"</code>.</p>
+<p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a363a30842f2ecbfb">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#acd01bdbd949b27bf">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a363a30842f2ecbfb"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_8_http_session</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="acd01bdbd949b27bf"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_8_http_session</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span><span class="o">&amp;</span><span class="nx">_explanation</span><span class="o">=</span><span class="kc">true</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;ip&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
@@ -610,14 +751,14 @@ smaller time range.</p>
 </pre></div>
 </span>
         </div>
-        <p>The results will look like this:</p>
+        <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3acd1252dc8acdf5">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7b5a33afd64dea07">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3acd1252dc8acdf5"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+          <span id="a7b5a33afd64dea07"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
     <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
@@ -625,165 +766,374 @@ smaller time range.</p>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2d&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2d&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs/installation&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2d&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/releases&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2d&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:01.956&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:14:01.956&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:01.956&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:01.956&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2d&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:08.921&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:14:08.921&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:08.921&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs/installation&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:14:08.921&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2d&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:28:11.114&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:28:11.114&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:28:11.114&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs/basic-usage&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:28:11.114&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2d&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;15&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-02T12:30:45.452&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-03-02T12:30:45.452&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-02T12:30:45.452&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;15&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-02T12:30:45.452&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2d&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;16&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-03T14:32:01.837&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-03-03T14:32:01.837&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-03T14:32:01.837&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;16&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-03T14:32:01.837&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-02T12:30:45.452&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2d&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;17&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-03T14:32:03.897&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-03-03T14:32:03.897&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-03T14:32:03.897&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;17&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/releases&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-03T14:32:03.897&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-02T12:30:45.452&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2d&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;18&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-03T12:33:56.553&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-03-03T12:33:56.553&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-03T12:33:56.553&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;18&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-03T12:33:56.553&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-03-02T12:30:45.452&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2d&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">}</span> <span class="p">]</span>
   <span class="p">}</span>
@@ -795,12 +1145,13 @@ smaller time range.</p>
 several days after the other documents.</p>
 <p>What if we contracted the <code>"window"</code> parameter to a small value such as <code>"2m"</code>?
 Let's find out.</p>
+<p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a9ebc9947df6161a7">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8210ab495cf5112e">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a9ebc9947df6161a7"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_8_http_session</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="a8210ab495cf5112e"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_8_http_session</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span><span class="o">&amp;</span><span class="nx">_explanation</span><span class="o">=</span><span class="kc">true</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;ip&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
@@ -815,13 +1166,13 @@ Let's find out.</p>
 </pre></div>
 </span>
         </div>
-        <p>The results will look like this:</p>
+        <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a25db76e46d1100be">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1060b449aeef2c21">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a25db76e46d1100be"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a1060b449aeef2c21"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
@@ -830,60 +1181,136 @@ Let's find out.</p>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:01:45.248&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2m&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:05.658&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2m&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/docs/installation&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:12.024&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2m&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_8_date_attributes&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span>
+        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;192.168.0.1&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
-      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;@timestamp&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;path&quot;</span> <span class="o">:</span> <span class="s2">&quot;/releases&quot;</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;timestamp_ip&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;ip&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;@timestamp&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2019-02-28T23:02:15.628&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;time_range&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;window&quot;</span> <span class="o">:</span> <span class="s2">&quot;2m&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
       <span class="p">}</span>
     <span class="p">}</span> <span class="p">]</span>
   <span class="p">}</span>

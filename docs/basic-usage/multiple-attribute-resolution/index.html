@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=176606179"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=741722024"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=259101737"></script>
+    </script><script src="/js/all.js?id=216627093"></script>
   </head>
   <body>
     <div id="app" >
@@ -93,13 +93,14 @@ the same phone number? It's probably much lower.</p>
 <a href="/docs/basic-usage/robust-name-matching">robust name matching</a>. This time you
 will map <strong>multiple attributes</strong> to <strong>multiple fields</strong> of a <strong>single index</strong>.</p>
 <p>Let's dive in.</p>
-<blockquote><p><strong>Important</strong></p>
+<blockquote><p><strong>Before you start</strong></p>
 <p>You must install <a href="https://www.elastic.co/downloads/elasticsearch" onclick="to('https://www.elastic.co/downloads/elasticsearch', 'outbound');" class="external">Elasticsearch</a>,
 <a href="https://www.elastic.co/downloads/kibana" onclick="to('https://www.elastic.co/downloads/kibana', 'outbound');" class="external">Kibana</a>, and <a href="/docs/installation">zentity</a>
 to complete this tutorial. This tutorial was tested with
-<a href="/docs/releases">zentity-1.4.2-elasticsearch-7.3.1</a>.</p>
+<a href="/releases#zentity-1.5.0">zentity-1.5.0-elasticsearch-7.3.1</a>.</p>
+<p><strong>Quick start</strong></p>
 <p>You can use the <a href="/sandbox">zentity sandbox</a> which has the required software
-and data for these tutorials.</p>
+and data for these tutorials. This will let you skip many of the setup steps.</p>
 </blockquote>
 <h2><a name="prepare"></a>1. Prepare for the tutorial</h2>
 <h3><a name="install-required-plugins"></a>1.1 Install the required plugins</h3>
@@ -113,10 +114,10 @@ and start Elasticsearch. You can learn more about Elasticsearch plugin managemen
 <p>For Linux (in the <code>$ES_HOME</code> directory of a .tar.gz installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5e43f59a1ddcda7f">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a329f3521ad7f11ce">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a5e43f59a1ddcda7f"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
+          <span id="a329f3521ad7f11ce"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
 sudo bin/elasticsearch-plugin install analysis-icu
 </pre></div>
 </span>
@@ -124,10 +125,10 @@ sudo bin/elasticsearch-plugin install analysis-icu
         <p>For Windows (in the <code>$ES_HOME</code> directory of a .zip installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a35c359b054b20ac0">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac62c33755dec17d9">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a35c359b054b20ac0"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
+          <span id="ac62c33755dec17d9"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
 bin/elasticsearch-plugin.bat install analysis-icu
 </pre></div>
 </span>
@@ -140,10 +141,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>Let's start from scratch. Delete any tutorial indices you might have created from other tutorials.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a60244ddabf409a3c">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a9470b8ea2668b4b0">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a60244ddabf409a3c"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">zentity_tutorial_3_</span><span class="o">*</span>
+          <span id="a9470b8ea2668b4b0"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">zentity_tutorial_3_</span><span class="o">*</span>
 </pre></div>
 </span>
         </div>
@@ -153,10 +154,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>Now create the index for this tutorial.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a36ce24fc39876635">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#add27bdc3291101f7">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a36ce24fc39876635"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">zentity_tutorial_3_multiple_attribute_resolution</span>
+          <span id="add27bdc3291101f7"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">zentity_tutorial_3_multiple_attribute_resolution</span>
 <span class="p">{</span>
   <span class="s2">&quot;settings&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -307,10 +308,10 @@ bin/elasticsearch-plugin.bat install analysis-icu
 <p>Add the tutorial data to the index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2f75106acf9e8733">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a235a435535d71b1e">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a2f75106acf9e8733"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
+          <span id="a235a435535d71b1e"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity_tutorial_3_multiple_attribute_resolution&quot;</span><span class="p">}}</span>
 <span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">}</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity_tutorial_3_multiple_attribute_resolution&quot;</span><span class="p">}}</span>
@@ -503,12 +504,13 @@ bin/elasticsearch-plugin.bat install analysis-icu
 </blockquote>
 <p>Let's use the <a href="/docs/rest-apis/models-api">Models API</a> to create the entity
 model below. We'll review each part of the model in depth.</p>
+<p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab551e5e2c1c31e51">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a69c004333b94aa17">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab551e5e2c1c31e51"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity_tutorial_3_person</span>
+          <span id="a69c004333b94aa17"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity_tutorial_3_person</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -582,13 +584,13 @@ model below. We'll review each part of the model in depth.</p>
 </pre></div>
 </span>
         </div>
-        <p>The response will look like this:</p>
+        <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aadfe20d23c7edacd">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa39ee824b5f3b373">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aadfe20d23c7edacd"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aa39ee824b5f3b373"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
   <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
   <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_3_person&quot;</span><span class="p">,</span>
@@ -610,10 +612,10 @@ model below. We'll review each part of the model in depth.</p>
 as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2b5346743906b93b">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a9a2c4263ede9b6a7">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a2b5346743906b93b"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a9a2c4263ede9b6a7"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
@@ -633,10 +635,10 @@ as shown in this section:</p>
 <p>We defined a single resolver called <code>"name_phone"</code> as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0e4e0f785afc90a1">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1c46753044d6fd35">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a0e4e0f785afc90a1"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a1c46753044d6fd35"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_phone&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
@@ -651,10 +653,10 @@ as shown in this section:</p>
 in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a74c6810ae4f692dd">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aaf23ec2f1c96b2bb">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a74c6810ae4f692dd"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aaf23ec2f1c96b2bb"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;simple&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -692,10 +694,10 @@ fields. We can use our <code>"exact"</code> matcher on index fields that have a 
 data type.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7cb614204e61e8de">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa01c529c7b782be3">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a7cb614204e61e8de"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="aa01c529c7b782be3"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
   <span class="p">}</span>
@@ -707,10 +709,10 @@ data type.</p>
 <p>We defined a single index as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0c3d97b4fbc44d06">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af79ec4b585d973b9">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a0c3d97b4fbc44d06"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="af79ec4b585d973b9"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;zentity_tutorial_3_multiple_attribute_resolution&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -752,14 +754,16 @@ you'd expect if you run either a <code>term</code> query on a <code>text</code> 
 query on a <code>keyword</code> field.</p>
 </blockquote>
 <h2><a name="resolve-entity"></a>3. Resolve an entity</h2>
+<h3><a name="resolve-entity-basic"></a>3.1 Run a basic resolution job</h3>
 <p>Let's use the <a href="/docs/rest-apis/resolution-api">Resolution API</a> to resolve a
-person with a known first name, last name, and phone number:</p>
+person with a known first name, last name, and phone number.</p>
+<p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a9f16cb1f6e76d631">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4a665fe2209964e6">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a9f16cb1f6e76d631"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_3_person</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="a4a665fe2209964e6"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_3_person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
@@ -770,14 +774,14 @@ person with a known first name, last name, and phone number:</p>
 </pre></div>
 </span>
         </div>
-        <p>The results will look like this:</p>
+        <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a955fcfccc2745e96">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad31ef0a12cbe6262">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a955fcfccc2745e96"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+          <span id="ad31ef0a12cbe6262"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
     <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
@@ -785,10 +789,77 @@ person with a known first name, last name, and phone number:</p>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;2025559867&quot;</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones-Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2025559867&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_3_multiple_attribute_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-9876&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <p>As expected, we retrieved two documents each with a matching first name, last
+name, and phone number. The documents were retrieved from different queries to
+the same index, as shown in the <code>"_index"</code>, <code>"_hop"</code>, and <code>"_query"</code> fields. All
+other documents were excluded from the results because they did not meet those
+criteria.</p>
+<h3><a name="resolve-entity-source"></a>3.2 Show the <code>"_source"</code></h3>
+<p>We can include the original values of each document as they exist in
+Elasticsearch.</p>
+<p>Let's run the job again, and now let's include the <a href="/docs/entity-resolution/output-specification/#hits.hits._source"><code>"_source"</code></a>
+field of each document. The <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-source-field.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-source-field.html', 'outbound');" class="external"><code>"_source"</code></a>
+field is the original JSON document that's stored in an Elasticsearch index.</p>
+<p><strong>Request</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3c61000cc142384d">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a3c61000cc142384d"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_3_person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">true</span>
+<span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-9876&quot;</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <p><strong>Response</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa294480215466577">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="aa294480215466577"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+  <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_3_multiple_attribute_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones-Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2025559867&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
       <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
@@ -805,10 +876,11 @@ person with a known first name, last name, and phone number:</p>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-9876&quot;</span> <span class="p">]</span>
       <span class="p">},</span>
       <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
@@ -826,12 +898,241 @@ person with a known first name, last name, and phone number:</p>
 </pre></div>
 </span>
         </div>
-        <p>As expected, we retrieved two documents each with a matching first name, last
-name, and phone number. All other documents were excluded from the results
-because they did not meet those criteria.</p>
-<h2><a name="conclusion"></a>Conclusion</h2>
+        <p>Now, in addition to the values mapped to our normalized <code>"_attributes"</code>, we can
+see the values of those attributes and the values of every other field as they
+exist in the <code>"_source"</code> of the documents.</p>
+<h3><a name="resolve-entity-explanation"></a>3.3 Show the <code>"_explanation"</code></h3>
+<p>We can learn how the documents matched, too.</p>
+<p>Let's run the job again, and now let's include the <a href="/docs/entity-resolution/output-specification/#hits.hits._explanation"><code>"_explanation"</code></a>
+field to see exactly why each document matched. The <code>"_explanation"</code> field tells
+us which resolvers caused a document to match, and more specifically, which
+input value matched which indexed value using which matcher and any parameters.</p>
+<p><strong>Request</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8a621c5bdc175d6e">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a8a621c5bdc175d6e"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_3_person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">true</span><span class="o">&amp;</span><span class="nx">_explanation</span><span class="o">=</span><span class="kc">true</span>
+<span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-9876&quot;</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <p><strong>Response</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4956ebd85d09a9a1">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a4956ebd85d09a9a1"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_3_multiple_attribute_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones-Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2025559867&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name_phone&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2025559867&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;2025559867&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_3_multiple_attribute_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-9876&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name_phone&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2025559867&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <p>Each document matched because of the <code>"name_phone"</code> resolver as shown under
+<code>"_explanation"."resolvers"</code>. But the resolvers matched for different reasons
+in each document. Notice that the first document matched on hop 0 and the other
+document matched on hop 1. The <code>"last_name"</code> of the input (<code>"Jones"</code>) matched
+the <code>"last_name"</code> of the second matching document (<code>"Smith"</code>) because both
+matched the <code>"last_name"</code> of the first matching document (<code>"Jones-Smith"</code>) and
+each document also had matching <code>"first_name"</code> and <code>"phone"</code> attributes.</p>
+<p>You can see that our <code>"fuzzy"</code> matcher is handling messy values successfully,
+too, as shown in the example below. Notice how the last two numbers are
+transposed (<code>76</code> and <code>67</code>), which is a common form of typo.</p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aab089e7ebf6db950">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="aab089e7ebf6db950"><div class="highlight"><pre><span></span><span class="s2">&quot;_explanation&quot;</span><span class="o">:</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="s2">&quot;matches&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone.clean&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2025559867&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">...</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <h2><a name="conclusion"></a>Conclusion</h2>
 <p>Congratulations! You learned how to map multiple attributes to multiple fields
 in a single index.</p>
+<p>Hopefully a couple things are becoming clear in this tutorial:</p>
+<ol>
+<li>Entity resolution is complex. This tutorial shows a simple example, and
+already there are many nuances to consider in the results, as we can see in the
+<code>"_explanation"</code> field.</li>
+<li>The <code>"_explanation"</code> field is a powerful tool for understanding,
+troubleshooting, and optimizing your match logic &ndash; especially as your data
+and models become more complex.</li>
+</ol>
 <p>The next tutorial will introduce <a href="/docs/basic-usage/multiple-resolver-resolution">multiple resolver resolution</a>.
 You will resolve an entity using <strong>multiple combinations of attributes</strong>
 (i.e. "resolvers") mapped to <strong>multiple fields</strong> of a <strong>single index</strong>.</p>

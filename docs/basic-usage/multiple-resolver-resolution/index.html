@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=515103824"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=755621658"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=181437609"></script>
+    </script><script src="/js/all.js?id=358246172"></script>
   </head>
   <body>
     <div id="app" >
@@ -95,13 +95,14 @@ resolver, and zentity can attempt to resolve the entities in each of these ways.
 This time you will map <strong>multiple combinations of attributes</strong> (i.e. "resolvers")
 to <strong>multiple fields</strong> of a <strong>single index</strong>.</p>
 <p>Let's dive in.</p>
-<blockquote><p><strong>Important</strong></p>
+<blockquote><p><strong>Before you start</strong></p>
 <p>You must install <a href="https://www.elastic.co/downloads/elasticsearch" onclick="to('https://www.elastic.co/downloads/elasticsearch', 'outbound');" class="external">Elasticsearch</a>,
 <a href="https://www.elastic.co/downloads/kibana" onclick="to('https://www.elastic.co/downloads/kibana', 'outbound');" class="external">Kibana</a>, and <a href="/docs/installation">zentity</a>
 to complete this tutorial. This tutorial was tested with
-<a href="/docs/releases">zentity-1.4.2-elasticsearch-7.3.1</a>.</p>
+<a href="/releases#zentity-1.5.0">zentity-1.5.0-elasticsearch-7.3.1</a>.</p>
+<p><strong>Quick start</strong></p>
 <p>You can use the <a href="/sandbox">zentity sandbox</a> which has the required software
-and data for these tutorials.</p>
+and data for these tutorials. This will let you skip many of the setup steps.</p>
 </blockquote>
 <h2><a name="prepare"></a>1. Prepare for the tutorial</h2>
 <h3><a name="install-required-plugins"></a>1.1 Install the required plugins</h3>
@@ -115,10 +116,10 @@ and start Elasticsearch. You can learn more about Elasticsearch plugin managemen
 <p>For Linux (in the <code>$ES_HOME</code> directory of a .tar.gz installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a89e1aa23825fba04">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3cfd9e8b7d079f52">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a89e1aa23825fba04"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
+          <span id="a3cfd9e8b7d079f52"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
 sudo bin/elasticsearch-plugin install analysis-icu
 </pre></div>
 </span>
@@ -126,10 +127,10 @@ sudo bin/elasticsearch-plugin install analysis-icu
         <p>For Windows (in the <code>$ES_HOME</code> directory of a .zip installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad32665950f37994b">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af36025a96926c056">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ad32665950f37994b"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
+          <span id="af36025a96926c056"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
 bin/elasticsearch-plugin.bat install analysis-icu
 </pre></div>
 </span>
@@ -144,10 +145,10 @@ makes it easy to submit requests to Elasticsearch and read responses.</p>
 from other tutorials.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aebe15374acf45f59">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a47f4f00d540f2a70">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aebe15374acf45f59"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">zentity_tutorial_4_</span><span class="o">*</span>
+          <span id="a47f4f00d540f2a70"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">zentity_tutorial_4_</span><span class="o">*</span>
 </pre></div>
 </span>
         </div>
@@ -157,10 +158,10 @@ from other tutorials.</p>
 <p>Now create the template for this tutorial.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac8f178bb79cc2a7f">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac64e29dc2c62ab80">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac8f178bb79cc2a7f"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">zentity_tutorial_4_multiple_resolver_resolution</span>
+          <span id="ac64e29dc2c62ab80"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">zentity_tutorial_4_multiple_resolver_resolution</span>
 <span class="p">{</span>
   <span class="s2">&quot;settings&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -311,10 +312,10 @@ from other tutorials.</p>
 <p>Add the tutorial data to the index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac55da1440652335f">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab3b9a06784432988">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac55da1440652335f"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
+          <span id="ab3b9a06784432988"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">}}</span>
 <span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">}</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">}}</span>
@@ -507,12 +508,13 @@ from other tutorials.</p>
 </blockquote>
 <p>Let's use the <a href="/docs/rest-apis/models-api">Models API</a> to create the entity
 model below. We'll review each part of the model in depth.</p>
+<p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2bb22e1442895bd2">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af4ce35fa46bab7f9">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a2bb22e1442895bd2"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span>
+          <span id="af4ce35fa46bab7f9"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -623,13 +625,13 @@ model below. We'll review each part of the model in depth.</p>
 </pre></div>
 </span>
         </div>
-        <p>The response will look like this:</p>
+        <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a5c8dd9c191dcf589">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae327e937ad26c81f">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a5c8dd9c191dcf589"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ae327e937ad26c81f"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
   <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
   <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_person&quot;</span><span class="p">,</span>
@@ -650,10 +652,10 @@ model below. We'll review each part of the model in depth.</p>
 <p>We defined seven attributes as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3d6e680c1b98e96b">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6bab3381cf0d80ba">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3d6e680c1b98e96b"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a6bab3381cf0d80ba"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
@@ -685,10 +687,10 @@ model below. We'll review each part of the model in depth.</p>
 <p>We defined four resolvers as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2947611da0331346">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af607434f740d47ff">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a2947611da0331346"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="af607434f740d47ff"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_street_city_state&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span> <span class="p">]</span>
@@ -712,10 +714,10 @@ model below. We'll review each part of the model in depth.</p>
 in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a337b79613449af10">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2ac2eb03363d3673">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a337b79613449af10"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a2ac2eb03363d3673"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;simple&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -750,10 +752,10 @@ in this section:</p>
 <p>We defined a single index as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#abc8fb11c715e5a20">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a868c6908acf0b385">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="abc8fb11c715e5a20"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a868c6908acf0b385"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -801,14 +803,16 @@ in this section:</p>
 </span>
         </div>
         <h2><a name="resolve-entity"></a>3. Resolve an entity</h2>
+<h3><a name="resolve-entity-basic"></a>3.1 Run a basic resolution job</h3>
 <p>Let's use the <a href="/docs/rest-apis/resolution-api">Resolution API</a> to resolve a
-person with a known first name, last name, and phone number:</p>
+person with a known first name, last name, and phone number.</p>
+<p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1709ba68c81693ec">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#afd4bb63249d183cf">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a1709ba68c81693ec"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
+          <span id="afd4bb63249d183cf"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
@@ -819,14 +823,14 @@ person with a known first name, last name, and phone number:</p>
 </pre></div>
 </span>
         </div>
-        <p>The results will look like this:</p>
+        <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad64c540d4b69b325">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a19568c2b10b5ba75">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ad64c540d4b69b325"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
+          <span id="a19568c2b10b5ba75"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">42</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
     <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
@@ -834,10 +838,200 @@ person with a known first name, last name, and phone number:</p>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allie@example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;123 Main St&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Ally&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Joans&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;123 Main St&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allie@example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;123 Main St&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allie@example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones-Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2025559867&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;+1 (202) 555 1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555 Broad St&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-9876&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555 Broad St&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones-Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555 Broad St&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;13&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Arlington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;703-555-5555&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;VA&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;1 Corporate Way&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <p>As expected, we retrieved more documents than prior tutorials because we are
+using more matching strategies. In fact, the documents were collected from the
+results of five hops, where each hop queried the index using newly discovered
+attributes of the entity. These are shown in the <code>"_index"</code>, <code>"_hop"</code>, and
+<code>"_query"</code> fields.</p>
+<h3><a name="resolve-entity-source"></a>3.2 Show the <code>"_source"</code></h3>
+<p>We can include the original values of each document as they exist in
+Elasticsearch.</p>
+<p>Let's run the job again, and now let's include the <a href="/docs/entity-resolution/output-specification/#hits.hits._source"><code>"_source"</code></a>
+field of each document. The <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-source-field.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-source-field.html', 'outbound');" class="external"><code>"_source"</code></a>
+field is the original JSON document that's stored in an Elasticsearch index.</p>
+<p><strong>Request</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8e5273c7ee8d29db">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a8e5273c7ee8d29db"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">true</span>
+<span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-1234&quot;</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <p><strong>Response</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a345b19f6b701fa05">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a345b19f6b701fa05"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">43</span><span class="p">,</span>
+  <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allie@example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;123 Main St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
         <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
         <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
         <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
         <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
         <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
@@ -846,26 +1040,23 @@ person with a known first name, last name, and phone number:</p>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span>
-      <span class="p">}</span>
-    <span class="p">},</span> <span class="p">{</span>
-      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Ally&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Joans&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Ally&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
         <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Joans&quot;</span><span class="p">,</span>
         <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
         <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
@@ -874,12 +1065,48 @@ person with a known first name, last name, and phone number:</p>
     <span class="p">},</span> <span class="p">{</span>
       <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;123 Main St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allie@example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;123 Main St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
         <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
         <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
         <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
         <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
         <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
@@ -890,10 +1117,21 @@ person with a known first name, last name, and phone number:</p>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allie@example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones-Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2025559867&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
         <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
         <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
         <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;2025559867&quot;</span><span class="p">,</span>
         <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
@@ -904,10 +1142,21 @@ person with a known first name, last name, and phone number:</p>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;+1 (202) 555 1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555 Broad St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
         <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span>
         <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
         <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;+1 (202) 555 1234&quot;</span><span class="p">,</span>
         <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
@@ -918,10 +1167,21 @@ person with a known first name, last name, and phone number:</p>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-9876&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555 Broad St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
         <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
         <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
         <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span><span class="p">,</span>
         <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
@@ -932,10 +1192,21 @@ person with a known first name, last name, and phone number:</p>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones-Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555 Broad St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
         <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span><span class="p">,</span>
         <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
         <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
         <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
@@ -946,10 +1217,21 @@ person with a known first name, last name, and phone number:</p>
       <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;13&quot;</span><span class="p">,</span>
       <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Arlington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;703-555-5555&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;VA&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;1 Corporate Way&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Arlington&quot;</span><span class="p">,</span>
         <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span><span class="p">,</span>
         <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;13&quot;</span><span class="p">,</span>
         <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones Smith&quot;</span><span class="p">,</span>
         <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;703-555-5555&quot;</span><span class="p">,</span>
         <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;VA&quot;</span><span class="p">,</span>
@@ -961,11 +1243,871 @@ person with a known first name, last name, and phone number:</p>
 </pre></div>
 </span>
         </div>
-        <p>As expected, we retrieved more documents than prior tutorials because we are
-using more matching strategies. In fact, the documents were collected from the
-results of five "hops," where each hop queried the index using newly discovered
-attributes of the entity. Let's walk through what happened briefly.</p>
-<p>The initial results (hop 0) returned two documents that matched the
+        <p>Now, in addition to the values mapped to our normalized <code>"_attributes"</code>, we can
+see the values of those attributes and the values of every other field as they
+exist in the <code>"_source"</code> of the documents.</p>
+<h3><a name="resolve-entity-explanation"></a>3.3 Show the <code>"_explanation"</code></h3>
+<p>We can learn how the documents matched, too.</p>
+<p>Let's run the job again, and now let's include the <a href="/docs/entity-resolution/output-specification/#hits.hits._explanation"><code>"_explanation"</code></a>
+field to see exactly why each document matched. The <code>"_explanation"</code> field tells
+us which resolvers caused a document to match, and more specifically, which
+input value matched which indexed value using which matcher and any parameters.</p>
+<p><strong>Request</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a41e61d0d61957b0e">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a41e61d0d61957b0e"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">true</span><span class="o">&amp;</span><span class="nx">_explanation</span><span class="o">=</span><span class="kc">true</span>
+<span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-1234&quot;</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <p><strong>Response</strong></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa547ae0f60a40822">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="aa547ae0f60a40822"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">54</span><span class="p">,</span>
+  <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allie@example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;123 Main St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name_phone&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Ally&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Joans&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name_phone&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Ally&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Joans&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Ally&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Joans&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;123 Main St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name_street_city_state&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;city.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Ally&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Joans&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;state.keyword&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;street.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allie@example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;123 Main St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;email_phone&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;city.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;email.keyword&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Joans&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;state.keyword&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;street.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allie@example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones-Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;2025559867&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name_email&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;email.keyword&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Joans&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;2025559867&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;+1 (202) 555 1234&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555 Broad St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name_phone&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;city.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;+1 (202) 555 1234&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;state.keyword&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;7&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;+1 (202) 555 1234&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;202-555-9876&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555 Broad St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name_phone&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;city.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;phone.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;2025559867&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;state.keyword&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;202-555-9876&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones-Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555 Broad St&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name_street_city_state&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;city.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Joans&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;state.keyword&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;street.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;555 Broad St&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;13&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_hop&quot;</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s2">&quot;_query&quot;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;_attributes&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Arlington&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allison&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Jones Smith&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;703-555-5555&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;VA&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;1 Corporate Way&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_explanation&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;resolvers&quot;</span> <span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name_email&quot;</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;attributes&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span> <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;matches&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;email.keyword&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Alison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;first_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.clean&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Joans&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones-Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">},</span> <span class="p">{</span>
+          <span class="s2">&quot;attribute&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_field&quot;</span> <span class="o">:</span> <span class="s2">&quot;last_name.phonetic&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;target_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_value&quot;</span> <span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher&quot;</span> <span class="o">:</span> <span class="s2">&quot;simple&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;input_matcher_params&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="p">}</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;_source&quot;</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;city&quot;</span> <span class="o">:</span> <span class="s2">&quot;Arlington&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span> <span class="o">:</span> <span class="s2">&quot;allison.j.smith@corp.example.net&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;first_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Allison&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">:</span> <span class="s2">&quot;13&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_name&quot;</span> <span class="o">:</span> <span class="s2">&quot;Jones Smith&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;phone&quot;</span> <span class="o">:</span> <span class="s2">&quot;703-555-5555&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span> <span class="o">:</span> <span class="s2">&quot;VA&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;street&quot;</span> <span class="o">:</span> <span class="s2">&quot;1 Corporate Way&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <p>The initial results (hop 0) returned two documents that matched the
 <code>name_street_city_state</code> resolver. Those documents contained a newly discovered
 phone number and email address. The first hop (hop 1) used those new attributes
 to search the index again, this time using the <code>name_phone</code> resolver and the
