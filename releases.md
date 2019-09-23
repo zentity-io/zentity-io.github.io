@@ -42,7 +42,7 @@ Select the plugin version that matches your version of Elasticsearch:
 - **Bug fix** - Ensure that null values and missing fields are not passed to the
 `"_attributes"` object. This bug only affected the output of `"_attributes"` and
 not the accuracy of the resolution job.
-([.......](https://github.com/zentity-io/zentity/commit/.......))
+([c03ce76](https://github.com/zentity-io/zentity/commit/c03ce7657399cbab3ab0b72510e063be2109fb6d))
 
 
 ## <a name="zentity-1.5.0">zentity-1.5.0</a>
