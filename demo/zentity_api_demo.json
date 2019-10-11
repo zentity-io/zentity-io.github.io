@@ -22,14 +22,14 @@ POST _zentity/resolution/http_session
   }
 }
 
-POST _zentity/resolution/organization?_source=false
+POST _zentity/resolution/http_session?_source=false&_explanation=true
 {
   "attributes": {
-    "id": [ "1497077796" ]
+    "ip": [ "192.168.0.1" ]
   }
 }
 
-POST _zentity/resolution/organization?_source=true
+POST _zentity/resolution/organization?_source=false
 {
   "attributes": {
     "id": [ "1497077796" ]
@@ -43,31 +43,38 @@ POST _zentity/resolution/organization?_source=false&_explanation=true
   }
 }
 
+POST _zentity/resolution/organization?_source=true
+{
+  "attributes": {
+    "id": [ "1497077796" ]
+  }
+}
+
 
 ####  Entity Resolution: Debugging  #########################
 
-POST _zentity/resolution/http_session?hits=false&queries
+POST _zentity/resolution/http_session?hits=false&queries=true
 {
   "attributes": {
     "ip": [ "192.168.0.1" ]
   }
 }
 
-POST _zentity/resolution/organization?hits=false&queries
+POST _zentity/resolution/organization?hits=false&queries=true
 {
   "attributes": {
     "id": [ "1497077796" ]
   }
 }
 
-POST _zentity/resolution/organization?hits=false&queries&_explanation
+POST _zentity/resolution/organization?hits=false&queries=true&_explanation=true
 {
   "attributes": {
     "id": [ "1497077796" ]
   }
 }
 
-POST _zentity/resolution/organization?hits=false&queries&profile
+POST _zentity/resolution/organization?hits=false&queries=true&profile=true
 {
   "attributes": {
     "id": [ "1497077796" ]
