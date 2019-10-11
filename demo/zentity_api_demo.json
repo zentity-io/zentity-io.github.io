@@ -29,6 +29,20 @@ POST _zentity/resolution/organization?_source=false
   }
 }
 
+POST _zentity/resolution/organization?_source=true
+{
+  "attributes": {
+    "id": [ "1497077796" ]
+  }
+}
+
+POST _zentity/resolution/organization?_source=false&_explanation=true
+{
+  "attributes": {
+    "id": [ "1497077796" ]
+  }
+}
+
 
 ####  Entity Resolution: Debugging  #########################
 
@@ -40,6 +54,13 @@ POST _zentity/resolution/http_session?hits=false&queries
 }
 
 POST _zentity/resolution/organization?hits=false&queries
+{
+  "attributes": {
+    "id": [ "1497077796" ]
+  }
+}
+
+POST _zentity/resolution/organization?hits=false&queries&_explanation
 {
   "attributes": {
     "id": [ "1497077796" ]
