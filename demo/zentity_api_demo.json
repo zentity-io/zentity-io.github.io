@@ -22,14 +22,14 @@ POST _zentity/resolution/http_session
   }
 }
 
-POST _zentity/resolution/http_session?_source=false&_explanation=true
+POST _zentity/resolution/organization?_source=false
 {
   "attributes": {
-    "ip": [ "192.168.0.1" ]
+    "id": [ "1497077796" ]
   }
 }
 
-POST _zentity/resolution/organization?_source=false
+POST _zentity/resolution/organization?_source=true
 {
   "attributes": {
     "id": [ "1497077796" ]
@@ -43,11 +43,9 @@ POST _zentity/resolution/organization?_source=false&_explanation=true
   }
 }
 
-POST _zentity/resolution/organization?_source=true
+POST _zentity/resolution/organization?_source=false&_explanation=true
 {
-  "attributes": {
-    "id": [ "1497077796" ]
-  }
+  "terms": [ "CLINICAL SUPPORT SERVICES, LLC", "55401" ]
 }
 
 
