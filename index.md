@@ -18,40 +18,16 @@ resolution. It aims to be:
 
 ### zentity-{$ latest.zentity $}
 
-> **Breaking change**: There is a breaking change that affects all users
-> upgrading to zentity-1.5.0 or later. Fields in the [`"_attributes"`](/docs/entity-resolution/output-specification/#hits.hits._attributes)
-> object of each document returned by the [Resolution API](/docs/rest-apis/resolution-api)
-> are now arrays of values instead of single values. You will need to modify
-> your client application to retrieve the first element of [`"hits"."hits"."_attributes"`](/docs/entity-resolution/output-specification/#hits.hits._attributes)
-> to achieve the same behavior as your prior version. This is a quick solution
-> for the short term. However, keep in mind that it's now possible for an
-> attribute of a document to have multiple values.
-
 Select the plugin version that matches your version of Elasticsearch:
 
-- [Elasticsearch 7.3.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.3.2.zip)
-- [Elasticsearch 7.3.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.3.1.zip)
-- [Elasticsearch 7.3.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.3.0.zip)
-- [Elasticsearch 7.2.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.2.1.zip)
-- [Elasticsearch 7.2.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.2.0.zip)
-- [Elasticsearch 7.1.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.1.1.zip)
-- [Elasticsearch 7.1.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.1.0.zip)
-- [Elasticsearch 7.0.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.0.1.zip)
-- [Elasticsearch 7.0.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.0.0.zip)
-- [Elasticsearch 6.8.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.8.2.zip)
-- [Elasticsearch 6.8.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.8.1.zip)
-- [Elasticsearch 6.8.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.8.0.zip)
-- [Elasticsearch 6.7.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.7.2.zip)
-- [Elasticsearch 6.7.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.7.1.zip)
-- [Elasticsearch 6.7.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.7.0.zip)
-- [Elasticsearch 6.6.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.6.2.zip)
-- [Elasticsearch 6.6.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.6.1.zip)
-- [Elasticsearch 6.6.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.6.0.zip)
-- [Elasticsearch 6.5.4](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.5.4.zip)
-- [Elasticsearch 6.5.3](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.5.3.zip)
-- [Elasticsearch 6.5.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.5.2.zip)
-- [Elasticsearch 6.5.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.5.1.zip)
-- [Elasticsearch 6.5.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-6.5.0.zip)
+- [Elasticsearch 7.6.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.6.1.zip)
+- [Elasticsearch 7.6.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.6.0.zip)
+- [Elasticsearch 7.5.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.5.2.zip)
+- [Elasticsearch 7.5.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.5.1.zip)
+- [Elasticsearch 7.5.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.5.0.zip)
+- [Elasticsearch 7.4.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.4.2.zip)
+- [Elasticsearch 7.4.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.4.1.zip)
+- [Elasticsearch 7.4.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.4.0.zip)
 
 
 ## <a name="quick-start">Quick start</a>

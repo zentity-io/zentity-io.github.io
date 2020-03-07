@@ -146,17 +146,33 @@ for complete details about the structure of a response.
 
 |Param|Type|Default|Required|Description|
 |-----|----|-------|--------|-----------|
-|`_attributes`|Boolean|`true`|No|Return the `_attributes` field in each doc.|
-|`_explanation`|Boolean|`false`|No|Return the `_explanation` field in each doc.|
-|`_source`|Boolean|`true`|No|Return the `_source` field in each doc.|
+|`_attributes`|Boolean|`true`|No|Return the [`"_attributes"`](/docs/entity-resolution/output-specification/#hits.hits._attributes) field in each doc.|
+|`_explanation`|Boolean|`false`|No|Return the [`"_explanation"`](/docs/entity-resolution/output-specification/#hits.hits._explanation) field in each doc.|
+|`_seq_no_primary_term`|Boolean|`false`|No|Return the [`"_seq_no"`](https://www.elastic.co/guide/en/elasticsearch/reference/current/optimistic-concurrency-control.html) and [`"_primary_term"`](https://www.elastic.co/guide/en/elasticsearch/reference/current/optimistic-concurrency-control.html) fields in each doc.|
+|`_source`|Boolean|`true`|No|Return the [`"_source"`](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-source-field.html) field in each doc.|
+|`_version`|Boolean|`false`|No|Return the [`"_version"`](https://www.elastic.co/blog/elasticsearch-versioning-support) field in each doc.|
 |`entity_type`|String| |Depends|The entity type. Required if `model` is not specified.|
 |`error_trace`|Boolean|`true`|No|Return the Java stack trace when an exception is thrown.|
-|`hits`|Boolean|`true`|No|Return the `hits` field in the response.|
-|`max_docs_per_query`|Integer|`1000`|No|Maximum number of docs per query result.|
+|`hits`|Boolean|`true`|No|Return the [`"hits"`](/docs/entity-resolution/output-specification/#hits) field in the response.|
+|`max_docs_per_query`|Integer|`1000`|No|Maximum number of docs per query result. See [`size`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-body.html#request-body-search-from-size)|
 |`max_hops`|Integer|`100`|No|Maximum level of recursion.|
+|`max_time_per_query`|String|`10s`|No|Timeout per query. Uses [time units](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units). Timeouts are best effort and not guaranteed ([more info](https://github.com/elastic/elasticsearch/issues/3627)).|
 |`pretty`|Boolean|`false`|No|Indents the JSON response data.|
 |`profile`|Boolean|`false`|No|[Profile](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-profile.html) each query. Used for debugging.|
-|`queries`|Boolean|`false`|No|Return the `queries` field in the response. Used for debugging.|
+|`queries`|Boolean|`false`|No|Return the [`"queries"`](/docs/entity-resolution/output-specification/#queries) field in the response. Used for debugging.|
+
+**URL query string parameters (advanced)**
+
+These are advanced search optimizations. Most users will not require them. It's recommended to use the default settings of the cluster unless you know what you're doing.
+
+|Param|Type|Default|Required|Description|
+|-----|----|-------|--------|-----------|
+|`search.allow_partial_search_results`|Boolean|Cluster default|No|[`allow_partial_search_results`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-search-api-query-params)|
+|`search.batched_reduce_size`|Integer|Cluster default|No|[`batched_reduce_size`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-search-api-query-params)|
+|`search.max_concurrent_shard_requests`|Integer|Cluster default|No|[`max_concurrent_shard_requests`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-search-api-query-params)|
+|`search.preference`|String|Cluster default|No|[`preference`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-body.html#request-body-search-preference)|
+|`search.pre_filter_shard_size`|Integer|Cluster default|No|[`pre_filter_shard_size`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-search-api-query-params)|
+|`search.request_cache`|Boolean|Cluster default|No|[`request_cache`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-search-api-query-params)|
 
 **Request body parameters**
 

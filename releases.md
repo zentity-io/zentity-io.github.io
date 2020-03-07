@@ -7,7 +7,39 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.5.1">zentity-1.5.1 (latest)</a>
+## <a name="zentity-1.5.2">zentity-1.5.2 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 7.6.1](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.6.1.zip)
+- [Elasticsearch 7.6.0](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.6.0.zip)
+- [Elasticsearch 7.5.2](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.5.2.zip)
+- [Elasticsearch 7.5.1](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.5.1.zip)
+- [Elasticsearch 7.5.0](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.5.0.zip)
+- [Elasticsearch 7.4.2](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.4.2.zip)
+- [Elasticsearch 7.4.1](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.4.1.zip)
+- [Elasticsearch 7.4.0](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.4.0.zip)
+
+### Release notes
+
+- **Feature** - Added new URL parameters to the [Resolution API](/docs/rest-apis/resolution-api):
+`max_time_per_query`, `_seq_no_primary_term`, `_version`, and several parameters
+for advanced search optimizations.
+([14bbe8a](https://github.com/zentity-io/zentity/commit/14bbe8a0dc1ef71ab3f8afedd94314e8738dc2d6))
+
+- **Security** - Updated Jackson dependency to resolve security vulnerabilities
+CVE-2019-14540, CVE-2019-16335, CVE-2019-16942, CVE-2019-16943, CVE-2019-17531,
+CVE-2019-20330, CVE-2020-8840.
+([3d325e2](https://github.com/zentity-io/zentity/commit/3d325e25283a197ecd0428669e74beb0d41a771e))
+
+- **Other** - Compatibility with Elasticsearch versions prior to 7.4.0 will no
+longer be maintained due to changes in the Elasticsearch Java API.
+([84d101b](https://github.com/zentity-io/zentity/commit/84d101b48cce70dfad34e31e234a52982c0d6ec2))
+
+
+## <a name="zentity-1.5.1">zentity-1.5.1</a>
 
 ### Download
 
@@ -693,7 +725,7 @@ Decoupled `"attributes"` and `"matchers"`. The `"indices"` object now maps index
 
 - **Feature** - Introduced the concept of matcher types. Added the `"value"`
 matcher type.
-([19f7047](https://github.com/zentity-io/zentity/commit/19f70472ab574bd006e75e9588d02e05026f7c22)) 
+([19f7047](https://github.com/zentity-io/zentity/commit/19f70472ab574bd006e75e9588d02e05026f7c22))
 
 - **Bug fix** - Returning the values of attributes in the `"_attributes"` field
 as they existed in the `"_source"` field instead of trying to manually convert
