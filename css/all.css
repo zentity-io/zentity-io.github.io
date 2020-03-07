@@ -113,7 +113,7 @@ a:hover {
   text-decoration: none;
 }
 a.external:after {
-     content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);    
+     content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
 }
 h1,h2,h3,h4,h5,h6 {
   color: rgb(0, 0, 0);
@@ -233,6 +233,10 @@ blockquote {
   padding: 1rem 1rem 0 1rem;
 }
 
+table tr th:first-child, table tr td:first-child {
+  white-space: nowrap;
+}
+
 @keyframes fadein {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -245,7 +249,7 @@ blockquote {
  * Fully installable fonts can be purchased at http://www.fontspring.com
  *
  * The fonts included in this stylesheet are subject to the End User License you purchased
- * from Fontspring. The fonts are protected under domestic and international trademark and 
+ * from Fontspring. The fonts are protected under domestic and international trademark and
  * copyright law. You are prohibited from modifying, reverse engineering, duplicating, or
  * distributing this font software.
  *
