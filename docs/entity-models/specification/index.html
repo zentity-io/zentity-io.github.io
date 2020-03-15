@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=389352749"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=206100874"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=630847655"></script>
+    </script><script src="/js/all.js?id=276358157"></script>
   </head>
   <body>
     <div id="app" >
@@ -63,17 +63,18 @@
 <h1><a name="specification"></a>Entity Model Specification</h1>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a68243b9662408185">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac53eb98fdac4b6cf">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a68243b9662408185"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ac53eb98fdac4b6cf"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_TYPE</span><span class="p">,</span>
       <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">PARAM_NAME</span><span class="o">:</span> <span class="nx">PARAM_VALUE</span><span class="p">,</span>
         <span class="p">...</span>
-      <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_IDENTITY_CONFIDENCE_BASE_SCORE</span>
     <span class="p">},</span>
     <span class="p">...</span>
   <span class="p">},</span>
@@ -93,7 +94,8 @@
       <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">PARAM_NAME</span><span class="o">:</span> <span class="nx">PARAM_VALUE</span><span class="p">,</span>
         <span class="p">...</span>
-      <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;quality&quot;</span><span class="o">:</span> <span class="nx">MATCHER_QUALITY_SCORE</span>
     <span class="p">},</span>
     <span class="p">...</span>
   <span class="p">},</span>
@@ -102,7 +104,8 @@
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">INDEX_FIELD_NAME</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_NAME</span><span class="p">,</span>
-          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="nx">MATCHER_NAME</span>
+          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="nx">MATCHER_NAME</span><span class="p">,</span>
+          <span class="s2">&quot;quality&quot;</span><span class="o">:</span> <span class="nx">INDEX_FIELD_QUALITY_SCORE</span>
         <span class="p">},</span>
         <span class="p">...</span>
       <span class="p">}</span>
@@ -125,17 +128,18 @@ in the descriptions of each element listed on this page.</p>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3e98c46cd4eae29e">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af6d7dbde7bbc9483">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3e98c46cd4eae29e"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="af6d7dbde7bbc9483"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_TYPE</span><span class="p">,</span>
       <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">PARAM_NAME</span><span class="o">:</span> <span class="nx">PARAM_VALUE</span><span class="p">,</span>
         <span class="p">...</span>
-      <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_IDENTITY_CONFIDENCE_BASE_SCORE</span>
     <span class="p">},</span>
     <span class="p">...</span>
   <span class="p">}</span>
@@ -146,37 +150,44 @@ in the descriptions of each element listed on this page.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#abd1ac90fb7440033">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2280de2e98b48395">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="abd1ac90fb7440033"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a2280de2e98b48395"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="mf">0.65</span>
     <span class="p">},</span>
     <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="mf">0.75</span>
     <span class="p">},</span>
     <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="mf">0.55</span>
     <span class="p">},</span>
     <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
       <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="mi">0</span>
-      <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="mf">0.52</span>
     <span class="p">},</span>
     <span class="s2">&quot;zip&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="mf">0.6</span>
     <span class="p">},</span>
     <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="mf">0.95</span>
     <span class="p">},</span>
     <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
       <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
-      <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="mf">0.9</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -261,14 +272,71 @@ string values. Additionally, date attributes must include a param called
 Date values are queried and returned in the specified format. This is both
 useful and necessary when querying date fields across indices that have
 disparate date formats.</p>
+<h3><a name="attributes.ATTRIBUTE_NAME.score"></a><code>"attributes".ATTRIBUTE_NAME."score"</code></h3>
+<p>An attribute identity confidence base score represents the confidence that an
+attribute would uniquely identify the entity if it were to match, assuming the
+quality of its matcher and index field are perfect. The score is a floating
+point number in the range of <code>0.0</code> - <code>1.0</code>.</p>
+<ul>
+<li>A score of <code>1.0</code> represents 100% confidence that the attribute identifies the entity.</li>
+<li>A score of <code>0.0</code> represents 100% confidence that the attribute does not identify the entity.</li>
+<li>A score of <code>0.5</code> represents 100% uncertainty that the attribute identifies the entity.</li>
+<li>A score of <code>null</code> indicates that the attribute lacks a base score.</li>
+</ul>
+<p>Effectively, if a document matches with one or more attributes:</p>
+<ul>
+<li>The document <a href="/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score"><code>"_score"</code></a>
+always will be <code>1.0</code> if any attribute has a score of <code>1.0</code>.</li>
+<li>The document <a href="/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score"><code>"_score"</code></a>
+always will be <code>0.0</code> if any attribute has a score of <code>0.0</code>.</li>
+<li>The document <a href="/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score"><code>"_score"</code></a>
+will be unaffected by any attribute with a score of <code>0.5</code>.</li>
+<li>The document <a href="/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score"><code>"_score"</code></a>
+will be unaffected by any attribute with a score of <code>null</code>.</li>
+</ul>
+<p>Generally it makes sense for every attribute to have a base score between
+<code>0.5</code> - <code>1.0</code>. A base score that's less than <code>0.5</code> would indicate that the
+matching attribute represents some level of a false match, which is contrary to
+the general usage of zentity where a matching attribute represents some level
+of a true match.</p>
+<p><a href="https://stackoverflow.com/a/25548661/11150348" onclick="to('https://stackoverflow.com/a/25548661/11150348', 'outbound');" class="external">Cardinality</a> would be a good
+statistic by which to define a base score. For example:</p>
+<ul>
+<li>"High" cardinality attributes such as <code>"ssn"</code> or <code>"phone"</code> or <code>"ip"</code> should
+have a base score closer to <code>1.0</code> because they're more likely to uniquely
+identify the entity.</li>
+<li>"Low" cardinality attributes such as <code>"sex"</code> should have a base score closer
+to <code>0.5</code> because they don't contribute significantly to the identification of
+the entity.</li>
+<li>"Normal" cardinality attributes such as <code>"first_name"</code> or <code>"street"</code> or
+<code>"dob"</code> should have a base score somewhere in between the two extremes of <code>0.5</code>
+and <code>1.0</code>.</li>
+</ul>
+<p>Care should be taken when using a base score of <code>1.0</code> or <code>0.0</code>, because it would
+allow a single attribute identity confidence score to determine the document
+<a href="/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score"><code>"_score"</code></a>.
+Whenever there is an attribute identity confidence score of <code>1.0</code> or <code>0.0</code>, it
+takes precedence over any other attribute identity confidence score in the
+document. For example, you might have an <code>"id"</code> field that you absolutely trust
+to identify an entity. If you allow the score of the <code>"id"</code> field to be <code>1.0</code>,
+then anytime the <code>"id"</code> field matches in a document, no other attribute identity
+confidence score would matter because you've already stated that the <code>"id"</code>
+field always indicates a match with perfect confidence. A best practice would be
+to use a high number such as <code>0.99</code> to allow for some small level of variability
+and more nuanced rankings of documents.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Float</li>
+<li>Default: <code>null</code></li>
+</ul>
 <h2><a name="resolvers"></a><code>"resolvers"</code></h2>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac9924141a32dfa83">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af58c0d5d840b0fcd">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac9924141a32dfa83"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="af58c0d5d840b0fcd"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">RESOLVER_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -286,10 +354,10 @@ disparate date formats.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4efc17e1d9924f4b">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae68cbd963d65c31a">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a4efc17e1d9924f4b"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ae68cbd963d65c31a"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_street_city_state&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -396,10 +464,10 @@ or do not exist in the documents.</p>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3559edfe50e21cc3">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae05086061aeeac6d">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3559edfe50e21cc3"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ae05086061aeeac6d"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">MATCHER_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="nx">MATCHER_CLAUSE</span><span class="p">,</span>
@@ -417,17 +485,17 @@ or do not exist in the documents.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a99e15381cc51d9d1">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a04100089eaa82f4d">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a99e15381cc51d9d1"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a04100089eaa82f4d"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exact_matcher&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
         <span class="p">}</span>
-      <span class="p">},</span>
+      <span class="p">}</span>
     <span class="p">},</span>
     <span class="s2">&quot;fuzzy_matcher&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span><span class="p">{</span>
@@ -440,14 +508,16 @@ or do not exist in the documents.</p>
       <span class="p">},</span>
       <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
-      <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;quality&quot;</span><span class="o">:</span> <span class="mf">0.95</span>
     <span class="p">},</span>
     <span class="s2">&quot;standard_matcher&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;match&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
         <span class="p">}</span>
-      <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;quality&quot;</span><span class="o">:</span> <span class="mf">0.98</span>
     <span class="p">},</span>
     <span class="s2">&quot;timestamp_matcher&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -462,7 +532,8 @@ or do not exist in the documents.</p>
       <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;format&quot;</span><span class="o">:</span> <span class="s2">&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&quot;</span><span class="p">,</span>
         <span class="s2">&quot;window&quot;</span><span class="o">:</span> <span class="s2">&quot;15m&quot;</span>
-      <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;quality&quot;</span><span class="o">:</span> <span class="mf">0.92</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -518,20 +589,47 @@ in either the input or the model.</p>
 <li>Required: No</li>
 <li>Type: Any</li>
 </ul>
+<h3><a name="matchers.MATCHER_NAME.quality"></a><code>"matchers".MATCHER_NAME."quality"</code></h3>
+<p>A matcher quality score represents the quality or trustworthiness of a matcher.
+It modifies the <a href="#attributes.ATTRIBUTE_NAME.score" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.score', 'internal');">attribute identity confidence base score</a>
+and contributes to the final attribute identity confidence score.</p>
+<ul>
+<li>A quality score of <code>1.0</code> represents 100% confidence that the matcher can be trusted.</li>
+<li>A quality score of <code>0.0</code> represents 100% confidence that the matcher cannot be trusted.</li>
+<li>A quality score of <code>null</code> indicates that the matcher lacks a quality score.</li>
+</ul>
+<p>Effectively this means:</p>
+<ul>
+<li>A quality score of <code>1.0</code> will not affect the attribute identity confidence base score.</li>
+<li>A quality score of less than <code>1.0</code> will penalize the attribute identity confidence base score.</li>
+<li>A quality score of <code>0.0</code> will set the attribute identity confidence base score to <code>0.5</code>.</li>
+<li>A quality score of <code>null</code> will not affect the attribute identity confidence base score.</li>
+</ul>
+<p>The purpose of the matcher quality score is to reflect any dubious matcher
+quality in the final document <a href="/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score"><code>"_score"</code></a>.
+For example, an exact matcher may have a quality score of <code>1.0</code>, while a fuzzy
+matcher may have a quality score of <code>0.95</code> to express slightly less confidence
+in the quality of the match.</p>
+<ul>
+<li>Required: No</li>
+<li>Type: Float</li>
+<li>Default: <code>null</code></li>
+</ul>
 <h2><a name="indices"></a><code>"indices"</code></h2>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a344797fcf0c0be65">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a74b39d09c134ccef">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a344797fcf0c0be65"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a74b39d09c134ccef"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">INDEX_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">INDEX_FIELD_NAME</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_NAME</span><span class="p">,</span>
-          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="nx">MATCHER_NAME</span>
+          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="nx">MATCHER_NAME</span><span class="p">,</span>
+          <span class="s2">&quot;quality&quot;</span><span class="o">:</span> <span class="nx">INDEX_FIELD_QUALITY_SCORE</span>
         <span class="p">},</span>
         <span class="p">...</span>
       <span class="p">}</span>
@@ -545,20 +643,22 @@ in either the input or the model.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#addf835a83de49d87">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a12344206715f91f2">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="addf835a83de49d87"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a12344206715f91f2"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy_matcher&quot;</span>
+          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy_matcher&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;quality&quot;</span><span class="o">:</span> <span class="mf">0.95</span>
         <span class="p">},</span>
         <span class="s2">&quot;zip.keyword&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;zip&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;exact_matcher&quot;</span>
+          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;exact_matcher&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;quality&quot;</span><span class="o">:</span> <span class="mf">0.98</span>
         <span class="p">},</span>
         <span class="s2">&quot;email.keyword&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span>
@@ -570,15 +670,18 @@ in either the input or the model.</p>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;full_name&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy_matcher&quot;</span>
+          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy_matcher&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;quality&quot;</span><span class="o">:</span> <span class="mf">0.98</span>
         <span class="p">},</span>
         <span class="s2">&quot;addr_street&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy_matcher&quot;</span>
+          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy_matcher&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;quality&quot;</span><span class="o">:</span> <span class="mf">0.95</span>
         <span class="p">},</span>
         <span class="s2">&quot;addr_city&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;standard_matcher&quot;</span>
+          <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;standard_matcher&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;quality&quot;</span><span class="o">:</span> <span class="mf">0.98</span>
         <span class="p">},</span>
         <span class="s2">&quot;addr_state_code.keyword&quot;</span><span class="o">:</span> <span class="p">{</span>
           <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
@@ -658,10 +761,10 @@ resolution job. Assume you are resolving an entity with an email address of
 clause below:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8fc1c7bb9ccaa6a7">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae1db003a620301a9">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a8fc1c7bb9ccaa6a7"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ae1db003a620301a9"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
   <span class="p">}</span>
@@ -672,10 +775,10 @@ clause below:</p>
         <p>The final clause will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3069a98cebdb173a">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a4754f8fc2aeb6365">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3069a98cebdb173a"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a4754f8fc2aeb6365"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;email.keyword&quot;</span><span class="o">:</span> <span class="s2">&quot;user@example.net&quot;</span>
   <span class="p">}</span>
@@ -695,6 +798,28 @@ attributes.</p>
 <li>Required: No</li>
 <li>Type: String</li>
 </ul>
+<h3><a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.quality"></a><code>"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."quality"</code></h3>
+<p>An index field quality score represents the quality or trustworthiness of the
+data in an index field. It modifies the <a href="#attributes.ATTRIBUTE_NAME.score" onclick="to(window.location.pathname + '#attributes.ATTRIBUTE_NAME.score', 'internal');">attribute identity confidence base score</a>
+and contributes to the final attribute identity confidence score.</p>
+<ul>
+<li>A quality score of <code>1.0</code> represents 100% confidence that the index field data can be trusted.</li>
+<li>A quality score of <code>0.0</code> represents 100% confidence that the index field data cannot be trusted.</li>
+<li>A quality score of <code>null</code> indicates that the index field lacks a quality score.</li>
+</ul>
+<p>Effectively this means:</p>
+<ul>
+<li>A quality score of <code>1.0</code> will not affect the attribute identity confidence base score.</li>
+<li>A quality score of less than <code>1.0</code> will penalize the attribute identity confidence base score.</li>
+<li>A quality score of <code>0.0</code> will set the attribute identity confidence base score to <code>0.5</code>.</li>
+<li>A quality score of <code>null</code> will not affect the attribute identity confidence base score.</li>
+</ul>
+<p>The purpose of the index field quality score is to reflect any dubious data
+quality in the final document <a href="/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score"><code>"_score"</code></a>.
+For example, an index field with perfectly clean and governed data may have a
+quality score of <code>1.0</code>, while an index field with known data quality issues may
+have a quality score of <code>0.95</code> to express slightly less confidence in the
+quality of the match.</p>
 <p>&nbsp;</p>
 <hr>
 <h4>Continue Reading</h4>
