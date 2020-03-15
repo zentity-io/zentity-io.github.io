@@ -7,7 +7,35 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.5.2">zentity-1.5.2 (latest)</a>
+## <a name="zentity-1.6.0">zentity-1.6.0 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 7.6.1](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.6.1.zip)
+- [Elasticsearch 7.6.0](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.6.0.zip)
+- [Elasticsearch 7.5.2](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.5.2.zip)
+- [Elasticsearch 7.5.1](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.5.1.zip)
+- [Elasticsearch 7.5.0](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.5.0.zip)
+- [Elasticsearch 7.4.2](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.4.2.zip)
+- [Elasticsearch 7.4.1](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.4.1.zip)
+- [Elasticsearch 7.4.0](https://zentity.io/releases/zentity-1.5.2-elasticsearch-7.4.0.zip)
+
+### Release notes
+
+- **Feature** - This release introduces identity confidence scoring to the [Resolution API](/docs/rest-apis/resolution-api).
+Added the [attribute identity confidence base score](/docs/entity-models/specification/#attributes.ATTRIBUTE_NAME.score),
+[matcher quality score](/docs/entity-models/specification/#matchers.MATCHER_NAME.quality),
+and [index field quality score](/docs/entity-models/specification/#indices.INDEX_NAME.fields.INDEX_FIELD_NAME.quality)
+to the [Entity Model Specification](/docs/entity-models/specification). Added
+the [`"_score"`](/docs/entity-resolution/output-specification/#hits.hits._score)
+field to the [Entity Resolution Output Specification](/docs/entity-resolution/output-specification).
+Added an optional `_score` parameter to the [Resolution API](/docs/rest-apis/resolution-api).
+([PR 39](https://github.com/zentity-io/zentity/pull/39))
+
+
+## <a name="zentity-1.5.2">zentity-1.5.2</a>
 
 ### Download
 

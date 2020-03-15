@@ -15,6 +15,7 @@
         "_id": DOC_ID,
         "_hop": HOP_NUMBER,
         "_query": QUERY_NUMBER,
+        "_score": COMPOSITE_IDENTITY_CONFIDENCE_SCORE,
         "_attributes": {
           ATTRIBUTE_NAME: [
             ATTRIBUTE_VALUE,
@@ -40,6 +41,7 @@
               "input_value": ATTRIBUTE_VALUE,
               "input_matcher": MATCHER_NAME,
               "input_matcher_params": MATCHER_PARAMS,
+              "score": ATTRIBUTE_IDENTITY_CONFIDENCE_SCORE
             },
             ...
           ]
@@ -184,6 +186,10 @@ which zentity submits a query to each index that can be queried.
 The query number of a given [`"_hop"`](#hits.hits._hop) at which the document
 was received.
 
+### <a name="hits.hits._score"></a>`"hits"."hits"."_score"`
+
+The composite identity confidence score calculated from the [attribute identity confidence scores](#hits.hits._explanation.matches.score).
+
 
 ### <a name="hits.hits._attributes"></a>`"hits"."hits"."_attributes"`
 
@@ -257,6 +263,13 @@ The name of the matcher for a match.
 ### <a name="hits.hits._explanation.matches.input_matcher_params"></a>`"hits"."hits"."_explanation"."matches"."input_matcher_params"`
 
 The params of the matcher for a match.
+
+
+### <a name="hits.hits._explanation.matches.score"></a>`"hits"."hits"."_explanation"."matches"."score"`
+
+The attribute identity confidence score calculated from the [attribute identity confidence base score](/docs/entity-models/specification#attributes.ATTRIBUTE_NAME.score),
+[matcher quality score](/docs/entity-models/specification#matchers.MATCHER_NAME.quality),
+and [index field quality score](/docs/entity-models/specification#indices.INDEX_NAME.fields.INDEX_FIELD_NAME.quality).
 
 
 ### <a name="hits.hits._source"></a>`"hits"."hits"."_source"`

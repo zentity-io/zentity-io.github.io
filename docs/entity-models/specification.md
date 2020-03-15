@@ -11,7 +11,8 @@
       "params": {
         PARAM_NAME: PARAM_VALUE,
         ...
-      }
+      },
+      "score": ATTRIBUTE_IDENTITY_CONFIDENCE_BASE_SCORE
     },
     ...
   },
@@ -31,7 +32,8 @@
       "params": {
         PARAM_NAME: PARAM_VALUE,
         ...
-      }
+      },
+      "quality": MATCHER_QUALITY_SCORE
     },
     ...
   },
@@ -40,7 +42,8 @@
       "fields": {
         INDEX_FIELD_NAME: {
           "attribute": ATTRIBUTE_NAME,
-          "matcher": MATCHER_NAME
+          "matcher": MATCHER_NAME,
+          "quality": INDEX_FIELD_QUALITY_SCORE
         },
         ...
       }
@@ -73,7 +76,8 @@ in the descriptions of each element listed on this page.
       "params": {
         PARAM_NAME: PARAM_VALUE,
         ...
-      }
+      },
+      "score": ATTRIBUTE_IDENTITY_CONFIDENCE_BASE_SCORE
     },
     ...
   }
@@ -86,31 +90,38 @@ in the descriptions of each element listed on this page.
 {
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "score": 0.65
     },
     "street": {
-      "type": "string"
+      "type": "string",
+      "score": 0.75
     },
     "city": {
-      "type": "string"
+      "type": "string",
+      "score": 0.55
     },
     "state": {
       "type": "string",
       "params": {
         "fuzziness": 0
-      }
+      },
+      "score": 0.52
     },
     "zip": {
-      "type": "string"
+      "type": "string",
+      "score": 0.6
     },
     "email": {
-      "type": "string"
+      "type": "string",
+      "score": 0.95
     },
     "phone": {
       "type": "string",
       "params": {
         "fuzziness": "auto"
-      }
+      },
+      "score": 0.9
     }
   }
 }
@@ -221,6 +232,66 @@ string values. Additionally, date attributes must include a param called
 Date values are queried and returned in the specified format. This is both
 useful and necessary when querying date fields across indices that have
 disparate date formats.
+
+
+### <a name="attributes.ATTRIBUTE_NAME.score"></a>`"attributes".ATTRIBUTE_NAME."score"`
+
+An attribute identity confidence base score represents the confidence that an
+attribute would uniquely identify the entity if it were to match, assuming the
+quality of its matcher and index field are perfect. The score is a floating
+point number in the range of `0.0` - `1.0`.
+
+- A score of `1.0` represents 100% confidence that the attribute identifies the entity.
+- A score of `0.0` represents 100% confidence that the attribute does not identify the entity.
+- A score of `0.5` represents 100% uncertainty that the attribute identifies the entity.
+- A score of `null` indicates that the attribute lacks a base score.
+
+Effectively, if a document matches with one or more attributes:
+
+- The document [`"_score"`](/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score)
+always will be `1.0` if any attribute has a score of `1.0`.
+- The document [`"_score"`](/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score)
+always will be `0.0` if any attribute has a score of `0.0`.
+- The document [`"_score"`](/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score)
+will be unaffected by any attribute with a score of `0.5`.
+- The document [`"_score"`](/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score)
+will be unaffected by any attribute with a score of `null`.
+
+Generally it makes sense for every attribute to have a base score between
+`0.5` - `1.0`. A base score that's less than `0.5` would indicate that the
+matching attribute represents some level of a false match, which is contrary to
+the general usage of zentity where a matching attribute represents some level
+of a true match.
+
+[Cardinality](https://stackoverflow.com/a/25548661/11150348) would be a good
+statistic by which to define a base score. For example:
+
+- "High" cardinality attributes such as `"ssn"` or `"phone"` or `"ip"` should
+have a base score closer to `1.0` because they're more likely to uniquely
+identify the entity.
+- "Low" cardinality attributes such as `"sex"` should have a base score closer
+to `0.5` because they don't contribute significantly to the identification of
+the entity.
+- "Normal" cardinality attributes such as `"first_name"` or `"street"` or
+`"dob"` should have a base score somewhere in between the two extremes of `0.5`
+and `1.0`.
+
+Care should be taken when using a base score of `1.0` or `0.0`, because it would
+allow a single attribute identity confidence score to determine the document
+[`"_score"`](/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score).
+Whenever there is an attribute identity confidence score of `1.0` or `0.0`, it
+takes precedence over any other attribute identity confidence score in the
+document. For example, you might have an `"id"` field that you absolutely trust
+to identify an entity. If you allow the score of the `"id"` field to be `1.0`,
+then anytime the `"id"` field matches in a document, no other attribute identity
+confidence score would matter because you've already stated that the `"id"`
+field always indicates a match with perfect confidence. A best practice would be
+to use a high number such as `0.99` to allow for some small level of variability
+and more nuanced rankings of documents.
+
+- Required: No
+- Type: Float
+- Default: `null`
 
 
 ## <a name="resolvers"></a>`"resolvers"`
@@ -389,7 +460,7 @@ or do not exist in the documents.
         "term": {
           "{{ field }}": "{{ value }}"
         }
-      },
+      }
     },
     "fuzzy_matcher": {
       "clause":{
@@ -402,14 +473,16 @@ or do not exist in the documents.
       },
       "params": {
         "fuzziness": "auto"
-      }
+      },
+      "quality": 0.95
     },
     "standard_matcher": {
       "clause": {
         "match": {
           "{{ field }}": "{{ value }}"
         }
-      }
+      },
+      "quality": 0.98
     },
     "timestamp_matcher": {
       "clause": {
@@ -424,7 +497,8 @@ or do not exist in the documents.
       "params": {
         "format": "yyyy-MM-dd'T'HH:mm:ss.SSS",
         "window": "15m"
-      }
+      },
+      "quality": 0.92
     }
   }
 }
@@ -492,6 +566,34 @@ in either the input or the model.
 - Type: Any
 
 
+### <a name="matchers.MATCHER_NAME.quality"></a>`"matchers".MATCHER_NAME."quality"`
+
+A matcher quality score represents the quality or trustworthiness of a matcher.
+It modifies the [attribute identity confidence base score](#attributes.ATTRIBUTE_NAME.score)
+and contributes to the final attribute identity confidence score.
+
+- A quality score of `1.0` represents 100% confidence that the matcher can be trusted.
+- A quality score of `0.0` represents 100% confidence that the matcher cannot be trusted.
+- A quality score of `null` indicates that the matcher lacks a quality score.
+
+Effectively this means:
+
+- A quality score of `1.0` will not affect the attribute identity confidence base score.
+- A quality score of less than `1.0` will penalize the attribute identity confidence base score.
+- A quality score of `0.0` will set the attribute identity confidence base score to `0.5`.
+- A quality score of `null` will not affect the attribute identity confidence base score.
+
+The purpose of the matcher quality score is to reflect any dubious matcher
+quality in the final document [`"_score"`](/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score).
+For example, an exact matcher may have a quality score of `1.0`, while a fuzzy
+matcher may have a quality score of `0.95` to express slightly less confidence
+in the quality of the match.
+
+- Required: No
+- Type: Float
+- Default: `null`
+
+
 ## <a name="indices"></a>`"indices"`
 
 **Model**
@@ -503,7 +605,8 @@ in either the input or the model.
       "fields": {
         INDEX_FIELD_NAME: {
           "attribute": ATTRIBUTE_NAME,
-          "matcher": MATCHER_NAME
+          "matcher": MATCHER_NAME,
+          "quality": INDEX_FIELD_QUALITY_SCORE
         },
         ...
       }
@@ -522,11 +625,13 @@ in either the input or the model.
       "fields": {
         "name": {
           "attribute": "name",
-          "matcher": "fuzzy_matcher"
+          "matcher": "fuzzy_matcher",
+          "quality": 0.95
         },
         "zip.keyword": {
           "attribute": "zip",
-          "matcher": "exact_matcher"
+          "matcher": "exact_matcher",
+          "quality": 0.98
         },
         "email.keyword": {
           "attribute": "email",
@@ -538,15 +643,18 @@ in either the input or the model.
       "fields": {
         "full_name": {
           "attribute": "name",
-          "matcher": "fuzzy_matcher"
+          "matcher": "fuzzy_matcher",
+          "quality": 0.98
         },
         "addr_street": {
           "attribute": "street",
-          "matcher": "fuzzy_matcher"
+          "matcher": "fuzzy_matcher",
+          "quality": 0.95
         },
         "addr_city": {
           "attribute": "city",
-          "matcher": "standard_matcher"
+          "matcher": "standard_matcher",
+          "quality": 0.98
         },
         "addr_state_code.keyword": {
           "attribute": "state",
@@ -670,6 +778,31 @@ attributes.
 
 - Required: No
 - Type: String
+
+
+### <a name="indices.INDEX_NAME.fields.INDEX_FIELD_NAME.quality"></a>`"indices".INDEX_NAME."fields".INDEX_FIELD_NAME."quality"`
+
+An index field quality score represents the quality or trustworthiness of the
+data in an index field. It modifies the [attribute identity confidence base score](#attributes.ATTRIBUTE_NAME.score)
+and contributes to the final attribute identity confidence score.
+
+- A quality score of `1.0` represents 100% confidence that the index field data can be trusted.
+- A quality score of `0.0` represents 100% confidence that the index field data cannot be trusted.
+- A quality score of `null` indicates that the index field lacks a quality score.
+
+Effectively this means:
+
+- A quality score of `1.0` will not affect the attribute identity confidence base score.
+- A quality score of less than `1.0` will penalize the attribute identity confidence base score.
+- A quality score of `0.0` will set the attribute identity confidence base score to `0.5`.
+- A quality score of `null` will not affect the attribute identity confidence base score.
+
+The purpose of the index field quality score is to reflect any dubious data
+quality in the final document [`"_score"`](/docs/entity-resolution/output-specification/#hits.hits._explanation.matches.score).
+For example, an index field with perfectly clean and governed data may have a
+quality score of `1.0`, while an index field with known data quality issues may
+have a quality score of `0.95` to express slightly less confidence in the
+quality of the match.
 
 
 &nbsp;
