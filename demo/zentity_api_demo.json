@@ -89,19 +89,19 @@ GET demo_zentity_organization_nppes/_mappings
 ####  Custom Analyzers: Examples  ###########################
 
 POST demo_zentity_organization_nppes/_analyze
-{ "text": "Alice Jones-Smith", "analyzer": "name_clean" }
+{ "text": "Alice Jones-Smith", "analyzer": "zentity_name" }
 
 POST demo_zentity_organization_nppes/_analyze
-{ "text": "Alice Jones-Smith", "analyzer": "name_phonetic" }
+{ "text": "Alice Jones-Smith", "analyzer": "zentity_name_phonetic" }
 
 POST demo_zentity_organization_nppes/_analyze
-{ "text": "Alicia Jane-Smith", "analyzer": "name_phonetic" }
+{ "text": "Alicia Jane-Smith", "analyzer": "zentity_name_phonetic" }
 
 POST demo_zentity_organization_nppes/_analyze
-{ "text": "39630 W 14 MILE RD", "analyzer": "us_street_clean" }
+{ "text": "39630 W 14 MILE RD", "analyzer": "zentity_us_street" }
 
 POST demo_zentity_organization_nppes/_analyze
-{ "text": "123 St Paul St", "analyzer": "us_street_clean" }
+{ "text": "123 St Paul St", "analyzer": "zentity_us_street" }
 
 POST demo_zentity_http_session/_analyze
 {
