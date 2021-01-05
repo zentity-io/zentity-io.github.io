@@ -443,7 +443,8 @@ or do not exist in the documents.
       "params": {
         PARAM_NAME: PARAM_VALUE,
         ...
-      }
+      },
+      "quality": MATCHER_QUALITY_SCORE
     },
     ...
   }

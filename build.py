@@ -42,7 +42,7 @@ def parse_latest_version(latest_version):
     }
 
 class ZentityRenderer(mistune.Renderer):
-    
+
     def block_code(self, code, lang):
         if not lang:
             return "\n<pre><code>%s</code></pre>\n" % mistune.escape(code)
@@ -59,7 +59,7 @@ class ZentityRenderer(mistune.Renderer):
         </div>
         """ % ( id, id, formatted )
         return formatted
-        
+
     def link(self, link, title, text):
         link = mistune.escape_link(link)
         out = "<a href=\"%s\"" % link
@@ -74,13 +74,13 @@ class ZentityRenderer(mistune.Renderer):
             out += " onclick=\"to(window.location.pathname + '%s', 'internal');\"" % link
         out += ">%s</a>" % text
         return out
-        
+
     def table(self, header, body):
         return (
             '<table class="table">\n<thead>%s</thead>\n'
             '<tbody>\n%s</tbody>\n</table>\n'
         ) % (header, body)
-        
+
 def fullpath(filename):
     return (os.path.dirname(os.path.abspath(__file__)) + filename).replace("\\", "/")
 
@@ -186,6 +186,14 @@ def PAGES(args):
                 "meta_description": META_DESCRIPTION_GENERIC,
                 "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
                 "content": markdown("/docs/advanced-usage.md", args)
+            }
+        },
+        "/docs/advanced-usage/scoring-resolution": {
+            "vars": {
+                "title": "Scoring Resolution",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/advanced-usage/scoring-resolution.md", args)
             }
         },
         "/docs/advanced-usage/matcher-parameters": {
@@ -328,7 +336,7 @@ def copy_assets_dir():
     filepath_to = fullpath("/build")
     print "Copying assets from: {}".format(filepath_from)
     return copy_tree(filepath_from, filepath_to)
-    
+
 def write_page(uri_path, content):
     filepath = fullpath("/build" + uri_path + "/index.html")
     # Ensure any subdirectories are created
@@ -342,7 +350,7 @@ def write_page(uri_path, content):
     print "Writing file: {}".format(filepath)
     with codecs.open(filepath, "wb", "utf-8") as file:
         print >> file, content
-        
+
 def build_page(page, args={}):
     template = env.get_template(page.get("template", "base.html"))
     vars = copy.deepcopy(page["vars"])
@@ -354,13 +362,13 @@ def build_pages(pages, args={}):
         print "Building page: {}".format(uri_path)
         content = build_page(page, args)
         write_page(uri_path, content)
-        
+
 def build(args={}):
     pages = PAGES(args)
     wipe_build_dir()
     copy_assets_dir()
     build_pages(pages, args)
-    
+
 if __name__ == "__main__":
     args = {}
     args["test"] = False
@@ -389,4 +397,3 @@ if __name__ == "__main__":
     }
     print args
     build(args)
-    

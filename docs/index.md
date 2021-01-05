@@ -18,6 +18,7 @@
     - [Cross Index Resolution](/docs/basic-usage/cross-index-resolution)
     - [Scoping Resolution](/docs/basic-usage/scoping-resolution)
 - [Advanced Usage](/docs/advanced-usage)
+    - [Scoring Resolution](/docs/advanced-usage/scoring-resolution)
     - [Matcher Parameters](/docs/advanced-usage/matcher-parameters)
     - [Date Attributes](/docs/advanced-usage/date-attributes)
     - [Payload Attributes](/docs/advanced-usage/payload-attributes)

@@ -20,14 +20,16 @@ resolution. It aims to be:
 
 Select the plugin version that matches your version of Elasticsearch:
 
-- [Elasticsearch 7.6.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.6.1.zip)
-- [Elasticsearch 7.6.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.6.0.zip)
-- [Elasticsearch 7.5.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.5.2.zip)
-- [Elasticsearch 7.5.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.5.1.zip)
-- [Elasticsearch 7.5.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.5.0.zip)
-- [Elasticsearch 7.4.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.4.2.zip)
-- [Elasticsearch 7.4.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.4.1.zip)
-- [Elasticsearch 7.4.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.4.0.zip)
+- [Elasticsearch 7.10.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.1.zip)
+- [Elasticsearch 7.10.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.0.zip)
+- [Elasticsearch 7.9.3](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.3.zip)
+- [Elasticsearch 7.9.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.2.zip)
+- [Elasticsearch 7.9.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.1.zip)
+- [Elasticsearch 7.9.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.0.zip)
+- [Elasticsearch 7.8.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.8.1.zip)
+- [Elasticsearch 7.8.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.8.0.zip)
+- [Elasticsearch 7.7.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.7.1.zip)
+- [Elasticsearch 7.7.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.7.0.zip)
 
 
 ## <a name="quick-start">Quick start</a>

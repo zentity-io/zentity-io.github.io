@@ -7,9 +7,10 @@ This tutorial is part of a series to help you learn and perform the advanced
 functions of zentity. You should complete the [basic usage](/docs/basic-usage)
 tutorials before completing these advanced usage tutorials.
 
-1. [Matcher Parameters](/docs/advanced-usage/matcher-parameters)
-2. [Date Attributes](/docs/advanced-usage/date-attributes)
-1. **Payload Attributes** *&#8592; You are here.*
+1. [Scoring Resolution](/docs/advanced-usage/scoring-resolution)
+2. [Matcher Parameters](/docs/advanced-usage/matcher-parameters)
+3. [Date Attributes](/docs/advanced-usage/date-attributes)
+4. **Payload Attributes** *&#8592; You are here.*
 
 ---
 

@@ -86,14 +86,14 @@ To install zentity on an Elasticsearch Service deployment:
 
 1. Browse the [releases](/releases) and download one of the .zip files.
 2. [Sign in](https://cloud.elastic.co/) to Elasticsearch Service.
-3. Navigate to the [Custom Plugins](https://cloud.elastic.co/plugins) tab.
-4. Click the "Add plugin" button.
-5. Name the plugin "zentity".
+3. Navigate to the [Extensions](https://cloud.elastic.co/extensions) tab.
+4. Click the "Create Extension" button.
+5. Name the extension "zentity" or anything else.
 6. Specify the version of your Elasticsearch deployment.
 7. Under plugin type, select "An installable plugin (Compiled, no source code)".
 8. Click the "Create plugin" button.
 9. Upload the .zip file under the "Plugin file" section.
-10. Create or restart your deployment. If creating a deployment, select "zentity" under the list of custom plugins.
+10. Create or restart your deployment. If creating a deployment, select the zentity extension under the list of custom plugins.
 
 If you will be creating indices and performing entity resolution with data that
 has names of people or companies or other fields that often have data quality
@@ -103,11 +103,11 @@ from the list of plugins, which can help you index cleaner representations of
 that data.
 
 > **Important**
-> 
+>
 > Amazon's Elasticsearch Service does not let you install community plugins.
 > You will need to use the official Elasticsearch Service offered by Elastic.
 > You can [compare the services](https://www.elastic.co/aws-elasticsearch-service#aws-elasticsearch-service:-amazon-vs.-elastic)
-> and then learn [how to migrate from AWS to Elastic](https://www.elastic.co/blog/migrating-from-aws-elasticsearch-to-elasticsearch-service-on-elastic-cloud). 
+> and then learn [how to migrate from AWS to Elastic](https://www.elastic.co/blog/migrating-from-aws-elasticsearch-to-elasticsearch-service-on-elastic-cloud).
 
 
 ## <a name="sandbox"></a>Sandbox

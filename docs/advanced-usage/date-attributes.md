@@ -7,9 +7,10 @@ This tutorial is part of a series to help you learn and perform the advanced
 functions of zentity. You should complete the [basic usage](/docs/basic-usage)
 tutorials before completing these advanced usage tutorials.
 
-1. [Matcher Parameters](/docs/advanced-usage/matcher-parameters)
-2. **Date Attributes** *&#8592; You are here.*
-3. [Payload Attributes](/docs/advanced-usage/payload-attributes)
+1. [Scoring Resolution](/docs/advanced-usage/scoring-resolution)
+2. [Matcher Parameters](/docs/advanced-usage/matcher-parameters)
+3. **Date Attributes** *&#8592; You are here.*
+4. [Payload Attributes](/docs/advanced-usage/payload-attributes)
 
 ---
 
@@ -44,14 +45,14 @@ the window of a date range query.
 Let's dive in.
 
 > **Before you start**
-> 
+>
 > You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch),
 > [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation)
 > to complete this tutorial. This tutorial was tested with
 > [zentity-{$ tutorial.zentity $}-elasticsearch-{$ tutorial.elasticsearch $}](/releases#zentity-{$ tutorial.zentity $}).
-> 
+>
 > **Quick start**
-> 
+>
 > You can use the [zentity sandbox](/sandbox) which has the required software
 > and data for these tutorials. This will let you skip many of the setup steps.
 

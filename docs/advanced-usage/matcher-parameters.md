@@ -7,9 +7,10 @@ This tutorial is part of a series to help you learn and perform the advanced
 functions of zentity. You should complete the [basic usage](/docs/basic-usage)
 tutorials before completing these advanced usage tutorials.
 
-1. **Matcher Parameters** *&#8592; You are here.*
-2. [Date Attributes](/docs/advanced-usage/date-attributes)
-3. [Payload Attributes](/docs/advanced-usage/payload-attributes)
+1. [Scoring Resolution](/docs/advanced-usage/scoring-resolution)
+2. **Matcher Parameters** *&#8592; You are here.*
+3. [Date Attributes](/docs/advanced-usage/date-attributes)
+4. [Payload Attributes](/docs/advanced-usage/payload-attributes)
 
 ---
 
@@ -29,14 +30,14 @@ the behavior of matchers at runtime.
 Let's dive in.
 
 > **Before you start**
-> 
+>
 > You must install [Elasticsearch](https://www.elastic.co/downloads/elasticsearch),
 > [Kibana](https://www.elastic.co/downloads/kibana), and [zentity](/docs/installation)
 > to complete this tutorial. This tutorial was tested with
 > [zentity-{$ tutorial.zentity $}-elasticsearch-{$ tutorial.elasticsearch $}](/releases#zentity-{$ tutorial.zentity $}).
-> 
+>
 > **Quick start**
-> 
+>
 > You can use the [zentity sandbox](/sandbox) which has the required software
 > and data for these tutorials. This will let you skip many of the setup steps.
 
@@ -847,7 +848,7 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explana
 }
 ```
 
-Now we have all four matching results. The last names "Jones" and "Joans" now 
+Now we have all four matching results. The last names "Jones" and "Joans" now
 match because they differ by two characters. The phone number for document `"3"`
 also differs by two characters from the other phone numbers. They matched
 because a fuzziness value of `"auto"` allows two characters to differ when the
@@ -960,6 +961,6 @@ and ranges of time.
 
 #### Continue Reading
 
-|&#8249;|[Advanced Usage](/docs/advanced-usage)|[Date Attributes](/docs/advanced-usage/date-attributes)|&#8250;|
+|&#8249;|[Scoring Resolution](/docs/advanced-usage/scoring-resolution)|[Date Attributes](/docs/advanced-usage/date-attributes)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |
