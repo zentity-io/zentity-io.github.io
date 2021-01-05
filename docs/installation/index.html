@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=208469306"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=936664265"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=945643453"></script>
+    </script><script src="/js/all.js?id=340776521"></script>
   </head>
   <body>
     <div id="app" >
@@ -73,7 +73,7 @@ or a local file.</p>
 <li>Install the plugin using the <code>elasticsearch-plugin</code> script that comes with Elasticsearch.</li>
 </ol>
 <p>Example:</p>
-<p><code>elasticsearch-plugin install https://zentity.io/releases/zentity-1.6.0-elasticsearch-7.6.1.zip</code></p>
+<p><code>elasticsearch-plugin install https://zentity.io/releases/zentity-1.6.1-elasticsearch-7.10.1.zip</code></p>
 <h3><a name="install-zentity-local-file"></a>Install from local file</h3>
 <ol>
 <li>Browse the <a href="/releases">releases</a>.</li>
@@ -81,23 +81,23 @@ or a local file.</p>
 <li>Install the plugin using the <code>elasticsearch-plugin</code> script that comes with Elasticsearch.</li>
 </ol>
 <p>Example:</p>
-<p><code>elasticsearch-plugin install file:///path/to/zentity-1.6.0-elasticsearch-7.6.1.zip</code></p>
+<p><code>elasticsearch-plugin install file:///path/to/zentity-1.6.1-elasticsearch-7.10.1.zip</code></p>
 <h2><a name="verify-installation"></a>Step 3. Verify installation</h2>
 <p><strong>Example Request</strong></p>
 <p><code>GET http://localhost:9200/_zentity</code></p>
 <p><strong>Example Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a70129931d6b51fa7">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a53a3c2e96e1d50f8">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a70129931d6b51fa7"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a53a3c2e96e1d50f8"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity&quot;</span><span class="p">,</span>
   <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Real-time entity resolution for Elasticsearch.&quot;</span><span class="p">,</span>
   <span class="s2">&quot;website&quot;</span><span class="o">:</span> <span class="s2">&quot;http://zentity.io&quot;</span><span class="p">,</span>
   <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;zentity&quot;</span><span class="o">:</span> <span class="s2">&quot;1.6.0&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;elasticsearch&quot;</span><span class="o">:</span> <span class="s2">&quot;7.6.1&quot;</span>
+    <span class="s2">&quot;zentity&quot;</span><span class="o">:</span> <span class="s2">&quot;1.6.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;elasticsearch&quot;</span><span class="o">:</span> <span class="s2">&quot;7.10.1&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -112,10 +112,10 @@ already exist upon invoking the <a href="/docs/rest-apis/models-api">Models API<
 <p><strong>Example Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa5925d1a9386f338">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab49563377b710e1e">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aa5925d1a9386f338"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab49563377b710e1e"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;acknowledged&quot;</span><span class="o">:</span> <span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
@@ -130,14 +130,14 @@ plugins such as zentity.</p>
 <ol>
 <li>Browse the <a href="/releases">releases</a> and download one of the .zip files.</li>
 <li><a href="https://cloud.elastic.co/" onclick="to('https://cloud.elastic.co/', 'outbound');" class="external">Sign in</a> to Elasticsearch Service.</li>
-<li>Navigate to the <a href="https://cloud.elastic.co/plugins" onclick="to('https://cloud.elastic.co/plugins', 'outbound');" class="external">Custom Plugins</a> tab.</li>
-<li>Click the "Add plugin" button.</li>
-<li>Name the plugin "zentity".</li>
+<li>Navigate to the <a href="https://cloud.elastic.co/extensions" onclick="to('https://cloud.elastic.co/extensions', 'outbound');" class="external">Extensions</a> tab.</li>
+<li>Click the "Create Extension" button.</li>
+<li>Name the extension "zentity" or anything else.</li>
 <li>Specify the version of your Elasticsearch deployment.</li>
 <li>Under plugin type, select "An installable plugin (Compiled, no source code)".</li>
 <li>Click the "Create plugin" button.</li>
 <li>Upload the .zip file under the "Plugin file" section.</li>
-<li>Create or restart your deployment. If creating a deployment, select "zentity" under the list of custom plugins.</li>
+<li>Create or restart your deployment. If creating a deployment, select the zentity extension under the list of custom plugins.</li>
 </ol>
 <p>If you will be creating indices and performing entity resolution with data that
 has names of people or companies or other fields that often have data quality
