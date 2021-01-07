@@ -2,6 +2,7 @@
 import binascii
 import codecs
 import copy
+import datetime
 import errno
 import json
 import os
@@ -355,6 +356,7 @@ def build_page(page, args={}):
     template = env.get_template(page.get("template", "base.html"))
     vars = copy.deepcopy(page["vars"])
     vars.update(args)
+    vars.update({ "now": datetime.datetime.utcnow() })
     return env.get_template(template).render(**vars)
 
 def build_pages(pages, args={}):
