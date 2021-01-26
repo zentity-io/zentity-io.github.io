@@ -20,13 +20,20 @@ resolution. It aims to be:
 
 Select the plugin version that matches your version of Elasticsearch:
 
-- [Elasticsearch 7.10.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.2.zip)
-- [Elasticsearch 7.10.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.1.zip)
-- [Elasticsearch 7.10.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.0.zip)
-- [Elasticsearch 7.9.3](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.3.zip)
-- [Elasticsearch 7.9.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.2.zip)
-- [Elasticsearch 7.9.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.1.zip)
-- [Elasticsearch 7.9.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.0.zip)
+> &#9888;&#65039; There is a [known issue](https://github.com/zentity-io/zentity/issues/56)
+> in zentity that affects the stability of clusters with multiple nodes using
+> Elasticsearch versions >= 7.9.0. It is strongly recommend to use Elasticsearch
+> versions prior to 7.9.0 until this issue is resolved.
+>
+> _Last updated: 2021-01-26_
+
+- [Elasticsearch 7.10.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.2.zip) *
+- [Elasticsearch 7.10.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.1.zip) *
+- [Elasticsearch 7.10.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.0.zip) *
+- [Elasticsearch 7.9.3](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.3.zip) *
+- [Elasticsearch 7.9.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.2.zip) *
+- [Elasticsearch 7.9.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.1.zip) *
+- [Elasticsearch 7.9.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.0.zip) *
 - [Elasticsearch 7.8.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.8.1.zip)
 - [Elasticsearch 7.8.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.8.0.zip)
 - [Elasticsearch 7.7.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.7.1.zip)
