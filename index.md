@@ -20,6 +20,7 @@ resolution. It aims to be:
 
 Select the plugin version that matches your version of Elasticsearch:
 
+- [Elasticsearch 7.11.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.11.1.zip)
 - [Elasticsearch 7.10.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.2.zip)
 - [Elasticsearch 7.10.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.1.zip)
 - [Elasticsearch 7.10.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.0.zip)

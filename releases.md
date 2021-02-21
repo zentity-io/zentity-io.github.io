@@ -7,7 +7,40 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.6.2">zentity-1.6.2 (latest)</a>
+## <a name="zentity-1.7.0">zentity-1.7.0 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 7.11.1](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.11.1.zip)
+- [Elasticsearch 7.10.2](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.10.2.zip)
+- [Elasticsearch 7.10.1](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.10.1.zip)
+- [Elasticsearch 7.10.0](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.10.0.zip)
+- [Elasticsearch 7.9.3](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.9.3.zip)
+- [Elasticsearch 7.9.2](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.9.2.zip)
+- [Elasticsearch 7.9.1](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.9.1.zip)
+- [Elasticsearch 7.9.0](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.9.0.zip)
+- [Elasticsearch 7.8.1](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.8.1.zip)
+- [Elasticsearch 7.8.0](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.8.0.zip)
+- [Elasticsearch 7.7.1](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.7.1.zip)
+- [Elasticsearch 7.7.0](https://zentity.io/releases/zentity-1.7.0-elasticsearch-7.7.0.zip)
+
+### Release notes
+
+- **Feature** - Allow attributes to be represented as nested fields in the `"_attributes"` section of the resolution response. (Issue: [#77](https://github.com/zentity-io/zentity/issues/77))
+
+- **Breaking change** - Enforce naming requirements for [entity types](/docs/entity-models/specification/#ENTITY_TYPE), [attributes](/docs/entity-models/specification/#attributes.ATTRIBUTE_NAME), [resolvers](/docs/entity-models/specification/#resolvers.RESOLVER_NAME), and [matchers](/docs/entity-models/specification/#matchers.MATCHER_NAME). (Issue: [#58](https://github.com/zentity-io/zentity/issues/58), [#73](https://github.com/zentity-io/zentity/issues/73)) (PR: [#63](https://github.com/zentity-io/zentity/pull/63), [#75](https://github.com/zentity-io/zentity/pull/75))
+
+- **Security** - Updated Jackson dependency to resolve security vulnerability CVE-2020-25649.
+([9fc145b](https://github.com/zentity-io/zentity/commit/9fc145bbe194fd032bc9db53b0e55b7e4d4c5d71))
+
+- **Minor** - Allow more lenient validation of empty objects in Models API. (Issue: [#72](https://github.com/zentity-io/zentity/issues/72)) (PR: [#74](https://github.com/zentity-io/zentity/pull/74))
+
+- **Minor** - Allow integers to be given as inputs to float fields. (Issue: [#59](https://github.com/zentity-io/zentity/issues/59))
+
+
+## <a name="zentity-1.6.2">zentity-1.6.2</a>
 
 ### Download
 

@@ -63,6 +63,25 @@ An entity model has four required objects: **[`"attributes"`](#attributes)**,
 Not all elements within these objects are required. Optional elements are noted
 in the descriptions of each element listed on this page.
 
+## <a name="ENTITY_TYPE"></a>`ENTITY_TYPE`
+
+An entity model is identified by its `ENTITY_TYPE`. This value is specified not
+in the entity model object, but rather in the [`"_id"`](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html)
+field of the entity model document stored in the `.zentity-models` index. The
+value is specified when using the [Models API](/docs/rest-apis/models-api) to
+create the entity model.
+
+- Required: Yes
+- Type: String
+- Validation:
+  - Cannot include `\`, `/`, `*`, `?`, `"`, `<`, `>`, `|`, `,`, `#`, `:`, ` ` (space character)
+  - Cannot start with `-`, `_`, `+`
+  - Cannot be `.` or `..`
+  - Cannot be empty (no characters)
+  - Cannot exceed 255 bytes in length
+  - Alphabetic characters must be lowercase (`[a-z]`)
+  - Unicode characters are allowed
+
 
 ## <a name="attributes"></a>`"attributes"`
 
@@ -148,8 +167,65 @@ A field with the name of a distinct attribute. Some examples might be `"name"`,
 `"dob"`, `"phone"`, etc. The value of the field is an object that contains
 metadata about the attribute.
 
+Attribute names may contain periods (`.`). Periods will separate the attribute
+into nested fields (i.e. [prefixes](https://www.elastic.co/guide/en/ecs/current/ecs-guidelines.html#_guidelines_for_field_names)) in the response of a resolution
+request. Consider this example `"attributes"` object in an entity model:
+
+```javascript
+{
+  "attributes": {
+    "name.first": {},
+    "name.middle": {},
+    "location.address.street": {},
+    "location.address.city": {},
+    "location.address.state": {}
+  }
+}
+```
+
+The `"_attributes"` object of a resolution response will restructure the
+attributes by splitting their names by periods and nesting the split fields.
+Example:
+
+```javascript
+{
+  "_attributes": {
+    "name": {
+      "first": [ "Alice" ],
+      "last": [ "Jones" ]
+    },
+    "location": {
+      "address": {
+        "street": [ "123 Main St" ],
+        "city": [ "Washington" ],
+        "state": [ "DC" ]
+      }
+    }
+  }
+}
+```
+
+This nesting behavior creates the potential for attribute names to conflict.
+For example, an entity model with three attributes named `"name"`,
+`"name.first"`, and `"name.last"` is invalid. The `"name"` attribute cannot hold
+values in the resolution response because the nested structure will cause the
+`"name.first"` and `"name.last"` attributes to override it. The `"name"`
+attribute must be removed or renamed to something appropriate such as
+`"name.full"`.
+
 - Required: Yes
 - Type: String
+- Validation:
+  - Cannot include `\`, `/`, `*`, `?`, `"`, `<`, `>`, `|`, `,`, `#`, `:`, ` ` (space character)
+  - Cannot include multiple consecutive periods (`..`)
+  - Cannot start with `-`, `_`, `+`, `.`
+  - Cannot end with `.`
+  - Cannot be empty (no characters)
+  - Cannot exceed 255 bytes in length
+  - Alphabetic characters must be lowercase (`[a-z]`)
+  - Unicode characters are allowed
+  - When using periods (`.`) the above criteria applies to each field separated by the periods
+  - Cannot override the name of another attribute (e.g. `"name.first"` would override `"name"`, but `"name.first"` would not override `"name.last"`)
 
 
 ### <a name="attributes.ATTRIBUTE_NAME.type"></a>`"attributes".ATTRIBUTE_NAME."type"`
@@ -388,6 +464,14 @@ entity.
 
 - Required: Yes
 - Type: String
+- Validation:
+  - Cannot include `\`, `/`, `*`, `?`, `"`, `<`, `>`, `|`, `,`, `#`, `:`, ` ` (space character)
+  - Cannot start with `-`, `_`, `+`
+  - Cannot be `.` or `..`
+  - Cannot be empty (no characters)
+  - Cannot exceed 255 bytes in length
+  - Alphabetic characters must be lowercase (`[a-z]`)
+  - Unicode characters are allowed
 
 
 ### <a name="resolvers.RESOLVER_NAME.attributes"></a>`"resolvers".RESOLVER_NAME."attributes"`
@@ -517,6 +601,14 @@ attributes.
 
 - Required: Yes
 - Type: String
+- Validation:
+  - Cannot include `\`, `/`, `*`, `?`, `"`, `<`, `>`, `|`, `,`, `#`, `:`, ` ` (space character)
+  - Cannot start with `-`, `_`, `+`
+  - Cannot be `.` or `..`
+  - Cannot be empty (no characters)
+  - Cannot exceed 255 bytes in length
+  - Alphabetic characters must be lowercase (`[a-z]`)
+  - Unicode characters are allowed
 
 
 ### <a name="matchers.MATCHER_NAME.clause"></a>`"matchers".MATCHER_NAME."clause"`
