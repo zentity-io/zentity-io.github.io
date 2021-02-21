@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=201894474"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=995115872"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=124549484"></script>
+    </script><script src="/js/all.js?id=334986861"></script>
   </head>
   <body>
     <div id="app" >
@@ -63,10 +63,10 @@
 <h1><a name="specification"></a>Entity Model Specification</h1>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8533c2e76caef211">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#afa9b919be73fd193">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a8533c2e76caef211"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="afa9b919be73fd193"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_TYPE</span><span class="p">,</span>
@@ -124,14 +124,34 @@ and elipses (<code>...</code>) are optional repetitions of the preceding field o
 <strong><a href="#resolvers" onclick="to(window.location.pathname + '#resolvers', 'internal');"><code>"resolvers"</code></a></strong>, <strong><a href="#matchers" onclick="to(window.location.pathname + '#matchers', 'internal');"><code>"matchers"</code></a></strong>, <strong><a href="#indices" onclick="to(window.location.pathname + '#indices', 'internal');"><code>"indices"</code></a></strong>.
 Not all elements within these objects are required. Optional elements are noted
 in the descriptions of each element listed on this page.</p>
+<h2><a name="ENTITY_TYPE"></a><code>ENTITY_TYPE</code></h2>
+<p>An entity model is identified by its <code>ENTITY_TYPE</code>. This value is specified not
+in the entity model object, but rather in the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html', 'outbound');" class="external"><code>"_id"</code></a>
+field of the entity model document stored in the <code>.zentity-models</code> index. The
+value is specified when using the <a href="/docs/rest-apis/models-api">Models API</a> to
+create the entity model.</p>
+<ul>
+<li>Required: Yes</li>
+<li>Type: String</li>
+<li>Validation:<ul>
+<li>Cannot include <code>\</code>, <code>/</code>, <code>*</code>, <code>?</code>, <code>"</code>, <code>&lt;</code>, <code>&gt;</code>, <code>|</code>, <code>,</code>, <code>#</code>, <code>:</code>, <code></code> (space character)</li>
+<li>Cannot start with <code>-</code>, <code>_</code>, <code>+</code></li>
+<li>Cannot be <code>.</code> or <code>..</code></li>
+<li>Cannot be empty (no characters)</li>
+<li>Cannot exceed 255 bytes in length</li>
+<li>Alphabetic characters must be lowercase (<code>[a-z]</code>)</li>
+<li>Unicode characters are allowed</li>
+</ul>
+</li>
+</ul>
 <h2><a name="attributes"></a><code>"attributes"</code></h2>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a15a564d9ad0a2548">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0f645be3240e5d01">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a15a564d9ad0a2548"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a0f645be3240e5d01"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="nx">ATTRIBUTE_TYPE</span><span class="p">,</span>
@@ -150,10 +170,10 @@ in the descriptions of each element listed on this page.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3e517fa83e57d182">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3b628f35b12f3e4b">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3e517fa83e57d182"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a3b628f35b12f3e4b"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
@@ -210,9 +230,75 @@ regardless of the results of the other matchers.</p>
 <p>A field with the name of a distinct attribute. Some examples might be <code>"name"</code>,
 <code>"dob"</code>, <code>"phone"</code>, etc. The value of the field is an object that contains
 metadata about the attribute.</p>
+<p>Attribute names may contain periods (<code>.</code>). Periods will separate the attribute
+into nested fields (i.e. <a href="https://www.elastic.co/guide/en/ecs/current/ecs-guidelines.html#_guidelines_for_field_names" onclick="to('https://www.elastic.co/guide/en/ecs/current/ecs-guidelines.html#_guidelines_for_field_names', 'outbound');" class="external">prefixes</a>) in the response of a resolution
+request. Consider this example <code>"attributes"</code> object in an entity model:</p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae207825c6b893e4f">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="ae207825c6b893e4f"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;name.first&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="nt">&quot;name.middle&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="nt">&quot;location.address.street&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="nt">&quot;location.address.city&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="nt">&quot;location.address.state&quot;</span><span class="p">:</span> <span class="p">{}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <p>The <code>"_attributes"</code> object of a resolution response will restructure the
+attributes by splitting their names by periods and nesting the split fields.
+Example:</p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af071b7f9b0b1dc04">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="af071b7f9b0b1dc04"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;_attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;first&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;Alice&quot;</span> <span class="p">],</span>
+      <span class="nt">&quot;last&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;Jones&quot;</span> <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;street&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;123 Main St&quot;</span> <span class="p">],</span>
+        <span class="nt">&quot;city&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;Washington&quot;</span> <span class="p">],</span>
+        <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;DC&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <p>This nesting behavior creates the potential for attribute names to conflict.
+For example, an entity model with three attributes named <code>"name"</code>,
+<code>"name.first"</code>, and <code>"name.last"</code> is invalid. The <code>"name"</code> attribute cannot hold
+values in the resolution response because the nested structure will cause the
+<code>"name.first"</code> and <code>"name.last"</code> attributes to override it. The <code>"name"</code>
+attribute must be removed or renamed to something appropriate such as
+<code>"name.full"</code>.</p>
 <ul>
 <li>Required: Yes</li>
 <li>Type: String</li>
+<li>Validation:<ul>
+<li>Cannot include <code>\</code>, <code>/</code>, <code>*</code>, <code>?</code>, <code>"</code>, <code>&lt;</code>, <code>&gt;</code>, <code>|</code>, <code>,</code>, <code>#</code>, <code>:</code>, <code></code> (space character)</li>
+<li>Cannot include multiple consecutive periods (<code>..</code>)</li>
+<li>Cannot start with <code>-</code>, <code>_</code>, <code>+</code>, <code>.</code></li>
+<li>Cannot end with <code>.</code></li>
+<li>Cannot be empty (no characters)</li>
+<li>Cannot exceed 255 bytes in length</li>
+<li>Alphabetic characters must be lowercase (<code>[a-z]</code>)</li>
+<li>Unicode characters are allowed</li>
+<li>When using periods (<code>.</code>) the above criteria applies to each field separated by the periods</li>
+<li>Cannot override the name of another attribute (e.g. <code>"name.first"</code> would override <code>"name"</code>, but <code>"name.first"</code> would not override <code>"name.last"</code>)</li>
+</ul>
+</li>
 </ul>
 <h3><a name="attributes.ATTRIBUTE_NAME.type"></a><code>"attributes".ATTRIBUTE_NAME."type"</code></h3>
 <p>The data type of the attribute. The default value is <code>"string"</code> if unspecified
@@ -333,10 +419,10 @@ and more nuanced rankings of documents.</p>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a49d8e339bd7d7214">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7c18c0b261fd4fad">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a49d8e339bd7d7214"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a7c18c0b261fd4fad"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">RESOLVER_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -354,10 +440,10 @@ and more nuanced rankings of documents.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac73bb998f8abc2de">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0d20f2318468875c">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac73bb998f8abc2de"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a0d20f2318468875c"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name_street_city_state&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -425,6 +511,16 @@ entity.</p>
 <ul>
 <li>Required: Yes</li>
 <li>Type: String</li>
+<li>Validation:<ul>
+<li>Cannot include <code>\</code>, <code>/</code>, <code>*</code>, <code>?</code>, <code>"</code>, <code>&lt;</code>, <code>&gt;</code>, <code>|</code>, <code>,</code>, <code>#</code>, <code>:</code>, <code></code> (space character)</li>
+<li>Cannot start with <code>-</code>, <code>_</code>, <code>+</code></li>
+<li>Cannot be <code>.</code> or <code>..</code></li>
+<li>Cannot be empty (no characters)</li>
+<li>Cannot exceed 255 bytes in length</li>
+<li>Alphabetic characters must be lowercase (<code>[a-z]</code>)</li>
+<li>Unicode characters are allowed</li>
+</ul>
+</li>
 </ul>
 <h3><a name="resolvers.RESOLVER_NAME.attributes"></a><code>"resolvers".RESOLVER_NAME."attributes"</code></h3>
 <p>A set of attribute names. The order of the values has no effect on resolution.
@@ -464,10 +560,10 @@ or do not exist in the documents.</p>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a408647b4fc722757">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a285e289a7e09f545">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a408647b4fc722757"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a285e289a7e09f545"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">MATCHER_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="nx">MATCHER_CLAUSE</span><span class="p">,</span>
@@ -486,10 +582,10 @@ or do not exist in the documents.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7b58aed764ae8208">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a8ff0c18d7f7093c6">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a7b58aed764ae8208"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a8ff0c18d7f7093c6"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;exact_matcher&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -550,6 +646,16 @@ attributes.</p>
 <ul>
 <li>Required: Yes</li>
 <li>Type: String</li>
+<li>Validation:<ul>
+<li>Cannot include <code>\</code>, <code>/</code>, <code>*</code>, <code>?</code>, <code>"</code>, <code>&lt;</code>, <code>&gt;</code>, <code>|</code>, <code>,</code>, <code>#</code>, <code>:</code>, <code></code> (space character)</li>
+<li>Cannot start with <code>-</code>, <code>_</code>, <code>+</code></li>
+<li>Cannot be <code>.</code> or <code>..</code></li>
+<li>Cannot be empty (no characters)</li>
+<li>Cannot exceed 255 bytes in length</li>
+<li>Alphabetic characters must be lowercase (<code>[a-z]</code>)</li>
+<li>Unicode characters are allowed</li>
+</ul>
+</li>
 </ul>
 <h3><a name="matchers.MATCHER_NAME.clause"></a><code>"matchers".MATCHER_NAME."clause"</code></h3>
 <p>An object that represents the clause of a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html', 'outbound');" class="external"><code>"bool"</code> query</a>
@@ -620,10 +726,10 @@ in the quality of the match.</p>
 <p><strong>Model</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#adfdeb4b81c1a4efb">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a365eae5e0d221bea">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="adfdeb4b81c1a4efb"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a365eae5e0d221bea"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">INDEX_NAME</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -644,10 +750,10 @@ in the quality of the match.</p>
         <p><strong>Example</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a682b34f8d48f0f21">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab5dbc8fc6174befd">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a682b34f8d48f0f21"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab5dbc8fc6174befd"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -762,10 +868,10 @@ resolution job. Assume you are resolving an entity with an email address of
 clause below:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad0d08f617850346d">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6f9198af6d935b75">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ad0d08f617850346d"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a6f9198af6d935b75"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
   <span class="p">}</span>
@@ -776,10 +882,10 @@ clause below:</p>
         <p>The final clause will look like this:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a09832c5f45402e25">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0c77919b6995a42a">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a09832c5f45402e25"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a0c77919b6995a42a"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;email.keyword&quot;</span><span class="o">:</span> <span class="s2">&quot;user@example.net&quot;</span>
   <span class="p">}</span>
