@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=859637998"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=355384784"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=629517200"></script>
+    </script><script src="/js/all.js?id=507285591"></script>
   </head>
   <body>
     <div id="app" >
@@ -61,21 +61,44 @@
       <div id="main" class="content">
         <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/rest-apis">REST APIs</a> / Models API</p>
 <h1><a name="models-api"></a>Models API</h1>
+<p>The Models API is a set of endpoints to create, retrieve, update, and delete
+entity models.</p>
+<ul>
+<li><a href="#get-entity-models" onclick="to(window.location.pathname + '#get-entity-models', 'internal');">Get all entity models</a></li>
+<li><a href="#get-entity-model" onclick="to(window.location.pathname + '#get-entity-model', 'internal');">Get an entity model</a></li>
+<li><a href="#create-entity-model" onclick="to(window.location.pathname + '#create-entity-model', 'internal');">Create an entity model</a></li>
+<li><a href="#update-entity-model" onclick="to(window.location.pathname + '#update-entity-model', 'internal');">Update an entity model</a></li>
+<li><a href="#delete-entity-model" onclick="to(window.location.pathname + '#delete-entity-model', 'internal');">Delete an entity model</a></li>
+</ul>
 <h2><a name="get-entity-models"></a>Get all entity models</h2>
+<p>Returns all entity models from the <code>.zentity-models</code> index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6b397645a9fbaca7">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a0382e10151da6aaa">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a6b397645a9fbaca7"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span>
+          <span id="a0382e10151da6aaa"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span>
 </pre></div>
 </span>
         </div>
-        <p>Returns all entity models from the <code>.zentity-models</code> index.</p>
-<p><strong>URL Params</strong></p>
+        <h3>HTTP Headers</h3>
 <table class="table">
 <thead><tr>
-<th>Param</th>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Content-Type</code></td>
+<td><code>application/json</code></td>
+</tr>
+</tbody>
+</table>
+<h3>URL Parameters</h3>
+<table class="table">
+<thead><tr>
+<th>Parameter</th>
 <th>Type</th>
 <th>Default</th>
 <th>Required</th>
@@ -93,21 +116,35 @@
 </tbody>
 </table>
 <h2><a name="get-entity-model"></a>Get an entity model</h2>
+<p>Returns the entity model for a given <code>entity_type</code> from the <code>.zentity-models</code>
+index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a50b5353bc0d7d4e6">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a64153f0d08f21c39">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a50b5353bc0d7d4e6"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
+          <span id="a64153f0d08f21c39"><div class="highlight"><pre><span></span><span class="nx">GET</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 </pre></div>
 </span>
         </div>
-        <p>Returns the entity model for a given <code>entity_type</code> from the <code>.zentity-models</code>
-index.</p>
-<p><strong>URL Params</strong></p>
+        <h3>HTTP Headers</h3>
 <table class="table">
 <thead><tr>
-<th>Param</th>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Content-Type</code></td>
+<td><code>application/json</code></td>
+</tr>
+</tbody>
+</table>
+<h3>URL Parameters</h3>
+<table class="table">
+<thead><tr>
+<th>Parameter</th>
 <th>Type</th>
 <th>Default</th>
 <th>Required</th>
@@ -139,10 +176,10 @@ that <code>entity_type</code>.</p>
 <a href="/docs/entity-models/specification">entity model specification</a>.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#abd1861bb78a28a17">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#afa80455b0536d11e">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="abd1861bb78a28a17"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
+          <span id="afa80455b0536d11e"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
@@ -189,10 +226,24 @@ that <code>entity_type</code>.</p>
 </pre></div>
 </span>
         </div>
-        <p><strong>URL Params</strong></p>
+        <h3>HTTP Headers</h3>
 <table class="table">
 <thead><tr>
-<th>Param</th>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Content-Type</code></td>
+<td><code>application/json</code></td>
+</tr>
+</tbody>
+</table>
+<h3>URL Parameters</h3>
+<table class="table">
+<thead><tr>
+<th>Parameter</th>
 <th>Type</th>
 <th>Default</th>
 <th>Required</th>
@@ -223,10 +274,10 @@ Creates the entity model if it does not already exist.</p>
 <a href="/docs/entity-models/specification">entity model specification</a>.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#afacfdc4afb05eab2">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a6f1384c10d840e67">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="afacfdc4afb05eab2"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
+          <span id="a6f1384c10d840e67"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">ATTRIBUTE_NAME</span><span class="o">:</span> <span class="p">{</span>
@@ -273,10 +324,24 @@ Creates the entity model if it does not already exist.</p>
 </pre></div>
 </span>
         </div>
-        <p><strong>URL Params</strong></p>
+        <h3>HTTP Headers</h3>
 <table class="table">
 <thead><tr>
-<th>Param</th>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Content-Type</code></td>
+<td><code>application/json</code></td>
+</tr>
+</tbody>
+</table>
+<h3>URL Parameters</h3>
+<table class="table">
+<thead><tr>
+<th>Parameter</th>
 <th>Type</th>
 <th>Default</th>
 <th>Required</th>
@@ -305,17 +370,17 @@ Creates the entity model if it does not already exist.</p>
 index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa375e064cc29c9a2">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a625bd468cb67c8d0">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aa375e064cc29c9a2"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
+          <span id="a625bd468cb67c8d0"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 </pre></div>
 </span>
         </div>
-        <p><strong>URL Params</strong></p>
+        <h3>URL Parameters</h3>
 <table class="table">
 <thead><tr>
-<th>Param</th>
+<th>Parameter</th>
 <th>Type</th>
 <th>Default</th>
 <th>Required</th>
@@ -346,7 +411,7 @@ index.</p>
 <thead><tr>
 <th style="text-align:left">&#8249;</th>
 <th style="text-align:left"><a href="/docs/rest-apis/setup-api">Setup API</a></th>
-<th style="text-align:right"><a href="/docs/rest-apis/resolution-api">Resolution API</a></th>
+<th style="text-align:right"><a href="/docs/rest-apis/bulk-models-api">Bulk Models API</a></th>
 <th style="text-align:right">&#8250;</th>
 </tr>
 </thead>

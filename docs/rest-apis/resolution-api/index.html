@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=622472126"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=387086622"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=923138237"></script>
+    </script><script src="/js/all.js?id=801389466"></script>
   </head>
   <body>
     <div id="app" >
@@ -65,15 +65,15 @@
 <p>The request accepts two endpoints:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1b55a7b84a4254a7">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a31f944d03901e249">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a1b55a7b84a4254a7"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span>
+          <span id="a31f944d03901e249"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span>
 <span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="p">{</span><span class="nx">entity_type</span><span class="p">}</span>
 </pre></div>
 </span>
         </div>
-        <p><strong>Example Request</strong></p>
+        <h3>Example Request</h3>
 <p>This example request resolves a <code>person</code> identified by a <code>name</code>, a <code>dob</code>, and
 two <code>phone</code> values, while limiting the search to one index called <code>users_index</code>
 and two resolvers called <code>name_dob</code> and <code>name_phone</code>. The request passes a param
@@ -86,10 +86,10 @@ attributes in the response.</p>
 <p>Read the <strong><a href="/docs/entity-resolution/input-specification">input specification</a></strong> for complete details about the structure of a request.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3e3815e2ea13c1f6">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#adc295082eb41f53a">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3e3815e2ea13c1f6"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="adc295082eb41f53a"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice Jones&quot;</span> <span class="p">],</span>
@@ -130,7 +130,7 @@ attributes in the response.</p>
 </pre></div>
 </span>
         </div>
-        <p><strong>Example Response</strong></p>
+        <h3>Example Response</h3>
 <p>This example response took 64 milliseconds and returned 2 hits. The <code>_source</code>
 field contains the fields and values as they exist in the document indexed in
 Elasticsearch. The <code>_attributes</code> field contains any values from the <code>_source</code>
@@ -142,10 +142,10 @@ if they have highly varied attribute values.</p>
 for complete details about the structure of a response.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aab377d62eb2a88f1">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a328d72e213c73968">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aab377d62eb2a88f1"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="a328d72e213c73968"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="mi">64</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -206,10 +206,24 @@ for complete details about the structure of a response.</p>
 </pre></div>
 </span>
         </div>
-        <p><strong>URL query string parameters</strong></p>
+        <h3>HTTP Headers</h3>
 <table class="table">
 <thead><tr>
-<th>Param</th>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Content-Type</code></td>
+<td><code>application/json</code></td>
+</tr>
+</tbody>
+</table>
+<h3>URL Parameters</h3>
+<table class="table">
+<thead><tr>
+<th>Parameter</th>
 <th>Type</th>
 <th>Default</th>
 <th>Required</th>
@@ -317,11 +331,11 @@ for complete details about the structure of a response.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>URL query string parameters (advanced)</strong></p>
+<h3>URL Parameters (advanced)</h3>
 <p>These are advanced search optimizations. Most users will not require them. It's recommended to use the default settings of the cluster unless you know what you're doing.</p>
 <table class="table">
 <thead><tr>
-<th>Param</th>
+<th>Parameter</th>
 <th>Type</th>
 <th>Default</th>
 <th>Required</th>
@@ -373,10 +387,10 @@ for complete details about the structure of a response.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Request body parameters</strong></p>
+<h3>Request Body Parameters</h3>
 <table class="table">
 <thead><tr>
-<th>Param</th>
+<th>Parameter</th>
 <th>Type</th>
 <th>Default</th>
 <th>Required</th>
@@ -463,13 +477,13 @@ for complete details about the structure of a response.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Notes</strong></p>
+<h3>Notes</h3>
 <ul>
 <li>If you define an <code>entity_type</code>, zentity will use its model from the <code>.zentity-models</code> index.</li>
 <li>If you don't define an <code>entity_type</code>, then you must include a <code>model</code> object in the request body.</li>
 <li>You can define an <code>entity_type</code> in the request body or the URL, but not both.</li>
 </ul>
-<p><strong>Tips</strong></p>
+<h3>Tips</h3>
 <ul>
 <li>If you only need to search a few indices, use <code>scope.exclude.indices</code> and
 <code>scope.include.indices</code> parameter to prevent the job from searching unnecessary
@@ -488,8 +502,8 @@ such as by matching documents only within a given state or country.</li>
 <table class="table">
 <thead><tr>
 <th style="text-align:left">&#8249;</th>
-<th style="text-align:left"><a href="/docs/rest-apis/models-api">Models APIs</a></th>
-<th style="text-align:right"><a href="/docs/security">Security</a></th>
+<th style="text-align:left"><a href="/docs/rest-apis/bulk-models-api">Bulk Models API</a></th>
+<th style="text-align:right"><a href="/docs/rest-apis/bulk-resolution-api">Bulk Resolution API</a></th>
 <th style="text-align:right">&#8250;</th>
 </tr>
 </thead>
