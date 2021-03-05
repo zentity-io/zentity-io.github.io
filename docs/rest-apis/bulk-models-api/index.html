@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>zentity - Bulk Models API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+    <meta name="description" content="zentity brings entity resolution to Elasticsearch. Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
+    <meta property="og:title" content="zentity - Entity Resolution for Elasticsearch"/>
+    <meta property="og:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
+    <meta property="og:image" content="/img/zentity-og-image.png"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://zentity.io/"/>
+    <meta name="twitter:title" content="zentity - Entity Resolution for Elasticsearch"/>
+    <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/all.css?id=156673226"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-27325874-2');
+      var to = function(uri, event_category) {
+        gtag('event', 'click', {
+          'event_category': event_category,
+          'event_label': uri,
+          'transport_type': 'beacon',
+          'event_callback': function(){document.location = uri;}
+        });
+      };
+    </script><script src="/js/all.js?id=393825022"></script>
+  </head>
+  <body>
+    <div id="app" >
+      <div id="top"><div id="nav">
+          <div style="max-width:950px;margin:0 auto;">
+            <a href="/">
+              <h1 aria-label="zentity">
+                <span style="color:rgb(0,169,224)">z</span><span style="color:rgb(14,119,205)">en</span><span style="color:rgb(31,73,125)">tity</span>
+              </h1>
+            </a>
+            <div id="buttons">
+              <a href="/docs">
+                <button type="button" class="btn btn-sm btn-primary" aria-label="Documentation">
+                  Documentation
+                </button>
+              </a>
+              <a href="/releases">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Releases">
+                  Releases
+                </button>
+              </a>
+              <a href="https://github.com/zentity-io/zentity" title="Github" onclick="to('https://github.com/zentity-io/zentity');">
+                <button type="button" class="btn btn-sm btn-link" aria-label="Github">
+                  Github
+                </button>
+              </a>
+            </div>
+          </div>
+        </div></div>
+      <div id="main" class="content">
+        <p><a href="/">Home</a> / <a href="/docs">Documentation</a> / <a href="/docs/rest-apis">REST APIs</a> / Bulk Models API</p>
+<h1><a name="bulk-models-api"></a>Bulk Models API</h1>
+<p>Performs multiple <a href="/docs/rest-apis/models-api">Models API</a> operations in series.
+Supported operations include:
+<a href="/docs/rest-apis/models-api#create-entity-model"><code>"create"</code></a>,
+<a href="/docs/rest-apis/models-api#update-entity-model"><code>"update"</code></a>,
+<a href="/docs/rest-apis/models-api#delete-entity-model"><code>"delete"</code></a></p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ad8c3c2651e49649b">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="ad8c3c2651e49649b"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">_bulk</span>
+<span class="p">{</span> <span class="nx">OPERATION</span><span class="o">:</span> <span class="nx">PARAMETERS</span> <span class="p">}</span>
+<span class="nx">ENTITY_MODEL</span>
+<span class="p">...</span>
+</pre></div>
+</span>
+        </div>
+        <p>The <code>_bulk</code> endpoint requires <a href="http://ndjson.org/" onclick="to('http://ndjson.org/', 'outbound');" class="external">NDJSON</a> syntax. The payload
+consists of pairs of lines. Each pair represents a single operation. The first
+line of the pair describes the operation and its parameters. The second line
+contains the <a href="/docs/entity-models/specification">entity model</a>, or an empty
+object (<code>{}</code>) for <code>"delete"</code> operations. Each line must be an unindented JSON
+object.</p>
+<p>The supported values for <code>OPERATION</code> are:</p>
+<ul>
+<li><a href="/docs/rest-apis/models-api#create-entity-model"><code>"create"</code></a></li>
+<li><a href="/docs/rest-apis/models-api#update-entity-model"><code>"update"</code></a></li>
+<li><a href="/docs/rest-apis/models-api#delete-entity-model"><code>"delete"</code></a></li>
+</ul>
+<h3>Example Request</h3>
+<p>This example performs three <a href="/docs/rest-apis/models-api">Models API</a> operations
+in series. The first request creates an empty entity model for a <code>"person"</code>
+entity type. The second operation updates the entity model by adding an
+attribute called <code>"first_name"</code>. The third operation deletes the entity model.</p>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a099c9fbb91082c8d">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a099c9fbb91082c8d"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">_bulk</span>
+<span class="p">{</span><span class="s2">&quot;create&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;entity_type&quot;</span><span class="o">:</span><span class="s2">&quot;person&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&quot;resolvers&quot;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&quot;matchers&quot;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&quot;indices&quot;</span><span class="o">:</span><span class="p">{}}</span>
+<span class="p">{</span><span class="s2">&quot;update&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;entity_type&quot;</span><span class="o">:</span><span class="s2">&quot;person&quot;</span><span class="p">}}</span>
+<span class="p">{</span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;first_name&quot;</span><span class="o">:</span><span class="p">{}},</span><span class="s2">&quot;resolvers&quot;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&quot;matchers&quot;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&quot;indices&quot;</span><span class="o">:</span><span class="p">{}}</span>
+<span class="p">{</span><span class="s2">&quot;delete&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;entity_type&quot;</span><span class="o">:</span><span class="s2">&quot;person&quot;</span><span class="p">}}</span>
+<span class="p">{}</span>
+</pre></div>
+</span>
+        </div>
+        <h3>Example Response</h3>
+
+        <div class="code">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a17a9df94aa5e5c35">
+            <span style="font-size:24px;">&#x2398</span> Copy to clipboard
+          </button>
+          <span id="a17a9df94aa5e5c35"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="mi">208</span><span class="p">,</span>
+  <span class="s2">&quot;errors&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;items&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;create&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;person&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_version&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;created&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_shards&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&quot;successful&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;failed&quot;</span><span class="o">:</span> <span class="mi">0</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;_seq_no&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;_primary_term&quot;</span><span class="o">:</span> <span class="mi">3</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;update&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;person&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_version&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;updated&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_shards&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&quot;successful&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;failed&quot;</span><span class="o">:</span> <span class="mi">0</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;_seq_no&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;_primary_term&quot;</span><span class="o">:</span> <span class="mi">3</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;delete&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;person&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_version&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;deleted&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_shards&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&quot;successful&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&quot;failed&quot;</span><span class="o">:</span> <span class="mi">0</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;_seq_no&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;_primary_term&quot;</span><span class="o">:</span> <span class="mi">3</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</span>
+        </div>
+        <h3>HTTP Headers</h3>
+<table class="table">
+<thead><tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Content-Type</code></td>
+<td><code>application/x-ndjson</code></td>
+</tr>
+</tbody>
+</table>
+<h3>URL Parameters</h3>
+<table class="table">
+<thead><tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pretty</code></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>No</td>
+<td>Indents the JSON response data.</td>
+</tr>
+</tbody>
+</table>
+<h3>Notes</h3>
+<p>The <code>_bulk</code> endpoint optimizes performance in three ways:</p>
+<ul>
+<li>Ensures the existence of the <code>.zentity-models</code> index just once before running
+the operations</li>
+<li>Refreshes the <code>.zentity-models</code> index once after running the operations.</li>
+<li>Minimizes the network latency that would have occurred from multiple single
+requests between the client and Elasticsearch.</li>
+</ul>
+<p>&nbsp;</p>
+<hr>
+<h4>Continue Reading</h4>
+<table class="table">
+<thead><tr>
+<th style="text-align:left">&#8249;</th>
+<th style="text-align:left"><a href="/docs/rest-apis/models-api">Models API</a></th>
+<th style="text-align:right"><a href="/docs/rest-apis/resolution-api">Resolution API</a></th>
+<th style="text-align:right">&#8250;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+      <div id="bottom">
+        <small>
+          <div>
+            &copy; 2018 - 2021 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
+          </div>
+          <div>
+            Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" onclick="to('http://www.apache.org/licenses/LICENSE-2.0');">Apache License, Version 2.0</a>.
+          </div>
+          <div>
+            Elasticsearch is a trademark of Elasticsearch BV.
+          </div>
+          <div>
+            This website uses Google Analytics.</div>
+        </small>
+      </div>
+    </div>
+  </body>
+  <script>$(document).ready(function(){ new ClipboardJS('.copy'); });</script>
+</html>
