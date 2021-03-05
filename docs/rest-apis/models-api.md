@@ -4,34 +4,59 @@
 # <a name="models-api"></a>Models API
 
 
+The Models API is a set of endpoints to create, retrieve, update, and delete
+entity models.
+
+- [Get all entity models](#get-entity-models)
+- [Get an entity model](#get-entity-model)
+- [Create an entity model](#create-entity-model)
+- [Update an entity model](#update-entity-model)
+- [Delete an entity model](#delete-entity-model)
+
+
 ## <a name="get-entity-models"></a>Get all entity models
+
+Returns all entity models from the `.zentity-models` index.
 
 ```javascript
 GET _zentity/models
 ```
 
-Returns all entity models from the `.zentity-models` index.
 
-**URL Params**
+### HTTP Headers
 
-|Param|Type|Default|Required|Description|
-|-----|----|-------|--------|-----------|
+|Header|Value|
+|------|-----|
+|`Content-Type`|`application/json`|
+
+### URL Parameters
+
+|Parameter|Type|Default|Required|Description|
+|---------|----|-------|--------|-----------|
 |`pretty`|Boolean|`false`|No|Indents the JSON response data.|
 
 
 ## <a name="get-entity-model"></a>Get an entity model
 
+Returns the entity model for a given `entity_type` from the `.zentity-models`
+index.
+
 ```javascript
 GET _zentity/models/{entity_type}
 ```
 
-Returns the entity model for a given `entity_type` from the `.zentity-models`
-index.
 
-**URL Params**
+### HTTP Headers
 
-|Param|Type|Default|Required|Description|
-|-----|----|-------|--------|-----------|
+|Header|Value|
+|------|-----|
+|`Content-Type`|`application/json`|
+
+
+### URL Parameters
+
+|Parameter|Type|Default|Required|Description|
+|---------|----|-------|--------|-----------|
 |`entity_type`|String| |Yes|Entity type.|
 |`pretty`|Boolean|`false`|No|Indents the JSON response data.|
 
@@ -92,10 +117,18 @@ POST _zentity/models/{entity_type}
 }
 ```
 
-**URL Params**
 
-|Param|Type|Default|Required|Description|
-|-----|----|-------|--------|-----------|
+### HTTP Headers
+
+|Header|Value|
+|------|-----|
+|`Content-Type`|`application/json`|
+
+
+### URL Parameters
+
+|Parameter|Type|Default|Required|Description|
+|---------|----|-------|--------|-----------|
 |`entity_type`|String| |Yes|Entity type.|
 |`pretty`|Boolean|`false`|No|Indents the JSON response data.|
 
@@ -155,10 +188,18 @@ PUT _zentity/models/{entity_type}
 }
 ```
 
-**URL Params**
 
-|Param|Type|Default|Required|Description|
-|-----|----|-------|--------|-----------|
+### HTTP Headers
+
+|Header|Value|
+|------|-----|
+|`Content-Type`|`application/json`|
+
+
+### URL Parameters
+
+|Parameter|Type|Default|Required|Description|
+|---------|----|-------|--------|-----------|
 |`entity_type`|String| |Yes|Entity type.|
 |`pretty`|Boolean|`false`|No|Indents the JSON response data.|
 
@@ -172,10 +213,10 @@ index.
 DELETE _zentity/models/{entity_type}
 ```
 
-**URL Params**
+### URL Parameters
 
-|Param|Type|Default|Required|Description|
-|-----|----|-------|--------|-----------|
+|Parameter|Type|Default|Required|Description|
+|---------|----|-------|--------|-----------|
 |`entity_type`|String| |Yes|Entity type.|
 |`pretty`|Boolean|`false`|No|Indents the JSON response data.|
 
@@ -186,6 +227,6 @@ DELETE _zentity/models/{entity_type}
 
 #### Continue Reading
 
-|&#8249;|[Setup API](/docs/rest-apis/setup-api)|[Resolution API](/docs/rest-apis/resolution-api)|&#8250;|
+|&#8249;|[Setup API](/docs/rest-apis/setup-api)|[Bulk Models API](/docs/rest-apis/bulk-models-api)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

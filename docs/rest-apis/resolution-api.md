@@ -12,7 +12,8 @@ POST _zentity/resolution
 POST _zentity/resolution/{entity_type}
 ```
 
-**Example Request**
+
+### Example Request
 
 This example request resolves a `person` identified by a `name`, a `dob`, and
 two `phone` values, while limiting the search to one index called `users_index`
@@ -68,7 +69,8 @@ POST _zentity/resolution/person?pretty
 }
 ```
 
-**Example Response**
+
+### Example Response
 
 This example response took 64 milliseconds and returned 2 hits. The `_source`
 field contains the fields and values as they exist in the document indexed in
@@ -142,10 +144,18 @@ for complete details about the structure of a response.
 }
 ```
 
-**URL query string parameters**
 
-|Param|Type|Default|Required|Description|
-|-----|----|-------|--------|-----------|
+### HTTP Headers
+
+|Header|Value|
+|------|-----|
+|`Content-Type`|`application/json`|
+
+
+### URL Parameters
+
+|Parameter|Type|Default|Required|Description|
+|---------|----|-------|--------|-----------|
 |`_attributes`|Boolean|`true`|No|Return the [`"_attributes"`](/docs/entity-resolution/output-specification/#hits.hits._attributes) field in each doc.|
 |`_explanation`|Boolean|`false`|No|Return the [`"_explanation"`](/docs/entity-resolution/output-specification/#hits.hits._explanation) field in each doc.|
 |`_seq_no_primary_term`|Boolean|`false`|No|Return the [`"_seq_no"`](https://www.elastic.co/guide/en/elasticsearch/reference/current/optimistic-concurrency-control.html) and [`"_primary_term"`](https://www.elastic.co/guide/en/elasticsearch/reference/current/optimistic-concurrency-control.html) fields in each doc.|
@@ -161,12 +171,13 @@ for complete details about the structure of a response.
 |`profile`|Boolean|`false`|No|[Profile](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-profile.html) each query. Used for debugging.|
 |`queries`|Boolean|`false`|No|Return the [`"queries"`](/docs/entity-resolution/output-specification/#queries) field in the response. Used for debugging.|
 
-**URL query string parameters (advanced)**
+
+### URL Parameters (advanced)
 
 These are advanced search optimizations. Most users will not require them. It's recommended to use the default settings of the cluster unless you know what you're doing.
 
-|Param|Type|Default|Required|Description|
-|-----|----|-------|--------|-----------|
+|Parameter|Type|Default|Required|Description|
+|---------|----|-------|--------|-----------|
 |`search.allow_partial_search_results`|Boolean|Cluster default|No|[`allow_partial_search_results`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-search-api-query-params)|
 |`search.batched_reduce_size`|Integer|Cluster default|No|[`batched_reduce_size`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-search-api-query-params)|
 |`search.max_concurrent_shard_requests`|Integer|Cluster default|No|[`max_concurrent_shard_requests`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-search-api-query-params)|
@@ -174,10 +185,11 @@ These are advanced search optimizations. Most users will not require them. It's 
 |`search.pre_filter_shard_size`|Integer|Cluster default|No|[`pre_filter_shard_size`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-search-api-query-params)|
 |`search.request_cache`|Boolean|Cluster default|No|[`request_cache`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-search-api-query-params)|
 
-**Request body parameters**
 
-|Param|Type|Default|Required|Description|
-|-----|----|-------|--------|-----------|
+### Request Body Parameters
+
+|Parameter|Type|Default|Required|Description|
+|---------|----|-------|--------|-----------|
 |`attributes`|Object| |Deopends|The initial attribute values to search. Required if `terms` and `ids` are not specified.|
 |`terms`|Object| |Depends|The initial terms to search. Required if `attributes` and `ids` are not specified.|
 |`ids`|Object| |Depends|The initial document _ids to search. Required if `attributes` and `terms` are not specified.|
@@ -190,13 +202,15 @@ These are advanced search optimizations. Most users will not require them. It's 
 |`scope.include.resolvers`|Object| |No|The names of resolvers to require in each query.|
 |`model`|Object| |Depends|The entity model. Required if `entity_type` is not specified.|
 
-**Notes**
+
+### Notes
 
 - If you define an `entity_type`, zentity will use its model from the `.zentity-models` index.
 - If you don't define an `entity_type`, then you must include a `model` object in the request body.
 - You can define an `entity_type` in the request body or the URL, but not both.
 
-**Tips**
+
+### Tips
 
 - If you only need to search a few indices, use `scope.exclude.indices` and
 `scope.include.indices` parameter to prevent the job from searching unnecessary
@@ -216,6 +230,6 @@ such as by matching documents only within a given state or country.
 
 #### Continue Reading
 
-|&#8249;|[Models APIs](/docs/rest-apis/models-api)|[Security](/docs/security)|&#8250;|
+|&#8249;|[Bulk Models API](/docs/rest-apis/bulk-models-api)|[Bulk Resolution API](/docs/rest-apis/bulk-resolution-api)|&#8250;|
 |:---|:---|---:|---:|
 |    |    |    |    |

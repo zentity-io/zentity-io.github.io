@@ -3,7 +3,7 @@
 
 # <a name="setup-api"></a>Setup API
 
-Creates the `.zentity-models` index.
+The Setup API creates the `.zentity-models` index.
 
 The request accepts one endpoint:
 
@@ -11,10 +11,11 @@ The request accepts one endpoint:
 POST _zentity/_setup
 ```
 
-**URL query string parameters**
 
-|Param|Type|Default|Required|Description|
-|-----|----|-------|--------|-----------|
+### URL Parameters
+
+|Parameter|Type|Default|Required|Description|
+|---------|----|-------|--------|-----------|
 |`number_of_shards`|Integer|1|No|Define the number of primary shards for the index.|
 |`number_of_replicas`|Integer|1|No|Define the number of replica shards for the index.|
 

@@ -7,7 +7,34 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.7.0">zentity-1.7.0 (latest)</a>
+## <a name="zentity-1.8.0">zentity-1.8.0 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 7.11.1](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.11.1.zip)
+- [Elasticsearch 7.10.2](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.10.2.zip)
+- [Elasticsearch 7.10.1](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.10.1.zip)
+- [Elasticsearch 7.10.0](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.10.0.zip)
+- [Elasticsearch 7.9.3](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.9.3.zip)
+- [Elasticsearch 7.9.2](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.9.2.zip)
+- [Elasticsearch 7.9.1](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.9.1.zip)
+- [Elasticsearch 7.9.0](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.9.0.zip)
+- [Elasticsearch 7.8.1](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.8.1.zip)
+- [Elasticsearch 7.8.0](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.8.0.zip)
+- [Elasticsearch 7.7.1](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.7.1.zip)
+- [Elasticsearch 7.7.0](https://zentity.io/releases/zentity-1.8.0-elasticsearch-7.7.0.zip)
+
+### Release notes
+
+- **Feature** - Added the [Bulk Models API](/docs/rest-apis/bulk-models-api/), which efficiently runs multiple entity model management operations in series. (Issue: [#57](https://github.com/zentity-io/zentity/issues/57), PR: [#82](https://github.com/zentity-io/zentity/issues/82))
+
+- **Feature** - Added the [Bulk Resolution API](/docs/rest-apis/bulk-resolution-api/), which efficiently runs multiple entity resolution jobs in parallel. (Issue: [#50](https://github.com/zentity-io/zentity/issues/50), PR: [#79](https://github.com/zentity-io/zentity/issues/79), [#84](https://github.com/zentity-io/zentity/issues/84))
+
+
+
+## <a name="zentity-1.7.0">zentity-1.7.0</a>
 
 ### Download
 

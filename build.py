@@ -293,12 +293,28 @@ def PAGES(args):
                 "content": markdown("/docs/rest-apis/models-api.md", args)
             }
         },
+        "/docs/rest-apis/bulk-models-api": {
+            "vars": {
+                "title": "Bulk Models API",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/rest-apis/bulk-models-api.md", args)
+            }
+        },
         "/docs/rest-apis/resolution-api": {
             "vars": {
                 "title": "Resolution API",
                 "meta_description": META_DESCRIPTION_GENERIC,
                 "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
                 "content": markdown("/docs/rest-apis/resolution-api.md", args)
+            }
+        },
+        "/docs/rest-apis/bulk-resolution-api": {
+            "vars": {
+                "title": "Bulk Resolution API",
+                "meta_description": META_DESCRIPTION_GENERIC,
+                "meta_description_social": META_DESCRIPTION_GENERIC_SHORT,
+                "content": markdown("/docs/rest-apis/bulk-resolution-api.md", args)
             }
         },
         "/docs/security": {

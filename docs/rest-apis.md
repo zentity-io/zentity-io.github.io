@@ -6,7 +6,9 @@
 
 - [Setup API](/docs/rest-apis/setup-api)
 - [Models API](/docs/rest-apis/models-api)
+- [Bulk Models API](/docs/rest-apis/bulk-models-api)
 - [Resolution API](/docs/rest-apis/resolution-api)
+- [Bulk Resolution API](/docs/rest-apis/bulk-resolution-api)
 
 
 &nbsp;

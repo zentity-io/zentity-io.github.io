@@ -10,7 +10,7 @@ used by zentity will be encrypted and any interactions with zentity must be
 authenticated and authorized.
 
 > **Note**
-> 
+>
 > [As of Elasticsearch 7.1.0](https://www.elastic.co/guide/en/elasticsearch/reference/7.1/release-highlights-7.1.0.html),
 > TLS and RBAC come with the official free distribution of Elasticsearch, which
 > is licensed under the Elastic Basic license. Prior to Elasticsearch 7.1.0,
@@ -159,6 +159,6 @@ not been configured with Elastic Security.
 
 #### Continue Reading
 
-|&#8249;|[Resolution API](/docs/rest-apis/resolution-api)|||
+|&#8249;|[Bulk Resolution API](/docs/rest-apis/bulk-resolution-api)|||
 |:---|:---|---:|---:|
 |    |    |    |    |
