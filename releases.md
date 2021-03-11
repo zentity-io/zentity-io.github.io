@@ -7,7 +7,32 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.8.0">zentity-1.8.0 (latest)</a>
+## <a name="zentity-1.8.1">zentity-1.8.1 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 7.11.2](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.11.2.zip)
+- [Elasticsearch 7.11.1](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.11.1.zip)
+- [Elasticsearch 7.10.2](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.10.2.zip)
+- [Elasticsearch 7.10.1](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.10.1.zip)
+- [Elasticsearch 7.10.0](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.10.0.zip)
+- [Elasticsearch 7.9.3](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.9.3.zip)
+- [Elasticsearch 7.9.2](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.9.2.zip)
+- [Elasticsearch 7.9.1](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.9.1.zip)
+- [Elasticsearch 7.9.0](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.9.0.zip)
+- [Elasticsearch 7.8.1](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.8.1.zip)
+- [Elasticsearch 7.8.0](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.8.0.zip)
+- [Elasticsearch 7.7.1](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.7.1.zip)
+- [Elasticsearch 7.7.0](https://zentity.io/releases/zentity-1.8.1-elasticsearch-7.7.0.zip)
+
+### Release notes
+
+- **Bug Fix** - Fixed bug where resolution jobs failed to obtain attribute values from object arrays. (Issue: [#85](https://github.com/zentity-io/zentity/issues/85), PR: [#86](https://github.com/zentity-io/zentity/issues/86))
+
+
+## <a name="zentity-1.8.0">zentity-1.8.0</a>
 
 ### Download
 
