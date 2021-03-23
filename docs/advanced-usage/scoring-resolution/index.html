@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=292202228"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=354660310"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=804529267"></script>
+    </script><script src="/js/all.js?id=222434155"></script>
   </head>
   <body>
     <div id="app" >
@@ -98,10 +98,10 @@ and start Elasticsearch. You can learn more about Elasticsearch plugin managemen
 <p>For Linux (in the <code>$ES_HOME</code> directory of a .tar.gz installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af656353eabbf754e">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a88e1a41e36a08ea1">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af656353eabbf754e"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
+          <span id="a88e1a41e36a08ea1"><div class="highlight"><pre><span></span>sudo bin/elasticsearch-plugin install analysis-phonetic
 sudo bin/elasticsearch-plugin install analysis-icu
 </pre></div>
 </span>
@@ -109,10 +109,10 @@ sudo bin/elasticsearch-plugin install analysis-icu
         <p>For Windows (in the <code>$ES_HOME</code> directory of a .zip installation):</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3702432bea3bfcd7">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aba4410614c942256">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3702432bea3bfcd7"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
+          <span id="aba4410614c942256"><div class="highlight"><pre><span></span>bin/elasticsearch-plugin.bat install analysis-phonetic
 bin/elasticsearch-plugin.bat install analysis-icu
 </pre></div>
 </span>
@@ -127,10 +127,10 @@ makes it easy to submit requests to Elasticsearch and read responses.</p>
 from other tutorials.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a7abb36d20fea2524">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aa6b24eebe498bf63">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a7abb36d20fea2524"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">zentity_tutorial_4_</span><span class="o">*</span>
+          <span id="aa6b24eebe498bf63"><div class="highlight"><pre><span></span><span class="nx">DELETE</span> <span class="nx">zentity_tutorial_4_</span><span class="o">*</span>
 </pre></div>
 </span>
         </div>
@@ -140,10 +140,10 @@ from other tutorials.</p>
 <p>Now create the template for this tutorial.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af4a33f253a6e70de">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae3f5de53a9f8599f">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="af4a33f253a6e70de"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">zentity_tutorial_4_multiple_resolver_resolution</span>
+          <span id="ae3f5de53a9f8599f"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">zentity_tutorial_4_multiple_resolver_resolution</span>
 <span class="p">{</span>
   <span class="s2">&quot;settings&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -294,10 +294,10 @@ from other tutorials.</p>
 <p>Add the tutorial data to the index.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a06dda88e9feab4c1">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aedd54e391d4f094c">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a06dda88e9feab4c1"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
+          <span id="aedd54e391d4f094c"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_bulk</span><span class="o">?</span><span class="nx">refresh</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">}}</span>
 <span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;Washington&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;allie@example.net&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Allie&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jones&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="s2">&quot;202-555-1234&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;street&quot;</span><span class="o">:</span> <span class="s2">&quot;123 Main St&quot;</span><span class="p">}</span>
 <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">}}</span>
@@ -493,10 +493,10 @@ model below. We'll review each part of the model in depth.</p>
 <p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae0976558fe0ff09b">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aaadf47ca83b0b5b3">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ae0976558fe0ff09b"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span>
+          <span id="aaadf47ca83b0b5b3"><div class="highlight"><pre><span></span><span class="nx">PUT</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -627,10 +627,10 @@ model below. We'll review each part of the model in depth.</p>
         <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac4a1b478d0c70720">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac1579b6799c9c066">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac4a1b478d0c70720"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ac1579b6799c9c066"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
   <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
   <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_person&quot;</span><span class="p">,</span>
@@ -651,10 +651,10 @@ model below. We'll review each part of the model in depth.</p>
 <p>We defined seven attributes as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#acfd0c14c6646ce8f">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#adc5a3fffc9fee224">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="acfd0c14c6646ce8f"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="adc5a3fffc9fee224"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
@@ -817,10 +817,10 @@ data fields that led to a match.</p>
 in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a31b1b719572f5f1d">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae0cdd2ef5726ff95">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a31b1b719572f5f1d"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ae0cdd2ef5726ff95"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;simple&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -899,10 +899,10 @@ matcher introduces no quality issues to the resolution process.</li>
 <p>We defined a single index as shown in this section:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aed50e01f258c8a55">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af8912c070bbdabbd">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aed50e01f258c8a55"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="af8912c070bbdabbd"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -958,10 +958,10 @@ normalized data.</p>
 <p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a1e1dbaec93fe23b1">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#abb70d33c3f7b4dfa">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a1e1dbaec93fe23b1"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span><span class="o">&amp;</span><span class="nx">_score</span><span class="o">=</span><span class="kc">true</span>
+          <span id="abb70d33c3f7b4dfa"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span><span class="o">&amp;</span><span class="nx">_score</span><span class="o">=</span><span class="kc">true</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
@@ -975,10 +975,10 @@ normalized data.</p>
         <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#abe541c2c91da3bc6">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#addc76b16bb78c1f5">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="abe541c2c91da3bc6"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="addc76b16bb78c1f5"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">46</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
@@ -1144,10 +1144,10 @@ which indexed value using which matcher and any parameters.</p>
 <p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a169b48b98d320107">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#af32a409e88e995b2">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a169b48b98d320107"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span><span class="o">&amp;</span><span class="nx">_score</span><span class="o">=</span><span class="kc">true</span><span class="o">&amp;</span><span class="nx">_explanation</span><span class="o">=</span><span class="kc">true</span>
+          <span id="af32a409e88e995b2"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">zentity_tutorial_4_person</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span><span class="o">&amp;</span><span class="nx">_score</span><span class="o">=</span><span class="kc">true</span><span class="o">&amp;</span><span class="nx">_explanation</span><span class="o">=</span><span class="kc">true</span>
 <span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Allie&quot;</span> <span class="p">],</span>
@@ -1161,10 +1161,10 @@ which indexed value using which matcher and any parameters.</p>
         <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#adc9cff1abde83e1a">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab4e675465cc06e01">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="adc9cff1abde83e1a"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab4e675465cc06e01"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;took&quot;</span> <span class="o">:</span> <span class="mi">47</span><span class="p">,</span>
   <span class="s2">&quot;hits&quot;</span> <span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;total&quot;</span> <span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
@@ -1994,10 +1994,10 @@ which indexed value using which matcher and any parameters.</p>
 to see what led to its high confidence:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a2b153f1e784fc9cb">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ae60b2b05106d662a">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a2b153f1e784fc9cb"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ae60b2b05106d662a"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;_index&quot;</span> <span class="o">:</span> <span class="s2">&quot;zentity_tutorial_4_multiple_resolver_resolution&quot;</span><span class="p">,</span>
   <span class="s2">&quot;_type&quot;</span> <span class="o">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
   <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;6&quot;</span><span class="p">,</span>
