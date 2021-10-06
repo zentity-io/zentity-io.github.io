@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=150076558"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=285238392"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=328057626"></script>
+    </script><script src="/js/all.js?id=129080378"></script>
   </head>
   <body>
     <div id="app" >
@@ -73,10 +73,11 @@
 </ul>
 <h3>Release notes</h3>
 <ul>
-<li><p><strong>Minor</strong> - The Setup API now creates the <code>.zentity-models</code> index with the setting <code>index.hidden: true</code>. This will not change the behavior of new or old <code>.zentity-models</code> indices. <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#dynamic-index-settings" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#dynamic-index-settings', 'outbound');" class="external">Hidden indices</a> are protected against accidental removal by wildcard index deletions. (<a href="..." onclick="to('...', 'outbound');" class="external">...</a>)</p>
+<li><p><strong>Minor</strong> - The Setup API now creates the <code>.zentity-models</code> index with the setting <code>index.hidden: true</code>. This will not change the behavior of new or old <code>.zentity-models</code> indices. <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#dynamic-index-settings" onclick="to('https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#dynamic-index-settings', 'outbound');" class="external">Hidden indices</a> are protected against accidental removal by wildcard index deletions. (<a href="https://github.com/zentity-io/zentity/commit/f4b7127de940ae9679890ca24616ba0c5593dd05" onclick="to('https://github.com/zentity-io/zentity/commit/f4b7127de940ae9679890ca24616ba0c5593dd05', 'outbound');" class="external">f4b7127</a>)</p>
 </li>
-<li><p>Compatibility with older versions of Elasticsearch will no longer be maintained due to changes in the Elasticsearch Java APIs.
-(<a href="..." onclick="to('...', 'outbound');" class="external">...</a>)</p>
+<li><p><strong>Other</strong> - Compatibility with Elasticsearch versions prior to 7.14.1 will no
+longer be maintained due to changes in the Elasticsearch Java API.
+(<a href="https://github.com/zentity-io/zentity/commit/d9354aa54718bc4024157fbd9754e630322ef0c5" onclick="to('https://github.com/zentity-io/zentity/commit/d9354aa54718bc4024157fbd9754e630322ef0c5', 'outbound');" class="external">d9354aa</a>)</p>
 </li>
 </ul>
 <h2><a name="zentity-1.8.1">zentity-1.8.1</a></h2>
