@@ -20,21 +20,9 @@ resolution. It aims to be:
 
 Select the plugin version that matches your version of Elasticsearch:
 
-- [Elasticsearch 7.12.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.12.1.zip)
-- [Elasticsearch 7.12.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.12.0.zip)
-- [Elasticsearch 7.11.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.11.2.zip)
-- [Elasticsearch 7.11.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.11.1.zip)
-- [Elasticsearch 7.10.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.2.zip)
-- [Elasticsearch 7.10.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.1.zip)
-- [Elasticsearch 7.10.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.10.0.zip)
-- [Elasticsearch 7.9.3](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.3.zip)
-- [Elasticsearch 7.9.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.2.zip)
-- [Elasticsearch 7.9.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.1.zip)
-- [Elasticsearch 7.9.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.9.0.zip)
-- [Elasticsearch 7.8.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.8.1.zip)
-- [Elasticsearch 7.8.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.8.0.zip)
-- [Elasticsearch 7.7.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.7.1.zip)
-- [Elasticsearch 7.7.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.7.0.zip)
+- [Elasticsearch 7.15.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.15.0.zip)
+- [Elasticsearch 7.14.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.14.2.zip)
+- [Elasticsearch 7.14.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.14.1.zip)
 
 
 ## <a name="quick-start">Quick start</a>
