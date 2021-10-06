@@ -19,10 +19,11 @@ Select the plugin version that matches your version of Elasticsearch:
 
 ### Release notes
 
-- **Minor** - The Setup API now creates the `.zentity-models` index with the setting `index.hidden: true`. This will not change the behavior of new or old `.zentity-models` indices. [Hidden indices](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#dynamic-index-settings) are protected against accidental removal by wildcard index deletions. ([...](...))
+- **Minor** - The Setup API now creates the `.zentity-models` index with the setting `index.hidden: true`. This will not change the behavior of new or old `.zentity-models` indices. [Hidden indices](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#dynamic-index-settings) are protected against accidental removal by wildcard index deletions. ([f4b7127](https://github.com/zentity-io/zentity/commit/f4b7127de940ae9679890ca24616ba0c5593dd05))
 
-- Compatibility with older versions of Elasticsearch will no longer be maintained due to changes in the Elasticsearch Java APIs.
-([...](...))
+- **Other** - Compatibility with Elasticsearch versions prior to 7.14.1 will no
+longer be maintained due to changes in the Elasticsearch Java API.
+([d9354aa](https://github.com/zentity-io/zentity/commit/d9354aa54718bc4024157fbd9754e630322ef0c5))
 
 
 ## <a name="zentity-1.8.1">zentity-1.8.1</a>
