@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=462050924"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=344299150"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=389957599"></script>
+    </script><script src="/js/all.js?id=559519876"></script>
   </head>
   <body>
     <div id="app" >
@@ -149,16 +149,16 @@ job using some input.</p>
 <p>Run an entity resolution job using an indexed entity model called <code>person</code>.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab3bb075c9df273ee">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'364aa06d5879171f'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab3bb075c9df273ee"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="ab'364aa06d5879171f'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">person</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
-  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice Jones&quot;</span> <span class="p">],</span>
-    <span class="s2">&quot;dob&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;1984-01-01&quot;</span> <span class="p">],</span>
-    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555-123-4567&quot;</span><span class="p">,</span> <span class="s2">&quot;555-987-6543&quot;</span> <span class="p">]</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;Alice Jones&quot;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;dob&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;1984-01-01&quot;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;phone&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;555-123-4567&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;555-987-6543&quot;</span><span class="w"> </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </span>
@@ -167,108 +167,108 @@ job using some input.</p>
 three attributes, two resolvers, and two indices.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#aae5965877464d906">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'b818f7e823aca89c'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="aae5965877464d906"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">?</span><span class="nx">pretty</span>
+          <span id="ab'b818f7e823aca89c'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">?</span><span class="nx">pretty</span>
 <span class="p">{</span>
-  <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;Alice Jones&quot;</span> <span class="p">],</span>
-    <span class="s2">&quot;dob&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;1984-01-01&quot;</span> <span class="p">],</span>
-    <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;555-123-4567&quot;</span><span class="p">,</span> <span class="s2">&quot;555-987-6543&quot;</span> <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="s2">&quot;model&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
-      <span class="p">},</span>
-      <span class="s2">&quot;dob&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
-      <span class="p">},</span>
-      <span class="s2">&quot;phone&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span>
-      <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;resolvers&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;name_dob&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
-          <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;dob&quot;</span>
-        <span class="p">]</span>
-      <span class="p">},</span>
-      <span class="s2">&quot;name_phone&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">[</span>
-          <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span>
-        <span class="p">]</span>
-      <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;matchers&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;exact&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;term&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
-          <span class="p">}</span>
-        <span class="p">}</span>
-      <span class="p">},</span>
-      <span class="s2">&quot;fuzzy&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;match&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="p">{</span>
-              <span class="s2">&quot;query&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span><span class="p">,</span>
-              <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ params.fuzziness }}&quot;</span>
-            <span class="p">}</span>
-          <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
-        <span class="p">}</span>
-      <span class="p">},</span>
-      <span class="s2">&quot;standard&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;clause&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;match&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ value }}&quot;</span>
-          <span class="p">}</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;indices&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;foo_index&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;full_name&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span>
-          <span class="p">},</span>
-          <span class="s2">&quot;full_name.phonetic&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;standard&quot;</span>
-          <span class="p">},</span>
-          <span class="s2">&quot;date_of_birth.keyword&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;dob&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;exact&quot;</span>
-          <span class="p">},</span>
-          <span class="s2">&quot;telephone.keyword&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;exact&quot;</span>
-          <span class="p">}</span>
-        <span class="p">}</span>
-      <span class="p">},</span>
-      <span class="s2">&quot;bar_index&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;nm&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;fuzzy&quot;</span>
-          <span class="p">},</span>
-          <span class="s2">&quot;db&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;dob&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;standard&quot;</span>
-          <span class="p">},</span>
-          <span class="s2">&quot;ph&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;attribute&quot;</span><span class="o">:</span> <span class="s2">&quot;phone&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;matcher&quot;</span><span class="o">:</span> <span class="s2">&quot;standard&quot;</span>
-          <span class="p">}</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;Alice Jones&quot;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;dob&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;1984-01-01&quot;</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;phone&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;555-123-4567&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;555-987-6543&quot;</span><span class="w"> </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="s2">&quot;model&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;dob&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;phone&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;resolvers&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;name_dob&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dob&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;name_phone&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;phone&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;matchers&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;exact&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;clause&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;term&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{{ value }}&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;fuzzy&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;clause&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;match&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="s2">&quot;query&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{{ value }}&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{{ params.fuzziness }}&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;params&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;fuzziness&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;standard&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;clause&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;match&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;{{ field }}&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;{{ value }}&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;indices&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;foo_index&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;fields&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;full_name&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;attribute&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;matcher&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;fuzzy&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="s2">&quot;full_name.phonetic&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;attribute&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;matcher&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;standard&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="s2">&quot;date_of_birth.keyword&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;attribute&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;dob&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;matcher&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;exact&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="s2">&quot;telephone.keyword&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;attribute&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;matcher&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;exact&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;bar_index&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;fields&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;nm&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;attribute&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;matcher&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;fuzzy&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="s2">&quot;db&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;attribute&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;dob&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;matcher&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;standard&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="s2">&quot;ph&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;attribute&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;phone&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;matcher&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;standard&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </span>
@@ -300,7 +300,7 @@ tutorials to help you master the basic functions of zentity.</p>
       <div id="bottom">
         <small>
           <div>
-            &copy; 2018 - 2022 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
+            &copy; 2018 - 2024 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
           </div>
           <div>
             Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" onclick="to('http://www.apache.org/licenses/LICENSE-2.0');">Apache License, Version 2.0</a>.

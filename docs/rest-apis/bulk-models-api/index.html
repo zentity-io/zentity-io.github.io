@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=794318856"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=422434240"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=314803929"></script>
+    </script><script src="/js/all.js?id=120572024"></script>
   </head>
   <body>
     <div id="app" >
@@ -68,11 +68,11 @@ Supported operations include:
 <a href="/docs/rest-apis/models-api#delete-entity-model"><code>"delete"</code></a></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac61c41d8f6fcbe62">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'ef73ad7995a4af63'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac61c41d8f6fcbe62"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">_bulk</span>
-<span class="p">{</span> <span class="nx">OPERATION</span><span class="o">:</span> <span class="nx">PARAMETERS</span> <span class="p">}</span>
+          <span id="ab'ef73ad7995a4af63'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">_bulk</span>
+<span class="p">{</span><span class="w"> </span><span class="nx">OPERATION</span><span class="o">:</span><span class="w"> </span><span class="nx">PARAMETERS</span><span class="w"> </span><span class="p">}</span>
 <span class="nx">ENTITY_MODEL</span>
 <span class="p">...</span>
 </pre></div>
@@ -97,10 +97,10 @@ entity type. The second operation updates the entity model by adding an
 attribute called <code>"first_name"</code>. The third operation deletes the entity model.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ac67697041730fc2e">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'a7d8db0bc238530d'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ac67697041730fc2e"><div class="highlight"><pre><span></span><span class="nx">POST</span> <span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">_bulk</span>
+          <span id="ab'a7d8db0bc238530d'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">_bulk</span>
 <span class="p">{</span><span class="s2">&quot;create&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;entity_type&quot;</span><span class="o">:</span><span class="s2">&quot;person&quot;</span><span class="p">}}</span>
 <span class="p">{</span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&quot;resolvers&quot;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&quot;matchers&quot;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&quot;indices&quot;</span><span class="o">:</span><span class="p">{}}</span>
 <span class="p">{</span><span class="s2">&quot;update&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;entity_type&quot;</span><span class="o">:</span><span class="s2">&quot;person&quot;</span><span class="p">}}</span>
@@ -113,62 +113,62 @@ attribute called <code>"first_name"</code>. The third operation deletes the enti
         <h3>Example Response</h3>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#a3f46dd9262563d71">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'9bdba8cd2d924375'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="a3f46dd9262563d71"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;took&quot;</span><span class="o">:</span> <span class="mi">208</span><span class="p">,</span>
-  <span class="s2">&quot;errors&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">&quot;items&quot;</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;create&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;person&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_version&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;created&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_shards&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-          <span class="s2">&quot;successful&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-          <span class="s2">&quot;failed&quot;</span><span class="o">:</span> <span class="mi">0</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;_seq_no&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">&quot;_primary_term&quot;</span><span class="o">:</span> <span class="mi">3</span>
-      <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;update&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;person&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_version&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;updated&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_shards&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-          <span class="s2">&quot;successful&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-          <span class="s2">&quot;failed&quot;</span><span class="o">:</span> <span class="mi">0</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;_seq_no&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">&quot;_primary_term&quot;</span><span class="o">:</span> <span class="mi">3</span>
-      <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;delete&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;_index&quot;</span><span class="o">:</span> <span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_type&quot;</span><span class="o">:</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;person&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_version&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;deleted&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_shards&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-          <span class="s2">&quot;successful&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-          <span class="s2">&quot;failed&quot;</span><span class="o">:</span> <span class="mi">0</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;_seq_no&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">&quot;_primary_term&quot;</span><span class="o">:</span> <span class="mi">3</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
+          <span id="ab'9bdba8cd2d924375'"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;took&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">208</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;errors&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;items&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;create&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;_index&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_version&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;result&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;created&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_shards&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;total&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;successful&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;failed&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;_seq_no&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_primary_term&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;update&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;_index&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_version&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;result&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;updated&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_shards&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;total&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;successful&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;failed&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;_seq_no&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_primary_term&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;delete&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s2">&quot;_index&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;doc&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_version&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;result&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;deleted&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_shards&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s2">&quot;total&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;successful&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">&quot;failed&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s2">&quot;_seq_no&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;_primary_term&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </span>
@@ -241,7 +241,7 @@ requests between the client and Elasticsearch.</li>
       <div id="bottom">
         <small>
           <div>
-            &copy; 2018 - 2022 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
+            &copy; 2018 - 2024 <a href="https://github.com/davemoore-" title="Dave Moore" onclick="to('https://github.com/davemoore-');">Dave Moore</a>.
           </div>
           <div>
             Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" onclick="to('http://www.apache.org/licenses/LICENSE-2.0');">Apache License, Version 2.0</a>.
