@@ -345,17 +345,17 @@ def PAGES(args):
 
 def wipe_build_dir():
     filepath = fullpath("/build")
-    print "Wiping build directory: {}".format(filepath)
+    print(f"Wiping build directory: {filepath}")
     return shutil.rmtree(filepath)
 
 def copy_assets_dir():
     filepath_from = fullpath("/assets")
     filepath_to = fullpath("/build")
-    print "Copying assets from: {}".format(filepath_from)
+    print(f"Copying assets from: {filepath_from}")
     return copy_tree(filepath_from, filepath_to)
 
 def write_page(uri_path, content):
-    filepath = fullpath("/build" + uri_path + "/index.html")
+    filepath = fullpath(f"/build{uri_path}/index.html")
     # Ensure any subdirectories are created
     try:
         os.makedirs(os.path.dirname(filepath))
@@ -364,9 +364,9 @@ def write_page(uri_path, content):
             pass
         else:
             raise
-    print "Writing file: {}".format(filepath)
+    print(f"Writing file: {filepath}")
     with codecs.open(filepath, "wb", "utf-8") as file:
-        print >> file, content
+        file.write(content)
 
 def build_page(page, args={}):
     template = env.get_template(page.get("template", "base.html"))
@@ -376,8 +376,8 @@ def build_page(page, args={}):
     return env.get_template(template).render(**vars)
 
 def build_pages(pages, args={}):
-    for uri_path, page in pages.iteritems():
-        print "Building page: {}".format(uri_path)
+    for uri_path, page in pages.items():
+        print(f"Building page: {uri_path}")
         content = build_page(page, args)
         write_page(uri_path, content)
 
@@ -397,13 +397,13 @@ if __name__ == "__main__":
         if arg.startswith("--latest="):
             args["latest"] = parse_latest_version(arg.split("=", 1)[1])
     if not args["latest"]:
-        print "Missing required --latest argument"
+        print("Missing required --latest argument")
         sys.exit(0)
     if not args["latest"]["zentity"]:
-        print "Missing required zentity version in --latest argument"
+        print("Missing required zentity version in --latest argument")
         sys.exit(0)
     if not args["latest"]["elasticsearch"]:
-        print "Missing required elasticsearch version --latest argument"
+        print("Missing required elasticsearch version --latest argument")
         sys.exit(0)
     args["sandbox"] = {
         "elasticsearch": SANDBOX_VERSION_ELASTICSEARCH,
@@ -413,5 +413,5 @@ if __name__ == "__main__":
         "elasticsearch": TUTORIAL_VERSION_ELASTICSEARCH,
         "zentity": TUTORIAL_VERSION_ZENTITY
     }
-    print args
+    print(args)
     build(args)

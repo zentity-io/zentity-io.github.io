@@ -7,7 +7,31 @@
 
 
 <a name="latest"></a>
-## <a name="zentity-1.8.2">zentity-1.8.2 (latest)</a>
+## <a name="zentity-1.8.3">zentity-1.8.3 (latest)</a>
+
+### Download
+
+Select the plugin version that matches your version of Elasticsearch:
+
+- [Elasticsearch 8.13.3](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.13.3.zip)
+- [Elasticsearch 8.13.2](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.13.2.zip)
+- [Elasticsearch 8.13.1](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.13.1.zip)
+- [Elasticsearch 8.13.0](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.13.0.zip)
+
+### Release notes
+
+- **Minor** - Removed mapping types. [Mapping types were removed in Elasticsearch 8.0.0](https://www.elastic.co/guide/en/elasticsearch/reference/8.0/removal-of-types.html))
+([e2178eb](https://github.com/zentity-io/zentity/commit/e2178eb76ca4d114a0a99426964bac25209af65d))
+
+- **Other** - Compatibility with Elasticsearch versions prior to 8.13.0 will no
+longer be maintained due to changes in the Elasticsearch Java API.
+([e2178eb](https://github.com/zentity-io/zentity/commit/e2178eb76ca4d114a0a99426964bac25209af65d))
+
+- **Other** - Now using JDK 17 instead of JDK 11 to build zentity.
+([e2178eb](https://github.com/zentity-io/zentity/commit/e2178eb76ca4d114a0a99426964bac25209af65d))
+
+
+## <a name="zentity-1.8.2">zentity-1.8.2</a>
 
 ### Download
 

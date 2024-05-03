@@ -20,15 +20,10 @@ resolution. It aims to be:
 
 Select the plugin version that matches your version of Elasticsearch:
 
-- [Elasticsearch 7.17.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.17.0.zip)
-- [Elasticsearch 7.16.3](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.16.3.zip)
-- [Elasticsearch 7.16.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.16.2.zip)
-- [Elasticsearch 7.16.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.16.1.zip)
-- [Elasticsearch 7.15.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.15.2.zip)
-- [Elasticsearch 7.15.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.15.1.zip)
-- [Elasticsearch 7.15.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.15.0.zip)
-- [Elasticsearch 7.14.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.14.2.zip)
-- [Elasticsearch 7.14.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-7.14.1.zip)
+- [Elasticsearch 8.13.3](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-8.13.3.zip)
+- [Elasticsearch 8.13.2](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-8.13.2.zip)
+- [Elasticsearch 8.13.1](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-8.13.1.zip)
+- [Elasticsearch 8.13.0](https://zentity.io/releases/zentity-{$ latest.zentity $}-elasticsearch-8.13.0.zip)
 
 
 ## <a name="quick-start">Quick start</a>
