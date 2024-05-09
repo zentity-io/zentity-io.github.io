@@ -1,53 +1,39 @@
 [Home](/) / Sandbox
 
-
 # <a name="sandbox"></a>Sandbox
 
 **zentity sandbox** is an Elasticsearch development environment preloaded with
-zentity, analysis plugins, data sets, and sample entity models. Download it,
-run it, and play with zentity using real data in minutes.
+zentity, analysis plugins, data sets, and sample entity models. It's the
+fastest way to play with zentity using real data.
 
 > Questions or feedback? [Submit an issue](https://github.com/zentity-io/zentity-sandbox/issues) on Github.
 
-
 ## <a name="get-started"></a>Get started
 
+### Prerequisites
 
-**Step 1. Download**
+- [Docker](https://docs.docker.com/get-docker/) (zentity sandbox was tested on Docker version 26.0.0, build 2ae903e)
 
-- **Windows**: [sandbox-zentity-{$ sandbox.zentity $}-elasticsearch-{$ sandbox.elasticsearch $}-windows.zip](https://drive.google.com/uc?id=1R76yYpoMMw_NdJgJqjpHMJHp7SO-YLU9) (3GB Compressed, 4GB Uncompressed)
-- **Mac**: [sandbox-zentity-{$ sandbox.zentity $}-elasticsearch-{$ sandbox.elasticsearch $}-mac.zip](https://drive.google.com/uc?id=1Zd_GfuVAYLu2hRUvJXF7QvCGUP1BOORf) (3GB Compressed, 4GB Uncompressed)
-- **Linux**: [sandbox-zentity-{$ sandbox.zentity $}-elasticsearch-{$ sandbox.elasticsearch $}-linux.zip](https://drive.google.com/uc?id=1-HajIcKYgsQAA66qFHmtaoQzc7vsEF6i) (3GB Compressed, 4GB Uncompressed)
+### Step 1. Download
 
+Download [docker-compose.yml](https://raw.githubusercontent.com/zentity-io/zentity-sandbox/main/docker-compose.yml)
 
-**Step 2. Extract**
+### Step 2. Run
 
-Extract the contents of the file and navigate into the `./sandbox-zentity-*` directory.
+Run this command in the same directory as docker-compose.yml:
 
+`docker compose up`
 
-**Step 3. Start Elasticsearch**
+Elasticsearch and Kibana will be ready about a minute after the images are pulled:
 
-Navigate into the `./elasticsearch-*` directory and run:
+- Elasticsearch - [http://localhost:9200](http://localhost:9200)
+- Kibana - [http://localhost:5601](http://localhost:5601)
 
-- Linux/Mac: `./bin/elasticsearch`
-- Windows: `./bin/elasticsearch.bat`
+### Step 3. Verify
 
-Elasticsearch will be accessible at [`http://localhost:9200`](http://localhost:9200)
+Verify that you can access Elasticsearch:
 
-
-**Step 4. Start Kibana**
-
-Navigate into the `./kibana-*` directory and run:
-
-- Linux/Mac: `./bin/kibana`
-- Windows: `./bin/kibana.bat`
-
-Kibana will be accessible at [`http://localhost:5601`](http://localhost:5601)
-
-
-**Step 5. Verify**
-
-Visit this URL: [http://localhost:9200/_zentity?pretty](http://localhost:9200/_zentity?pretty)
+[http://localhost:9200/\_zentity?pretty](http://localhost:9200/_zentity?pretty)
 
 You should see this response:
 
@@ -63,17 +49,16 @@ You should see this response:
 }
 ```
 
+Verify that you can access Kibana:
 
-**Step 5: Have fun!**
+[http://localhost:5601/](http://localhost:5601/)
 
-Consider using the [Kibana Console UI](https://www.elastic.co/guide/en/kibana/current/console-kibana.html),
-which makes it easy to submit requests to Elasticsearch and read responses.
+You should be redirected to the [Dev Tools Console](https://www.elastic.co/guide/en/kibana/current/console-kibana.html),
+preloaded with interesting commands with the zentity sandbox data.
 
-[http://localhost:5601/app/kibana#/dev_tools/console](http://localhost:5601/app/kibana#/dev_tools/console)
-
+Have fun!
 
 ## <a name="whats-included"></a>What's included
-
 
 ### <a name="plugins"></a>Plugins
 
@@ -83,7 +68,6 @@ The sandbox comes with these plugins installed:
 - [analysis-icu](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html)
 - [analysis-phonetic](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html)
 
-
 ### <a name="data"></a>Data
 
 The sandbox comes with these data sets loaded into indices:
@@ -92,29 +76,28 @@ The sandbox comes with these data sets loaded into indices:
 federally funded health care programs in the United States for a variety of
 reasons, including a conviction for Medicare or Medicaid fraud.
 
-  - Index: **[`zentity_sandbox_leie`](https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_leie.json)**
-  - Source: [https://oig.hhs.gov/exclusions/exclusions_list.asp](https://oig.hhs.gov/exclusions/exclusions_list.asp)
+- Index: **[`zentity_sandbox_leie`](https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_leie.json)**
+- Source: [https://oig.hhs.gov/exclusions/exclusions_list.asp](https://oig.hhs.gov/exclusions/exclusions_list.asp)
 
 **NPPES** - Registry of National Provider Identifiers (NPIs) issued to health
 care providers who are covered by HIPAA in the United States. NPIs are
 required in any HIPAA standard transaction.
 
-  - Index: **[`zentity_sandbox_nppes`](https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_nppes.json)**
-  - Source: [https://download.cms.gov/nppes/NPI_Files.html](https://download.cms.gov/nppes/NPI_Files.html)
+- Index: **[`zentity_sandbox_nppes`](https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_nppes.json)**
+- Source: [https://download.cms.gov/nppes/NPI_Files.html](https://download.cms.gov/nppes/NPI_Files.html)
 
 **PECOS Enrollment** - List of health care providers in the United States
 who are actively enrolled in Medicare.
 
-  - Index: **[`zentity_sandbox_pecos_enrollment`](https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_pecos_enrollment.json)**
-  - Source: [https://data.cms.gov/Medicare-Enrollment/Base-Provider-Enrollment-File/ykfi-ffzq](https://data.cms.gov/Medicare-Enrollment/Base-Provider-Enrollment-File/ykfi-ffzq)
+- Index: **[`zentity_sandbox_pecos_enrollment`](https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_pecos_enrollment.json)**
+- Source: [https://data.cms.gov/Medicare-Enrollment/Base-Provider-Enrollment-File/ykfi-ffzq](https://data.cms.gov/Medicare-Enrollment/Base-Provider-Enrollment-File/ykfi-ffzq)
 
 **Physician Compare** - List of individual eligible professionals in the
 United States that includes information on demographics and Medicare quality
 program participation.
 
-  - Index: **[`zentity_sandbox_physician_compare`](https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_physician_compare.json)**
-  - Source: [https://data.cms.gov/Medicare-Enrollment/Base-Provider-Enrollment-File/ykfi-ffzq](https://data.medicare.gov/Physician-Compare/Physician-Compare-National-Downloadable-File/mj5m-pzi6)
-
+- Index: **[`zentity_sandbox_physician_compare`](https://github.com/zentity-io/zentity-sandbox/blob/master/templates/zentity_sandbox_physician_compare.json)**
+- Source: [https://data.cms.gov/Medicare-Enrollment/Base-Provider-Enrollment-File/ykfi-ffzq](https://data.medicare.gov/Physician-Compare/Physician-Compare-National-Downloadable-File/mj5m-pzi6)
 
 ### <a name="entity-models"></a>Entity Models
 
@@ -126,11 +109,9 @@ The sandbox comes with these entity models loaded in the `.zentity-models` index
 Both entity models represent health care providers. You can use them to discover
 more information about a given health care provider in the sample data sets.
 
-
 ## <a name="examples"></a>Examples
 
 Here are some examples you can run in Kibana:
-
 
 ### <a name="examples-blacklist-lookup"></a>Blacklist lookup
 
@@ -157,7 +138,6 @@ POST _zentity/resolution/organization?pretty&_source=false
     "total" : 6,
     "hits" : [ {
       "_index" : "zentity_sandbox_leie",
-      "_type" : "_doc",
       "_id" : "AmAfGG0Bh4qDFJrXNuqc",
       "_hop" : 0,
       "_query" : 0,
@@ -171,7 +151,6 @@ POST _zentity/resolution/organization?pretty&_source=false
       }
     }, {
       "_index" : "zentity_sandbox_nppes",
-      "_type" : "_doc",
       "_id" : "OpArGG0Bh4qDFJrXHfxg",
       "_hop" : 0,
       "_query" : 1,
@@ -186,7 +165,6 @@ POST _zentity/resolution/organization?pretty&_source=false
       }
     }, {
       "_index" : "zentity_sandbox_leie",
-      "_type" : "_doc",
       "_id" : "DWAfGG0Bh4qDFJrXNebG",
       "_hop" : 1,
       "_query" : 0,
@@ -200,7 +178,6 @@ POST _zentity/resolution/organization?pretty&_source=false
       }
     }, {
       "_index" : "zentity_sandbox_nppes",
-      "_type" : "_doc",
       "_id" : "t2UiGG0Bh4qDFJrX9KFU",
       "_hop" : 2,
       "_query" : 1,
@@ -215,7 +192,6 @@ POST _zentity/resolution/organization?pretty&_source=false
       }
     }, {
       "_index" : "zentity_sandbox_nppes",
-      "_type" : "_doc",
       "_id" : "F28kGG0Bh4qDFJrX1qdK",
       "_hop" : 2,
       "_query" : 1,
@@ -230,7 +206,6 @@ POST _zentity/resolution/organization?pretty&_source=false
       }
     }, {
       "_index" : "zentity_sandbox_leie",
-      "_type" : "_doc",
       "_id" : "iWAfGG0Bh4qDFJrXNeLB",
       "_hop" : 3,
       "_query" : 0,
@@ -246,7 +221,6 @@ POST _zentity/resolution/organization?pretty&_source=false
   }
 }
 ```
-
 
 #### <a name="examples-blacklist-lookup-explanation"></a>Why did they match?
 
@@ -273,7 +247,6 @@ POST _zentity/resolution/organization?pretty&_source=false&_explanation=true
     "total" : 6,
     "hits" : [ {
       "_index" : "zentity_sandbox_leie",
-      "_type" : "_doc",
       "_id" : "AmAfGG0Bh4qDFJrXNuqc",
       "_hop" : 0,
       "_query" : 0,
@@ -302,7 +275,6 @@ POST _zentity/resolution/organization?pretty&_source=false&_explanation=true
       }
     }, {
       "_index" : "zentity_sandbox_nppes",
-      "_type" : "_doc",
       "_id" : "OpArGG0Bh4qDFJrXHfxg",
       "_hop" : 0,
       "_query" : 1,
@@ -332,7 +304,6 @@ POST _zentity/resolution/organization?pretty&_source=false&_explanation=true
       }
     }, {
       "_index" : "zentity_sandbox_leie",
-      "_type" : "_doc",
       "_id" : "DWAfGG0Bh4qDFJrXNebG",
       "_hop" : 1,
       "_query" : 0,
@@ -386,7 +357,6 @@ POST _zentity/resolution/organization?pretty&_source=false&_explanation=true
       }
     }, {
       "_index" : "zentity_sandbox_nppes",
-      "_type" : "_doc",
       "_id" : "t2UiGG0Bh4qDFJrX9KFU",
       "_hop" : 2,
       "_query" : 1,
@@ -451,7 +421,6 @@ POST _zentity/resolution/organization?pretty&_source=false&_explanation=true
       }
     }, {
       "_index" : "zentity_sandbox_nppes",
-      "_type" : "_doc",
       "_id" : "F28kGG0Bh4qDFJrX1qdK",
       "_hop" : 2,
       "_query" : 1,
@@ -506,7 +475,6 @@ POST _zentity/resolution/organization?pretty&_source=false&_explanation=true
       }
     }, {
       "_index" : "zentity_sandbox_leie",
-      "_type" : "_doc",
       "_id" : "iWAfGG0Bh4qDFJrXNeLB",
       "_hop" : 3,
       "_query" : 0,
@@ -572,7 +540,6 @@ POST _zentity/resolution/organization?pretty&_source=false&_explanation=true
 }
 ```
 
-
 #### <a name="examples-blacklist-lookup-queries"></a>What queries were made?
 
 You can see the queries that zentity submitted using the `queries` parameter.
@@ -597,7 +564,6 @@ POST _zentity/resolution/organization?pretty&_source=false&queries=true
     "total" : 6,
     "hits" : [ {
       "_index" : "zentity_sandbox_leie",
-      "_type" : "_doc",
       "_id" : "AmAfGG0Bh4qDFJrXNuqc",
       "_hop" : 0,
       "_query" : 0,
@@ -611,7 +577,6 @@ POST _zentity/resolution/organization?pretty&_source=false&queries=true
       }
     }, {
       "_index" : "zentity_sandbox_nppes",
-      "_type" : "_doc",
       "_id" : "OpArGG0Bh4qDFJrXHfxg",
       "_hop" : 0,
       "_query" : 1,
@@ -626,7 +591,6 @@ POST _zentity/resolution/organization?pretty&_source=false&queries=true
       }
     }, {
       "_index" : "zentity_sandbox_leie",
-      "_type" : "_doc",
       "_id" : "DWAfGG0Bh4qDFJrXNebG",
       "_hop" : 1,
       "_query" : 0,
@@ -640,7 +604,6 @@ POST _zentity/resolution/organization?pretty&_source=false&queries=true
       }
     }, {
       "_index" : "zentity_sandbox_nppes",
-      "_type" : "_doc",
       "_id" : "t2UiGG0Bh4qDFJrX9KFU",
       "_hop" : 2,
       "_query" : 1,
@@ -655,7 +618,6 @@ POST _zentity/resolution/organization?pretty&_source=false&queries=true
       }
     }, {
       "_index" : "zentity_sandbox_nppes",
-      "_type" : "_doc",
       "_id" : "F28kGG0Bh4qDFJrX1qdK",
       "_hop" : 2,
       "_query" : 1,
@@ -670,7 +632,6 @@ POST _zentity/resolution/organization?pretty&_source=false&queries=true
       }
     }, {
       "_index" : "zentity_sandbox_leie",
-      "_type" : "_doc",
       "_id" : "iWAfGG0Bh4qDFJrXNeLB",
       "_hop" : 3,
       "_query" : 0,

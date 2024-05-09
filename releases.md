@@ -20,7 +20,7 @@ Select the plugin version that matches your version of Elasticsearch:
 
 ### Release notes
 
-- **Minor** - Removed mapping types. [Mapping types were removed in Elasticsearch 8.0.0](https://www.elastic.co/guide/en/elasticsearch/reference/8.0/removal-of-types.html))
+- **Minor** - Removed mapping types. [Mapping types were removed in Elasticsearch 8.0.0](https://www.elastic.co/guide/en/elasticsearch/reference/8.0/removal-of-types.html).
 ([e2178eb](https://github.com/zentity-io/zentity/commit/e2178eb76ca4d114a0a99426964bac25209af65d))
 
 - **Other** - Compatibility with Elasticsearch versions prior to 8.13.0 will no
