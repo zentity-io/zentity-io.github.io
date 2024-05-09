@@ -12,11 +12,14 @@ fastest way to play with zentity using real data.
 
 ### Prerequisites
 
+Ensure you have the following software on your machine:
+
 - [Docker](https://docs.docker.com/get-docker/) (zentity sandbox was tested on Docker version 26.0.0, build 2ae903e)
 
 ### Step 1. Download
 
 Download [docker-compose.yml](https://raw.githubusercontent.com/zentity-io/zentity-sandbox/main/docker-compose.yml)
+from the zentity-sandbox repo.
 
 ### Step 2. Run
 
@@ -26,14 +29,14 @@ Run this command in the same directory as docker-compose.yml:
 
 Elasticsearch and Kibana will be ready about a minute after the images are pulled:
 
-- Elasticsearch - [http://localhost:9200](http://localhost:9200)
-- Kibana - [http://localhost:5601](http://localhost:5601)
+- Elasticsearch - [http://localhost:9200/](http://localhost:9200)
+- Kibana - [http://localhost:5601/](http://localhost:5601)
 
 ### Step 3. Verify
 
 Verify that you can access Elasticsearch:
 
-[http://localhost:9200/\_zentity?pretty](http://localhost:9200/_zentity?pretty)
+[http://localhost:9200/_zentity?pretty](http://localhost:9200/_zentity?pretty)
 
 You should see this response:
 
@@ -53,7 +56,7 @@ Verify that you can access Kibana:
 
 [http://localhost:5601/](http://localhost:5601/)
 
-You should be redirected to the [Dev Tools Console](https://www.elastic.co/guide/en/kibana/current/console-kibana.html),
+You should be redirected to the [Kibana Dev Tools Console](https://www.elastic.co/guide/en/kibana/current/console-kibana.html),
 preloaded with interesting commands with the zentity sandbox data.
 
 Have fun!
@@ -64,7 +67,7 @@ Have fun!
 
 The sandbox comes with these plugins installed:
 
-- [zentity](/)
+- [zentity](https://zentity.io)
 - [analysis-icu](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html)
 - [analysis-phonetic](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html)
 
