@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=526356693"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=315848600"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=254370699"></script>
+    </script><script src="/js/all.js?id=126118348"></script>
   </head>
   <body>
     <div id="app" >
@@ -68,29 +68,31 @@ fastest way to play with zentity using real data.</p>
 </blockquote>
 <h2><a name="get-started"></a>Get started</h2>
 <h3>Prerequisites</h3>
+<p>Ensure you have the following software on your machine:</p>
 <ul>
 <li><a href="https://docs.docker.com/get-docker/" onclick="to('https://docs.docker.com/get-docker/', 'outbound');" class="external">Docker</a> (zentity sandbox was tested on Docker version 26.0.0, build 2ae903e)</li>
 </ul>
 <h3>Step 1. Download</h3>
-<p>Download <a href="https://raw.githubusercontent.com/zentity-io/zentity-sandbox/main/docker-compose.yml" onclick="to('https://raw.githubusercontent.com/zentity-io/zentity-sandbox/main/docker-compose.yml', 'outbound');" class="external">docker-compose.yml</a></p>
+<p>Download <a href="https://raw.githubusercontent.com/zentity-io/zentity-sandbox/main/docker-compose.yml" onclick="to('https://raw.githubusercontent.com/zentity-io/zentity-sandbox/main/docker-compose.yml', 'outbound');" class="external">docker-compose.yml</a>
+from the zentity-sandbox repo.</p>
 <h3>Step 2. Run</h3>
 <p>Run this command in the same directory as docker-compose.yml:</p>
 <p><code>docker compose up</code></p>
 <p>Elasticsearch and Kibana will be ready about a minute after the images are pulled:</p>
 <ul>
-<li>Elasticsearch - <a href="http://localhost:9200" onclick="to('http://localhost:9200', 'outbound');" class="external">http://localhost:9200</a></li>
-<li>Kibana - <a href="http://localhost:5601" onclick="to('http://localhost:5601', 'outbound');" class="external">http://localhost:5601</a></li>
+<li>Elasticsearch - <a href="http://localhost:9200" onclick="to('http://localhost:9200', 'outbound');" class="external">http://localhost:9200/</a></li>
+<li>Kibana - <a href="http://localhost:5601" onclick="to('http://localhost:5601', 'outbound');" class="external">http://localhost:5601/</a></li>
 </ul>
 <h3>Step 3. Verify</h3>
 <p>Verify that you can access Elasticsearch:</p>
-<p><a href="http://localhost:9200/_zentity?pretty" onclick="to('http://localhost:9200/_zentity?pretty', 'outbound');" class="external">http://localhost:9200/\_zentity?pretty</a></p>
+<p><a href="http://localhost:9200/_zentity?pretty" onclick="to('http://localhost:9200/_zentity?pretty', 'outbound');" class="external">http://localhost:9200/_zentity?pretty</a></p>
 <p>You should see this response:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'075b765e19382415'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'01282f5294590bf6'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'075b765e19382415'"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab'01282f5294590bf6'"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;zentity&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="s2">&quot;description&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Real-time entity resolution for Elasticsearch.&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="s2">&quot;website&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;http://zentity.io&quot;</span><span class="p">,</span>
@@ -104,14 +106,14 @@ fastest way to play with zentity using real data.</p>
         </div>
         <p>Verify that you can access Kibana:</p>
 <p><a href="http://localhost:5601/" onclick="to('http://localhost:5601/', 'outbound');" class="external">http://localhost:5601/</a></p>
-<p>You should be redirected to the <a href="https://www.elastic.co/guide/en/kibana/current/console-kibana.html" onclick="to('https://www.elastic.co/guide/en/kibana/current/console-kibana.html', 'outbound');" class="external">Dev Tools Console</a>,
+<p>You should be redirected to the <a href="https://www.elastic.co/guide/en/kibana/current/console-kibana.html" onclick="to('https://www.elastic.co/guide/en/kibana/current/console-kibana.html', 'outbound');" class="external">Kibana Dev Tools Console</a>,
 preloaded with interesting commands with the zentity sandbox data.</p>
 <p>Have fun!</p>
 <h2><a name="whats-included"></a>What's included</h2>
 <h3><a name="plugins"></a>Plugins</h3>
 <p>The sandbox comes with these plugins installed:</p>
 <ul>
-<li><a href="/">zentity</a></li>
+<li><a href="https://zentity.io">zentity</a></li>
 <li><a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-icu.html', 'outbound');" class="external">analysis-icu</a></li>
 <li><a href="https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html" onclick="to('https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-phonetic.html', 'outbound');" class="external">analysis-phonetic</a></li>
 </ul>
@@ -160,10 +162,10 @@ over three hops.</p>
 <p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'e3454c8884e64366'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'ba927a6f8c747384'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'e3454c8884e64366'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">organization</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
+          <span id="ab'ba927a6f8c747384'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">organization</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;1497077796&quot;</span><span class="w"> </span><span class="p">]</span>
@@ -175,10 +177,10 @@ over three hops.</p>
         <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'ae309a4f4331d286'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'dd5ace4a53e976a3'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'ae309a4f4331d286'"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab'dd5ace4a53e976a3'"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;took&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">130</span><span class="p">,</span>
 <span class="w">  </span><span class="s2">&quot;hits&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;total&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">6</span><span class="p">,</span>
@@ -275,10 +277,10 @@ This will include an explanation for each matching document.</p>
 <p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'64c5cb8074f466b2'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'369e2ccac7c25b3b'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'64c5cb8074f466b2'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">organization</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span><span class="o">&amp;</span><span class="nx">_explanation</span><span class="o">=</span><span class="kc">true</span>
+          <span id="ab'369e2ccac7c25b3b'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">organization</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span><span class="o">&amp;</span><span class="nx">_explanation</span><span class="o">=</span><span class="kc">true</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;1497077796&quot;</span><span class="w"> </span><span class="p">]</span>
@@ -290,10 +292,10 @@ This will include an explanation for each matching document.</p>
         <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'e8bab6c0ecf1d24c'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'ee31910b4b1c443f'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'e8bab6c0ecf1d24c'"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab'ee31910b4b1c443f'"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;took&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">159</span><span class="p">,</span>
 <span class="w">  </span><span class="s2">&quot;hits&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;total&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">6</span><span class="p">,</span>
@@ -598,10 +600,10 @@ This will include an explanation for each matching document.</p>
 <p><strong>Request</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'0ab760ab70e46cb1'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'd02daaa8ed9c4d05'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'0ab760ab70e46cb1'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">organization</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span><span class="o">&amp;</span><span class="nx">queries</span><span class="o">=</span><span class="kc">true</span>
+          <span id="ab'd02daaa8ed9c4d05'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">resolution</span><span class="o">/</span><span class="nx">organization</span><span class="o">?</span><span class="nx">pretty</span><span class="o">&amp;</span><span class="nx">_source</span><span class="o">=</span><span class="kc">false</span><span class="o">&amp;</span><span class="nx">queries</span><span class="o">=</span><span class="kc">true</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;1497077796&quot;</span><span class="w"> </span><span class="p">]</span>
@@ -613,10 +615,10 @@ This will include an explanation for each matching document.</p>
         <p><strong>Response</strong></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'98157b884fc067d1'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'309e46a6d1e7de6f'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'98157b884fc067d1'"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab'309e46a6d1e7de6f'"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;took&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">123</span><span class="p">,</span>
 <span class="w">  </span><span class="s2">&quot;hits&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;total&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">6</span><span class="p">,</span>
