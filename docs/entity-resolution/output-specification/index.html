@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=991690242"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=410687481"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=408206506"></script>
+    </script><script src="/js/all.js?id=275541386"></script>
   </head>
   <body>
     <div id="app" >
@@ -63,17 +63,16 @@
 <h1><a name="output"></a>Entity Resolution Output Specification</h1>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'95dd3434458f6163'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'08c76b817a490f22'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'95dd3434458f6163'"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab'08c76b817a490f22'"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;took&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">TOOK_IN_MILLIS</span><span class="p">,</span>
 <span class="w">  </span><span class="s2">&quot;hits&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;total&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">HITS_TOTAL</span><span class="p">,</span>
 <span class="w">    </span><span class="s2">&quot;hits&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">      </span><span class="p">{</span>
 <span class="w">        </span><span class="s2">&quot;_index&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">INDEX_NAME</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">DOC_TYPE</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">DOC_ID</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;_hop&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">HOP_NUMBER</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;_query&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">QUERY_NUMBER</span><span class="p">,</span>
@@ -208,8 +207,6 @@ client.</p>
 <p>An array of objects, each of which is a document that matched the input.</p>
 <h3><a name="hits.hits._index"></a><code>"hits"."hits"."_index"</code></h3>
 <p>The name of the index from which the document was retrieved.</p>
-<h3><a name="hits.hits._type"></a><code>"hits"."hits"."_type"</code></h3>
-<p>The doc type of the document.</p>
 <h3><a name="hits.hits._id"></a><code>"hits"."hits"."_id"</code></h3>
 <p>The _id of the document.</p>
 <h3><a name="hits.hits._hop"></a><code>"hits"."hits"."_hop"</code></h3>
@@ -291,10 +288,10 @@ constructed in the query.</p>
 following:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'e8b943bceb4247ce'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'97959b57195a3c1a'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'e8b943bceb4247ce'"><div class="highlight"><pre><span></span><span class="p">[</span>
+          <span id="ab'97959b57195a3c1a'"><div class="highlight"><pre><span></span><span class="p">[</span>
 <span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;street&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;city&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;state&quot;</span><span class="w"> </span><span class="p">],</span>
 <span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;street&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;zip&quot;</span><span class="w"> </span><span class="p">],</span>
 <span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dob&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;state&quot;</span><span class="w"> </span><span class="p">],</span>
@@ -312,10 +309,10 @@ determining how the attributes can be nested to minimize redundant clauses.</p>
 <p>Here's the effect of the optimization:</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'ba2f35146a7066cd'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'aa0938d6026c86bc'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'ba2f35146a7066cd'"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab'aa0938d6026c86bc'"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;0&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="s2">&quot;street&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>

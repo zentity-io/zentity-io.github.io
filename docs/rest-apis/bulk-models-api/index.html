@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Connect the hidden fragments of an identity in your data. Fast, scalable, open source."/>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/all.css?id=725602164"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
+    <link rel="stylesheet" href="/css/all.css?id=940208946"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-27325874-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -28,7 +28,7 @@
           'event_callback': function(){document.location = uri;}
         });
       };
-    </script><script src="/js/all.js?id=714541792"></script>
+    </script><script src="/js/all.js?id=981826579"></script>
   </head>
   <body>
     <div id="app" >
@@ -68,10 +68,10 @@ Supported operations include:
 <a href="/docs/rest-apis/models-api#delete-entity-model"><code>"delete"</code></a></p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'2f6af3ac826f4453'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'ea060af5ba277dcf'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'2f6af3ac826f4453'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">_bulk</span>
+          <span id="ab'ea060af5ba277dcf'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">_bulk</span>
 <span class="p">{</span><span class="w"> </span><span class="nx">OPERATION</span><span class="o">:</span><span class="w"> </span><span class="nx">PARAMETERS</span><span class="w"> </span><span class="p">}</span>
 <span class="nx">ENTITY_MODEL</span>
 <span class="p">...</span>
@@ -97,10 +97,10 @@ entity type. The second operation updates the entity model by adding an
 attribute called <code>"first_name"</code>. The third operation deletes the entity model.</p>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'3e1e712e2b5881ac'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'b0b77d7228143a49'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'3e1e712e2b5881ac'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">_bulk</span>
+          <span id="ab'b0b77d7228143a49'"><div class="highlight"><pre><span></span><span class="nx">POST</span><span class="w"> </span><span class="nx">_zentity</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">_bulk</span>
 <span class="p">{</span><span class="s2">&quot;create&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;entity_type&quot;</span><span class="o">:</span><span class="s2">&quot;person&quot;</span><span class="p">}}</span>
 <span class="p">{</span><span class="s2">&quot;attributes&quot;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&quot;resolvers&quot;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&quot;matchers&quot;</span><span class="o">:</span><span class="p">{},</span><span class="s2">&quot;indices&quot;</span><span class="o">:</span><span class="p">{}}</span>
 <span class="p">{</span><span class="s2">&quot;update&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;entity_type&quot;</span><span class="o">:</span><span class="s2">&quot;person&quot;</span><span class="p">}}</span>
@@ -113,17 +113,16 @@ attribute called <code>"first_name"</code>. The third operation deletes the enti
         <h3>Example Response</h3>
 
         <div class="code">
-          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'c56645e6a47e358b'">
+          <button type="button" class="btn btn-sm btn-link copy" data-clipboard-target="#ab'd73da83d887b5863'">
             <span style="font-size:24px;">&#x2398</span> Copy to clipboard
           </button>
-          <span id="ab'c56645e6a47e358b'"><div class="highlight"><pre><span></span><span class="p">{</span>
+          <span id="ab'd73da83d887b5863'"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="s2">&quot;took&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">208</span><span class="p">,</span>
 <span class="w">  </span><span class="s2">&quot;errors&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">  </span><span class="s2">&quot;items&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="s2">&quot;create&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="s2">&quot;_index&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;doc&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;_version&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;result&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;created&quot;</span><span class="p">,</span>
@@ -139,7 +138,6 @@ attribute called <code>"first_name"</code>. The third operation deletes the enti
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="s2">&quot;update&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="s2">&quot;_index&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;doc&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;_version&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;result&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;updated&quot;</span><span class="p">,</span>
@@ -155,7 +153,6 @@ attribute called <code>"first_name"</code>. The third operation deletes the enti
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="s2">&quot;delete&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="s2">&quot;_index&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;.zentity-models&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;doc&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;_version&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
 <span class="w">        </span><span class="s2">&quot;result&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;deleted&quot;</span><span class="p">,</span>
