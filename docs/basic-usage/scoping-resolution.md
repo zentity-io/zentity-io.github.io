@@ -666,7 +666,6 @@ POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=false
     "total" : 2,
     "hits" : [ {
       "_index" : "zentity_tutorial_5_cross_index_resolution_a",
-      "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
       "_query" : 0,
@@ -681,7 +680,6 @@ POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=false
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_a",
-      "_type" : "_doc",
       "_id" : "3",
       "_hop" : 1,
       "_query" : 0,
@@ -749,7 +747,6 @@ POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=false
     "total" : 6,
     "hits" : [ {
       "_index" : "zentity_tutorial_5_cross_index_resolution_a",
-      "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
       "_query" : 0,
@@ -764,7 +761,6 @@ POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=false
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_b",
-      "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
       "_query" : 1,
@@ -779,7 +775,6 @@ POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=false
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_b",
-      "_type" : "_doc",
       "_id" : "6",
       "_hop" : 1,
       "_query" : 1,
@@ -794,7 +789,6 @@ POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=false
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_a",
-      "_type" : "_doc",
       "_id" : "11",
       "_hop" : 2,
       "_query" : 0,
@@ -809,7 +803,6 @@ POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=false
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_a",
-      "_type" : "_doc",
       "_id" : "7",
       "_hop" : 3,
       "_query" : 0,
@@ -824,7 +817,6 @@ POST _zentity/resolution/zentity_tutorial_5_person?pretty&_source=false
       }
     }, {
       "_index" : "zentity_tutorial_5_cross_index_resolution_b",
-      "_type" : "_doc",
       "_id" : "10",
       "_hop" : 3,
       "_query" : 1,

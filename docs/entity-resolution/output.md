@@ -11,7 +11,6 @@
     "hits": [
       {
         "_index": INDEX_NAME,
-        "_type": DOC_TYPE,
         "_id": DOC_ID,
         "_hop": HOP_NUMBER,
         "_query": QUERY_NUMBER,
@@ -163,11 +162,6 @@ An array of objects, each of which is a document that matched the input.
 ### <a name="hits.hits._index"></a>`"hits"."hits"."_index"`
 
 The name of the index from which the document was retrieved.
-
-
-### <a name="hits.hits._type"></a>`"hits"."hits"."_type"`
-
-The doc type of the document.
 
 
 ### <a name="hits.hits._id"></a>`"hits"."hits"."_id"`

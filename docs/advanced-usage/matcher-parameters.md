@@ -379,7 +379,6 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explana
     "total" : 2,
     "hits" : [ {
       "_index" : "zentity_tutorial_7_matcher_parameters",
-      "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
       "_query" : 0,
@@ -419,7 +418,6 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explana
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
-      "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
       "_query" : 0,
@@ -503,7 +501,6 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explana
     "total" : 3,
     "hits" : [ {
       "_index" : "zentity_tutorial_7_matcher_parameters",
-      "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
       "_query" : 0,
@@ -545,7 +542,6 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explana
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
-      "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
       "_query" : 0,
@@ -587,7 +583,6 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explana
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
-      "_type" : "_doc",
       "_id" : "5",
       "_hop" : 0,
       "_query" : 0,
@@ -669,7 +664,6 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explana
     "total" : 4,
     "hits" : [ {
       "_index" : "zentity_tutorial_7_matcher_parameters",
-      "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
       "_query" : 0,
@@ -713,7 +707,6 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explana
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
-      "_type" : "_doc",
       "_id" : "3",
       "_hop" : 0,
       "_query" : 0,
@@ -757,7 +750,6 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explana
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
-      "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
       "_query" : 0,
@@ -801,7 +793,6 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explana
       }
     }, {
       "_index" : "zentity_tutorial_7_matcher_parameters",
-      "_type" : "_doc",
       "_id" : "5",
       "_hop" : 0,
       "_query" : 0,
@@ -893,7 +884,6 @@ POST _zentity/resolution/zentity_tutorial_7_person?pretty&_source=false&_explana
     "total" : 1,
     "hits" : [ {
       "_index" : "zentity_tutorial_7_matcher_parameters",
-      "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
       "_query" : 0,

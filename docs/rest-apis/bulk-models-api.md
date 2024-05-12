@@ -58,7 +58,6 @@ POST _zentity/models/_bulk
     {
       "create": {
         "_index": ".zentity-models",
-        "_type": "doc",
         "_id": "person",
         "_version": 1,
         "result": "created",
@@ -74,7 +73,6 @@ POST _zentity/models/_bulk
     {
       "update": {
         "_index": ".zentity-models",
-        "_type": "doc",
         "_id": "person",
         "_version": 2,
         "result": "updated",
@@ -90,7 +88,6 @@ POST _zentity/models/_bulk
     {
       "delete": {
         "_index": ".zentity-models",
-        "_type": "doc",
         "_id": "person",
         "_version": 3,
         "result": "deleted",

@@ -334,7 +334,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
     "total" : 7,
     "hits" : [ {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
       "_query" : 0,
@@ -366,7 +365,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "2",
       "_hop" : 0,
       "_query" : 0,
@@ -398,7 +396,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
       "_query" : 0,
@@ -430,7 +427,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "6",
       "_hop" : 0,
       "_query" : 0,
@@ -462,7 +458,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "7",
       "_hop" : 0,
       "_query" : 0,
@@ -494,7 +489,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "9",
       "_hop" : 0,
       "_query" : 0,
@@ -526,7 +520,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "12",
       "_hop" : 1,
       "_query" : 0,
@@ -606,7 +599,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
     "total" : 11,
     "hits" : [ {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
       "_query" : 0,
@@ -640,7 +632,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "2",
       "_hop" : 0,
       "_query" : 0,
@@ -674,7 +665,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
       "_query" : 0,
@@ -708,7 +698,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "6",
       "_hop" : 0,
       "_query" : 0,
@@ -742,7 +731,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "7",
       "_hop" : 0,
       "_query" : 0,
@@ -776,7 +764,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "9",
       "_hop" : 0,
       "_query" : 0,
@@ -810,7 +797,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "12",
       "_hop" : 0,
       "_query" : 0,
@@ -844,7 +830,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "15",
       "_hop" : 0,
       "_query" : 0,
@@ -878,7 +863,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "16",
       "_hop" : 1,
       "_query" : 0,
@@ -912,7 +896,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "17",
       "_hop" : 1,
       "_query" : 0,
@@ -946,7 +929,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "18",
       "_hop" : 1,
       "_query" : 0,
@@ -1015,7 +997,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
     "total" : 4,
     "hits" : [ {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "1",
       "_hop" : 0,
       "_query" : 0,
@@ -1049,7 +1030,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "2",
       "_hop" : 0,
       "_query" : 0,
@@ -1083,7 +1063,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "4",
       "_hop" : 0,
       "_query" : 0,
@@ -1117,7 +1096,6 @@ POST _zentity/resolution/zentity_tutorial_8_http_session?pretty&_source=false&_e
       }
     }, {
       "_index" : "zentity_tutorial_8_date_attributes",
-      "_type" : "_doc",
       "_id" : "6",
       "_hop" : 0,
       "_query" : 0,

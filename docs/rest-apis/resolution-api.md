@@ -91,7 +91,6 @@ for complete details about the structure of a response.
     "hits": [
       {
         "_index": "users_index",
-        "_type": "doc",
         "_id": "iaCn-mABDJZDR09hUNon",
         "_hop": 0,
         "_attributes": {
@@ -116,7 +115,6 @@ for complete details about the structure of a response.
       },
       {
         "_index": "users_index",
-        "_type": "doc",
         "_id": "iqCn-mABDJZDR09hUNoo",
         "_hop": 0,
         "_attributes": {
