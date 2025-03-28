@@ -48,7 +48,7 @@ class ZentityRenderer(mistune.Renderer):
         if not lang:
             return "\n<pre><code>%s</code></pre>\n" % mistune.escape(code)
         lexer = get_lexer_by_name(lang, stripall=True)
-        id = "a%s" % binascii.hexlify(os.urandom(8))
+        id = f'a{binascii.hexlify(os.urandom(8)).decode('utf-8')}'
         formatter = html.HtmlFormatter()
         formatted = highlight(code, lexer, formatter)
         formatted = """
