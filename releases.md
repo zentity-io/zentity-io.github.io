@@ -13,6 +13,23 @@
 
 Select the plugin version that matches your version of Elasticsearch:
 
+- [Elasticsearch 8.17.4](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.17.4.zip)
+- [Elasticsearch 8.17.3](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.17.3.zip)
+- [Elasticsearch 8.17.2](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.17.2.zip)
+- [Elasticsearch 8.17.1](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.17.1.zip)
+- [Elasticsearch 8.17.0](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.17.0.zip)
+- [Elasticsearch 8.16.2](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.16.2.zip)
+- [Elasticsearch 8.16.1](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.16.1.zip)
+- [Elasticsearch 8.16.0](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.16.0.zip)
+- [Elasticsearch 8.15.5](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.15.5.zip)
+- [Elasticsearch 8.15.4](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.15.4.zip)
+- [Elasticsearch 8.15.3](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.15.3.zip)
+- [Elasticsearch 8.15.2](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.15.2.zip)
+- [Elasticsearch 8.15.1](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.15.1.zip)
+- [Elasticsearch 8.15.0](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.15.0.zip)
+- [Elasticsearch 8.14.3](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.14.3.zip)
+- [Elasticsearch 8.14.2](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.14.2.zip)
+- [Elasticsearch 8.14.1](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.14.1.zip)
 - [Elasticsearch 8.14.0](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.14.0.zip)
 - [Elasticsearch 8.13.4](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.13.4.zip)
 - [Elasticsearch 8.13.3](https://zentity.io/releases/zentity-1.8.3-elasticsearch-8.13.3.zip)
